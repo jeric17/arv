@@ -21,6 +21,8 @@ export class MyComponent {
           <div>item 1</div>
           <div>item 1</div>
         </arv-flex>
+
+        <arv-input onInputChange={e => console.log(e) } />
       </div>
     );
   }

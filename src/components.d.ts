@@ -24,6 +24,14 @@ declare global {
 
   namespace StencilComponents {
 
+    interface ArvButton {
+      'color': string;
+      'disabled': boolean;
+      'full': boolean;
+      'size': string;
+      'variant': string;
+    }
+
     interface ArvFlex {
       'content': string;
       'items': string;
@@ -33,6 +41,17 @@ declare global {
       'wrap': string;
     }
 
+    interface ArvInput {
+      'disabled': boolean;
+      'label': string;
+      'layout': string;
+      'name': string;
+      'onInputChange': (e: Event) => void;
+      'required': boolean;
+      'type': string;
+      'value': string;
+    }
+
     interface MyComponent {
       'first': string;
       'last': string;
@@ -40,11 +59,27 @@ declare global {
   }
 
 
+    interface HTMLArvButtonElement extends StencilComponents.ArvButton, HTMLStencilElement {}
+
+    var HTMLArvButtonElement: {
+      prototype: HTMLArvButtonElement;
+      new (): HTMLArvButtonElement;
+    };
+    
+
     interface HTMLArvFlexElement extends StencilComponents.ArvFlex, HTMLStencilElement {}
 
     var HTMLArvFlexElement: {
       prototype: HTMLArvFlexElement;
       new (): HTMLArvFlexElement;
+    };
+    
+
+    interface HTMLArvInputElement extends StencilComponents.ArvInput, HTMLStencilElement {}
+
+    var HTMLArvInputElement: {
+      prototype: HTMLArvInputElement;
+      new (): HTMLArvInputElement;
     };
     
 
@@ -59,12 +94,22 @@ declare global {
   namespace JSX {
     interface Element {}
     export interface IntrinsicElements {
+    'arv-button': JSXElements.ArvButtonAttributes;
     'arv-flex': JSXElements.ArvFlexAttributes;
+    'arv-input': JSXElements.ArvInputAttributes;
     'my-component': JSXElements.MyComponentAttributes;
     }
   }
 
   namespace JSXElements {
+
+    export interface ArvButtonAttributes extends HTMLAttributes {
+      'color'?: string;
+      'disabled'?: boolean;
+      'full'?: boolean;
+      'size'?: string;
+      'variant'?: string;
+    }
 
     export interface ArvFlexAttributes extends HTMLAttributes {
       'content'?: string;
@@ -75,6 +120,17 @@ declare global {
       'wrap'?: string;
     }
 
+    export interface ArvInputAttributes extends HTMLAttributes {
+      'disabled'?: boolean;
+      'label'?: string;
+      'layout'?: string;
+      'name'?: string;
+      'onInputChange'?: (e: Event) => void;
+      'required'?: boolean;
+      'type'?: string;
+      'value'?: string;
+    }
+
     export interface MyComponentAttributes extends HTMLAttributes {
       'first'?: string;
       'last'?: string;
@@ -82,12 +138,16 @@ declare global {
   }
 
   interface HTMLElementTagNameMap {
+    'arv-button': HTMLArvButtonElement
     'arv-flex': HTMLArvFlexElement
+    'arv-input': HTMLArvInputElement
     'my-component': HTMLMyComponentElement
   }
 
   interface ElementTagNameMap {
+    'arv-button': HTMLArvButtonElement;
     'arv-flex': HTMLArvFlexElement;
+    'arv-input': HTMLArvInputElement;
     'my-component': HTMLMyComponentElement;
   }
 }
