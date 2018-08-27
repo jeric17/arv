@@ -8,6 +8,8 @@ import cx from 'classnames';
 })
 export class Button {
 
+  @Prop() onButtonClick: (e: Event) => void;
+
   /* name: color
    * oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'default';
@@ -44,7 +46,7 @@ export class Button {
     });
 
     return (
-      <button class={rootClassNames}>
+      <button onClick={this.onButtonClick} class={rootClassNames}>
         <slot></slot>
       </button>
     );

@@ -24,12 +24,45 @@ declare global {
 
   namespace StencilComponents {
 
+    interface ArvAvatar {
+      'alt': string;
+      'imgSrc': string;
+      'size': string;
+    }
+
     interface ArvButton {
       'color': string;
       'disabled': boolean;
       'full': boolean;
+      'onButtonClick': (e: Event) => void;
       'size': string;
       'variant': string;
+    }
+
+    interface ArvCardHeader {
+      'action': any;
+      'avatarImage': string;
+      'color': string;
+      'subHeader': string;
+      'titleHeader': string;
+    }
+
+    interface ArvCardMedia {
+      'imageSrc': string;
+    }
+
+    interface ArvCard {
+
+    }
+
+    interface ArvDialogPortal {
+      'content': any;
+    }
+
+    interface ArvDialog {
+      'handleClose': () => void;
+      'parent': HTMLElement;
+      'show': boolean;
     }
 
     interface ArvFlex {
@@ -52,6 +85,10 @@ declare global {
       'value': string;
     }
 
+    interface ArvText {
+      'variant': string;
+    }
+
     interface MyComponent {
       'first': string;
       'last': string;
@@ -59,11 +96,59 @@ declare global {
   }
 
 
+    interface HTMLArvAvatarElement extends StencilComponents.ArvAvatar, HTMLStencilElement {}
+
+    var HTMLArvAvatarElement: {
+      prototype: HTMLArvAvatarElement;
+      new (): HTMLArvAvatarElement;
+    };
+    
+
     interface HTMLArvButtonElement extends StencilComponents.ArvButton, HTMLStencilElement {}
 
     var HTMLArvButtonElement: {
       prototype: HTMLArvButtonElement;
       new (): HTMLArvButtonElement;
+    };
+    
+
+    interface HTMLArvCardHeaderElement extends StencilComponents.ArvCardHeader, HTMLStencilElement {}
+
+    var HTMLArvCardHeaderElement: {
+      prototype: HTMLArvCardHeaderElement;
+      new (): HTMLArvCardHeaderElement;
+    };
+    
+
+    interface HTMLArvCardMediaElement extends StencilComponents.ArvCardMedia, HTMLStencilElement {}
+
+    var HTMLArvCardMediaElement: {
+      prototype: HTMLArvCardMediaElement;
+      new (): HTMLArvCardMediaElement;
+    };
+    
+
+    interface HTMLArvCardElement extends StencilComponents.ArvCard, HTMLStencilElement {}
+
+    var HTMLArvCardElement: {
+      prototype: HTMLArvCardElement;
+      new (): HTMLArvCardElement;
+    };
+    
+
+    interface HTMLArvDialogPortalElement extends StencilComponents.ArvDialogPortal, HTMLStencilElement {}
+
+    var HTMLArvDialogPortalElement: {
+      prototype: HTMLArvDialogPortalElement;
+      new (): HTMLArvDialogPortalElement;
+    };
+    
+
+    interface HTMLArvDialogElement extends StencilComponents.ArvDialog, HTMLStencilElement {}
+
+    var HTMLArvDialogElement: {
+      prototype: HTMLArvDialogElement;
+      new (): HTMLArvDialogElement;
     };
     
 
@@ -83,6 +168,14 @@ declare global {
     };
     
 
+    interface HTMLArvTextElement extends StencilComponents.ArvText, HTMLStencilElement {}
+
+    var HTMLArvTextElement: {
+      prototype: HTMLArvTextElement;
+      new (): HTMLArvTextElement;
+    };
+    
+
     interface HTMLMyComponentElement extends StencilComponents.MyComponent, HTMLStencilElement {}
 
     var HTMLMyComponentElement: {
@@ -94,21 +187,61 @@ declare global {
   namespace JSX {
     interface Element {}
     export interface IntrinsicElements {
+    'arv-avatar': JSXElements.ArvAvatarAttributes;
     'arv-button': JSXElements.ArvButtonAttributes;
+    'arv-card-header': JSXElements.ArvCardHeaderAttributes;
+    'arv-card-media': JSXElements.ArvCardMediaAttributes;
+    'arv-card': JSXElements.ArvCardAttributes;
+    'arv-dialog-portal': JSXElements.ArvDialogPortalAttributes;
+    'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-flex': JSXElements.ArvFlexAttributes;
     'arv-input': JSXElements.ArvInputAttributes;
+    'arv-text': JSXElements.ArvTextAttributes;
     'my-component': JSXElements.MyComponentAttributes;
     }
   }
 
   namespace JSXElements {
 
+    export interface ArvAvatarAttributes extends HTMLAttributes {
+      'alt'?: string;
+      'imgSrc'?: string;
+      'size'?: string;
+    }
+
     export interface ArvButtonAttributes extends HTMLAttributes {
       'color'?: string;
       'disabled'?: boolean;
       'full'?: boolean;
+      'onButtonClick'?: (e: Event) => void;
       'size'?: string;
       'variant'?: string;
+    }
+
+    export interface ArvCardHeaderAttributes extends HTMLAttributes {
+      'action'?: any;
+      'avatarImage'?: string;
+      'color'?: string;
+      'subHeader'?: string;
+      'titleHeader'?: string;
+    }
+
+    export interface ArvCardMediaAttributes extends HTMLAttributes {
+      'imageSrc'?: string;
+    }
+
+    export interface ArvCardAttributes extends HTMLAttributes {
+
+    }
+
+    export interface ArvDialogPortalAttributes extends HTMLAttributes {
+      'content'?: any;
+    }
+
+    export interface ArvDialogAttributes extends HTMLAttributes {
+      'handleClose'?: () => void;
+      'parent'?: HTMLElement;
+      'show'?: boolean;
     }
 
     export interface ArvFlexAttributes extends HTMLAttributes {
@@ -131,6 +264,10 @@ declare global {
       'value'?: string;
     }
 
+    export interface ArvTextAttributes extends HTMLAttributes {
+      'variant'?: string;
+    }
+
     export interface MyComponentAttributes extends HTMLAttributes {
       'first'?: string;
       'last'?: string;
@@ -138,16 +275,30 @@ declare global {
   }
 
   interface HTMLElementTagNameMap {
+    'arv-avatar': HTMLArvAvatarElement
     'arv-button': HTMLArvButtonElement
+    'arv-card-header': HTMLArvCardHeaderElement
+    'arv-card-media': HTMLArvCardMediaElement
+    'arv-card': HTMLArvCardElement
+    'arv-dialog-portal': HTMLArvDialogPortalElement
+    'arv-dialog': HTMLArvDialogElement
     'arv-flex': HTMLArvFlexElement
     'arv-input': HTMLArvInputElement
+    'arv-text': HTMLArvTextElement
     'my-component': HTMLMyComponentElement
   }
 
   interface ElementTagNameMap {
+    'arv-avatar': HTMLArvAvatarElement;
     'arv-button': HTMLArvButtonElement;
+    'arv-card-header': HTMLArvCardHeaderElement;
+    'arv-card-media': HTMLArvCardMediaElement;
+    'arv-card': HTMLArvCardElement;
+    'arv-dialog-portal': HTMLArvDialogPortalElement;
+    'arv-dialog': HTMLArvDialogElement;
     'arv-flex': HTMLArvFlexElement;
     'arv-input': HTMLArvInputElement;
+    'arv-text': HTMLArvTextElement;
     'my-component': HTMLMyComponentElement;
   }
 }

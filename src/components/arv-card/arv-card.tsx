@@ -1,5 +1,4 @@
 import { Component } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-card',

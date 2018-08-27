@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -7,22 +7,29 @@ import { Component, Prop } from '@stencil/core';
 })
 export class MyComponent {
 
+  @State() showDialog: boolean = false;
+
   @Prop() first: string;
   @Prop() last: string;
+
+  toggleDialog() {
+    this.showDialog = !this.showDialog;
+  }
 
   render() {
     return (
       <div>
-        <arv-flex>
-          <div>item 1</div>
-          <div>item 1</div>
-          <div>item 1</div>
-          <div>item 1</div>
-          <div>item 1</div>
-          <div>item 1</div>
-        </arv-flex>
+        <arv-button onButtonClick={() => this.toggleDialog()}>
+          Toggle
+        </arv-button>
 
-        <arv-input onInputChange={e => console.log(e) } />
+        <arv-dialog
+          show={this.showDialog}
+          handleClose={() => this.toggleDialog()}>
+          <arv-card>
+            <arv-card-header titleHeader="Card Here"></arv-card-header>
+          </arv-card>
+        </arv-dialog>
       </div>
     );
   }
