@@ -22,12 +22,18 @@ export class Button {
    * type: boolean */
   @Prop() full: boolean = false;
 
+  /* name: icon
+   * type: string */
+  @Prop() icon: string;
+
   /* name: size
    * oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
+  @Prop() type: string;
+
   /* name: variant
-   * oneOf: [flat, raised] */
+   * oneOf: [flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
 
   render() {
@@ -45,8 +51,18 @@ export class Button {
       raised: this.variant === 'raised',
     });
 
+    const Icon = () => (
+      <arv-icon
+        icon={this.icon}
+        size={this.size} />
+    );
+
     return (
-      <button onClick={this.onButtonClick} class={rootClassNames}>
+      <button
+        class={rootClassNames}
+        type={this.type}
+        onClick={this.onButtonClick} >
+        {this.icon && <Icon />}
         <slot></slot>
       </button>
     );

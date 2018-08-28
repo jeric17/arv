@@ -19,7 +19,9 @@ export class MyComponent {
   render() {
     return (
       <div>
-        <arv-button onButtonClick={() => this.toggleDialog()}>
+        <arv-button
+          icon="x"
+          onButtonClick={() => this.toggleDialog()}>
           Toggle
         </arv-button>
 

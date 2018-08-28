@@ -34,8 +34,10 @@ declare global {
       'color': string;
       'disabled': boolean;
       'full': boolean;
+      'icon': string;
       'onButtonClick': (e: Event) => void;
       'size': string;
+      'type': string;
       'variant': string;
     }
 
@@ -72,6 +74,16 @@ declare global {
       'layout': string;
       'order': number;
       'wrap': string;
+    }
+
+    interface ArvHeader {
+      'color': string;
+      'position': string;
+    }
+
+    interface ArvIcon {
+      'icon': string;
+      'size': string;
     }
 
     interface ArvInput {
@@ -160,6 +172,22 @@ declare global {
     };
     
 
+    interface HTMLArvHeaderElement extends StencilComponents.ArvHeader, HTMLStencilElement {}
+
+    var HTMLArvHeaderElement: {
+      prototype: HTMLArvHeaderElement;
+      new (): HTMLArvHeaderElement;
+    };
+    
+
+    interface HTMLArvIconElement extends StencilComponents.ArvIcon, HTMLStencilElement {}
+
+    var HTMLArvIconElement: {
+      prototype: HTMLArvIconElement;
+      new (): HTMLArvIconElement;
+    };
+    
+
     interface HTMLArvInputElement extends StencilComponents.ArvInput, HTMLStencilElement {}
 
     var HTMLArvInputElement: {
@@ -195,6 +223,8 @@ declare global {
     'arv-dialog-portal': JSXElements.ArvDialogPortalAttributes;
     'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-flex': JSXElements.ArvFlexAttributes;
+    'arv-header': JSXElements.ArvHeaderAttributes;
+    'arv-icon': JSXElements.ArvIconAttributes;
     'arv-input': JSXElements.ArvInputAttributes;
     'arv-text': JSXElements.ArvTextAttributes;
     'my-component': JSXElements.MyComponentAttributes;
@@ -213,8 +243,10 @@ declare global {
       'color'?: string;
       'disabled'?: boolean;
       'full'?: boolean;
+      'icon'?: string;
       'onButtonClick'?: (e: Event) => void;
       'size'?: string;
+      'type'?: string;
       'variant'?: string;
     }
 
@@ -253,6 +285,16 @@ declare global {
       'wrap'?: string;
     }
 
+    export interface ArvHeaderAttributes extends HTMLAttributes {
+      'color'?: string;
+      'position'?: string;
+    }
+
+    export interface ArvIconAttributes extends HTMLAttributes {
+      'icon'?: string;
+      'size'?: string;
+    }
+
     export interface ArvInputAttributes extends HTMLAttributes {
       'disabled'?: boolean;
       'label'?: string;
@@ -283,6 +325,8 @@ declare global {
     'arv-dialog-portal': HTMLArvDialogPortalElement
     'arv-dialog': HTMLArvDialogElement
     'arv-flex': HTMLArvFlexElement
+    'arv-header': HTMLArvHeaderElement
+    'arv-icon': HTMLArvIconElement
     'arv-input': HTMLArvInputElement
     'arv-text': HTMLArvTextElement
     'my-component': HTMLMyComponentElement
@@ -297,6 +341,8 @@ declare global {
     'arv-dialog-portal': HTMLArvDialogPortalElement;
     'arv-dialog': HTMLArvDialogElement;
     'arv-flex': HTMLArvFlexElement;
+    'arv-header': HTMLArvHeaderElement;
+    'arv-icon': HTMLArvIconElement;
     'arv-input': HTMLArvInputElement;
     'arv-text': HTMLArvTextElement;
     'my-component': HTMLMyComponentElement;

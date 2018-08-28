@@ -42,6 +42,13 @@ describe('arv-flex', () => {
       expect(element.lastElementChild.classList.value).toEqual('arv-button default medium flat full');
     });
 
+    it('should work with icon', async () => {
+      element.icon = 'standard';
+      await testWindow.flush();
+      const icon = element.querySelector('arv-icon');
+      expect(icon).toBeTruthy();
+    });
+
     it('should work with size', async () => {
       element.size = 'small';
       await testWindow.flush();
