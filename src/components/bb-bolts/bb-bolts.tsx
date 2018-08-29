@@ -41,12 +41,18 @@ export class Bolts {
     const { name, value } = item;
     return (
       <div>
-        <span>{name}</span>
-        <select onChange={e => this.onPropsChange(name, e.target['value'])}>
+        <arv-select
+          label={name}
+          value={value}
+          onSelectChange={e => this.onPropsChange(name, e.detail)}>
           {item.data.map(d => (
-            <option selected={value === d } value={d}>{d}</option>
+            <arv-select-option
+              selected={value === d }
+              value={d}>
+              {d}
+            </arv-select-option>
           ))}
-        </select>
+        </arv-select>
       </div>
     );
   }
@@ -55,11 +61,21 @@ export class Bolts {
     const { name, value } = item;
     return (
       <div>
-        <span>{name}</span>
-        <select onChange={e => this.onPropsChange(name, e.target['value'])}>
-          <option selected={value} value="true">true</option>
-          <option selected={value === 'false' } value="false">false</option>
-        </select>
+        <arv-select
+          label={name}
+          value={value}
+          onSelectChange={e => this.onPropsChange(name, e.detail)}>
+          <arv-select-option
+            selected={value}
+            value="true">
+            true
+          </arv-select-option>
+          <arv-select-option
+            selected={value === 'false'}
+            value="false">
+            false
+          </arv-select-option>
+        </arv-select>
       </div>
     );
   }
@@ -67,13 +83,13 @@ export class Bolts {
   generateString(item) {
     const { name, value } = item;
     return (
-      <div>
+      <arv-flex>
         <arv-input
           label={name}
           onInputChange={e => this.onPropsChange(name, e.target['value'])}
           type="text"
           value={value}/>
-      </div>
+      </arv-flex>
     );
   }
 
@@ -155,7 +171,9 @@ export class Bolts {
     );
 
     return (
-      <div style={{height: '100vh', width: '100%'}}>
+      <arv-container
+        height="100vh"
+        full>
         <arv-flex items="stretch">
           <List />
           <arv-flex
@@ -181,7 +199,7 @@ export class Bolts {
 
           </arv-flex>
         </arv-flex>
-      </div>
+      </arv-container>
     );
   }
 }

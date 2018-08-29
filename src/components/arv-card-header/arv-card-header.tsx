@@ -19,6 +19,8 @@ export class CardHeader {
 
   @Prop() titleHeader: string;
 
+  @Prop() styles: any;
+
   render() {
     const Avatar = () => (
       <arv-avatar imgSrc={this.avatarImage}></arv-avatar>
@@ -32,7 +34,9 @@ export class CardHeader {
     const rootClassNames = cx('arv-card-header', {});
 
     return (
-      <div class={rootClassNames}>
+      <div
+        style={this.styles}
+        class={rootClassNames}>
         <arv-flex justify="between">
           {this.avatarImage && <Avatar />}
           <arv-flex layout="column">

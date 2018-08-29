@@ -6,6 +6,7 @@
   border-width: 1px;
   border-style: solid;
   border-color: #dcdcdc;
+  box-sizing: border-box;
   font-size: 1rem;
   line-height: 2rem;
   margin: 0;

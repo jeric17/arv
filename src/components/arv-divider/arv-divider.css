@@ -5,3 +5,12 @@
 .column {
   height: 8px;
 }
+
+.bordered {
+  border-bottom: 1px solid var(--default-color);
+}
+
+.column.bordered {
+  border-bottom: 0;
+  border-right: 1px solid var(--default-color);
+}

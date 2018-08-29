@@ -21,6 +21,8 @@ export class Input {
 
   @Prop() onInputChange: (e: Event) => void;
 
+  @Prop() placeholder: string;
+
   @Prop() required: boolean = false;
 
   @Prop() type: string = 'text';
@@ -47,6 +49,7 @@ export class Input {
           <arv-divider layout={this.layout}></arv-divider>
           <input
             class="input"
+            placeholder={this.placeholder}
             disabled={this.disabled}
             onChange={this.onInputChange}
             type={this.type}

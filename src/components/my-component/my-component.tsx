@@ -58,6 +58,11 @@ export class MyComponent {
           value: 'Username'
         },
         {
+          name: 'placeholder',
+          type: 'string',
+          value: 'Username'
+        },
+        {
           name: 'layout',
           type: 'oneOf',
           data: ['row', 'column'],
@@ -117,7 +122,12 @@ export class MyComponent {
         {
           name: 'height',
           type: 'string',
-          value: 'auto'
+          value: ''
+        },
+        {
+          name: 'width',
+          type: 'string',
+          value: ''
         },
         {
           name: 'padded',
@@ -128,6 +138,59 @@ export class MyComponent {
           name: 'transparent',
           type: 'boolean',
           value: 'false'
+        }
+      ]
+    },
+    {
+      name: 'Text',
+      element: 'arv-text',
+      props: [
+        {
+          name: 'variant',
+          type: 'oneOf',
+          data: ['heading1', 'heading2', 'heading3', 'heading4', 'body1', 'body2', 'caption', 'subtle'],
+          value: 'body1'
+        },
+        {
+          name: 'weight',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'strong',
+          type: 'boolean',
+          value: 'true'
+        }
+      ]
+    },
+    {
+      name: 'Container',
+      element: 'arv-container',
+      props: [
+        {
+          name: 'height',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'width',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'margin',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'padding',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'full',
+          type: 'boolean',
+          value: 'true'
         }
       ]
     }

@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-card',
@@ -7,9 +7,27 @@ import { Component } from '@stencil/core';
 })
 export class Card {
 
+  @Prop() width: string;
+
+  @Prop() height: string;
+
+  @Prop() styles: any;
+
   render() {
+    const style = {
+      height: this.height,
+      width: this.width
+    };
+
+    const styles = {
+      ...this.styles,
+      ...style
+    };
+
     return (
-      <div class="arv-card">
+      <div
+        style={styles}
+        class="arv-card">
         <slot></slot>
       </div>
     );

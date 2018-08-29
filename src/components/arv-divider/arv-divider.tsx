@@ -8,16 +8,31 @@ import cx from 'classnames';
 })
 export class Divider {
 
+  @Prop() bordered: boolean;
+
+  @Prop() height: string;
+
   @Prop() layout: string = 'row';
+
+  @Prop() width: string;
 
   render() {
     const rootClassNames = cx('arv-divider', {
+      bordered: this.bordered,
       row: this.layout === 'row',
       column: this.layout === 'column'
     });
 
+    const styles = {
+      height: this.height,
+      width: this.width,
+    };
+
     return (
-      <div class={rootClassNames}></div>
+      <div
+        style={styles}
+        class={rootClassNames}>
+      </div>
     );
   }
 }

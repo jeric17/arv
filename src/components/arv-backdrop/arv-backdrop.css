@@ -1,0 +1,20 @@
+.arv-backdrop {
+  background-color: rgba(220, 220, 220, 0.17);
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.fixed {
+  position: fixed;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+
+.transparent {
+  background-color: transparent;
+}

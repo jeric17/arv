@@ -9,10 +9,14 @@
   position: relative;
 }
 .absolute {
+  left: 0;
   position: absolute;
+  top: 0;
 }
 .fixed {
+  left: 0;
   position: fixed;
+  top: 0;
 }
 .inherit {
   position: inherit;

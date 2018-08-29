@@ -22,6 +22,8 @@ export class Button {
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
+  @Prop() styles: any;
+
   @Prop() type: string;
 
   /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
@@ -54,6 +56,7 @@ export class Button {
 
     return (
       <button
+        style={this.styles}
         class={rootClassNames}
         type={this.type}
         onClick={this.onButtonClick} >

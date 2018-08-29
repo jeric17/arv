@@ -14,20 +14,18 @@ export class Paper {
 
   @Prop() transparent: boolean;
 
+  @Prop() width: string;
+
   render() {
     const rootClassNames = cx('arv-paper', {
       padded: this.padded,
       transparent: this.transparent
     });
 
-    const styles = (() => {
-      if (this.height) {
-        return {
-          height: this.height
-        };
-      }
-      return {};
-    })();
+    const styles = {
+      height: this.height,
+      width: this.width,
+    };
 
     return (
       <div

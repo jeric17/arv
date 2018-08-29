@@ -1,3 +1,31 @@
 .arv-text {
   font-family: var(--font-family);
 }
+
+.heading1 {
+  font-size: 2rem;
+}
+.heading2 {
+  font-size: 1.8rem;
+}
+.heading3 {
+  font-size: 1.5rem;
+}
+.heading4 {
+  font-size: 1.2rem;
+}
+.body1 {
+  font-size: 1rem;
+}
+.body2 {
+  font-size: 0.9rem;
+}
+.caption {
+  font-size: 0.9rem;
+}
+.subtle {
+  font-size: 0.8rem;
+}
+.strong {
+  font-weight: bold;
+}

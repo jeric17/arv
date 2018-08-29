@@ -28,6 +28,13 @@ declare global {
       'alt': string;
       'imgSrc': string;
       'size': string;
+      'styles': any;
+    }
+
+    interface ArvBackdrop {
+      'onBackdropClick': (event: Event) => void;
+      'position': string;
+      'transparent': boolean;
     }
 
     interface ArvButton {
@@ -37,6 +44,7 @@ declare global {
       'icon': string;
       'onButtonClick': (e: Event) => void;
       'size': string;
+      'styles': any;
       'type': string;
       'variant': string;
     }
@@ -45,6 +53,7 @@ declare global {
       'action': any;
       'avatarImage': string;
       'color': string;
+      'styles': any;
       'subHeader': string;
       'titleHeader': string;
     }
@@ -54,7 +63,18 @@ declare global {
     }
 
     interface ArvCard {
+      'height': string;
+      'styles': any;
+      'width': string;
+    }
 
+    interface ArvContainer {
+      'full': boolean;
+      'height': string;
+      'margin': string;
+      'padding': string;
+      'styles': any;
+      'width': string;
     }
 
     interface ArvDialogPortal {
@@ -68,7 +88,10 @@ declare global {
     }
 
     interface ArvDivider {
+      'bordered': boolean;
+      'height': string;
       'layout': string;
+      'width': string;
     }
 
     interface ArvFlex {
@@ -100,9 +123,15 @@ declare global {
       'layout': string;
       'name': string;
       'onInputChange': (e: Event) => void;
+      'placeholder': string;
       'required': boolean;
       'type': string;
       'value': string;
+    }
+
+    interface ArvLink {
+      'color': string;
+      'styles': any;
     }
 
     interface ArvListItem {
@@ -118,10 +147,33 @@ declare global {
       'height': string;
       'padded': boolean;
       'transparent': boolean;
+      'width': string;
+    }
+
+    interface ArvSelectOption {
+      'parse': boolean;
+      'selected': boolean;
+      'value': string;
+    }
+
+    interface ArvSelect {
+      'label': string;
+      'layout': string;
+      'onSelectChange': (item: any) => void;
+      'toggle': () => void;
+      'value': string;
     }
 
     interface ArvText {
+      'strong': boolean;
       'variant': string;
+      'weight': number;
+    }
+
+    interface ArvVirtualPortal {
+      'content': any;
+      'onSelect': (evt: any) => void;
+      'parentEl': any;
     }
 
     interface BbBolts {
@@ -139,6 +191,14 @@ declare global {
     var HTMLArvAvatarElement: {
       prototype: HTMLArvAvatarElement;
       new (): HTMLArvAvatarElement;
+    };
+    
+
+    interface HTMLArvBackdropElement extends StencilComponents.ArvBackdrop, HTMLStencilElement {}
+
+    var HTMLArvBackdropElement: {
+      prototype: HTMLArvBackdropElement;
+      new (): HTMLArvBackdropElement;
     };
     
 
@@ -171,6 +231,14 @@ declare global {
     var HTMLArvCardElement: {
       prototype: HTMLArvCardElement;
       new (): HTMLArvCardElement;
+    };
+    
+
+    interface HTMLArvContainerElement extends StencilComponents.ArvContainer, HTMLStencilElement {}
+
+    var HTMLArvContainerElement: {
+      prototype: HTMLArvContainerElement;
+      new (): HTMLArvContainerElement;
     };
     
 
@@ -230,6 +298,14 @@ declare global {
     };
     
 
+    interface HTMLArvLinkElement extends StencilComponents.ArvLink, HTMLStencilElement {}
+
+    var HTMLArvLinkElement: {
+      prototype: HTMLArvLinkElement;
+      new (): HTMLArvLinkElement;
+    };
+    
+
     interface HTMLArvListItemElement extends StencilComponents.ArvListItem, HTMLStencilElement {}
 
     var HTMLArvListItemElement: {
@@ -254,11 +330,35 @@ declare global {
     };
     
 
+    interface HTMLArvSelectOptionElement extends StencilComponents.ArvSelectOption, HTMLStencilElement {}
+
+    var HTMLArvSelectOptionElement: {
+      prototype: HTMLArvSelectOptionElement;
+      new (): HTMLArvSelectOptionElement;
+    };
+    
+
+    interface HTMLArvSelectElement extends StencilComponents.ArvSelect, HTMLStencilElement {}
+
+    var HTMLArvSelectElement: {
+      prototype: HTMLArvSelectElement;
+      new (): HTMLArvSelectElement;
+    };
+    
+
     interface HTMLArvTextElement extends StencilComponents.ArvText, HTMLStencilElement {}
 
     var HTMLArvTextElement: {
       prototype: HTMLArvTextElement;
       new (): HTMLArvTextElement;
+    };
+    
+
+    interface HTMLArvVirtualPortalElement extends StencilComponents.ArvVirtualPortal, HTMLStencilElement {}
+
+    var HTMLArvVirtualPortalElement: {
+      prototype: HTMLArvVirtualPortalElement;
+      new (): HTMLArvVirtualPortalElement;
     };
     
 
@@ -282,10 +382,12 @@ declare global {
     interface Element {}
     export interface IntrinsicElements {
     'arv-avatar': JSXElements.ArvAvatarAttributes;
+    'arv-backdrop': JSXElements.ArvBackdropAttributes;
     'arv-button': JSXElements.ArvButtonAttributes;
     'arv-card-header': JSXElements.ArvCardHeaderAttributes;
     'arv-card-media': JSXElements.ArvCardMediaAttributes;
     'arv-card': JSXElements.ArvCardAttributes;
+    'arv-container': JSXElements.ArvContainerAttributes;
     'arv-dialog-portal': JSXElements.ArvDialogPortalAttributes;
     'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-divider': JSXElements.ArvDividerAttributes;
@@ -293,10 +395,14 @@ declare global {
     'arv-header': JSXElements.ArvHeaderAttributes;
     'arv-icon': JSXElements.ArvIconAttributes;
     'arv-input': JSXElements.ArvInputAttributes;
+    'arv-link': JSXElements.ArvLinkAttributes;
     'arv-list-item': JSXElements.ArvListItemAttributes;
     'arv-list': JSXElements.ArvListAttributes;
     'arv-paper': JSXElements.ArvPaperAttributes;
+    'arv-select-option': JSXElements.ArvSelectOptionAttributes;
+    'arv-select': JSXElements.ArvSelectAttributes;
     'arv-text': JSXElements.ArvTextAttributes;
+    'arv-virtual-portal': JSXElements.ArvVirtualPortalAttributes;
     'bb-bolts': JSXElements.BbBoltsAttributes;
     'my-component': JSXElements.MyComponentAttributes;
     }
@@ -308,6 +414,13 @@ declare global {
       'alt'?: string;
       'imgSrc'?: string;
       'size'?: string;
+      'styles'?: any;
+    }
+
+    export interface ArvBackdropAttributes extends HTMLAttributes {
+      'onBackdropClick'?: (event: Event) => void;
+      'position'?: string;
+      'transparent'?: boolean;
     }
 
     export interface ArvButtonAttributes extends HTMLAttributes {
@@ -317,6 +430,7 @@ declare global {
       'icon'?: string;
       'onButtonClick'?: (e: Event) => void;
       'size'?: string;
+      'styles'?: any;
       'type'?: string;
       'variant'?: string;
     }
@@ -325,6 +439,7 @@ declare global {
       'action'?: any;
       'avatarImage'?: string;
       'color'?: string;
+      'styles'?: any;
       'subHeader'?: string;
       'titleHeader'?: string;
     }
@@ -334,7 +449,18 @@ declare global {
     }
 
     export interface ArvCardAttributes extends HTMLAttributes {
+      'height'?: string;
+      'styles'?: any;
+      'width'?: string;
+    }
 
+    export interface ArvContainerAttributes extends HTMLAttributes {
+      'full'?: boolean;
+      'height'?: string;
+      'margin'?: string;
+      'padding'?: string;
+      'styles'?: any;
+      'width'?: string;
     }
 
     export interface ArvDialogPortalAttributes extends HTMLAttributes {
@@ -348,7 +474,10 @@ declare global {
     }
 
     export interface ArvDividerAttributes extends HTMLAttributes {
+      'bordered'?: boolean;
+      'height'?: string;
       'layout'?: string;
+      'width'?: string;
     }
 
     export interface ArvFlexAttributes extends HTMLAttributes {
@@ -380,9 +509,15 @@ declare global {
       'layout'?: string;
       'name'?: string;
       'onInputChange'?: (e: Event) => void;
+      'placeholder'?: string;
       'required'?: boolean;
       'type'?: string;
       'value'?: string;
+    }
+
+    export interface ArvLinkAttributes extends HTMLAttributes {
+      'color'?: string;
+      'styles'?: any;
     }
 
     export interface ArvListItemAttributes extends HTMLAttributes {
@@ -398,10 +533,33 @@ declare global {
       'height'?: string;
       'padded'?: boolean;
       'transparent'?: boolean;
+      'width'?: string;
+    }
+
+    export interface ArvSelectOptionAttributes extends HTMLAttributes {
+      'onOptionSelected'?: (event: CustomEvent) => void;
+      'parse'?: boolean;
+      'selected'?: boolean;
+      'value'?: string;
+    }
+
+    export interface ArvSelectAttributes extends HTMLAttributes {
+      'label'?: string;
+      'layout'?: string;
+      'onSelectChange'?: (item: any) => void;
+      'value'?: string;
     }
 
     export interface ArvTextAttributes extends HTMLAttributes {
+      'strong'?: boolean;
       'variant'?: string;
+      'weight'?: number;
+    }
+
+    export interface ArvVirtualPortalAttributes extends HTMLAttributes {
+      'content'?: any;
+      'onSelect'?: (evt: any) => void;
+      'parentEl'?: any;
     }
 
     export interface BbBoltsAttributes extends HTMLAttributes {
@@ -415,10 +573,12 @@ declare global {
 
   interface HTMLElementTagNameMap {
     'arv-avatar': HTMLArvAvatarElement
+    'arv-backdrop': HTMLArvBackdropElement
     'arv-button': HTMLArvButtonElement
     'arv-card-header': HTMLArvCardHeaderElement
     'arv-card-media': HTMLArvCardMediaElement
     'arv-card': HTMLArvCardElement
+    'arv-container': HTMLArvContainerElement
     'arv-dialog-portal': HTMLArvDialogPortalElement
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
@@ -426,20 +586,26 @@ declare global {
     'arv-header': HTMLArvHeaderElement
     'arv-icon': HTMLArvIconElement
     'arv-input': HTMLArvInputElement
+    'arv-link': HTMLArvLinkElement
     'arv-list-item': HTMLArvListItemElement
     'arv-list': HTMLArvListElement
     'arv-paper': HTMLArvPaperElement
+    'arv-select-option': HTMLArvSelectOptionElement
+    'arv-select': HTMLArvSelectElement
     'arv-text': HTMLArvTextElement
+    'arv-virtual-portal': HTMLArvVirtualPortalElement
     'bb-bolts': HTMLBbBoltsElement
     'my-component': HTMLMyComponentElement
   }
 
   interface ElementTagNameMap {
     'arv-avatar': HTMLArvAvatarElement;
+    'arv-backdrop': HTMLArvBackdropElement;
     'arv-button': HTMLArvButtonElement;
     'arv-card-header': HTMLArvCardHeaderElement;
     'arv-card-media': HTMLArvCardMediaElement;
     'arv-card': HTMLArvCardElement;
+    'arv-container': HTMLArvContainerElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
@@ -447,10 +613,14 @@ declare global {
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
     'arv-input': HTMLArvInputElement;
+    'arv-link': HTMLArvLinkElement;
     'arv-list-item': HTMLArvListItemElement;
     'arv-list': HTMLArvListElement;
     'arv-paper': HTMLArvPaperElement;
+    'arv-select-option': HTMLArvSelectOptionElement;
+    'arv-select': HTMLArvSelectElement;
     'arv-text': HTMLArvTextElement;
+    'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;
   }

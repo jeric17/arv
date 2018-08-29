@@ -11,6 +11,10 @@ export class Text {
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
 
+  @Prop() weight: number;
+
+  @Prop() strong: boolean;
+
   render() {
     const rootClassNames = cx('arv-text', {
       heading1: this.variant === 'heading1',
@@ -21,9 +25,17 @@ export class Text {
       body2: this.variant === 'body2',
       caption: this.variant === 'caption',
       subtle: this.variant === 'subtle',
+      strong: this.strong
     });
+
+    const styles = {
+      'fonr-weight': `${this.weight}`
+    };
+
     return (
-      <div class={rootClassNames}>
+      <div
+        style={styles}
+        class={rootClassNames}>
         <slot></slot>
       </div>
     );

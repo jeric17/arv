@@ -1,0 +1,13 @@
+.arv-select-option {
+  background-color: #fff;
+  cursor: pointer;
+  padding: 0.5em;
+}
+
+.arv-select-option:hover {
+  background-color: var(--primary-light-color);
+}
+.selected,
+.selected:hover {
+  background-color: var(--primary-color);
+}

@@ -5,6 +5,10 @@ body {
   font-family: var(--font-family);
 }
 
+:root .none {
+  display: none;
+}
+
 @font-face {
   font-family: 'Material Icons';
   font-style: normal;

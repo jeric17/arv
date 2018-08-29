@@ -1,0 +1,18 @@
+.value {
+  align-items: center;
+  background-color: #FFF;
+  border-color: #efefef;
+  border-radius: var(--radius);
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  display: flex;
+  font-size: 1rem;
+  line-height: 2rem;
+  padding: 0 0.5em 0 1em;
+  transition: var(--transition);
+}
+
+.value:hover {
+  border-color: var(--primary-color);
+}

@@ -15,6 +15,8 @@ export class Avatar {
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
+  @Prop() styles: any;
+
   render() {
     const rootClassNames = cx('arv-avatar', {
       small: this.size === 'small',
@@ -25,9 +27,14 @@ export class Avatar {
       'background-image': `url(${this.imgSrc})`
     };
 
+    const styles = {
+      ...this.styles,
+      ...style,
+    };
+
     return (
       <div
-        style={style}
+        style={styles}
         class={rootClassNames}>
       </div>
     );
