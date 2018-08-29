@@ -1,1 +1,36 @@
 .disabled {}
+
+.input {
+  background-color: #fafafa;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #dcdcdc;
+  font-size: 1rem;
+  line-height: 2rem;
+  margin: 0;
+  outline: none;
+  padding: 0 1em;
+  transition: all 0.3s;
+}
+
+input:hover {
+  border-color: var(--primary-color);
+}
+
+input:focus {
+  background-color: #fff;
+}
+
+.full .input {
+  flex: 1;
+  width: 100%;
+}
+
+.column .label {
+  align-self: flex-start;
+}
+
+.row .label {
+  align-self: center;
+}

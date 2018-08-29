@@ -13,11 +13,12 @@ export class List {
   render() {
     const rootClassNames = cx('arv-list', {});
     return (
-      <arv-flex
-        layout="column"
-        class={rootClassNames}>
-        <slot></slot>
-      </arv-flex>
+      <div class={rootClassNames}>
+        <arv-flex
+          layout="column">
+          <slot></slot>
+        </arv-flex>
+      </div>
     );
   }
 }

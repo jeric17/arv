@@ -1,12 +1,5 @@
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
-}
-
 .material-icons {
-  font-family: 'Material Icons';
+  font-family: var(--icon-font-family);
   font-weight: normal;
   font-style: normal;
   font-size: 1rem;
@@ -23,4 +16,11 @@
 
 :host {
   display: block;
+}
+
+.small {
+  font-size: 0.75rem;
+}
+.large {
+  font-size: 1.5rem;
 }

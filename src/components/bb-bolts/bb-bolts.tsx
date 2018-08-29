@@ -137,8 +137,7 @@ export class Bolts {
         {this.items.map((d, i) => {
            return (
              <arv-list-item
-               data-ndex={i}
-               onClick={() => this.setItem(i) }>
+               onItemClick={() => this.setItem(i) }>
                {d.name}
              </arv-list-item>
            );
@@ -156,19 +155,33 @@ export class Bolts {
     );
 
     return (
-      <arv-flex>
-        <List />
-        <arv-flex layout="column">
+      <div style={{height: '100vh', width: '100%'}}>
+        <arv-flex items="stretch">
+          <List />
           <arv-flex
-            justify="space-around"
-            items="center">
-            <SlotControl />
-            {this.setControls()}
+            layout="column"
+            items="stretch">
+
+            <arv-header>
+              <arv-paper
+                height="64px"
+                padded
+                transparent>
+                <arv-flex
+                  justify="space-around"
+                  items="center">
+                  <SlotControl />
+                  {this.setControls()}
+                </arv-flex>
+              </arv-paper>
+            </arv-header>
+
+            <div id="bolt">
+            </div>
+
           </arv-flex>
-          <div id="bolt">
-          </div>
         </arv-flex>
-      </arv-flex>
+      </div>
     );
   }
 }

@@ -1,1 +1,3 @@
-.arv-card-media {}
+.arv-card-media {
+  padding-top: var(--card-media-height);
+}

@@ -14,6 +14,8 @@ export class Header {
   /* oneOf: [static, inherit, absolute, relative, fixed] */
   @Prop() position: string = 'static';
 
+  @Prop() shadow: boolean;
+
   render() {
     const rootClassNames = cx('arv-header', {
       'default': this.color === 'default',
@@ -24,6 +26,7 @@ export class Header {
       absolute: this.position === 'absolute',
       relative: this.position === 'relative',
       fixed: this.position === 'fixed',
+      shadow: this.shadow
     });
     return (
       <div class={rootClassNames}>

@@ -62,7 +62,9 @@ export class Button {
           justify="center">
           {this.icon && <Icon />}
           <div class="slot">
-            <slot></slot>
+            <arv-text>
+              <slot></slot>
+            </arv-text>
           </div>
         </arv-flex>
       </button>

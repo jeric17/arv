@@ -2,6 +2,14 @@ html,
 body {
   margin: 0px;
   font-size: 15px;
+  font-family: var(--font-family);
+}
+
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
 }
 
 :root {
@@ -26,4 +34,7 @@ body {
   --card-media-height: 56%;
 
   --transition: all 0.3s ease-in-out;
+
+  --icon-font-family: 'Material Icons';
+  --font-family: 'Source Sans Pro', sans-serif;
 }

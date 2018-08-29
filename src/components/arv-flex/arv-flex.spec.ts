@@ -42,6 +42,12 @@ describe('arv-flex', () => {
       expect(element.lastElementChild.classList.value).toEqual('arv-flex layout-row justify-start content-start items-center');
     });
 
+    it('should work self', async () => {
+      element.self = 'stretch';
+      await testWindow.flush();
+      expect(element.lastElementChild.classList.value).toEqual('arv-flex layout-row justify-start items-start content-start self-stretch');
+    });
+
     it('should work content', async () => {
       element.content = 'center';
       await testWindow.flush();

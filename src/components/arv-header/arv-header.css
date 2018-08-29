@@ -1,0 +1,32 @@
+.arv-header {
+  min-height: 64px;
+  width: 100%;
+}
+.static {
+  position: static;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.fixed {
+  position: fixed;
+}
+.inherit {
+  position: inherit;
+}
+
+.default {
+  background-color: var(--default-color);
+}
+.primary {
+  background-color: var(--primary-color);
+}
+.secondary {
+  background-color: var(--secondary-color);
+}
+.shadow {
+  box-shadow: 0 1px 2px rgba(3, 3, 3, 0.2);
+}

@@ -18,12 +18,17 @@ export class Avatar {
   render() {
     const rootClassNames = cx('arv-avatar', {
       small: this.size === 'small',
-      medium: this.size === 'mdium',
+      medium: this.size === 'medium',
       large: this.size === 'large',
     });
+    const style = {
+      'background-image': `url(${this.imgSrc})`
+    };
+
     return (
-      <div class={rootClassNames}>
-        <img alt={this.alt} src={this.imgSrc}/>
+      <div
+        style={style}
+        class={rootClassNames}>
       </div>
     );
   }

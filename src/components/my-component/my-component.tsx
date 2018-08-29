@@ -49,13 +49,58 @@ export class MyComponent {
       ],
     },
     {
+      name: 'Input',
+      element: 'arv-input',
+      props: [
+        {
+          name: 'label',
+          type: 'string',
+          value: 'Username'
+        },
+        {
+          name: 'layout',
+          type: 'oneOf',
+          data: ['row', 'column'],
+          value: 'row'
+        },
+        {
+          name: 'full',
+          type: 'boolean',
+          value: 'false'
+        },
+      ]
+    },
+    {
+      name: 'Header',
+      element: 'arv-header',
+      props: [
+        {
+          name: 'color',
+          type: 'oneOf',
+          data: ['default', 'primary', 'secondary', 'inherit'],
+          value: 'primary'
+        },
+        {
+          name: 'position',
+          type: 'oneOf',
+          data: ['static', 'absolute', 'relative', 'fixed', 'inherit'],
+          value: 'static'
+        },
+        {
+          name: 'shadow',
+          type: 'boolean',
+          value: 'false'
+        }
+      ],
+    },
+    {
       name: 'Avatar',
       element: 'arv-avatar',
       props: [
         {
-          name: 'imgSrc',
+          name: 'img-src',
           type: 'string',
-          value: '',
+          value: 'https://res.cloudinary.com/teepublic/image/private/s--q1UQjdo3--/t_Preview/b_rgb:191919,c_limit,f_jpg,h_630,q_90,w_630/v1523777748/production/designs/2591906_0.jpg',
         },
         {
           name: 'size',
@@ -63,6 +108,27 @@ export class MyComponent {
           data: ['small', 'medium', 'large'],
           value: 'medium'
         },
+      ]
+    },
+    {
+      name: 'Paper',
+      element: 'arv-paper',
+      props: [
+        {
+          name: 'height',
+          type: 'string',
+          value: 'auto'
+        },
+        {
+          name: 'padded',
+          type: 'boolean',
+          value: 'true'
+        },
+        {
+          name: 'transparent',
+          type: 'boolean',
+          value: 'false'
+        }
       ]
     }
   ];
