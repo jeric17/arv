@@ -8,12 +8,10 @@ import cx from 'classnames';
 })
 export class Header {
 
-  /* name: color
-   * oneOf: [default, primary, secondary, inherit] */
+  /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'primary';
 
-  /* name: position
-   * oneOf: [static, inherit, absolute, relative, fixed] */
+  /* oneOf: [static, inherit, absolute, relative, fixed] */
   @Prop() position: string = 'static';
 
   render() {

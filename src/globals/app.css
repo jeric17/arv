@@ -1,0 +1,29 @@
+html,
+body {
+  margin: 0px;
+  font-size: 15px;
+}
+
+:root {
+  --default-color: #efefef;
+  --defaulr-light-color: #fafafa;
+  --defaulr-dark-color: #cdcdcd;
+  --default-font-color: #565656;
+
+  --primary-color: #ffd54f;
+  --primary-light-color: #fff8e1;
+  --primary-dark-color: #c8a415;
+  --primary-font-color: #333;
+
+  --secondary-color: #64ffda;
+  --secondary-light-color: #d0ffff;
+  --secondary-dark-color: #14cba8;
+  --secondary-font-color: #333;
+
+  --radius: 4px;
+  --padding: 1em;
+
+  --card-media-height: 56%;
+
+  --transition: all 0.3s ease-in-out;
+}

@@ -97,13 +97,20 @@ declare global {
       'value': string;
     }
 
+    interface ArvList {
+      'color': string;
+    }
+
     interface ArvText {
       'variant': string;
     }
 
+    interface BbBolts {
+      'items': any[];
+    }
+
     interface MyComponent {
-      'first': string;
-      'last': string;
+
     }
   }
 
@@ -196,11 +203,27 @@ declare global {
     };
     
 
+    interface HTMLArvListElement extends StencilComponents.ArvList, HTMLStencilElement {}
+
+    var HTMLArvListElement: {
+      prototype: HTMLArvListElement;
+      new (): HTMLArvListElement;
+    };
+    
+
     interface HTMLArvTextElement extends StencilComponents.ArvText, HTMLStencilElement {}
 
     var HTMLArvTextElement: {
       prototype: HTMLArvTextElement;
       new (): HTMLArvTextElement;
+    };
+    
+
+    interface HTMLBbBoltsElement extends StencilComponents.BbBolts, HTMLStencilElement {}
+
+    var HTMLBbBoltsElement: {
+      prototype: HTMLBbBoltsElement;
+      new (): HTMLBbBoltsElement;
     };
     
 
@@ -226,7 +249,9 @@ declare global {
     'arv-header': JSXElements.ArvHeaderAttributes;
     'arv-icon': JSXElements.ArvIconAttributes;
     'arv-input': JSXElements.ArvInputAttributes;
+    'arv-list': JSXElements.ArvListAttributes;
     'arv-text': JSXElements.ArvTextAttributes;
+    'bb-bolts': JSXElements.BbBoltsAttributes;
     'my-component': JSXElements.MyComponentAttributes;
     }
   }
@@ -306,13 +331,20 @@ declare global {
       'value'?: string;
     }
 
+    export interface ArvListAttributes extends HTMLAttributes {
+      'color'?: string;
+    }
+
     export interface ArvTextAttributes extends HTMLAttributes {
       'variant'?: string;
     }
 
+    export interface BbBoltsAttributes extends HTMLAttributes {
+      'items'?: any[];
+    }
+
     export interface MyComponentAttributes extends HTMLAttributes {
-      'first'?: string;
-      'last'?: string;
+
     }
   }
 
@@ -328,7 +360,9 @@ declare global {
     'arv-header': HTMLArvHeaderElement
     'arv-icon': HTMLArvIconElement
     'arv-input': HTMLArvInputElement
+    'arv-list': HTMLArvListElement
     'arv-text': HTMLArvTextElement
+    'bb-bolts': HTMLBbBoltsElement
     'my-component': HTMLMyComponentElement
   }
 
@@ -344,7 +378,9 @@ declare global {
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
     'arv-input': HTMLArvInputElement;
+    'arv-list': HTMLArvListElement;
     'arv-text': HTMLArvTextElement;
+    'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;
   }
 }

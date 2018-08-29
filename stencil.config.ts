@@ -2,7 +2,7 @@ import { Config } from '@stencil/core';
 
 export const config: Config = {
   namespace: 'arv',
-  globalStyle: 'src/components/globals/variables.css',
+  globalStyle: 'src/globals/app.css',
   outputTargets:[
     {
       type: 'dist'

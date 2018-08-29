@@ -8,12 +8,9 @@ import cx from 'classnames';
 })
 export class Icon {
 
-  /* name: icon
-   * type: string */
   @Prop() icon: string;
 
-  /* name: size
-   * oneOf: [small, medium, large] */
+  /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
   render() {

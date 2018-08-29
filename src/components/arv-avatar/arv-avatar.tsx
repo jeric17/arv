@@ -10,12 +10,9 @@ export class Avatar {
 
   @Prop() alt: string;
 
-  /* name: imgSrc
-   * type: string */
   @Prop() imgSrc: string;
 
-  /* name: size
-   * oneOf: [small, medium, large] */
+  /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
   render() {

@@ -14,8 +14,6 @@ export class Dialog {
 
   @Prop() handleClose: () => void;
 
-  /* name: show
-   * type: boolean */
   @Prop() show: boolean;
 
   @Watch('show')

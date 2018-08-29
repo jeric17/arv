@@ -8,8 +8,7 @@ import cx from 'classnames';
 })
 export class Text {
 
-  /* name: variant
-   * oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
+  /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
 
   render() {

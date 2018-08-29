@@ -10,20 +10,13 @@ export class CardHeader {
 
   @Prop() action: any;
 
-  /* name: avatarImage
-   * type: string */
   @Prop() avatarImage: string;
 
-  /* name: color
-   * oneOf: [default, primary, secondary] */
+  /* oneOf: [default, primary, secondary] */
   @Prop() color: string = 'default';
 
-  /* name: subHeader
-   * type: string */
   @Prop() subHeader: string;
 
-  /* name: title
-   * type: string */
   @Prop() titleHeader: string;
 
   render() {

@@ -8,24 +8,17 @@ import cx from 'classnames';
 })
 export class Input {
 
-  /* name: disabled
-   * type: boolean */
   @Prop() disabled: boolean = false;
 
-  /* name: label
-   * type: string */
   @Prop() label: string;
 
-  /* name: layout
-   * oneOf: [column, row] */
+  /* oneOf: [column, row] */
   @Prop() layout: string = 'row';
 
   @Prop() name: string;
 
   @Prop() onInputChange: (e: Event) => void;
 
-  /* name: required
-   * type: boolean */
   @Prop() required: boolean = false;
 
   @Prop() type: string = 'text';

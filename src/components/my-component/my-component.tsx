@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component } from '@stencil/core';
 
 @Component({
   tag: 'my-component',
@@ -7,32 +7,69 @@ import { Component, Prop, State } from '@stencil/core';
 })
 export class MyComponent {
 
-  @State() showDialog: boolean = false;
-
-  @Prop() first: string;
-  @Prop() last: string;
-
-  toggleDialog() {
-    this.showDialog = !this.showDialog;
-  }
+  items = [
+    {
+      name: 'Button',
+      element: 'arv-button',
+      slot: 'Test Button',
+      props: [
+        {
+          name: 'color',
+          type: 'oneOf',
+          data: ['default', 'primary', 'secondary', 'inherit'],
+          value: 'default'
+        },
+        {
+          name: 'disabled',
+          type: 'boolean',
+          value: 'false'
+        },
+        {
+          name: 'full',
+          type: 'boolean',
+          value: 'false'
+        },
+        {
+          name: 'icon',
+          type: 'string',
+          value: ''
+        },
+        {
+          name: 'size',
+          type: 'oneOf',
+          data: ['small', 'medium', 'large'],
+          value: 'medium'
+        },
+        {
+          name: 'variant',
+          type: 'oneOf',
+          data: ['bordered', 'flat', 'raised', 'flat-icon', 'raised-icon'],
+          value: 'flat'
+        }
+      ],
+    },
+    {
+      name: 'Avatar',
+      element: 'arv-avatar',
+      props: [
+        {
+          name: 'imgSrc',
+          type: 'string',
+          value: '',
+        },
+        {
+          name: 'size',
+          type: 'oneOf',
+          data: ['small', 'medium', 'large'],
+          value: 'medium'
+        },
+      ]
+    }
+  ];
 
   render() {
     return (
-      <div>
-        <arv-button
-          icon="x"
-          onButtonClick={() => this.toggleDialog()}>
-          Toggle
-        </arv-button>
-
-        <arv-dialog
-          show={this.showDialog}
-          handleClose={() => this.toggleDialog()}>
-          <arv-card>
-            <arv-card-header titleHeader="Card Here"></arv-card-header>
-          </arv-card>
-        </arv-dialog>
-      </div>
+      <bb-bolts items={this.items}></bb-bolts>
     );
   }
 }

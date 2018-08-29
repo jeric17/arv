@@ -1,14 +1,130 @@
-.default {}
-.inherit {}
-.primary {}
-.secondary {}
+.arv-button {
+  border-radius: var(--radius);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 33px;
+  outline: none;
+  padding: 0 1em;
+  transition: var(--transition);
 
-.disabled {}
-.full {}
+  display: flex;
+  align-items: center;
+}
+.default {}
+.default:hover {
+  background-color: var(--default-color);
+}
+
+.arv-button.disabled {
+  cursor: not-allowed;
+  background-color: #efefef;
+}
+.arv-button.disabled:hover {
+  background-color: #efefef;
+}
+.full {
+  width: 100%;
+}
 
 .small {}
 .medium {}
 .large {}
 
-.flat {}
-.raised {}
+.inherit {
+  color: inherit;
+  background-color: inherit;
+}
+.primary {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
+}
+.primary:hover {
+  background-color: var(--primary-light-color);
+}
+.secondary {
+  background-color: var(--secondary-color);
+  color: var(--secondary-font-color);
+}
+.secondary:hover {
+  background-color: var(--secondary-light-color);
+}
+
+/* flat */
+.primary.flatIcon,
+.primary.bordered,
+.primary.flat {
+  color: var(--primary-color);
+}
+
+.secondary.flatIcon,
+.secondary.bordered,
+.secondary.flat {
+  color: var(--secondary-color);
+}
+
+/* bordered */
+.bordered {
+  border-color: var(--default-color);
+  border-style: solid;
+  border-width: 1px;
+}
+.bordered.primary {
+  border-color: var(--primary-light-color);
+}
+.bordered.secondary {
+  border-color: var(--secondary-light-color);
+}
+
+/* raised */
+.raisedIcon,
+.raised {
+  box-shadow: 0 2px 2px rgba(3, 3, 3, 0.12);
+}
+.raisedIcon:hover,
+.raised:hover {
+  box-shadow: 0 2px 2px rgba(3, 3, 3, 0.25);
+}
+.disabled.raisedIcon,
+.disabled.raisedIcon:hover,
+.disabled.raised,
+.disabled.raised:hover {
+  box-shadow: 0 0 0 transparent;
+}
+.primary.raised:hover {
+  background-color: var(--primary-dark-color);
+}
+.secondary.raised:hover {
+  background-color: var(--secondary-dark-color);
+}
+
+.disabled.flatIcon,
+.disabled.flat,
+.disabled.bordered,
+.disabled.raised {
+  color: #8a8a8a;
+}
+
+.disabled.raised:hover {
+  background-color: #efefef;
+}
+
+.flatIcon,
+.disabled.flatIcon,
+.disabled.flatIcon:hover,
+.disabled.bordered:hover,
+.disabled.bordered,
+.disabled.flat:hover,
+.disabled.flat,
+.bordered,
+.flat {
+  background-color: transparent;
+}
+
+.slot {
+  margin-left: 0.5em;
+}
+.flatIcon .slot,
+.raisedIcon .slot{
+  display: none;
+}

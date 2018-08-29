@@ -10,30 +10,21 @@ export class Button {
 
   @Prop() onButtonClick: (e: Event) => void;
 
-  /* name: color
-   * oneOf: [default, primary, secondary, inherit] */
+  /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'default';
 
-  /* name: disabled
-   * type: boolean */
   @Prop() disabled: boolean = false;
 
-  /* name: full
-   * type: boolean */
   @Prop() full: boolean = false;
 
-  /* name: icon
-   * type: string */
   @Prop() icon: string;
 
-  /* name: size
-   * oneOf: [small, medium, large] */
+  /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
   @Prop() type: string;
 
-  /* name: variant
-   * oneOf: [flat, raised, flat-icon, raised-icon] */
+  /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
 
   render() {
@@ -47,14 +38,18 @@ export class Button {
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
+      bordered: this.variant === 'bordered',
       flat: this.variant === 'flat',
       raised: this.variant === 'raised',
+      flatIcon: this.variant === 'flat-icon',
+      raisedIcon: this.variant === 'raised-icon'
     });
 
     const Icon = () => (
       <arv-icon
-        icon={this.icon}
-        size={this.size} />
+        size={this.size}
+        icon={this.icon}>
+      </arv-icon>
     );
 
     return (
@@ -62,8 +57,14 @@ export class Button {
         class={rootClassNames}
         type={this.type}
         onClick={this.onButtonClick} >
-        {this.icon && <Icon />}
-        <slot></slot>
+        <arv-flex
+          items="center"
+          justify="center">
+          {this.icon && <Icon />}
+          <div class="slot">
+            <slot></slot>
+          </div>
+        </arv-flex>
       </button>
     );
   }
