@@ -108,6 +108,7 @@ declare global {
 
     interface ArvHeader {
       'color': string;
+      'padded': boolean;
       'position': string;
       'shadow': boolean;
     }
@@ -495,6 +496,7 @@ declare global {
 
     export interface ArvHeaderAttributes extends HTMLAttributes {
       'color'?: string;
+      'padded'?: boolean;
       'position'?: string;
       'shadow'?: boolean;
     }
