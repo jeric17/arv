@@ -71,6 +71,7 @@ declare global {
     interface ArvContainer {
       'full': boolean;
       'height': string;
+      'hidden': boolean;
       'margin': string;
       'padding': string;
       'styles': any;
@@ -457,6 +458,7 @@ declare global {
     export interface ArvContainerAttributes extends HTMLAttributes {
       'full'?: boolean;
       'height'?: string;
+      'hidden'?: boolean;
       'margin'?: string;
       'padding'?: string;
       'styles'?: any;

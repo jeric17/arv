@@ -191,8 +191,24 @@ export class MyComponent {
           name: 'full',
           type: 'boolean',
           value: 'true'
-        }
+        },
+        {
+          name: 'hidden',
+          type: 'boolean',
+          value: 'false'
+        },
       ]
+    },
+    {
+      name: 'Dialog',
+      element: 'arv-dialog',
+      props: [
+        {
+          name: 'show',
+          type: 'boolean',
+          value: 'false'
+        }
+      ],
     }
   ];
 

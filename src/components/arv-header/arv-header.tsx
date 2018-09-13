@@ -11,6 +11,8 @@ export class Header {
   /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'primary';
 
+  @Prop() padded: boolean = false;  
+
   /* oneOf: [static, inherit, absolute, relative, fixed] */
   @Prop() position: string = 'static';
 
@@ -26,7 +28,8 @@ export class Header {
       absolute: this.position === 'absolute',
       relative: this.position === 'relative',
       fixed: this.position === 'fixed',
-      shadow: this.shadow
+      shadow: this.shadow,
+      padded: this.padded
     });
     return (
       <div class={rootClassNames}>

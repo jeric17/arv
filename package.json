@@ -29,9 +29,12 @@
   },
   "author": "Marc Jeric Espiritu",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jeric17/arv.git"
-  },
+  "keywords": [
+    "web component",
+    "shadow dom",
+    "ui kit",
+    "stenciljs"
+  ],
   "homepage": "",
   "jest": {
     "transform": {

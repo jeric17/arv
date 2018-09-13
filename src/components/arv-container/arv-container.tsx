@@ -10,6 +10,8 @@ export class Container {
 
   @Prop() height: string;
 
+  @Prop() hidden: boolean;
+
   @Prop() margin: string;
 
   @Prop() padding: string;
@@ -22,7 +24,8 @@ export class Container {
 
   render() {
     const rootClassNames = cx('arv-container', {
-      full: this.full
+      full: this.full,
+      hidden: this.hidden,
     });
 
     const style = {

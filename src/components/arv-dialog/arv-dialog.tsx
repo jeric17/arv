@@ -52,12 +52,14 @@ export class Dialog {
     const slot = this.show ? <slot></slot> : null;
 
     return (
-      <div class={rootClassNames}>
+      <arv-container
+        class={rootClassNames}
+        hidden={!this.show}>
         <div class="content arv-dialog-content">
           <arv-button onButtonClick={this.handleClose}>close</arv-button>
           {slot}
         </div>
-      </div>
+      </arv-container>
     );
   }
 }
