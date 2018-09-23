@@ -1,5 +1,4 @@
 import { Component, Event, EventEmitter, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-select-option',
@@ -28,9 +27,10 @@ export class SelectOption {
   }
 
   render() {
-    const rootClassNames = cx('arv-select-option', {
+    const rootClassNames = {
+      root: true,
       selected: this.selected
-    });
+    };
 
     return (
       <div

@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-list',
@@ -11,9 +10,8 @@ export class List {
   @Prop() color: string = 'default'
 
   render() {
-    const rootClassNames = cx('arv-list', {});
     return (
-      <div class={rootClassNames}>
+      <div class="root">
         <arv-flex
           layout="column">
           <slot></slot>

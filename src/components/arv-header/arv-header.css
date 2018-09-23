@@ -1,6 +1,7 @@
-.arv-header {
-  align-items: center;  
-  display: flex;  
+.header {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
   min-height: 64px;
   width: 100%;
 }

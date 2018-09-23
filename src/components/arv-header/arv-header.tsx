@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-header',
@@ -11,7 +10,7 @@ export class Header {
   /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'primary';
 
-  @Prop() padded: boolean = false;  
+  @Prop() padded: boolean = false;
 
   /* oneOf: [static, inherit, absolute, relative, fixed] */
   @Prop() position: string = 'static';
@@ -19,7 +18,8 @@ export class Header {
   @Prop() shadow: boolean;
 
   render() {
-    const rootClassNames = cx('arv-header', {
+    const rootClassNames = {
+      header: true,
       'default': this.color === 'default',
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
@@ -30,7 +30,7 @@ export class Header {
       fixed: this.position === 'fixed',
       shadow: this.shadow,
       padded: this.padded
-    });
+    };
     return (
       <div class={rootClassNames}>
         <slot></slot>

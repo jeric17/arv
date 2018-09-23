@@ -1,5 +1,4 @@
 import { Component, Element, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-dialog-portal',
@@ -20,9 +19,10 @@ export class DialogPortal {
   }
 
   render() {
-    const rootClassNames = cx('arv-dialog-portal', {});
+
     return (
-      <div class={rootClassNames}>
+      <div class="arv-dialog-portal">
+        <arv-backdrop></arv-backdrop>
       </div>
     );
   }

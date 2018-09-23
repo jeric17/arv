@@ -1,4 +1,4 @@
-.arv-avatar {
+.avatar {
   background-color: #efefef;
   background-position: center center;
   background-size: cover;
@@ -6,9 +6,9 @@
 }
 
 .small {
-  border-radius: 20px;
-  height: 40px;
-  width: 40px;
+  border-radius: 18px;
+  height: 36px;
+  width: 36px;
 }
 
 .medium {

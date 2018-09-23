@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-flex',
@@ -30,12 +29,16 @@ export class Flex {
 
   @Prop() full: boolean = true;
 
-  render() {
-    const rootClassNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self}`;
+  hostData() {
+    return {
+      class: {
+        'host-full': this.full,
+      },
+    };
+  }
 
-    const classNames = cx(rootClassNames, {
-      'auto': !this.full
-    });
+  render() {
+    const rootClassNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto': ''}`;
 
     const styles = {
       '--order': `${this.order}`
@@ -44,7 +47,7 @@ export class Flex {
     return (
       <div
         style={styles}
-        class={classNames}>
+        class={rootClassNames}>
         <slot></slot>
       </div>
     );

@@ -1,5 +1,5 @@
-.arv-backdrop {
-  background-color: rgba(220, 220, 220, 0.17);
+.backdrop {
+  background-color: rgba(0, 0, 0, 0.2);
   height: 100%;
   left: 0;
   top: 0;

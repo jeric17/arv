@@ -1,5 +1,4 @@
-import { Component, Element, Prop, Watch } from '@stencil/core';
-import cx from 'classnames';
+import { Component, Element, Event, EventEmitter, Prop, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-dialog',
@@ -11,8 +10,6 @@ export class Dialog {
   portal = 'arv-dialog-portal';
 
   @Element() el: HTMLElement;
-
-  @Prop() handleClose: () => void;
 
   @Prop() show: boolean;
 
@@ -26,6 +23,12 @@ export class Dialog {
   }
 
   @Prop() parent: HTMLElement;
+
+  @Event() onClose: EventEmitter;
+
+  onHandleClose() {
+    this.onClose.emit(true);
+  }
 
   private _showContent() {
     const dialog = this.el.shadowRoot.querySelector(`.${this.rootClassName}`);
@@ -48,17 +51,21 @@ export class Dialog {
   }
 
   render() {
-    const rootClassNames = cx(this.rootClassName, {});
     const slot = this.show ? <slot></slot> : null;
 
     return (
       <arv-container
-        class={rootClassNames}
+        class={this.rootClassName}
         hidden={!this.show}>
-        <div class="content arv-dialog-content">
-          <arv-button onButtonClick={this.handleClose}>close</arv-button>
-          {slot}
-        </div>
+        <arv-dialog-content>
+          <div class="content arv-dialog-content">
+            <arv-button
+              variant="flat-icon"
+              icon="close"
+              buttonClick={this.onHandleClose.bind(this)}></arv-button>
+            {slot}
+          </div>
+        </arv-dialog-content>
       </arv-container>
     );
   }

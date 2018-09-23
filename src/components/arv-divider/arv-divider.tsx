@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-divider',
@@ -8,20 +7,21 @@ import cx from 'classnames';
 })
 export class Divider {
 
-  @Prop() bordered: boolean;
+  @Prop() bordered: boolean = true;
 
   @Prop() height: string;
 
   @Prop() layout: string = 'row';
 
-  @Prop() width: string;
+  @Prop() width: string = '100%';
 
   render() {
-    const rootClassNames = cx('arv-divider', {
+    const rootClassNames = {
+      divider: true,
       bordered: this.bordered,
       row: this.layout === 'row',
       column: this.layout === 'column'
-    });
+    };
 
     const styles = {
       height: this.height,

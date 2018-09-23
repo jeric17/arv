@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-avatar',
@@ -18,11 +17,12 @@ export class Avatar {
   @Prop() styles: any;
 
   render() {
-    const rootClassNames = cx('arv-avatar', {
+    const rootClassNames = {
+      avatar: true,
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
-    });
+    };
     const style = {
       'background-image': `url(${this.imgSrc})`
     };

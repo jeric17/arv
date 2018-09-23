@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-card-header',
@@ -31,12 +30,11 @@ export class CardHeader {
     const SubHeader = () => (
       <arv-text variant="heading4">{this.subHeader}</arv-text>
     );
-    const rootClassNames = cx('arv-card-header', {});
 
     return (
       <div
         style={this.styles}
-        class={rootClassNames}>
+        class="card-header">
         <arv-flex justify="between">
           {this.avatarImage && <Avatar />}
           <arv-flex layout="column">

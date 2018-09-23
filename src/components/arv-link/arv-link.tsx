@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-link',
@@ -13,11 +12,12 @@ export class Link {
   @Prop() styles: any;
 
   render() {
-    const rootClassNames = cx('arv-link', {
+    const rootClassNames = {
+      root: true,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
       'default': this.color === 'default'
-    });
+    };
 
     return (
       <div

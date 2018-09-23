@@ -153,7 +153,7 @@ export class Bolts {
         {this.items.map((d, i) => {
            return (
              <arv-list-item
-               onItemClick={() => this.setItem(i) }>
+               itemClick={() => this.setItem(i) }>
                {d.name}
              </arv-list-item>
            );

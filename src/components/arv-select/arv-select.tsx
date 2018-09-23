@@ -1,5 +1,4 @@
 import { Component, Element, Method, Prop, State, Watch } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-select',
@@ -76,7 +75,6 @@ export class Select {
   }
 
   render() {
-    const rootClassNames = cx('arv-select', {});
     const slot = this.show ? <slot></slot> : null;
 
     const Value = () => (
@@ -95,7 +93,7 @@ export class Select {
     ]);
 
     return (
-      <div class={rootClassNames}>
+      <div class="root">
         <arv-flex
           layout={this.layout}
           items="center">

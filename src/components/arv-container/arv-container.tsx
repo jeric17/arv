@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-container',
@@ -23,10 +22,11 @@ export class Container {
   @Prop() full: boolean;
 
   render() {
-    const rootClassNames = cx('arv-container', {
+    const rootClassNames = {
+      container: true,
       full: this.full,
       hidden: this.hidden,
-    });
+    };
 
     const style = {
       height: this.height,

@@ -1,3 +1,8 @@
-.arv-list-item {
+:host {
+  width: 100%;
+}
+.root {
   cursor: pointer;
+  list-style: none;
+  width: 100%;
 }

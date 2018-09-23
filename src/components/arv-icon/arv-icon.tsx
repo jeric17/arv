@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-icon',
@@ -14,11 +13,13 @@ export class Icon {
   @Prop() size: string = 'medium';
 
   render() {
-    const rootClassNames = cx('material-icons arv-icon', {
+    const rootClassNames = {
+      'material-icons': true,
+      icon: true,
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large'
-    });
+    };
 
     return (
       <span class={rootClassNames}>

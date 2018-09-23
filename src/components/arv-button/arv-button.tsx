@@ -1,5 +1,4 @@
-import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
+import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-button',
@@ -7,8 +6,6 @@ import cx from 'classnames';
   shadow: true
 })
 export class Button {
-
-  @Prop() onButtonClick: (e: Event) => void;
 
   /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'default';
@@ -19,18 +16,42 @@ export class Button {
 
   @Prop() icon: string;
 
+  @Prop() buttonClick: (e: MouseEvent) => void;
+
+  @Prop() rounded: boolean = true;
+
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
   @Prop() styles: any;
+
+  /* oneOf: [start, center, end]*/
+  @Prop() textAlign: string = 'center';
 
   @Prop() type: string;
 
   /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
 
+  @Event() onButtonClick: EventEmitter;
+
+  hostData() {
+    return {
+      class: {
+        full: this.full
+      }
+    };
+  }
+
+  btnClick(e: MouseEvent) {
+    this.onButtonClick.emit(e);
+
+    return this.buttonClick && this.buttonClick(e);
+  }
+
   render() {
-    const rootClassNames = cx('arv-button', {
+    const rootClassNames = {
+      button: true,
       'default': this.color === 'default',
       inherit: this.color === 'inherit',
       primary: this.color === 'primary',
@@ -44,8 +65,9 @@ export class Button {
       flat: this.variant === 'flat',
       raised: this.variant === 'raised',
       flatIcon: this.variant === 'flat-icon',
-      raisedIcon: this.variant === 'raised-icon'
-    });
+      raisedIcon: this.variant === 'raised-icon',
+      boxed: !this.rounded
+    };
 
     const Icon = () => (
       <arv-icon
@@ -59,10 +81,10 @@ export class Button {
         style={this.styles}
         class={rootClassNames}
         type={this.type}
-        onClick={this.onButtonClick} >
+        onClick={this.btnClick.bind(this)} >
         <arv-flex
           items="center"
-          justify="center">
+          justify={this.textAlign}>
           {this.icon && <Icon />}
           <div class="slot">
             <arv-text>

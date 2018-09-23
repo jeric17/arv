@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-list-item',
@@ -8,25 +7,31 @@ import cx from 'classnames';
 })
 export class ListItem {
 
-  @Prop() onItemClick: (e: Event, index: number) => void;
+  @Prop() itemClick: (e: Event, index: number) => void;
 
   @Prop() itemIndex: number;
 
+  @Prop() showIcon: boolean;
+
+  click(e) {
+    if (this.itemClick) {
+      this.itemClick(e, this.itemIndex)
+    }
+  }
+
   render() {
-    const rootClassNames = cx('arv-list-item', {});
     return (
-      <div
-        onClick={e => this.onItemClick(e, this.itemIndex)}
-        class={rootClassNames}>
-        <arv-flex
-          items="center"
-          justify="between">
+      <li
+        class="root">
+        <arv-button
+          buttonClick={this.click.bind(this)}
+          variant="flat"
+          textAlign="start"
+          full>
           <slot></slot>
-          <arv-icon
-            icon="chevron_right"
-            size="small"></arv-icon>
-        </arv-flex>
-      </div>
+        </arv-button>
+        <arv-divider></arv-divider>
+      </li>
     );
   }
 }

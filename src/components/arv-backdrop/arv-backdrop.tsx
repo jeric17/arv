@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-backdrop',
@@ -15,12 +14,13 @@ export class Backdrop {
   @Prop() position: string = 'fixed';
 
   render() {
-    const rootClassNames = cx('arv-backdrop', {
+    const rootClassNames = {
+      backdrop: true,
       transparent: this.transparent,
       fixed: this.position === 'fixed',
       absolute: this.position === 'absolute',
       relative: this.position === 'relative'
-    });
+    };
 
     return (
       <div

@@ -1,0 +1,25 @@
+:host {
+  outline: none;
+}
+
+.top {}
+.bottom {}
+.right {
+  right: 1em;
+}
+.left {}
+
+.list {
+  display: none;
+  position: absolute;
+  margin: 0;
+  padding: 0;
+}
+
+.show {
+  display: block;
+}
+
+.menu {
+  cursor: pointer;
+}

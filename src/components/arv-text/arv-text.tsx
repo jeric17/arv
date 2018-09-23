@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-text',
@@ -16,7 +15,7 @@ export class Text {
   @Prop() strong: boolean;
 
   render() {
-    const rootClassNames = cx('arv-text', {
+    const rootClassNames = {
       heading1: this.variant === 'heading1',
       heading2: this.variant === 'heading2',
       heading3: this.variant === 'heading3',
@@ -26,10 +25,10 @@ export class Text {
       caption: this.variant === 'caption',
       subtle: this.variant === 'subtle',
       strong: this.strong
-    });
+    };
 
     const styles = {
-      'fonr-weight': `${this.weight}`
+      'font-weight': `${this.weight}`
     };
 
     return (

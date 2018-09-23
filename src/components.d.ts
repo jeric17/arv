@@ -38,13 +38,15 @@ declare global {
     }
 
     interface ArvButton {
+      'buttonClick': (e: MouseEvent) => void;
       'color': string;
       'disabled': boolean;
       'full': boolean;
       'icon': string;
-      'onButtonClick': (e: Event) => void;
+      'rounded': boolean;
       'size': string;
       'styles': any;
+      'textAlign': string;
       'type': string;
       'variant': string;
     }
@@ -78,12 +80,15 @@ declare global {
       'width': string;
     }
 
+    interface ArvDialogContent {
+
+    }
+
     interface ArvDialogPortal {
       'content': any;
     }
 
     interface ArvDialog {
-      'handleClose': () => void;
       'parent': HTMLElement;
       'show': boolean;
     }
@@ -137,12 +142,18 @@ declare global {
     }
 
     interface ArvListItem {
+      'itemClick': (e: Event, index: number) => void;
       'itemIndex': number;
-      'onItemClick': (e: Event, index: number) => void;
+      'showIcon': boolean;
     }
 
     interface ArvList {
       'color': string;
+    }
+
+    interface ArvMenu {
+      'xPosition': string;
+      'yPosition': string;
     }
 
     interface ArvPaper {
@@ -244,6 +255,14 @@ declare global {
     };
     
 
+    interface HTMLArvDialogContentElement extends StencilComponents.ArvDialogContent, HTMLStencilElement {}
+
+    var HTMLArvDialogContentElement: {
+      prototype: HTMLArvDialogContentElement;
+      new (): HTMLArvDialogContentElement;
+    };
+    
+
     interface HTMLArvDialogPortalElement extends StencilComponents.ArvDialogPortal, HTMLStencilElement {}
 
     var HTMLArvDialogPortalElement: {
@@ -324,6 +343,14 @@ declare global {
     };
     
 
+    interface HTMLArvMenuElement extends StencilComponents.ArvMenu, HTMLStencilElement {}
+
+    var HTMLArvMenuElement: {
+      prototype: HTMLArvMenuElement;
+      new (): HTMLArvMenuElement;
+    };
+    
+
     interface HTMLArvPaperElement extends StencilComponents.ArvPaper, HTMLStencilElement {}
 
     var HTMLArvPaperElement: {
@@ -390,6 +417,7 @@ declare global {
     'arv-card-media': JSXElements.ArvCardMediaAttributes;
     'arv-card': JSXElements.ArvCardAttributes;
     'arv-container': JSXElements.ArvContainerAttributes;
+    'arv-dialog-content': JSXElements.ArvDialogContentAttributes;
     'arv-dialog-portal': JSXElements.ArvDialogPortalAttributes;
     'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-divider': JSXElements.ArvDividerAttributes;
@@ -400,6 +428,7 @@ declare global {
     'arv-link': JSXElements.ArvLinkAttributes;
     'arv-list-item': JSXElements.ArvListItemAttributes;
     'arv-list': JSXElements.ArvListAttributes;
+    'arv-menu': JSXElements.ArvMenuAttributes;
     'arv-paper': JSXElements.ArvPaperAttributes;
     'arv-select-option': JSXElements.ArvSelectOptionAttributes;
     'arv-select': JSXElements.ArvSelectAttributes;
@@ -426,13 +455,16 @@ declare global {
     }
 
     export interface ArvButtonAttributes extends HTMLAttributes {
+      'buttonClick'?: (e: MouseEvent) => void;
       'color'?: string;
       'disabled'?: boolean;
       'full'?: boolean;
       'icon'?: string;
-      'onButtonClick'?: (e: Event) => void;
+      'onOnButtonClick'?: (event: CustomEvent) => void;
+      'rounded'?: boolean;
       'size'?: string;
       'styles'?: any;
+      'textAlign'?: string;
       'type'?: string;
       'variant'?: string;
     }
@@ -466,12 +498,16 @@ declare global {
       'width'?: string;
     }
 
+    export interface ArvDialogContentAttributes extends HTMLAttributes {
+
+    }
+
     export interface ArvDialogPortalAttributes extends HTMLAttributes {
       'content'?: any;
     }
 
     export interface ArvDialogAttributes extends HTMLAttributes {
-      'handleClose'?: () => void;
+      'onOnClose'?: (event: CustomEvent) => void;
       'parent'?: HTMLElement;
       'show'?: boolean;
     }
@@ -525,12 +561,18 @@ declare global {
     }
 
     export interface ArvListItemAttributes extends HTMLAttributes {
+      'itemClick'?: (e: Event, index: number) => void;
       'itemIndex'?: number;
-      'onItemClick'?: (e: Event, index: number) => void;
+      'showIcon'?: boolean;
     }
 
     export interface ArvListAttributes extends HTMLAttributes {
       'color'?: string;
+    }
+
+    export interface ArvMenuAttributes extends HTMLAttributes {
+      'xPosition'?: string;
+      'yPosition'?: string;
     }
 
     export interface ArvPaperAttributes extends HTMLAttributes {
@@ -583,6 +625,7 @@ declare global {
     'arv-card-media': HTMLArvCardMediaElement
     'arv-card': HTMLArvCardElement
     'arv-container': HTMLArvContainerElement
+    'arv-dialog-content': HTMLArvDialogContentElement
     'arv-dialog-portal': HTMLArvDialogPortalElement
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
@@ -593,6 +636,7 @@ declare global {
     'arv-link': HTMLArvLinkElement
     'arv-list-item': HTMLArvListItemElement
     'arv-list': HTMLArvListElement
+    'arv-menu': HTMLArvMenuElement
     'arv-paper': HTMLArvPaperElement
     'arv-select-option': HTMLArvSelectOptionElement
     'arv-select': HTMLArvSelectElement
@@ -610,6 +654,7 @@ declare global {
     'arv-card-media': HTMLArvCardMediaElement;
     'arv-card': HTMLArvCardElement;
     'arv-container': HTMLArvContainerElement;
+    'arv-dialog-content': HTMLArvDialogContentElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
@@ -620,6 +665,7 @@ declare global {
     'arv-link': HTMLArvLinkElement;
     'arv-list-item': HTMLArvListItemElement;
     'arv-list': HTMLArvListElement;
+    'arv-menu': HTMLArvMenuElement;
     'arv-paper': HTMLArvPaperElement;
     'arv-select-option': HTMLArvSelectOptionElement;
     'arv-select': HTMLArvSelectElement;

@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-paper',
@@ -17,10 +16,11 @@ export class Paper {
   @Prop() width: string;
 
   render() {
-    const rootClassNames = cx('arv-paper', {
+    const rootClassNames = {
+      root: true,
       padded: this.padded,
       transparent: this.transparent
-    });
+    };
 
     const styles = {
       height: this.height,

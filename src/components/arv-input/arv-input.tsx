@@ -1,5 +1,4 @@
 import { Component, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-input',
@@ -30,12 +29,13 @@ export class Input {
   @Prop() value: string;
 
   render() {
-    const rootClassNames = cx('arv-input', {
+    const rootClassNames = {
+      root: true,
       disabled: this.disabled,
       row: this.layout === 'row',
       column: this.layout === 'column',
       full: this.full
-    });
+    };
 
     const Label = () => (
       <label

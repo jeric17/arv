@@ -1,5 +1,4 @@
 import { Component, Element, Listen, Prop } from '@stencil/core';
-import cx from 'classnames';
 
 @Component({
   tag: 'arv-virtual-portal',
@@ -47,13 +46,12 @@ export class VirtualPortal {
   }
 
   render() {
-    const rootClassNames = cx('arv-virtual-portal', {});
     return (
       <div class="container">
         <arv-backdrop
           onBackdropClick={() => this.onSelect(null) }
           transparent></arv-backdrop>
-        <div class={rootClassNames}>
+        <div class="arv-virtual-portal">
         </div>
       </div>
     );

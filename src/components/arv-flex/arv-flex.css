@@ -1,3 +1,11 @@
+:host(.host-full) {
+  width: 100%;  
+}
+
+.host-full {
+  width: 100%;  
+}
+
 .arv-flex {
   display: flex;
   flex: 1;
