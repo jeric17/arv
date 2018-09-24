@@ -44,7 +44,10 @@ export class Button {
   }
 
   btnClick(e: MouseEvent) {
-    this.onButtonClick.emit(e);
+    this.onButtonClick.emit({
+      event: e,
+      type: this.type
+    });
 
     return this.buttonClick && this.buttonClick(e);
   }

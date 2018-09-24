@@ -9,24 +9,35 @@ export class Divider {
 
   @Prop() bordered: boolean = true;
 
-  @Prop() height: string;
+  @Prop() height: string = '8px';
 
   @Prop() layout: string = 'row';
 
-  @Prop() width: string = '100%';
+  @Prop() width: string = '8px';
+
+  @Prop() transparent: boolean;
 
   render() {
     const rootClassNames = {
       divider: true,
       bordered: this.bordered,
       row: this.layout === 'row',
-      column: this.layout === 'column'
+      column: this.layout === 'column',
+      transparent: this.transparent
     };
 
-    const styles = {
-      height: this.height,
-      width: this.width,
-    };
+    const styles = (() => {
+      if (this.layout === 'row') {
+        return {
+          'margin-top': this.height,
+          'margin-bottom': this.height
+        };
+      }
+      return {
+        'margin-left': this.width,
+        'margin-right': this.width
+      };
+    })();
 
     return (
       <div

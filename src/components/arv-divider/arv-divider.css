@@ -1,9 +1,9 @@
 .row {
-  width: 15px;
+  margin: 15px 0;
 }
 
 .column {
-  height: 8px;
+  margin: 0 8px;
 }
 
 .bordered {
@@ -13,4 +13,8 @@
 .column.bordered {
   border-bottom: 0;
   border-right: 1px solid var(--default-color);
+}
+
+.transparent {
+  border-color: transparent;
 }

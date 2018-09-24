@@ -97,6 +97,7 @@ declare global {
       'bordered': boolean;
       'height': string;
       'layout': string;
+      'transparent': boolean;
       'width': string;
     }
 
@@ -109,6 +110,10 @@ declare global {
       'order': number;
       'self': string;
       'wrap': string;
+    }
+
+    interface ArvForm {
+
     }
 
     interface ArvHeader {
@@ -126,10 +131,10 @@ declare global {
     interface ArvInput {
       'disabled': boolean;
       'full': boolean;
+      'inputChange': (e: any) => void;
       'label': string;
       'layout': string;
       'name': string;
-      'onInputChange': (e: Event) => void;
       'placeholder': string;
       'required': boolean;
       'type': string;
@@ -295,6 +300,14 @@ declare global {
     };
     
 
+    interface HTMLArvFormElement extends StencilComponents.ArvForm, HTMLStencilElement {}
+
+    var HTMLArvFormElement: {
+      prototype: HTMLArvFormElement;
+      new (): HTMLArvFormElement;
+    };
+    
+
     interface HTMLArvHeaderElement extends StencilComponents.ArvHeader, HTMLStencilElement {}
 
     var HTMLArvHeaderElement: {
@@ -422,6 +435,7 @@ declare global {
     'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-divider': JSXElements.ArvDividerAttributes;
     'arv-flex': JSXElements.ArvFlexAttributes;
+    'arv-form': JSXElements.ArvFormAttributes;
     'arv-header': JSXElements.ArvHeaderAttributes;
     'arv-icon': JSXElements.ArvIconAttributes;
     'arv-input': JSXElements.ArvInputAttributes;
@@ -516,6 +530,7 @@ declare global {
       'bordered'?: boolean;
       'height'?: string;
       'layout'?: string;
+      'transparent'?: boolean;
       'width'?: string;
     }
 
@@ -528,6 +543,10 @@ declare global {
       'order'?: number;
       'self'?: string;
       'wrap'?: string;
+    }
+
+    export interface ArvFormAttributes extends HTMLAttributes {
+      'onOnFormSubmit'?: (event: CustomEvent) => void;
     }
 
     export interface ArvHeaderAttributes extends HTMLAttributes {
@@ -545,10 +564,13 @@ declare global {
     export interface ArvInputAttributes extends HTMLAttributes {
       'disabled'?: boolean;
       'full'?: boolean;
+      'inputChange'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
       'name'?: string;
-      'onInputChange'?: (e: Event) => void;
+      'onOnInput'?: (event: CustomEvent) => void;
+      'onOnInputChange'?: (event: CustomEvent) => void;
+      'onOnInputEnter'?: (event: CustomEvent) => void;
       'placeholder'?: string;
       'required'?: boolean;
       'type'?: string;
@@ -630,6 +652,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
     'arv-flex': HTMLArvFlexElement
+    'arv-form': HTMLArvFormElement
     'arv-header': HTMLArvHeaderElement
     'arv-icon': HTMLArvIconElement
     'arv-input': HTMLArvInputElement
@@ -659,6 +682,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
     'arv-flex': HTMLArvFlexElement;
+    'arv-form': HTMLArvFormElement;
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
     'arv-input': HTMLArvInputElement;

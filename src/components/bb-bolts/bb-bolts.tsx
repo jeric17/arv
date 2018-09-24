@@ -86,7 +86,7 @@ export class Bolts {
       <arv-flex>
         <arv-input
           label={name}
-          onInputChange={e => this.onPropsChange(name, e.target['value'])}
+          inputChange={e => this.onPropsChange(name, e.target['value'])}
           type="text"
           value={value}/>
       </arv-flex>
@@ -167,7 +167,7 @@ export class Bolts {
       <arv-input
         label="Slot"
         value={slot}
-        onInputChange={e => this.slotChanged(e.target['value']) } />
+        inputChange={e => this.slotChanged(e.target['value']) } />
     );
 
     return (

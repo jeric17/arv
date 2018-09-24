@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-input',
@@ -14,11 +14,11 @@ export class Input {
   @Prop() label: string;
 
   /* oneOf: [column, row] */
-  @Prop() layout: string = 'row';
+  @Prop() layout: string = 'column';
 
   @Prop() name: string;
 
-  @Prop() onInputChange: (e: Event) => void;
+  @Prop() inputChange: (e: any) => void;
 
   @Prop() placeholder: string;
 
@@ -27,6 +27,36 @@ export class Input {
   @Prop() type: string = 'text';
 
   @Prop() value: string;
+
+  @Event() onInput: EventEmitter;
+
+  @Event() onInputChange: EventEmitter;
+
+  @Event() onInputEnter: EventEmitter;
+
+  @Listen('keydown.enter')
+  handleKeyEnter(ev) {
+    this.onInputEnter.emit(ev);
+  }
+
+  change(e) {
+    if (this.inputChange) {
+      this.inputChange(e);
+    }
+    this.onInputChange.emit({
+      event: e,
+      value: e.target['value'],
+      name: e.target.name
+    });
+  }
+
+  input(ev) {
+    this.onInput.emit({
+      event: ev,
+      value: ev.target['value'],
+      name: ev.target.name
+    });
+  }
 
   render() {
     const rootClassNames = {
@@ -37,9 +67,15 @@ export class Input {
       full: this.full
     };
 
+    const labelClass = {
+      label: true,
+      labelRow: this.layout === 'row',
+      labelColumn: this.layout === 'column'
+    };
+
     const Label = () => (
       <label
-        class="label">{this.label}</label>
+        class={labelClass}>{this.label}</label>
     );
 
     return (
@@ -48,11 +84,13 @@ export class Input {
           {this.label && <Label />}
           <arv-divider layout={this.layout}></arv-divider>
           <input
+            name={this.name}
             class="input"
             placeholder={this.placeholder}
             disabled={this.disabled}
-            onChange={this.onInputChange}
+            onChange={this.change.bind(this)}
             type={this.type}
+            onInput={this.input.bind(this)}
             value={this.value} />
         </arv-flex>
       </div>
