@@ -20,7 +20,7 @@
 }
 .default {}
 .default:hover {
-  background-color: var(--default-color);
+  background-color: var(--default-background-color);
 }
 
 .arv-button.disabled {
@@ -105,10 +105,10 @@
   box-shadow: 0 0 0 transparent;
 }
 .primary.raised:hover {
-  background-color: var(--primary-dark-color);
+  background-color: var(--primary-light-color);
 }
 .secondary.raised:hover {
-  background-color: var(--secondary-dark-color);
+  background-color: var(--secondary-light-color);
 }
 
 .disabled.flatIcon,

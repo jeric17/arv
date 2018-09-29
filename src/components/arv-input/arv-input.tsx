@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-input',
@@ -7,14 +7,18 @@ import { Component, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 })
 export class Input {
 
-  @Prop() disabled: boolean = false;
+  @State() error = false;  
+
+  @Prop() disabled = false;
 
   @Prop() full: boolean;
+
+  @Prop() hasError: boolean;
 
   @Prop() label: string;
 
   /* oneOf: [column, row] */
-  @Prop() layout: string = 'column';
+  @Prop() layout = 'column';
 
   @Prop() name: string;
 
@@ -22,9 +26,9 @@ export class Input {
 
   @Prop() placeholder: string;
 
-  @Prop() required: boolean = false;
+  @Prop() required = false;
 
-  @Prop() type: string = 'text';
+  @Prop() type = 'text';
 
   @Prop() value: string;
 
@@ -39,14 +43,24 @@ export class Input {
     this.onInputEnter.emit(ev);
   }
 
+  validate(value) {
+    if (this.required && !value) {
+      this.error = true;  
+    }
+  }
+
   change(e) {
+    const value = e.target['value'];  
+    this.validate(value);
     if (this.inputChange) {
       this.inputChange(e);
     }
     this.onInputChange.emit({
       event: e,
-      value: e.target['value'],
-      name: e.target.name
+      value,
+      name: e.target.name,
+      type: this.type,
+      required: this.required
     });
   }
 
@@ -54,7 +68,9 @@ export class Input {
     this.onInput.emit({
       event: ev,
       value: ev.target['value'],
-      name: ev.target.name
+      name: ev.target.name,
+      type: this.type,
+      required: this.required
     });
   }
 
@@ -65,6 +81,11 @@ export class Input {
       row: this.layout === 'row',
       column: this.layout === 'column',
       full: this.full
+    };
+
+    const inputClassNames = {
+      input: true,
+      error: this.error || this.hasError
     };
 
     const labelClass = {
@@ -84,8 +105,9 @@ export class Input {
           {this.label && <Label />}
           <arv-divider layout={this.layout}></arv-divider>
           <input
+            required={this.required}
             name={this.name}
-            class="input"
+            class={inputClassNames}
             placeholder={this.placeholder}
             disabled={this.disabled}
             onChange={this.change.bind(this)}

@@ -209,6 +209,17 @@ export class MyComponent {
           value: 'false'
         }
       ],
+    },
+    {
+      name: 'Stepper',
+      element: 'arv-stepper',
+      props: [
+        {
+          name: 'steps',
+          type: 'array',
+          value: ''
+        }
+      ],
     }
   ];
 

@@ -113,7 +113,7 @@ declare global {
     }
 
     interface ArvForm {
-
+      'layout': string;
     }
 
     interface ArvHeader {
@@ -131,6 +131,7 @@ declare global {
     interface ArvInput {
       'disabled': boolean;
       'full': boolean;
+      'hasError': boolean;
       'inputChange': (e: any) => void;
       'label': string;
       'layout': string;
@@ -180,6 +181,10 @@ declare global {
       'onSelectChange': (item: any) => void;
       'toggle': () => void;
       'value': string;
+    }
+
+    interface ArvStepper {
+      'steps': any[];
     }
 
     interface ArvText {
@@ -388,6 +393,14 @@ declare global {
     };
     
 
+    interface HTMLArvStepperElement extends StencilComponents.ArvStepper, HTMLStencilElement {}
+
+    var HTMLArvStepperElement: {
+      prototype: HTMLArvStepperElement;
+      new (): HTMLArvStepperElement;
+    };
+    
+
     interface HTMLArvTextElement extends StencilComponents.ArvText, HTMLStencilElement {}
 
     var HTMLArvTextElement: {
@@ -446,6 +459,7 @@ declare global {
     'arv-paper': JSXElements.ArvPaperAttributes;
     'arv-select-option': JSXElements.ArvSelectOptionAttributes;
     'arv-select': JSXElements.ArvSelectAttributes;
+    'arv-stepper': JSXElements.ArvStepperAttributes;
     'arv-text': JSXElements.ArvTextAttributes;
     'arv-virtual-portal': JSXElements.ArvVirtualPortalAttributes;
     'bb-bolts': JSXElements.BbBoltsAttributes;
@@ -546,6 +560,7 @@ declare global {
     }
 
     export interface ArvFormAttributes extends HTMLAttributes {
+      'layout'?: string;
       'onOnFormSubmit'?: (event: CustomEvent) => void;
     }
 
@@ -564,6 +579,7 @@ declare global {
     export interface ArvInputAttributes extends HTMLAttributes {
       'disabled'?: boolean;
       'full'?: boolean;
+      'hasError'?: boolean;
       'inputChange'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
@@ -618,6 +634,10 @@ declare global {
       'value'?: string;
     }
 
+    export interface ArvStepperAttributes extends HTMLAttributes {
+      'steps'?: any[];
+    }
+
     export interface ArvTextAttributes extends HTMLAttributes {
       'strong'?: boolean;
       'variant'?: string;
@@ -663,6 +683,7 @@ declare global {
     'arv-paper': HTMLArvPaperElement
     'arv-select-option': HTMLArvSelectOptionElement
     'arv-select': HTMLArvSelectElement
+    'arv-stepper': HTMLArvStepperElement
     'arv-text': HTMLArvTextElement
     'arv-virtual-portal': HTMLArvVirtualPortalElement
     'bb-bolts': HTMLBbBoltsElement
@@ -693,6 +714,7 @@ declare global {
     'arv-paper': HTMLArvPaperElement;
     'arv-select-option': HTMLArvSelectOptionElement;
     'arv-select': HTMLArvSelectElement;
+    'arv-stepper': HTMLArvStepperElement;
     'arv-text': HTMLArvTextElement;
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;

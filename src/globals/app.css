@@ -17,7 +17,10 @@ body {
 }
 
 :root {
-  --default-color: #efefef;
+  --error-color: rgb(255, 68, 68);
+
+  --default-background-color: #efefef;
+  --default-color: #333;
   --defaulr-light-color: #fafafa;
   --defaulr-dark-color: #cdcdcd;
   --default-font-color: #565656;

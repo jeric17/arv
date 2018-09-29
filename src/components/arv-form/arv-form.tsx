@@ -1,14 +1,20 @@
-import { Component, Element, Event, EventEmitter, Listen } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-form',
-  shadow: true
 })
 export class Form {
+
+  @Prop() layout = 'column';
 
   @Element() el:HTMLElement;
 
   @Event() onFormSubmit: EventEmitter;
+
+  @Listen('onInputChange')
+  onInputChangeHandler(ev) {
+    console.log('change', ev);
+  }  
 
   @Listen('onInputEnter')
   onEnterHandler(ev) {
@@ -37,8 +43,10 @@ export class Form {
 
   render() {
     return (
-      <form onSubmit={this.submit.bind(this)}>
-        <slot />
+      <form>
+        <arv-flex layout={this.layout}>
+          <slot />
+        </arv-flex>
       </form>
     );
   }

@@ -1,0 +1,10 @@
+.stepperItem {
+  --default-font-color: #898989;
+}
+.done {   
+  --default-font-color: #333;
+}
+.stepperIndex {
+  color: #fff;
+  background-color: var(--primary-color);
+}

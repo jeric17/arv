@@ -2,6 +2,10 @@
   outline: none;
 }
 
+.root {
+  position: relative;
+}
+
 .top {}
 .bottom {}
 .right {

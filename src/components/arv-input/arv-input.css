@@ -15,6 +15,10 @@
   transition: all 0.3s;
 }
 
+.error {
+  border-color: var(--error-color);
+}
+
 input:hover {
   border-color: var(--primary-color);
 }
