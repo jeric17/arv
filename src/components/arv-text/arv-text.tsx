@@ -14,6 +14,8 @@ export class Text {
 
   @Prop() strong: boolean;
 
+  @Prop() noWrap: boolean;
+
   render() {
     const rootClassNames = {
       heading1: this.variant === 'heading1',
@@ -24,7 +26,8 @@ export class Text {
       body2: this.variant === 'body2',
       caption: this.variant === 'caption',
       subtle: this.variant === 'subtle',
-      strong: this.strong
+      strong: this.strong,
+      noWrap: this.noWrap
     };
 
     const styles = {

@@ -30,3 +30,6 @@
 .strong {
   font-weight: bold;
 }
+.noWrap {
+  white-space: nowrap;
+}

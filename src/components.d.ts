@@ -24,6 +24,10 @@ declare global {
 
   namespace StencilComponents {
 
+    interface ArvAlertText {
+      'variant': string;
+    }
+
     interface ArvAvatar {
       'alt': string;
       'imgSrc': string;
@@ -184,10 +188,11 @@ declare global {
     }
 
     interface ArvStepper {
-      'steps': any[];
+      'steps': any;
     }
 
     interface ArvText {
+      'noWrap': boolean;
       'strong': boolean;
       'variant': string;
       'weight': number;
@@ -208,6 +213,14 @@ declare global {
     }
   }
 
+
+    interface HTMLArvAlertTextElement extends StencilComponents.ArvAlertText, HTMLStencilElement {}
+
+    var HTMLArvAlertTextElement: {
+      prototype: HTMLArvAlertTextElement;
+      new (): HTMLArvAlertTextElement;
+    };
+    
 
     interface HTMLArvAvatarElement extends StencilComponents.ArvAvatar, HTMLStencilElement {}
 
@@ -436,6 +449,7 @@ declare global {
   namespace JSX {
     interface Element {}
     export interface IntrinsicElements {
+    'arv-alert-text': JSXElements.ArvAlertTextAttributes;
     'arv-avatar': JSXElements.ArvAvatarAttributes;
     'arv-backdrop': JSXElements.ArvBackdropAttributes;
     'arv-button': JSXElements.ArvButtonAttributes;
@@ -468,6 +482,10 @@ declare global {
   }
 
   namespace JSXElements {
+
+    export interface ArvAlertTextAttributes extends HTMLAttributes {
+      'variant'?: string;
+    }
 
     export interface ArvAvatarAttributes extends HTMLAttributes {
       'alt'?: string;
@@ -635,10 +653,11 @@ declare global {
     }
 
     export interface ArvStepperAttributes extends HTMLAttributes {
-      'steps'?: any[];
+      'steps'?: any;
     }
 
     export interface ArvTextAttributes extends HTMLAttributes {
+      'noWrap'?: boolean;
       'strong'?: boolean;
       'variant'?: string;
       'weight'?: number;
@@ -660,6 +679,7 @@ declare global {
   }
 
   interface HTMLElementTagNameMap {
+    'arv-alert-text': HTMLArvAlertTextElement
     'arv-avatar': HTMLArvAvatarElement
     'arv-backdrop': HTMLArvBackdropElement
     'arv-button': HTMLArvButtonElement
@@ -691,6 +711,7 @@ declare global {
   }
 
   interface ElementTagNameMap {
+    'arv-alert-text': HTMLArvAlertTextElement;
     'arv-avatar': HTMLArvAvatarElement;
     'arv-backdrop': HTMLArvBackdropElement;
     'arv-button': HTMLArvButtonElement;

@@ -1,0 +1,13 @@
+.root {
+  padding: 1em;
+}
+
+.error {
+  border-color: var(--error-color);
+  color: var(--error-color);
+}
+
+.success {
+  border-color: var(--success-color);
+  color: var(--success-color);
+}

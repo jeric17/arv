@@ -7,27 +7,33 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Stepper {
 
-  @Prop() steps: any[] = [];
+  @Prop() steps = [];
+
+  constructor() {}
 
   render() {
-    const stepsLength = this.steps.length - 1;    
+    const stepsLength = this.steps.length - 1;
     return (
       <arv-flex>
         {this.steps.map((step, index) => {
-          const stepperItemClassNames = {
-            stepperItem: true,
-            done: step.done,    
-          };
-          const divider = <div class="divider"></div>
-          const checkItem = <div class="material-icons stepperIndex">check</div>;
-          const indexItem = <div class="stepperIndex">{index + 1}</div>;
-          <div class={stepperItemClassNames}>
-            {step.done ? checkItem: indexItem}
-            <arv-text variant="body1">{step.title}</arv-text>
-          </div>
-          {(index < stepsLength) && divider}
+           const stepperItemClassNames = {
+             stepperItem: true,
+             done: step.done
+           };
+           const divider = <div class="divider"></div>
+           const checkItem = <div class="stepperIndex"><arv-icon size="medium" icon="check"></arv-icon></div>;
+           const indexItem = <div class="stepperIndex">{index + 1}</div>;
+           return [
+             <div class={stepperItemClassNames}>
+               {step.done ? checkItem: indexItem}
+               <arv-text
+                 variant="body1"
+                 noWrap>{step.title}</arv-text>
+               {(index < stepsLength) && divider}
+             </div>
+           ];
         })}
-      </arv-flex>    
+      </arv-flex>
     );
-  }    
+  }
 }
