@@ -44,6 +44,9 @@ export class Button {
   }
 
   btnClick(e: MouseEvent) {
+    if (this.disabled) {
+      return false;
+    }
     this.onButtonClick.emit({
       event: e,
       type: this.type

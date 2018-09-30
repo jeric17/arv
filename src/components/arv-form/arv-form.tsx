@@ -2,6 +2,7 @@ import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/
 
 @Component({
   tag: 'arv-form',
+  styleUrl: 'arv-form.css'
 })
 export class Form {
 
@@ -12,8 +13,8 @@ export class Form {
   @Event() onFormSubmit: EventEmitter;
 
   @Listen('onInputChange')
-  onInputChangeHandler(ev) {
-    console.log('change', ev);
+  onInputChangeHandler() {
+    // TODO
   }  
 
   @Listen('onInputEnter')
@@ -43,7 +44,7 @@ export class Form {
 
   render() {
     return (
-      <form>
+      <form class="arv-form">
         <arv-flex layout={this.layout}>
           <slot />
         </arv-flex>

@@ -55,6 +55,9 @@
 .primary:hover {
   background-color: var(--primary-light-color);
 }
+.flat.primary:hover {
+  background-color: transparent;  
+}
 .secondary {
   background-color: var(--secondary-color);
   color: var(--secondary-font-color);
@@ -103,6 +106,8 @@
 .disabled.raised,
 .disabled.raised:hover {
   box-shadow: 0 0 0 transparent;
+  background-color: #efefef;
+  cursor: not-allowed;
 }
 .primary.raised:hover {
   background-color: var(--primary-light-color);

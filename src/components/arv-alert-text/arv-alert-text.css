@@ -1,9 +1,15 @@
+:host {
+  text-align: center;
+  width: 100%;  
+}
 .root {
-  padding: 1em;
+  border-radius: 2px;
+  padding: 0.5em 1em;
+  margin: 0.2em;
 }
 
 .error {
-  border-color: var(--error-color);
+  background-color: var(--error-background-color);
   color: var(--error-color);
 }
 

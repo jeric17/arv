@@ -17,6 +17,14 @@ export class Divider {
 
   @Prop() transparent: boolean;
 
+  hostData() {
+    return {
+      class: {
+        full: this.layout === 'row'  
+      }  
+    };  
+  }
+
   render() {
     const rootClassNames = {
       divider: true,

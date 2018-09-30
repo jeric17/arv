@@ -18,6 +18,7 @@ body {
 
 :root {
   --error-color: rgb(255, 68, 68);
+  --error-background-color: #e66465;
 
   --default-background-color: #efefef;
   --default-color: #333;

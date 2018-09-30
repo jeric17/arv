@@ -46,6 +46,8 @@ export class Input {
   validate(value) {
     if (this.required && !value) {
       this.error = true;  
+    } else {
+      this.error = false;  
     }
   }
 
@@ -72,6 +74,14 @@ export class Input {
       type: this.type,
       required: this.required
     });
+  }
+
+  hostData() {
+    return {
+      class: {
+        full: this.full  
+      }
+    };  
   }
 
   render() {

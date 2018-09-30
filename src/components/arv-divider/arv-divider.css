@@ -1,9 +1,14 @@
+:host(.full) {
+  width: 100%; 
+}
+
 .row {
   margin: 15px 0;
 }
 
 .column {
   margin: 0 8px;
+  width: auto;
 }
 
 .bordered {

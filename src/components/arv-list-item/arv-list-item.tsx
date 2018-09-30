@@ -30,7 +30,7 @@ export class ListItem {
           full>
           <slot></slot>
         </arv-button>
-        <arv-divider></arv-divider>
+        <arv-divider transparent></arv-divider>
       </li>
     );
   }
