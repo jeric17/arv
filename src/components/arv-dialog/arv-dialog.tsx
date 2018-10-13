@@ -11,6 +11,8 @@ export class Dialog {
 
   @Element() el: HTMLElement;
 
+  @Prop() scrollable: boolean;
+
   @Prop() show: boolean;
 
   @Watch('show')
@@ -35,6 +37,10 @@ export class Dialog {
     const slot = this.el.children[0];
     const elem = document.createElement(this.portal);
 
+    if (this.scrollable) {
+      elem.setAttribute('scrollable', 'true');
+    }
+
     elem.appendChild(dialog);
     elem.appendChild(slot);
 
@@ -55,6 +61,7 @@ export class Dialog {
 
     return (
       <arv-container
+        margin="1em"
         class={this.rootClassName}
         hidden={!this.show}>
         <arv-dialog-content>

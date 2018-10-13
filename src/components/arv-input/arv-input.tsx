@@ -7,7 +7,9 @@ import { Component, Event, EventEmitter, Listen, Prop, State } from '@stencil/co
 })
 export class Input {
 
-  @State() error = false;  
+  @State() error = false;
+
+  @Prop() autocomplete = 'off';
 
   @Prop() disabled = false;
 
@@ -22,6 +24,10 @@ export class Input {
 
   @Prop() name: string;
 
+  @Prop() inputBlur: (e: any) => void;  
+
+  @Prop() inputFocus: (e: any) => void;
+
   @Prop() inputChange: (e: any) => void;
 
   @Prop() placeholder: string;
@@ -33,6 +39,10 @@ export class Input {
   @Prop() value: string;
 
   @Event() onInput: EventEmitter;
+
+  @Event() onBlur: EventEmitter;
+
+  @Event() onFocus: EventEmitter;
 
   @Event() onInputChange: EventEmitter;
 
@@ -52,7 +62,7 @@ export class Input {
   }
 
   change(e) {
-    const value = e.target['value'];  
+    const value = e.target['value'];
     this.validate(value);
     if (this.inputChange) {
       this.inputChange(e);
@@ -66,11 +76,38 @@ export class Input {
     });
   }
 
-  input(ev) {
+  focus(e) {
+    const value = e.target['value'];
+    if (this.inputFocus) {
+      this.inputFocus(e);
+    }
+    this.onFocus.emit({
+      event: e,
+      value,
+      name: e.target.name,
+      type: this.type,
+      required: this.required
+    });
+  }
+  blur(e) {
+    const value = e.target['value'];
+    if (this.inputBlur) {
+      this.inputBlur(e);
+    }
+    this.onBlur.emit({
+      event: e,
+      value,
+      name: e.target.name,
+      type: this.type,
+      required: this.required
+    });
+  }
+
+  input(e) {
     this.onInput.emit({
-      event: ev,
-      value: ev.target['value'],
-      name: ev.target.name,
+      event: e,
+      value: e.target['value'],
+      name: e.target.name,
       type: this.type,
       required: this.required
     });
@@ -109,20 +146,33 @@ export class Input {
         class={labelClass}>{this.label}</label>
     );
 
+    const layout = (() => {
+      if (this.layout === 'row') {
+        return 'column';
+      }
+      return 'row';
+    })();    
+
     return (
       <div class={rootClassNames}>
         <arv-flex layout={this.layout}>
           {this.label && <Label />}
-          <arv-divider layout={this.layout}></arv-divider>
+          <arv-divider 
+            noMargin={layout === 'row' ? true : false}
+            layout={layout} 
+            transparent></arv-divider>
           <input
             required={this.required}
             name={this.name}
             class={inputClassNames}
             placeholder={this.placeholder}
             disabled={this.disabled}
-            onChange={this.change.bind(this)}
             type={this.type}
+            onChange={this.change.bind(this)}
             onInput={this.input.bind(this)}
+            onFocus={this.focus.bind(this)}
+            onBlur={this.blur.bind(this)}
+            autocomplete={this.autocomplete}
             value={this.value} />
         </arv-flex>
       </div>

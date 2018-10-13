@@ -47,6 +47,7 @@ declare global {
       'disabled': boolean;
       'full': boolean;
       'icon': string;
+      'padded': boolean;
       'rounded': boolean;
       'size': string;
       'styles': any;
@@ -90,10 +91,12 @@ declare global {
 
     interface ArvDialogPortal {
       'content': any;
+      'scrollable': boolean;
     }
 
     interface ArvDialog {
       'parent': HTMLElement;
+      'scrollable': boolean;
       'show': boolean;
     }
 
@@ -101,6 +104,7 @@ declare global {
       'bordered': boolean;
       'height': string;
       'layout': string;
+      'noMargin': boolean;
       'transparent': boolean;
       'width': string;
     }
@@ -133,10 +137,13 @@ declare global {
     }
 
     interface ArvInput {
+      'autocomplete': string;
       'disabled': boolean;
       'full': boolean;
       'hasError': boolean;
+      'inputBlur': (e: any) => void;
       'inputChange': (e: any) => void;
+      'inputFocus': (e: any) => void;
       'label': string;
       'layout': string;
       'name': string;
@@ -180,11 +187,17 @@ declare global {
     }
 
     interface ArvSelect {
+      'full': boolean;
+      'inputChange': (e: any) => void;
       'label': string;
       'layout': string;
       'onSelectChange': (item: any) => void;
       'toggle': () => void;
       'value': string;
+      /**
+       * oneOf [select, input] 
+       */
+      'variant': string;
     }
 
     interface ArvStepper {
@@ -507,6 +520,7 @@ declare global {
       'full'?: boolean;
       'icon'?: string;
       'onOnButtonClick'?: (event: CustomEvent) => void;
+      'padded'?: boolean;
       'rounded'?: boolean;
       'size'?: string;
       'styles'?: any;
@@ -550,11 +564,13 @@ declare global {
 
     export interface ArvDialogPortalAttributes extends HTMLAttributes {
       'content'?: any;
+      'scrollable'?: boolean;
     }
 
     export interface ArvDialogAttributes extends HTMLAttributes {
       'onOnClose'?: (event: CustomEvent) => void;
       'parent'?: HTMLElement;
+      'scrollable'?: boolean;
       'show'?: boolean;
     }
 
@@ -562,6 +578,7 @@ declare global {
       'bordered'?: boolean;
       'height'?: string;
       'layout'?: string;
+      'noMargin'?: boolean;
       'transparent'?: boolean;
       'width'?: string;
     }
@@ -595,13 +612,18 @@ declare global {
     }
 
     export interface ArvInputAttributes extends HTMLAttributes {
+      'autocomplete'?: string;
       'disabled'?: boolean;
       'full'?: boolean;
       'hasError'?: boolean;
+      'inputBlur'?: (e: any) => void;
       'inputChange'?: (e: any) => void;
+      'inputFocus'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
       'name'?: string;
+      'onOnBlur'?: (event: CustomEvent) => void;
+      'onOnFocus'?: (event: CustomEvent) => void;
       'onOnInput'?: (event: CustomEvent) => void;
       'onOnInputChange'?: (event: CustomEvent) => void;
       'onOnInputEnter'?: (event: CustomEvent) => void;
@@ -646,10 +668,17 @@ declare global {
     }
 
     export interface ArvSelectAttributes extends HTMLAttributes {
+      'full'?: boolean;
+      'inputChange'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
-      'onSelectChange'?: (item: any) => void;
+      'onOnInputChange'?: (event: CustomEvent) => void;
+      'onSelectChange'?: (event: CustomEvent) => void;
       'value'?: string;
+      /**
+       * oneOf [select, input] 
+       */
+      'variant'?: string;
     }
 
     export interface ArvStepperAttributes extends HTMLAttributes {

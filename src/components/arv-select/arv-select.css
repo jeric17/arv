@@ -1,3 +1,6 @@
+:host(.full) {
+  width: 100%;
+}
 .value {
   align-items: center;
   background-color: #FFF;
@@ -15,4 +18,9 @@
 
 .value:hover {
   border-color: var(--primary-color);
+}
+
+.full,
+.inputWrapper {
+  width: 100%;
 }

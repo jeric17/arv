@@ -18,6 +18,8 @@ export class Button {
 
   @Prop() buttonClick: (e: MouseEvent) => void;
 
+  @Prop() padded = true;
+
   @Prop() rounded: boolean = true;
 
   /* oneOf: [small, medium, large] */
@@ -72,7 +74,8 @@ export class Button {
       raised: this.variant === 'raised',
       flatIcon: this.variant === 'flat-icon',
       raisedIcon: this.variant === 'raised-icon',
-      boxed: !this.rounded
+      boxed: !this.rounded,
+      noPad: !this.padded
     };
 
     const Icon = () => (

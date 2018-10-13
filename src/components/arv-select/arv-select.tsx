@@ -1,4 +1,4 @@
-import { Component, Element, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-select',
@@ -22,13 +22,20 @@ export class Select {
     return this._hideContent();
   }
 
+  @Prop() full: boolean;
+
   @Prop() label: string;
 
-  @Prop() layout: string;
+  @Prop() layout = 'row';
+
+  @Prop() inputChange: (e: any) => void;
 
   @Prop() value: string;
 
   @Prop() onSelectChange: (item: any) => void;
+
+  /** oneOf [select, input] */
+  @Prop() variant = 'select';  
 
   @Method()
   toggle() {
@@ -36,10 +43,22 @@ export class Select {
   }
 
   optionSelectedHandler(evt) {
-    if (evt) {
+    if (this.onSelectChange) {
       this.onSelectChange(evt);
     }
+    this.selectChange.emit(evt);
     this.show = false;
+  }
+
+  @Event() onInputChange: EventEmitter;
+
+  @Event() selectChange: EventEmitter;
+
+  private _inputChange(e) {
+    if (this.inputChange) {
+      this.inputChange(e);
+    }
+    this.onInputChange.emit(e);
   }
 
   private _showContent() {
@@ -48,7 +67,7 @@ export class Select {
 
     const elem:any = document.createElement(this.portal);
     elem.onSelect = this.optionSelectedHandler.bind(this);
-    elem.parentEl = this.el.shadowRoot.querySelector('.value');
+    elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
     elem.appendChild(dialog);
     Array.from(slot).forEach(d => {
       elem.appendChild(d);
@@ -74,31 +93,77 @@ export class Select {
     this.show = true;
   }
 
+  hostData() {
+    return {
+      class: {
+        full: this.full  
+      }  
+    };
+  }
+
   render() {
     const slot = this.show ? <slot></slot> : null;
 
-    const Value = () => (
+    const SelectValue = () => (
       <div
         onClick={this.onValueClick.bind(this)}
-        class="value">
+        class="value targetValue">
         {this.value}
         <arv-divider></arv-divider>
         <arv-icon icon="keyboard_arrow_down"></arv-icon>
       </div>
     );
 
+    const InputValue = () => (
+      <div class="inputWrapper targetValue">
+        <arv-input
+         class="input"
+         inputFocus={() => { this.show = true; }}
+         inputBlur={() => {
+           setTimeout(() => {
+             this.show = false;  
+           }, 500);
+         }}
+         inputChange={this._inputChange.bind(this)}
+         value={this.value}
+         full />
+      </div>
+    );
+
+    const layout = (() => {
+      if (this.layout === 'row') {
+        return 'column';
+      }
+      return 'row';
+    })();  
+
     const Label = () => ([
       <arv-text variant="body">{this.label}</arv-text>,
-      <arv-divider></arv-divider>
+      <arv-divider 
+        noMargin={layout === 'row' ? true : false}
+        layout={layout} 
+        transparent></arv-divider>
     ]);
 
+    const targetValueElement = (() => {
+      if (this.variant === 'select') {
+        return <SelectValue />;  
+      }
+      return <InputValue />;
+    })();
+
+    const classNames = {
+      root: true,
+      full: this.full  
+    };    
+
     return (
-      <div class="root">
+      <div class={classNames}>
         <arv-flex
           layout={this.layout}
           items="center">
           {this.label && <Label />}
-          <Value />
+          {targetValueElement}
         </arv-flex>
         <div class="select-list">
           {slot}

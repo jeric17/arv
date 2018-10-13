@@ -17,6 +17,8 @@ export class Divider {
 
   @Prop() transparent: boolean;
 
+  @Prop() noMargin: boolean;  
+
   hostData() {
     return {
       class: {
@@ -31,7 +33,8 @@ export class Divider {
       bordered: this.bordered,
       row: this.layout === 'row',
       column: this.layout === 'column',
-      transparent: this.transparent
+      transparent: this.transparent,
+      noMargin: this.noMargin
     };
 
     const styles = (() => {

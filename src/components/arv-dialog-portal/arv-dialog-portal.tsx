@@ -11,6 +11,8 @@ export class DialogPortal {
 
   @Prop() content: any;
 
+  @Prop() scrollable: boolean;
+
   componentDidLoad() {
     const target = this.el.shadowRoot.querySelector('.arv-dialog-portal');
     const { children } = this.el;
@@ -19,9 +21,13 @@ export class DialogPortal {
   }
 
   render() {
+    const classNames = {
+      'arv-dialog-portal': true,
+      scrollable: this.scrollable  
+    };
 
     return (
-      <div class="arv-dialog-portal">
+      <div class={classNames}>
         <arv-backdrop></arv-backdrop>
       </div>
     );

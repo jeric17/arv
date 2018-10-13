@@ -146,3 +146,6 @@
 .raisedIcon .slot{
   display: none;
 }
+.noPad {
+  padding: 0;
+}
