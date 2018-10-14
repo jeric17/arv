@@ -141,6 +141,7 @@ declare global {
       'disabled': boolean;
       'full': boolean;
       'hasError': boolean;
+      'input': (e: any) => void;
       'inputBlur': (e: any) => void;
       'inputChange': (e: any) => void;
       'inputFocus': (e: any) => void;
@@ -187,6 +188,7 @@ declare global {
     }
 
     interface ArvSelect {
+      'dataSource': any;
       'full': boolean;
       'inputChange': (e: any) => void;
       'label': string;
@@ -616,6 +618,7 @@ declare global {
       'disabled'?: boolean;
       'full'?: boolean;
       'hasError'?: boolean;
+      'input'?: (e: any) => void;
       'inputBlur'?: (e: any) => void;
       'inputChange'?: (e: any) => void;
       'inputFocus'?: (e: any) => void;
@@ -668,10 +671,12 @@ declare global {
     }
 
     export interface ArvSelectAttributes extends HTMLAttributes {
+      'dataSource'?: any;
       'full'?: boolean;
       'inputChange'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
+      'onOnInput'?: (event: CustomEvent) => void;
       'onOnInputChange'?: (event: CustomEvent) => void;
       'onSelectChange'?: (event: CustomEvent) => void;
       'value'?: string;

@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Method, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-select',
@@ -11,8 +11,9 @@ export class Select {
 
   @Element() el: HTMLElement;
 
-  @State() show: boolean;
+  @State() inputValue: string;
 
+  @State() show: boolean;
   @Watch('show')
   showChanged() {
     if (this.show) {
@@ -31,8 +32,16 @@ export class Select {
   @Prop() inputChange: (e: any) => void;
 
   @Prop() value: string;
+  @Watch('value')
+  valueHandler() {
+    if (this.variant === 'input') {
+      this.inputValue = this.value;
+    }
+  }
 
   @Prop() onSelectChange: (item: any) => void;
+
+  @Prop() dataSource: any;
 
   /** oneOf [select, input] */
   @Prop() variant = 'select';  
@@ -42,7 +51,28 @@ export class Select {
     this.show = !this.show;
   }
 
+  @Listen('onInputEnter')
+  onInputChangeHandler() {
+    this.show = false;
+    this.selectChange.emit(this.inputValue);
+  }
+
+  @Event() onInput: EventEmitter;
+
+  @Event() onInputChange: EventEmitter;
+
+  @Event() selectChange: EventEmitter;
+
+  componentWillLoad() {
+    if (this.variant === 'input') {
+      this.inputValue = this.value;  
+    }
+  }
+
   optionSelectedHandler(evt) {
+    if (!evt && this.variant === 'input') {
+      this.selectChange.emit(this.inputValue);
+    }
     if (this.onSelectChange) {
       this.onSelectChange(evt);
     }
@@ -50,15 +80,17 @@ export class Select {
     this.show = false;
   }
 
-  @Event() onInputChange: EventEmitter;
+  // private _inputChange(e) {
+  //   if (this.inputChange) {
+  //     this.inputChange(e);
+  //   }
+  //   this.onInputChange.emit(e);
+  // }
 
-  @Event() selectChange: EventEmitter;
-
-  private _inputChange(e) {
-    if (this.inputChange) {
-      this.inputChange(e);
-    }
-    this.onInputChange.emit(e);
+  private _input(e) {
+    // this.show = true;  
+    this.inputValue = e.target.value;
+    // this.onInput.emit(e);
   }
 
   private _showContent() {
@@ -68,8 +100,10 @@ export class Select {
     const elem:any = document.createElement(this.portal);
     elem.onSelect = this.optionSelectedHandler.bind(this);
     elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
+
     elem.appendChild(dialog);
     Array.from(slot).forEach(d => {
+      d.classList.add('select-slot-item');
       elem.appendChild(d);
     });
 
@@ -78,9 +112,10 @@ export class Select {
 
   private _hideContent() {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
+    const t = portal.shadowRoot.querySelector(`.${this.rootClassName}`);
 
-    this.el.shadowRoot.appendChild(portal.shadowRoot.querySelector(`.${this.rootClassName}`));
-    const slots = portal.shadowRoot.querySelectorAll('arv-select-option');
+    this.el.shadowRoot.appendChild(t);
+    const slots = portal.shadowRoot.querySelectorAll('.select-slot-item');
 
     Array.from(slots).forEach(d => {
       this.el.appendChild(d);
@@ -119,13 +154,8 @@ export class Select {
         <arv-input
          class="input"
          inputFocus={() => { this.show = true; }}
-         inputBlur={() => {
-           setTimeout(() => {
-             this.show = false;  
-           }, 500);
-         }}
-         inputChange={this._inputChange.bind(this)}
-         value={this.value}
+         input={this._input.bind(this)}
+         value={this.inputValue}
          full />
       </div>
     );

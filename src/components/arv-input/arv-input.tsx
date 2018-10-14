@@ -24,6 +24,8 @@ export class Input {
 
   @Prop() name: string;
 
+  @Prop() input: (e: any) => void;  
+
   @Prop() inputBlur: (e: any) => void;  
 
   @Prop() inputFocus: (e: any) => void;
@@ -61,7 +63,7 @@ export class Input {
     }
   }
 
-  change(e) {
+  private _change(e) {
     const value = e.target['value'];
     this.validate(value);
     if (this.inputChange) {
@@ -76,7 +78,7 @@ export class Input {
     });
   }
 
-  focus(e) {
+  private _focus(e) {
     const value = e.target['value'];
     if (this.inputFocus) {
       this.inputFocus(e);
@@ -89,7 +91,7 @@ export class Input {
       required: this.required
     });
   }
-  blur(e) {
+  private _blur(e) {
     const value = e.target['value'];
     if (this.inputBlur) {
       this.inputBlur(e);
@@ -103,7 +105,10 @@ export class Input {
     });
   }
 
-  input(e) {
+  private _input(e) {
+    if (this.input) {
+      this.input(e);  
+    }
     this.onInput.emit({
       event: e,
       value: e.target['value'],
@@ -168,10 +173,10 @@ export class Input {
             placeholder={this.placeholder}
             disabled={this.disabled}
             type={this.type}
-            onChange={this.change.bind(this)}
-            onInput={this.input.bind(this)}
-            onFocus={this.focus.bind(this)}
-            onBlur={this.blur.bind(this)}
+            onChange={this._change.bind(this)}
+            onInput={this._input.bind(this)}
+            onFocus={this._focus.bind(this)}
+            onBlur={this._blur.bind(this)}
             autocomplete={this.autocomplete}
             value={this.value} />
         </arv-flex>
