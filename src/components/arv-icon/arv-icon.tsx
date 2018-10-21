@@ -12,6 +12,8 @@ export class Icon {
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
+  @Prop() styles: any = {};
+
   render() {
     const rootClassNames = {
       'material-icons': true,
@@ -22,7 +24,7 @@ export class Icon {
     };
 
     return (
-      <span class={rootClassNames}>
+      <span style={this.styles} class={rootClassNames}>
         {this.icon}
       </span>
     );

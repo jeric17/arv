@@ -75,6 +75,15 @@ declare global {
       'width': string;
     }
 
+    interface ArvCheckbox {
+      'color': string;
+      'label': string;
+      'layout': string;
+      'styles': any;
+      'textWidth': string;
+      'value': boolean;
+    }
+
     interface ArvContainer {
       'full': boolean;
       'height': string;
@@ -134,13 +143,16 @@ declare global {
     interface ArvIcon {
       'icon': string;
       'size': string;
+      'styles': any;
     }
 
     interface ArvInput {
       'autocomplete': string;
       'disabled': boolean;
+      'fileUpload': boolean;
       'full': boolean;
       'hasError': boolean;
+      'icon': string;
       'input': (e: any) => void;
       'inputBlur': (e: any) => void;
       'inputChange': (e: any) => void;
@@ -160,9 +172,13 @@ declare global {
     }
 
     interface ArvListItem {
-      'itemClick': (e: Event, index: number) => void;
+      'buttonSize': string;
+      'icon': string;
+      'itemClick': (e: any, index: number) => void;
       'itemIndex': number;
+      'showDivider': boolean;
       'showIcon': boolean;
+      'textAlign': string;
     }
 
     interface ArvList {
@@ -190,10 +206,12 @@ declare global {
     interface ArvSelect {
       'dataSource': any;
       'full': boolean;
+      'icon': string;
       'inputChange': (e: any) => void;
       'label': string;
       'layout': string;
       'onSelectChange': (item: any) => void;
+      'placeholder': string;
       'toggle': () => void;
       'value': string;
       /**
@@ -282,6 +300,14 @@ declare global {
     var HTMLArvCardElement: {
       prototype: HTMLArvCardElement;
       new (): HTMLArvCardElement;
+    };
+    
+
+    interface HTMLArvCheckboxElement extends StencilComponents.ArvCheckbox, HTMLStencilElement {}
+
+    var HTMLArvCheckboxElement: {
+      prototype: HTMLArvCheckboxElement;
+      new (): HTMLArvCheckboxElement;
     };
     
 
@@ -471,6 +497,7 @@ declare global {
     'arv-card-header': JSXElements.ArvCardHeaderAttributes;
     'arv-card-media': JSXElements.ArvCardMediaAttributes;
     'arv-card': JSXElements.ArvCardAttributes;
+    'arv-checkbox': JSXElements.ArvCheckboxAttributes;
     'arv-container': JSXElements.ArvContainerAttributes;
     'arv-dialog-content': JSXElements.ArvDialogContentAttributes;
     'arv-dialog-portal': JSXElements.ArvDialogPortalAttributes;
@@ -550,6 +577,16 @@ declare global {
       'width'?: string;
     }
 
+    export interface ArvCheckboxAttributes extends HTMLAttributes {
+      'color'?: string;
+      'label'?: string;
+      'layout'?: string;
+      'onOnInputChange'?: (event: CustomEvent) => void;
+      'styles'?: any;
+      'textWidth'?: string;
+      'value'?: boolean;
+    }
+
     export interface ArvContainerAttributes extends HTMLAttributes {
       'full'?: boolean;
       'height'?: string;
@@ -611,13 +648,16 @@ declare global {
     export interface ArvIconAttributes extends HTMLAttributes {
       'icon'?: string;
       'size'?: string;
+      'styles'?: any;
     }
 
     export interface ArvInputAttributes extends HTMLAttributes {
       'autocomplete'?: string;
       'disabled'?: boolean;
+      'fileUpload'?: boolean;
       'full'?: boolean;
       'hasError'?: boolean;
+      'icon'?: string;
       'input'?: (e: any) => void;
       'inputBlur'?: (e: any) => void;
       'inputChange'?: (e: any) => void;
@@ -642,9 +682,14 @@ declare global {
     }
 
     export interface ArvListItemAttributes extends HTMLAttributes {
-      'itemClick'?: (e: Event, index: number) => void;
+      'buttonSize'?: string;
+      'icon'?: string;
+      'itemClick'?: (e: any, index: number) => void;
       'itemIndex'?: number;
+      'onOnItemClick'?: (event: CustomEvent) => void;
+      'showDivider'?: boolean;
       'showIcon'?: boolean;
+      'textAlign'?: string;
     }
 
     export interface ArvListAttributes extends HTMLAttributes {
@@ -673,12 +718,14 @@ declare global {
     export interface ArvSelectAttributes extends HTMLAttributes {
       'dataSource'?: any;
       'full'?: boolean;
+      'icon'?: string;
       'inputChange'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
       'onOnInput'?: (event: CustomEvent) => void;
       'onOnInputChange'?: (event: CustomEvent) => void;
       'onSelectChange'?: (event: CustomEvent) => void;
+      'placeholder'?: string;
       'value'?: string;
       /**
        * oneOf [select, input] 
@@ -720,6 +767,7 @@ declare global {
     'arv-card-header': HTMLArvCardHeaderElement
     'arv-card-media': HTMLArvCardMediaElement
     'arv-card': HTMLArvCardElement
+    'arv-checkbox': HTMLArvCheckboxElement
     'arv-container': HTMLArvContainerElement
     'arv-dialog-content': HTMLArvDialogContentElement
     'arv-dialog-portal': HTMLArvDialogPortalElement
@@ -752,6 +800,7 @@ declare global {
     'arv-card-header': HTMLArvCardHeaderElement;
     'arv-card-media': HTMLArvCardMediaElement;
     'arv-card': HTMLArvCardElement;
+    'arv-checkbox': HTMLArvCheckboxElement;
     'arv-container': HTMLArvContainerElement;
     'arv-dialog-content': HTMLArvDialogContentElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;

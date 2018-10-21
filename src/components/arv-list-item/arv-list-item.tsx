@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-list-item',
@@ -7,16 +7,28 @@ import { Component, Prop } from '@stencil/core';
 })
 export class ListItem {
 
-  @Prop() itemClick: (e: Event, index: number) => void;
+  @Prop() buttonSize = 'medium';
+
+  @Prop() icon: string;
+
+  @Prop() itemClick: (e: any, index: number) => void;
 
   @Prop() itemIndex: number;
 
   @Prop() showIcon: boolean;
 
+  @Prop() textAlign = 'start';
+
+  @Prop() showDivider = true;
+
+  @Event() onItemClick: EventEmitter;
+
   click(e) {
     if (this.itemClick) {
       this.itemClick(e, this.itemIndex)
     }
+
+    this.onItemClick.emit(e);
   }
 
   render() {
@@ -24,13 +36,16 @@ export class ListItem {
       <li
         class="root">
         <arv-button
+          icon={this.icon}
+          textAlign={this.textAlign}
           buttonClick={this.click.bind(this)}
           variant="flat"
-          textAlign="start"
+          rounded={false}
+          size={this.buttonSize}
           full>
           <slot></slot>
         </arv-button>
-        <arv-divider transparent></arv-divider>
+        {this.showDivider && (<arv-divider height="0px"></arv-divider>)}
       </li>
     );
   }

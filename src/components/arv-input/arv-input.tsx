@@ -13,16 +13,13 @@ export class Input {
 
   @Prop() disabled = false;
 
+  @Prop() fileUpload = false;
+
   @Prop() full: boolean;
 
   @Prop() hasError: boolean;
 
-  @Prop() label: string;
-
-  /* oneOf: [column, row] */
-  @Prop() layout = 'column';
-
-  @Prop() name: string;
+  @Prop() icon: string;
 
   @Prop() input: (e: any) => void;  
 
@@ -31,6 +28,13 @@ export class Input {
   @Prop() inputFocus: (e: any) => void;
 
   @Prop() inputChange: (e: any) => void;
+
+  @Prop() label: string;
+
+  /* oneOf: [column, row] */
+  @Prop() layout = 'column';
+
+  @Prop() name: string;
 
   @Prop() placeholder: string;
 
@@ -64,12 +68,19 @@ export class Input {
   }
 
   private _change(e) {
-    const value = e.target['value'];
+    const value = (() => {
+      if (this.type === 'file') {
+        return e.target.files[0].name
+      }
+      return e.target.value;
+    })();
     this.validate(value);
     if (this.inputChange) {
       this.inputChange(e);
     }
+   
     this.onInputChange.emit({
+      target: e.target,
       event: e,
       value,
       name: e.target.name,
@@ -132,7 +143,9 @@ export class Input {
       disabled: this.disabled,
       row: this.layout === 'row',
       column: this.layout === 'column',
-      full: this.full
+      full: this.full,
+      icon: Boolean(this.icon),
+      fileUpload: this.fileUpload
     };
 
     const inputClassNames = {
@@ -156,29 +169,49 @@ export class Input {
         return 'column';
       }
       return 'row';
-    })();    
+    })();
+
+    const iconStyles = {
+      position: 'absolute',
+      top: '0.5em',
+      left: '0.4em',
+      color: '#333'
+    };
+
+    const Input = () => (
+      <input
+        required={this.required}
+        name={this.name}
+        class={inputClassNames}
+        placeholder={this.placeholder}
+        disabled={this.disabled}
+        type={this.type}
+        onChange={this._change.bind(this)}
+        onInput={this._input.bind(this)}
+        onFocus={this._focus.bind(this)}
+        onBlur={this._blur.bind(this)}
+        autocomplete={this.autocomplete}
+        value={this.value} />
+    );
 
     return (
       <div class={rootClassNames}>
         <arv-flex layout={this.layout}>
-          {this.label && <Label />}
+          {this.label && !this.fileUpload && <Label />}
           <arv-divider 
             noMargin={layout === 'row' ? true : false}
             layout={layout} 
             transparent></arv-divider>
-          <input
-            required={this.required}
-            name={this.name}
-            class={inputClassNames}
-            placeholder={this.placeholder}
-            disabled={this.disabled}
-            type={this.type}
-            onChange={this._change.bind(this)}
-            onInput={this._input.bind(this)}
-            onFocus={this._focus.bind(this)}
-            onBlur={this._blur.bind(this)}
-            autocomplete={this.autocomplete}
-            value={this.value} />
+          <div class="inputWrapper">
+            {this.icon && <arv-icon styles={iconStyles} icon={this.icon}></arv-icon>}
+            <Input />
+            {this.label && this.fileUpload && <Label />}
+            {this.value && this.fileUpload && (
+              <arv-flex justify="center" items="center" full>
+                <arv-text variant="subtle">{this.value}</arv-text>
+              </arv-flex>
+            )}
+          </div>
         </arv-flex>
       </div>
     );

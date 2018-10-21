@@ -23,13 +23,19 @@ export class Select {
     return this._hideContent();
   }
 
+  @Prop() dataSource: any;
+
   @Prop() full: boolean;
+
+  @Prop() icon: string;
+
+  @Prop() inputChange: (e: any) => void;
 
   @Prop() label: string;
 
   @Prop() layout = 'row';
 
-  @Prop() inputChange: (e: any) => void;
+  @Prop() placeholder: string;
 
   @Prop() value: string;
   @Watch('value')
@@ -40,8 +46,6 @@ export class Select {
   }
 
   @Prop() onSelectChange: (item: any) => void;
-
-  @Prop() dataSource: any;
 
   /** oneOf [select, input] */
   @Prop() variant = 'select';  
@@ -152,6 +156,8 @@ export class Select {
     const InputValue = () => (
       <div class="inputWrapper targetValue">
         <arv-input
+         placeholder={this.placeholder}
+         icon={this.icon}
          class="input"
          inputFocus={() => { this.show = true; }}
          input={this._input.bind(this)}
@@ -184,7 +190,8 @@ export class Select {
 
     const classNames = {
       root: true,
-      full: this.full  
+      full: this.full,
+      icon: Boolean(this.icon)
     };    
 
     return (

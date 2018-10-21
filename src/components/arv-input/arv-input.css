@@ -47,3 +47,46 @@ input:focus {
   font-size: 0.8rem;
   margin: 0.5em 0;
 }
+
+.inputWrapper {
+  border-radius: 4px;  
+  position: relative;
+  width: 100%;
+}
+
+.icon input {
+  padding: 0 1em 0 2em;
+}
+
+.fileUpload input {
+  cursor: pointer;  
+  opacity: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.fileUpload.default {
+  background-color: var(--default-color);
+}
+
+.fileUpload.primary {
+  background-color: var(--primary-color);
+}
+
+.fileUpload.secondary {
+  background-color: var(--secondary-color);
+}
+
+.fileUpload .inputWrapper {
+  background-color: var(--default-background-color);
+}
+
+.fileUpload label {
+  cursor: pointer;
+  position: absolute;
+  left: 0;
+  width: 100%;
+  top: 0;
+  height: 100%;
+  text-align: center;
+}

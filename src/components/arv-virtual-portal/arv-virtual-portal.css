@@ -3,6 +3,7 @@
   left: 0;
   position: absolute;
   top: 0;
+  z-index: 1;
 }
 .arv-virtual-portal {
   background-color: #FFF;
