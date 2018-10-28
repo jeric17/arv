@@ -226,12 +226,10 @@ export class Input {
             class={inputClassNames}
             placeholder={this.placeholder}
             disabled={this.disabled}
-            type={this.type}
             onChange={this._change.bind(this)}
             onInput={this._input.bind(this)}
             onFocus={this._focus.bind(this)}
             onBlur={this._blur.bind(this)}
-            autocomplete={this.autocomplete}
             value={this.value} />
         );
     };
