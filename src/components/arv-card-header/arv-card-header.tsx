@@ -25,10 +25,10 @@ export class CardHeader {
       <arv-avatar imgSrc={this.avatarImage}></arv-avatar>
     );
     const Title = () => (
-      <arv-text variant="heading3">{this.titleHeader}</arv-text>
+      <arv-text variant="heading4">{this.titleHeader}</arv-text>
     );
     const SubHeader = () => (
-      <arv-text variant="heading4">{this.subHeader}</arv-text>
+      <arv-text variant="body1">{this.subHeader}</arv-text>
     );
 
     return (

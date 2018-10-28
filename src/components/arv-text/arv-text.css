@@ -2,7 +2,10 @@
   font-family: var(--font-family);
   color: var(--default-font-color);
 }
-
+.strike {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
 .heading1 {
   font-size: 2rem;
 }
@@ -22,10 +25,12 @@
   font-size: 0.9rem;
 }
 .caption {
+  color: #565656;
   font-size: 0.9rem;
 }
 .subtle {
-  font-size: 0.8rem;
+  color: #888;
+  font-size: 0.7rem;
 }
 .strong {
   font-weight: bold;

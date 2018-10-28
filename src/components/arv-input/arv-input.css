@@ -90,3 +90,7 @@ input:focus {
   height: 100%;
   text-align: center;
 }
+
+textarea {
+  resize: none;
+}

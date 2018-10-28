@@ -12,12 +12,12 @@
 }
 
 .bordered {
-  border-bottom: 1px solid var(--default-color);
+  border-bottom: 1px solid var(--default-light-color);
 }
 
 .column.bordered {
   border-bottom: 0;
-  border-right: 1px solid var(--default-color);
+  border-right: 1px solid var(--default-light-color);
 }
 
 .transparent {

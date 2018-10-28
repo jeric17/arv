@@ -125,6 +125,7 @@ declare global {
       'justify': string;
       'layout': string;
       'order': number;
+      'padded': boolean;
       'self': string;
       'wrap': string;
     }
@@ -159,9 +160,11 @@ declare global {
       'inputFocus': (e: any) => void;
       'label': string;
       'layout': string;
+      'multiple': boolean;
       'name': string;
       'placeholder': string;
       'required': boolean;
+      'rows': number;
       'type': string;
       'value': string;
     }
@@ -226,6 +229,7 @@ declare global {
 
     interface ArvText {
       'noWrap': boolean;
+      'strike': boolean;
       'strong': boolean;
       'variant': string;
       'weight': number;
@@ -629,6 +633,7 @@ declare global {
       'justify'?: string;
       'layout'?: string;
       'order'?: number;
+      'padded'?: boolean;
       'self'?: string;
       'wrap'?: string;
     }
@@ -664,6 +669,7 @@ declare global {
       'inputFocus'?: (e: any) => void;
       'label'?: string;
       'layout'?: string;
+      'multiple'?: boolean;
       'name'?: string;
       'onOnBlur'?: (event: CustomEvent) => void;
       'onOnFocus'?: (event: CustomEvent) => void;
@@ -672,6 +678,7 @@ declare global {
       'onOnInputEnter'?: (event: CustomEvent) => void;
       'placeholder'?: string;
       'required'?: boolean;
+      'rows'?: number;
       'type'?: string;
       'value'?: string;
     }
@@ -739,6 +746,7 @@ declare global {
 
     export interface ArvTextAttributes extends HTMLAttributes {
       'noWrap'?: boolean;
+      'strike'?: boolean;
       'strong'?: boolean;
       'variant'?: string;
       'weight'?: number;

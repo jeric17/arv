@@ -2,6 +2,11 @@
   width: 100%;  
 }
 
+:host .host-full {
+  width: 100%;  
+  height: 100%;
+}
+
 .host-full {
   height: 100%;
   width: 100%;  
@@ -121,4 +126,8 @@
 }
 .self-stretch {
   align-self: stretch;
+}
+.padded {
+  box-sizing: border-box;  
+  padding: 1em;  
 }

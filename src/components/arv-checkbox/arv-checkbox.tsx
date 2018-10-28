@@ -50,13 +50,6 @@ export class Checkbox {
           items={layoutItems}
           layout={this.layout}
           full>
-          <arv-container width={this.textWidth}>
-            {this.label && <arv-text>{this.label}</arv-text>}
-          </arv-container>
-          <arv-divider
-            layout={dividerLayout}
-            transparent>
-          </arv-divider>
           <div class="checkboxWrapper">
             <div class={checkboxClassNames}>
               <arv-icon icon="check"></arv-icon>
@@ -66,6 +59,13 @@ export class Checkbox {
               type="checkbox"
               checked={this.value}/>
           </div>
+          <arv-divider
+            layout={dividerLayout}
+            transparent>
+          </arv-divider>
+          <arv-container width={this.textWidth}>
+            {this.label && <arv-text>{this.label}</arv-text>}
+          </arv-container>
         </arv-flex>
       </div>
     );

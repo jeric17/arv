@@ -28,7 +28,9 @@ export class Card {
       <div
         style={styles}
         class="arv-card">
-        <slot></slot>
+        <arv-paper>
+          <slot></slot>
+        </arv-paper>
       </div>
     );
   }

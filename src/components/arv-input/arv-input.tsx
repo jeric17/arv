@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-input',
@@ -6,6 +6,7 @@ import { Component, Event, EventEmitter, Listen, Prop, State } from '@stencil/co
   shadow: true
 })
 export class Input {
+  @Element() el: HTMLElement;
 
   @State() error = false;
 
@@ -44,6 +45,10 @@ export class Input {
 
   @Prop() value: string;
 
+  @Prop() multiple: boolean;
+
+  @Prop() rows: number = 5;
+
   @Event() onInput: EventEmitter;
 
   @Event() onBlur: EventEmitter;
@@ -55,8 +60,17 @@ export class Input {
   @Event() onInputEnter: EventEmitter;
 
   @Listen('keydown.enter')
-  handleKeyEnter(ev) {
-    this.onInputEnter.emit(ev);
+  handleKeyEnter(e) {
+    const inputElement = this.el.shadowRoot.querySelector('input');
+
+    this.onInputEnter.emit({
+      target: inputElement,
+      event: e,
+      value: inputElement.value,
+      name: inputElement.name,
+      type: this.type,
+      required: this.required
+    });
   }
 
   validate(value) {
@@ -95,6 +109,7 @@ export class Input {
       this.inputFocus(e);
     }
     this.onFocus.emit({
+      target: e.target,
       event: e,
       value,
       name: e.target.name,
@@ -120,9 +135,16 @@ export class Input {
     if (this.input) {
       this.input(e);  
     }
+    const value = (() => {
+      if (this.type === 'file') {
+        return e.target.files[0].name
+      }
+      return e.target.value;
+    })();
     this.onInput.emit({
+      target: e.target,
       event: e,
-      value: e.target['value'],
+      value,
       name: e.target.name,
       type: this.type,
       required: this.required
@@ -178,21 +200,41 @@ export class Input {
       color: '#333'
     };
 
-    const Input = () => (
-      <input
-        required={this.required}
-        name={this.name}
-        class={inputClassNames}
-        placeholder={this.placeholder}
-        disabled={this.disabled}
-        type={this.type}
-        onChange={this._change.bind(this)}
-        onInput={this._input.bind(this)}
-        onFocus={this._focus.bind(this)}
-        onBlur={this._blur.bind(this)}
-        autocomplete={this.autocomplete}
-        value={this.value} />
-    );
+    const Input = () => {
+      if (!this.multiple) {
+        return (
+          <input
+            required={this.required}
+            name={this.name}
+            class={inputClassNames}
+            placeholder={this.placeholder}
+            disabled={this.disabled}
+            type={this.type}
+            onChange={this._change.bind(this)}
+            onInput={this._input.bind(this)}
+            onFocus={this._focus.bind(this)}
+            onBlur={this._blur.bind(this)}
+            autocomplete={this.autocomplete}
+            value={this.value} />
+        );
+      }
+      return (
+          <textarea
+            rows={this.rows}
+            required={this.required}
+            name={this.name}
+            class={inputClassNames}
+            placeholder={this.placeholder}
+            disabled={this.disabled}
+            type={this.type}
+            onChange={this._change.bind(this)}
+            onInput={this._input.bind(this)}
+            onFocus={this._focus.bind(this)}
+            onBlur={this._blur.bind(this)}
+            autocomplete={this.autocomplete}
+            value={this.value} />
+        );
+    };
 
     return (
       <div class={rootClassNames}>

@@ -21,6 +21,8 @@ export class Flex {
 
   @Prop() order: number = 0;
 
+  @Prop() padded: boolean;  
+
   /* oneOf: [start, end, center, stretch, baseline] */
   @Prop() self: string = 'auto';
 
@@ -38,7 +40,7 @@ export class Flex {
   }
 
   render() {
-    const rootClassNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto': ''}`;
+    const rootClassNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto': ''} ${this.padded ? 'padded': ''}`;
 
     const styles = {
       '--order': `${this.order}`
