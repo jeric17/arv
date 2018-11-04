@@ -11,6 +11,8 @@ export class Checkbox {
 
   @Prop() label: string;
 
+  @Prop() labelVariant = 'caption';
+
   @Prop() layout = 'row';
 
   @Prop() styles: any;
@@ -64,7 +66,7 @@ export class Checkbox {
             transparent>
           </arv-divider>
           <arv-container width={this.textWidth}>
-            {this.label && <arv-text>{this.label}</arv-text>}
+            {this.label && <arv-text variant={this.labelVariant}>{this.label}</arv-text>}
           </arv-container>
         </arv-flex>
       </div>

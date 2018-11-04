@@ -7,6 +7,7 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Text {
 
+  @Prop() color: string;
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
 
@@ -16,10 +17,14 @@ export class Text {
 
   @Prop() noWrap: boolean;
 
+  @Prop() preWrap: boolean;  
+
   @Prop() strike: boolean;
 
   render() {
     const rootClassNames = {
+      primary: this.color === 'primary',
+      secondary: this.color === 'secondary',
       heading1: this.variant === 'heading1',
       heading2: this.variant === 'heading2',
       heading3: this.variant === 'heading3',
@@ -27,10 +32,12 @@ export class Text {
       body1: this.variant === 'body1',
       body2: this.variant === 'body2',
       caption: this.variant === 'caption',
+      caption2: this.variant === 'caption2',
       subtle: this.variant === 'subtle',
       strong: this.strong,
       noWrap: this.noWrap,
-      strike: this.strike
+      strike: this.strike,
+      preWrap: this.preWrap
     };
 
     const styles = {

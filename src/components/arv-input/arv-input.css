@@ -4,7 +4,7 @@
 
 .input {
   background-color: #fff;
-  border-radius: 4px;
+  border-radius: var(--radius);
   border-width: 1px;
   border-style: solid;
   border-color: #efefef;
@@ -43,13 +43,13 @@ input:focus {
 }
 
 .labelColumn {
-  color: var(--default-color);
+  color: rgba(0, 0, 0, 0.54);
   font-size: 0.8rem;
-  margin: 0.5em 0;
+  margin: 0.5em 0 0;
 }
 
 .inputWrapper {
-  border-radius: 4px;  
+  border-radius: var(--radius);
   position: relative;
   width: 100%;
 }
@@ -78,7 +78,7 @@ input:focus {
 }
 
 .fileUpload .inputWrapper {
-  background-color: var(--default-background-color);
+  background-color: var(--default-light-color);
 }
 
 .fileUpload label {
@@ -86,7 +86,7 @@ input:focus {
   position: absolute;
   left: 0;
   width: 100%;
-  top: 0;
+  top: 3px;
   height: 100%;
   text-align: center;
 }

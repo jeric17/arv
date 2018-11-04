@@ -61,7 +61,12 @@ export class Input {
 
   @Listen('keydown.enter')
   handleKeyEnter(e) {
-    const inputElement = this.el.shadowRoot.querySelector('input');
+    const inputElement = (() => {
+      if (!this.multiple) {
+        return this.el.shadowRoot.querySelector('input');  
+      }
+      return this.el.shadowRoot.querySelector('textarea');
+    })();
 
     this.onInputEnter.emit({
       target: inputElement,
@@ -247,7 +252,7 @@ export class Input {
             <Input />
             {this.label && this.fileUpload && <Label />}
             {this.value && this.fileUpload && (
-              <arv-flex justify="center" items="center" full>
+              <arv-flex justify="center" items="center" full padded>
                 <arv-text variant="subtle">{this.value}</arv-text>
               </arv-flex>
             )}

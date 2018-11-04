@@ -33,7 +33,9 @@ export class Select {
 
   @Prop() label: string;
 
-  @Prop() layout = 'row';
+  @Prop() labelVariant: string;
+
+  @Prop() layout = 'column';
 
   @Prop() placeholder: string;
 
@@ -173,8 +175,15 @@ export class Select {
       return 'row';
     })();  
 
+    const variant = (() => {
+      if (this.labelVariant) {
+        return this.labelVariant;  
+      }
+
+      return this.layout === 'column' ? 'subtle' : 'body2';
+    })();
     const Label = () => ([
-      <arv-text variant="body">{this.label}</arv-text>,
+      <arv-text variant={variant}>{this.label}</arv-text>,
       <arv-divider 
         noMargin={layout === 'row' ? true : false}
         layout={layout} 
@@ -198,7 +207,7 @@ export class Select {
       <div class={classNames}>
         <arv-flex
           layout={this.layout}
-          items="center">
+          items={this.layout === 'column' ? 'start' : 'center'}>
           {this.label && <Label />}
           {targetValueElement}
         </arv-flex>

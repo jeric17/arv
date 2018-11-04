@@ -1,0 +1,15 @@
+:host,
+.root {
+  width: 100%;    
+}
+.root {
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 1em;
+  transition: all 0.3s;
+}
+
+.root:hover {
+  background-color: rgba(200, 200, 200, 0.08);
+}

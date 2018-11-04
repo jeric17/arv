@@ -1,0 +1,83 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.fadeIn {
+  animation: fade-in 0.3s;
+  animation-fill-mode: forwards;
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+.fadeOut {
+  animation: fade-out 0.3s;
+  animation-fill-mode: forwards;
+}
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.slideInTop {
+  animation: slide-in-top 0.3s;
+}
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+.slideInTop {
+  animation: slide-in-top 0.3s;
+}
+
+@keyframes slide-in-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+}
+.slideInBottom {
+  animation: slide-in-bottom 0.3s;
+}
+
+@keyframes slide-out-bottom {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+}
+.slideOutBottom {
+  animation: slide-out-bottom 0.3s;
+  animation-fill-mode: forwards;
+}
+
+.root {
+  visibility: inherit;
+}

@@ -78,6 +78,7 @@ declare global {
     interface ArvCheckbox {
       'color': string;
       'label': string;
+      'labelVariant': string;
       'layout': string;
       'styles': any;
       'textWidth': string;
@@ -95,11 +96,12 @@ declare global {
     }
 
     interface ArvDialogContent {
-
+      'animation': string;
     }
 
     interface ArvDialogPortal {
       'content': any;
+      'removeDialog': () => void;
       'scrollable': boolean;
     }
 
@@ -119,6 +121,7 @@ declare global {
     }
 
     interface ArvFlex {
+      'bordered': boolean;
       'content': string;
       'full': boolean;
       'items': string;
@@ -127,7 +130,11 @@ declare global {
       'order': number;
       'padded': boolean;
       'self': string;
-      'wrap': string;
+      'wrap': boolean;
+    }
+
+    interface ArvFormControl {
+
     }
 
     interface ArvForm {
@@ -200,6 +207,15 @@ declare global {
       'width': string;
     }
 
+    interface ArvSectionTitle {
+      'textColor': string;
+      'textVariant': string;
+    }
+
+    interface ArvSection {
+
+    }
+
     interface ArvSelectOption {
       'parse': boolean;
       'selected': boolean;
@@ -212,6 +228,7 @@ declare global {
       'icon': string;
       'inputChange': (e: any) => void;
       'label': string;
+      'labelVariant': string;
       'layout': string;
       'onSelectChange': (item: any) => void;
       'placeholder': string;
@@ -228,11 +245,17 @@ declare global {
     }
 
     interface ArvText {
+      'color': string;
       'noWrap': boolean;
+      'preWrap': boolean;
       'strike': boolean;
       'strong': boolean;
       'variant': string;
       'weight': number;
+    }
+
+    interface ArvTransition {
+      'animation': string;
     }
 
     interface ArvVirtualPortal {
@@ -363,6 +386,14 @@ declare global {
     };
     
 
+    interface HTMLArvFormControlElement extends StencilComponents.ArvFormControl, HTMLStencilElement {}
+
+    var HTMLArvFormControlElement: {
+      prototype: HTMLArvFormControlElement;
+      new (): HTMLArvFormControlElement;
+    };
+    
+
     interface HTMLArvFormElement extends StencilComponents.ArvForm, HTMLStencilElement {}
 
     var HTMLArvFormElement: {
@@ -435,6 +466,22 @@ declare global {
     };
     
 
+    interface HTMLArvSectionTitleElement extends StencilComponents.ArvSectionTitle, HTMLStencilElement {}
+
+    var HTMLArvSectionTitleElement: {
+      prototype: HTMLArvSectionTitleElement;
+      new (): HTMLArvSectionTitleElement;
+    };
+    
+
+    interface HTMLArvSectionElement extends StencilComponents.ArvSection, HTMLStencilElement {}
+
+    var HTMLArvSectionElement: {
+      prototype: HTMLArvSectionElement;
+      new (): HTMLArvSectionElement;
+    };
+    
+
     interface HTMLArvSelectOptionElement extends StencilComponents.ArvSelectOption, HTMLStencilElement {}
 
     var HTMLArvSelectOptionElement: {
@@ -464,6 +511,14 @@ declare global {
     var HTMLArvTextElement: {
       prototype: HTMLArvTextElement;
       new (): HTMLArvTextElement;
+    };
+    
+
+    interface HTMLArvTransitionElement extends StencilComponents.ArvTransition, HTMLStencilElement {}
+
+    var HTMLArvTransitionElement: {
+      prototype: HTMLArvTransitionElement;
+      new (): HTMLArvTransitionElement;
     };
     
 
@@ -508,6 +563,7 @@ declare global {
     'arv-dialog': JSXElements.ArvDialogAttributes;
     'arv-divider': JSXElements.ArvDividerAttributes;
     'arv-flex': JSXElements.ArvFlexAttributes;
+    'arv-form-control': JSXElements.ArvFormControlAttributes;
     'arv-form': JSXElements.ArvFormAttributes;
     'arv-header': JSXElements.ArvHeaderAttributes;
     'arv-icon': JSXElements.ArvIconAttributes;
@@ -517,10 +573,13 @@ declare global {
     'arv-list': JSXElements.ArvListAttributes;
     'arv-menu': JSXElements.ArvMenuAttributes;
     'arv-paper': JSXElements.ArvPaperAttributes;
+    'arv-section-title': JSXElements.ArvSectionTitleAttributes;
+    'arv-section': JSXElements.ArvSectionAttributes;
     'arv-select-option': JSXElements.ArvSelectOptionAttributes;
     'arv-select': JSXElements.ArvSelectAttributes;
     'arv-stepper': JSXElements.ArvStepperAttributes;
     'arv-text': JSXElements.ArvTextAttributes;
+    'arv-transition': JSXElements.ArvTransitionAttributes;
     'arv-virtual-portal': JSXElements.ArvVirtualPortalAttributes;
     'bb-bolts': JSXElements.BbBoltsAttributes;
     'my-component': JSXElements.MyComponentAttributes;
@@ -584,6 +643,7 @@ declare global {
     export interface ArvCheckboxAttributes extends HTMLAttributes {
       'color'?: string;
       'label'?: string;
+      'labelVariant'?: string;
       'layout'?: string;
       'onOnInputChange'?: (event: CustomEvent) => void;
       'styles'?: any;
@@ -602,7 +662,7 @@ declare global {
     }
 
     export interface ArvDialogContentAttributes extends HTMLAttributes {
-
+      'animation'?: string;
     }
 
     export interface ArvDialogPortalAttributes extends HTMLAttributes {
@@ -627,6 +687,7 @@ declare global {
     }
 
     export interface ArvFlexAttributes extends HTMLAttributes {
+      'bordered'?: boolean;
       'content'?: string;
       'full'?: boolean;
       'items'?: string;
@@ -635,7 +696,11 @@ declare global {
       'order'?: number;
       'padded'?: boolean;
       'self'?: string;
-      'wrap'?: string;
+      'wrap'?: boolean;
+    }
+
+    export interface ArvFormControlAttributes extends HTMLAttributes {
+
     }
 
     export interface ArvFormAttributes extends HTMLAttributes {
@@ -715,6 +780,15 @@ declare global {
       'width'?: string;
     }
 
+    export interface ArvSectionTitleAttributes extends HTMLAttributes {
+      'textColor'?: string;
+      'textVariant'?: string;
+    }
+
+    export interface ArvSectionAttributes extends HTMLAttributes {
+
+    }
+
     export interface ArvSelectOptionAttributes extends HTMLAttributes {
       'onOptionSelected'?: (event: CustomEvent) => void;
       'parse'?: boolean;
@@ -728,6 +802,7 @@ declare global {
       'icon'?: string;
       'inputChange'?: (e: any) => void;
       'label'?: string;
+      'labelVariant'?: string;
       'layout'?: string;
       'onOnInput'?: (event: CustomEvent) => void;
       'onOnInputChange'?: (event: CustomEvent) => void;
@@ -745,11 +820,17 @@ declare global {
     }
 
     export interface ArvTextAttributes extends HTMLAttributes {
+      'color'?: string;
       'noWrap'?: boolean;
+      'preWrap'?: boolean;
       'strike'?: boolean;
       'strong'?: boolean;
       'variant'?: string;
       'weight'?: number;
+    }
+
+    export interface ArvTransitionAttributes extends HTMLAttributes {
+      'animation'?: string;
     }
 
     export interface ArvVirtualPortalAttributes extends HTMLAttributes {
@@ -782,6 +863,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
     'arv-flex': HTMLArvFlexElement
+    'arv-form-control': HTMLArvFormControlElement
     'arv-form': HTMLArvFormElement
     'arv-header': HTMLArvHeaderElement
     'arv-icon': HTMLArvIconElement
@@ -791,10 +873,13 @@ declare global {
     'arv-list': HTMLArvListElement
     'arv-menu': HTMLArvMenuElement
     'arv-paper': HTMLArvPaperElement
+    'arv-section-title': HTMLArvSectionTitleElement
+    'arv-section': HTMLArvSectionElement
     'arv-select-option': HTMLArvSelectOptionElement
     'arv-select': HTMLArvSelectElement
     'arv-stepper': HTMLArvStepperElement
     'arv-text': HTMLArvTextElement
+    'arv-transition': HTMLArvTransitionElement
     'arv-virtual-portal': HTMLArvVirtualPortalElement
     'bb-bolts': HTMLBbBoltsElement
     'my-component': HTMLMyComponentElement
@@ -815,6 +900,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
     'arv-flex': HTMLArvFlexElement;
+    'arv-form-control': HTMLArvFormControlElement;
     'arv-form': HTMLArvFormElement;
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
@@ -824,10 +910,13 @@ declare global {
     'arv-list': HTMLArvListElement;
     'arv-menu': HTMLArvMenuElement;
     'arv-paper': HTMLArvPaperElement;
+    'arv-section-title': HTMLArvSectionTitleElement;
+    'arv-section': HTMLArvSectionElement;
     'arv-select-option': HTMLArvSelectOptionElement;
     'arv-select': HTMLArvSelectElement;
     'arv-stepper': HTMLArvStepperElement;
     'arv-text': HTMLArvTextElement;
+    'arv-transition': HTMLArvTransitionElement;
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;

@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-dialog-content',
@@ -6,13 +6,17 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class DialogContent {
+  @Prop() animation = 'slideInBottom';
+
   render() {
     return (
       <div class="root">
-        <arv-paper padded>
-           <slot />
-        </arv-paper>
-      </div>    
+        <arv-transition animation={this.animation}>
+          <arv-paper padded>
+            <slot />
+          </arv-paper>
+        </arv-transition>
+      </div>
     );    
   }    
 }

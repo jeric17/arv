@@ -131,3 +131,14 @@
   box-sizing: border-box;  
   padding: 1em;  
 }
+
+.bordered {
+  border-radius: var(--radius);
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--default-light-color);
+}
+
+.wrap {
+  flex-wrap: wrap;
+}

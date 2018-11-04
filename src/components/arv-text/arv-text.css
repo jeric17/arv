@@ -28,6 +28,10 @@
   color: #565656;
   font-size: 0.9rem;
 }
+.caption2 {
+  color: #565656;
+  font-size: 0.75rem;
+}
 .subtle {
   color: #888;
   font-size: 0.7rem;
@@ -37,4 +41,13 @@
 }
 .noWrap {
   white-space: nowrap;
+}
+.preWrap {
+  white-space: pre-wrap;
+}
+.primary {
+  color: var(--primary-color);
+}
+.secondary {
+  color: var(--secondary-color);
 }

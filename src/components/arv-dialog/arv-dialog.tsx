@@ -29,7 +29,11 @@ export class Dialog {
   @Event() onClose: EventEmitter;
 
   onHandleClose() {
-    this.onClose.emit(true);
+    const portal = document.body.querySelector(`:scope > ${this.portal}`);
+    portal['removeDialog']();
+    setTimeout(() => {
+      this.onClose.emit(true);  
+    }, 300);
   }
 
   private _showContent() {
@@ -49,11 +53,13 @@ export class Dialog {
 
   private _hideContent() {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
-
+    if (!portal) {
+      return false;  
+    }
     this.el.shadowRoot.appendChild(portal.shadowRoot.querySelector(`.${this.rootClassName}`));
     this.el.appendChild(portal.children[0]);
 
-    document.body.removeChild(portal);
+    document.body.removeChild(portal); 
   }
 
   render() {
