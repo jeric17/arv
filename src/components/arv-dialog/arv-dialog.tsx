@@ -11,6 +11,8 @@ export class Dialog {
 
   @Element() el: HTMLElement;
 
+  @Prop() dialogTitle: string;  
+
   @Prop() scrollable: boolean;
 
   @Prop() show: boolean;
@@ -72,10 +74,13 @@ export class Dialog {
         hidden={!this.show}>
         <arv-dialog-content>
           <div class="content arv-dialog-content">
-            <arv-button
-              variant="flat-icon"
-              icon="close"
-              buttonClick={this.onHandleClose.bind(this)}></arv-button>
+            <arv-flex justify="between" items="center">
+              <arv-text variant="heading3">{this.dialogTitle}</arv-text>
+              <arv-button
+                variant="flat-icon"
+                icon="close"
+                buttonClick={this.onHandleClose.bind(this)}></arv-button>
+            </arv-flex>
             {slot}
           </div>
         </arv-dialog-content>

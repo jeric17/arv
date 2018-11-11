@@ -81,3 +81,8 @@
 .root {
   visibility: inherit;
 }
+
+.full {
+  height: 100%;  
+  width: 100%;
+}

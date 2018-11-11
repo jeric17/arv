@@ -80,6 +80,7 @@ export class Button {
       raised: this.variant === 'raised',
       flatIcon: this.variant === 'flat-icon',
       raisedIcon: this.variant === 'raised-icon',
+      fab: this.variant === 'fab',
       boxed: !this.rounded,
       noPad: !this.padded
     };

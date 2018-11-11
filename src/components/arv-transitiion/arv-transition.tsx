@@ -9,9 +9,12 @@ export class Transition {
 
   @Prop() animation: string;
 
+  @Prop() full: boolean;
+
   render() {
     const classNames = {
       root: true,
+      full: this.full,
       fadeIn: this.animation === 'fadeIn',
       fadeOut: this.animation === 'fadeOut',
       slideInTop: this.animation === 'slideInTop',

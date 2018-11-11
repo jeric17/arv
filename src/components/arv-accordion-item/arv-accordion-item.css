@@ -6,15 +6,19 @@
 }
 .root {
   background-color: #FFF;
-  padding: 0.25em 1em;     
+  box-sizing: border-box;
+  padding: 0.75em 1em;
+  transition: all 0.3s;
+  border-bottom: 1px solid #efefef;
+}
+.title {
+  cursor: pointer;
 }
 
-.root:hover {
-    background-color: #efefef;
-}
-
-.content {   
-  display: false;
+.content {
+  display: none;
+  padding: 1em;
+  box-sizing: border-box;
 }
 
 .active {

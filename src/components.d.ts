@@ -12,6 +12,21 @@ import '@stencil/core';
 
 export namespace Components {
 
+  interface ArvAccordionItem {
+    'active': boolean;
+    'color': string;
+    'itemTitle': string;
+  }
+  interface ArvAccordionItemAttributes extends StencilHTMLAttributes {
+    'active'?: boolean;
+    'color'?: string;
+    'itemTitle'?: string;
+    'onItemClick'?: (event: CustomEvent) => void;
+  }
+
+  interface ArvAccordion {}
+  interface ArvAccordionAttributes extends StencilHTMLAttributes {}
+
   interface ArvAlertText {
     'variant': string;
   }
@@ -169,11 +184,13 @@ export namespace Components {
   }
 
   interface ArvDialog {
+    'dialogTitle': string;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
   }
   interface ArvDialogAttributes extends StencilHTMLAttributes {
+    'dialogTitle'?: string;
     'onOnClose'?: (event: CustomEvent) => void;
     'parent'?: HTMLElement;
     'scrollable'?: boolean;
@@ -451,9 +468,11 @@ export namespace Components {
 
   interface ArvTransition {
     'animation': string;
+    'full': boolean;
   }
   interface ArvTransitionAttributes extends StencilHTMLAttributes {
     'animation'?: string;
+    'full'?: boolean;
   }
 
   interface ArvVirtualPortal {
@@ -480,6 +499,8 @@ export namespace Components {
 
 declare global {
   interface StencilElementInterfaces {
+    'ArvAccordionItem': Components.ArvAccordionItem;
+    'ArvAccordion': Components.ArvAccordion;
     'ArvAlertText': Components.ArvAlertText;
     'ArvAvatar': Components.ArvAvatar;
     'ArvBackdrop': Components.ArvBackdrop;
@@ -517,6 +538,8 @@ declare global {
   }
 
   interface StencilIntrinsicElements {
+    'arv-accordion-item': Components.ArvAccordionItemAttributes;
+    'arv-accordion': Components.ArvAccordionAttributes;
     'arv-alert-text': Components.ArvAlertTextAttributes;
     'arv-avatar': Components.ArvAvatarAttributes;
     'arv-backdrop': Components.ArvBackdropAttributes;
@@ -553,6 +576,18 @@ declare global {
     'my-component': Components.MyComponentAttributes;
   }
 
+
+  interface HTMLArvAccordionItemElement extends Components.ArvAccordionItem, HTMLStencilElement {}
+  var HTMLArvAccordionItemElement: {
+    prototype: HTMLArvAccordionItemElement;
+    new (): HTMLArvAccordionItemElement;
+  };
+
+  interface HTMLArvAccordionElement extends Components.ArvAccordion, HTMLStencilElement {}
+  var HTMLArvAccordionElement: {
+    prototype: HTMLArvAccordionElement;
+    new (): HTMLArvAccordionElement;
+  };
 
   interface HTMLArvAlertTextElement extends Components.ArvAlertText, HTMLStencilElement {}
   var HTMLArvAlertTextElement: {
@@ -759,6 +794,8 @@ declare global {
   };
 
   interface HTMLElementTagNameMap {
+    'arv-accordion-item': HTMLArvAccordionItemElement
+    'arv-accordion': HTMLArvAccordionElement
     'arv-alert-text': HTMLArvAlertTextElement
     'arv-avatar': HTMLArvAvatarElement
     'arv-backdrop': HTMLArvBackdropElement
@@ -796,6 +833,8 @@ declare global {
   }
 
   interface ElementTagNameMap {
+    'arv-accordion-item': HTMLArvAccordionItemElement;
+    'arv-accordion': HTMLArvAccordionElement;
     'arv-alert-text': HTMLArvAlertTextElement;
     'arv-avatar': HTMLArvAvatarElement;
     'arv-backdrop': HTMLArvBackdropElement;
