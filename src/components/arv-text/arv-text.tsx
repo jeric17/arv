@@ -23,6 +23,7 @@ export class Text {
 
   render() {
     const rootClassNames = {
+      root: true,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
       heading1: this.variant === 'heading1',

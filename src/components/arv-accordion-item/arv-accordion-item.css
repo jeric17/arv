@@ -1,0 +1,22 @@
+:host,
+.root,
+.title,
+.content {
+  width: 100%;
+}
+.root {
+  background-color: #FFF;
+  padding: 0.25em 1em;     
+}
+
+.root:hover {
+    background-color: #efefef;
+}
+
+.content {   
+  display: false;
+}
+
+.active {
+  display: block;
+}

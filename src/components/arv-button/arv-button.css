@@ -114,10 +114,10 @@
   cursor: not-allowed;
 }
 .primary.raised:hover {
-  background-color: var(--primary-light-color);
+  background-color: var(--primary-dark-color);
 }
 .secondary.raised:hover {
-  background-color: var(--secondary-light-color);
+  background-color: var(--secondary-dark-color);
 }
 
 .disabled.flatIcon,
@@ -143,9 +143,6 @@
   background-color: transparent;
 }
 
-.slot {
-  margin-left: 0.5em;
-}
 .flatIcon .slot,
 .raisedIcon .slot{
   display: none;

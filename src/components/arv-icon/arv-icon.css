@@ -12,6 +12,7 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
+  margin: 0 0.5em;
 }
 
 :host {

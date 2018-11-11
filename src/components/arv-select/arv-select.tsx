@@ -180,7 +180,7 @@ export class Select {
         return this.labelVariant;  
       }
 
-      return this.layout === 'column' ? 'subtle' : 'body2';
+      return this.layout === 'column' ? 'caption2' : 'body2';
     })();
     const Label = () => ([
       <arv-text variant={variant}>{this.label}</arv-text>,

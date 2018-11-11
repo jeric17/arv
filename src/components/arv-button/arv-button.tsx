@@ -14,6 +14,8 @@ export class Button {
 
   @Prop() full: boolean = false;
 
+  @Prop() href: string;  
+
   @Prop() icon: string;
 
   @Prop() buttonClick: (e: MouseEvent) => void;
@@ -35,6 +37,9 @@ export class Button {
   /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
 
+  /* oneOf: [dialogOk, dialogCancel] */
+  @Prop() roleType: string;
+
   @Event() onButtonClick: EventEmitter;
 
   hostData() {
@@ -51,7 +56,8 @@ export class Button {
     }
     this.onButtonClick.emit({
       event: e,
-      type: this.type
+      type: this.type,
+      roleType: this.roleType
     });
 
     return this.buttonClick && this.buttonClick(e);
@@ -85,23 +91,35 @@ export class Button {
       </arv-icon>
     );
 
+    const C = () => (
+      <arv-flex
+        items="center"
+        justify={this.textAlign}>
+        {this.icon && <Icon />}
+        <div class="slot">
+          <arv-text>
+            <slot></slot>
+          </arv-text>
+        </div>
+      </arv-flex>  
+    );  
+
+    const T = ({ p }) => {
+      if (this.href) {
+        return <a href={this.href} {...p}><C /></a>
+      }
+      return <button {...p}><C /></button>
+    };
+
+    const props = {
+       style: this.styles,
+       class: rootClassNames,
+       type: this.type,
+       onClick: this.btnClick.bind(this)
+    };    
+
     return (
-      <button
-        style={this.styles}
-        class={rootClassNames}
-        type={this.type}
-        onClick={this.btnClick.bind(this)} >
-        <arv-flex
-          items="center"
-          justify={this.textAlign}>
-          {this.icon && <Icon />}
-          <div class="slot">
-            <arv-text>
-              <slot></slot>
-            </arv-text>
-          </div>
-        </arv-flex>
-      </button>
+      <T p={props}></T>
     );
   }
 }

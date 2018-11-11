@@ -25,15 +25,14 @@
   font-size: 0.9rem;
 }
 .caption {
-  color: #565656;
   font-size: 0.9rem;
 }
 .caption2 {
-  color: #565656;
+  color: var(--default-light-font-color);
   font-size: 0.75rem;
 }
 .subtle {
-  color: #888;
+  color: var(--default-light-font-color);
   font-size: 0.7rem;
 }
 .strong {
