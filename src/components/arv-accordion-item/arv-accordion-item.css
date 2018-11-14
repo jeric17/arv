@@ -7,20 +7,37 @@
 .root {
   background-color: #FFF;
   box-sizing: border-box;
-  padding: 0.75em 1em;
   transition: all 0.3s;
   border-bottom: 1px solid #efefef;
 }
-.title {
+.root:hover .controls {
+  display: block;
+}
+.header {
   cursor: pointer;
 }
 
 .content {
   display: none;
-  padding: 1em;
+  padding: 0.7em 1em;
   box-sizing: border-box;
 }
 
-.active {
+.controls {
+  display: none;
+}
+
+.active,
+.active .controls,
+.active .content
+{
   display: block;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 20px;
+  padding: 0.7em 1em;
 }

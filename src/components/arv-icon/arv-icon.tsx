@@ -9,6 +9,8 @@ export class Icon {
 
   @Prop() icon: string;
 
+  @Prop() noMargin: boolean;
+
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
 
@@ -20,7 +22,8 @@ export class Icon {
       icon: true,
       small: this.size === 'small',
       medium: this.size === 'medium',
-      large: this.size === 'large'
+      large: this.size === 'large',
+      noMargin: this.noMargin
     };
 
     return (

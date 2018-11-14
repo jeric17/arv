@@ -91,6 +91,7 @@ input:focus {
   text-align: center;
 }
 
-textarea {
+textarea.input {
   resize: none;
+  font-size: 0.9rem;
 }

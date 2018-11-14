@@ -11,6 +11,8 @@ export class Text {
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
 
+  @Prop() lineHeight: string;
+
   @Prop() weight: number;
 
   @Prop() strong: boolean;
@@ -44,6 +46,10 @@ export class Text {
     const styles = {
       'font-weight': `${this.weight}`
     };
+
+    if (this.lineHeight) {
+      styles['line-height'] = this.lineHeight;
+    }
 
     return (
       <div

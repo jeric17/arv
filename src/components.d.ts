@@ -265,11 +265,13 @@ export namespace Components {
 
   interface ArvIcon {
     'icon': string;
+    'noMargin': boolean;
     'size': string;
     'styles': any;
   }
   interface ArvIconAttributes extends StencilHTMLAttributes {
     'icon'?: string;
+    'noMargin'?: boolean;
     'size'?: string;
     'styles'?: any;
   }
@@ -449,6 +451,7 @@ export namespace Components {
 
   interface ArvText {
     'color': string;
+    'lineHeight': string;
     'noWrap': boolean;
     'preWrap': boolean;
     'strike': boolean;
@@ -458,6 +461,7 @@ export namespace Components {
   }
   interface ArvTextAttributes extends StencilHTMLAttributes {
     'color'?: string;
+    'lineHeight'?: string;
     'noWrap'?: boolean;
     'preWrap'?: boolean;
     'strike'?: boolean;

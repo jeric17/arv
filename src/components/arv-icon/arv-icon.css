@@ -12,7 +12,8 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  margin: 0 0.25em;
+  margin: 0 0.5em;
+  color: var(--default-icon-color);
 }
 
 :host {
@@ -27,4 +28,8 @@
 }
 .large {
   font-size: 1.5rem;
+}
+
+.noMargin {
+  margin: 0;
 }

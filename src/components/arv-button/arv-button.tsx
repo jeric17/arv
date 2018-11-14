@@ -87,6 +87,7 @@ export class Button {
 
     const Icon = () => (
       <arv-icon
+        noMargin={rootClassNames.flatIcon || rootClassNames.raisedIcon || rootClassNames.fab}
         size={this.size}
         icon={this.icon}>
       </arv-icon>

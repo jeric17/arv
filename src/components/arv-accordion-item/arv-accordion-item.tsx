@@ -18,18 +18,18 @@ export class AccordionItem {
   render() {
     const rootClassNames = {
       root: true,
+      active: this.active
     };
 
     const contentClassNames = {
-      content: true,
-      active: this.active    
+      content: true
     };
 
     return (
         <div class={rootClassNames}>
-            <div class="header">
-                <div onClick={e => this.itemClick.emit(e)} class="title">
-                  <arv-text strong>asd{this.itemTitle}</arv-text>
+            <div onClick={e => this.itemClick.emit(e)} class="header">
+                <div class="title">
+                  <arv-text strong>{this.itemTitle}</arv-text>
                 </div>
                 <div class="controls">
                   <slot name="controls"></slot>

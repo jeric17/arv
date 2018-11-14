@@ -248,7 +248,7 @@ export class Input {
             layout={layout} 
             transparent></arv-divider>
           <div class="inputWrapper">
-            {this.icon && <arv-icon styles={iconStyles} icon={this.icon}></arv-icon>}
+            {this.icon && <arv-icon styles={iconStyles} icon={this.icon} noMargin></arv-icon>}
             <Input />
             {this.label && this.fileUpload && <Label />}
             {this.value && this.fileUpload && (
