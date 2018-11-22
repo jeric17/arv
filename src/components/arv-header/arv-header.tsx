@@ -15,7 +15,7 @@ export class Header {
   /* oneOf: [static, inherit, absolute, relative, fixed] */
   @Prop() position: string = 'static';
 
-  @Prop() shadow: boolean;
+  @Prop() shadow = true;
 
   render() {
     const rootClassNames = {

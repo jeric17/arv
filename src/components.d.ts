@@ -239,6 +239,15 @@ export namespace Components {
     'wrap'?: boolean;
   }
 
+  interface ArvFluidContainer {
+    'maxWidth': string;
+    'minWidth': string;
+  }
+  interface ArvFluidContainerAttributes extends StencilHTMLAttributes {
+    'maxWidth'?: string;
+    'minWidth'?: string;
+  }
+
   interface ArvFormControl {}
   interface ArvFormControlAttributes extends StencilHTMLAttributes {}
 
@@ -287,6 +296,7 @@ export namespace Components {
     'inputBlur': (e: any) => void;
     'inputChange': (e: any) => void;
     'inputFocus': (e: any) => void;
+    'inputStyle': any;
     'label': string;
     'layout': string;
     'multiple': boolean;
@@ -294,6 +304,7 @@ export namespace Components {
     'placeholder': string;
     'required': boolean;
     'rows': number;
+    'size': string;
     'type': string;
     'value': string;
   }
@@ -308,6 +319,7 @@ export namespace Components {
     'inputBlur'?: (e: any) => void;
     'inputChange'?: (e: any) => void;
     'inputFocus'?: (e: any) => void;
+    'inputStyle'?: any;
     'label'?: string;
     'layout'?: string;
     'multiple'?: boolean;
@@ -320,6 +332,7 @@ export namespace Components {
     'placeholder'?: string;
     'required'?: boolean;
     'rows'?: number;
+    'size'?: string;
     'type'?: string;
     'value'?: string;
   }
@@ -361,10 +374,12 @@ export namespace Components {
   }
 
   interface ArvMenu {
+    'disableBackdropClick': boolean;
     'xPosition': string;
     'yPosition': string;
   }
   interface ArvMenuAttributes extends StencilHTMLAttributes {
+    'disableBackdropClick'?: boolean;
     'xPosition'?: string;
     'yPosition'?: string;
   }
@@ -519,6 +534,7 @@ declare global {
     'ArvDialog': Components.ArvDialog;
     'ArvDivider': Components.ArvDivider;
     'ArvFlex': Components.ArvFlex;
+    'ArvFluidContainer': Components.ArvFluidContainer;
     'ArvFormControl': Components.ArvFormControl;
     'ArvForm': Components.ArvForm;
     'ArvHeader': Components.ArvHeader;
@@ -558,6 +574,7 @@ declare global {
     'arv-dialog': Components.ArvDialogAttributes;
     'arv-divider': Components.ArvDividerAttributes;
     'arv-flex': Components.ArvFlexAttributes;
+    'arv-fluid-container': Components.ArvFluidContainerAttributes;
     'arv-form-control': Components.ArvFormControlAttributes;
     'arv-form': Components.ArvFormAttributes;
     'arv-header': Components.ArvHeaderAttributes;
@@ -675,6 +692,12 @@ declare global {
   var HTMLArvFlexElement: {
     prototype: HTMLArvFlexElement;
     new (): HTMLArvFlexElement;
+  };
+
+  interface HTMLArvFluidContainerElement extends Components.ArvFluidContainer, HTMLStencilElement {}
+  var HTMLArvFluidContainerElement: {
+    prototype: HTMLArvFluidContainerElement;
+    new (): HTMLArvFluidContainerElement;
   };
 
   interface HTMLArvFormControlElement extends Components.ArvFormControl, HTMLStencilElement {}
@@ -814,6 +837,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
     'arv-flex': HTMLArvFlexElement
+    'arv-fluid-container': HTMLArvFluidContainerElement
     'arv-form-control': HTMLArvFormControlElement
     'arv-form': HTMLArvFormElement
     'arv-header': HTMLArvHeaderElement
@@ -853,6 +877,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
     'arv-flex': HTMLArvFlexElement;
+    'arv-fluid-container': HTMLArvFluidContainerElement;
     'arv-form-control': HTMLArvFormControlElement;
     'arv-form': HTMLArvFormElement;
     'arv-header': HTMLArvHeaderElement;

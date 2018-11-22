@@ -28,7 +28,7 @@ export class CardHeader {
       <arv-text variant="heading4">{this.titleHeader}</arv-text>
     );
     const SubHeader = () => (
-      <arv-text variant="body1">{this.subHeader}</arv-text>
+      <arv-text variant="caption">{this.subHeader}</arv-text>
     );
 
     return (
@@ -39,6 +39,9 @@ export class CardHeader {
           {this.avatarImage && <Avatar />}
           <arv-flex layout="column">
             {this.titleHeader && <Title />}
+            <arv-divider 
+              height="4px"
+              transparent />
             {this.subHeader && <SubHeader />}
           </arv-flex>
           {this.action && this.action}

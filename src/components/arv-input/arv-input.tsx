@@ -22,7 +22,9 @@ export class Input {
 
   @Prop() icon: string;
 
-  @Prop() input: (e: any) => void;  
+  @Prop() input: (e: any) => void;
+
+  @Prop() inputStyle = {};
 
   @Prop() inputBlur: (e: any) => void;  
 
@@ -40,6 +42,8 @@ export class Input {
   @Prop() placeholder: string;
 
   @Prop() required = false;
+
+  @Prop() size = 'medium';
 
   @Prop() type = 'text';
 
@@ -177,7 +181,8 @@ export class Input {
 
     const inputClassNames = {
       input: true,
-      error: this.error || this.hasError
+      error: this.error || this.hasError,
+      large: this.size === 'large'
     };
 
     const labelClass = {
@@ -200,15 +205,19 @@ export class Input {
 
     const iconStyles = {
       position: 'absolute',
-      top: '0.5em',
       left: '0.4em',
-      color: '#333'
+      color: '#333',
+      height: '100%',
+      top: '0px',
+      display: 'flex',
+      'align-items': 'center'
     };
 
     const Input = () => {
       if (!this.multiple) {
         return (
           <input
+            style={this.inputStyle}
             required={this.required}
             name={this.name}
             class={inputClassNames}
@@ -225,6 +234,7 @@ export class Input {
       }
       return (
           <textarea
+            style={this.inputStyle}
             rows={this.rows}
             required={this.required}
             name={this.name}

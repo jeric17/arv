@@ -14,6 +14,8 @@ export class Menu {
   @Prop() yPosition: string = 'bottom';
   @Prop() xPosition: string = 'right';
 
+  @Prop() disableBackdropClick: boolean;  
+
   @Listen('mouseup')
   mouseUpHandler() {
     this.toggle();
@@ -21,7 +23,12 @@ export class Menu {
 
   @Listen('blur')
   blurHandler() {
-    this.show = false;
+    setTimeout(() => {
+      if (this.disableBackdropClick) {
+        return false;  
+      }
+      this.show = false;
+    }, 250);
   }
 
   toggle() {

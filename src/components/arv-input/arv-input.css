@@ -95,3 +95,13 @@ textarea.input {
   resize: none;
   font-size: 0.9rem;
 }
+
+.input.large {
+  height: 38px;
+}
+
+.input:disabled {
+  cursor: not-allowed;  
+  background-color: #fdfdfd;
+  border: #cdcdcd;
+}
