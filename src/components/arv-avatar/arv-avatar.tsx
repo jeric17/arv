@@ -23,9 +23,11 @@ export class Avatar {
       medium: this.size === 'medium',
       large: this.size === 'large',
     };
-    const style = {
-      'background-image': `url(${this.imgSrc})`
-    };
+    const style = {};
+
+    if (this.imgSrc) {
+      style['background-image'] = `url(${this.imgSrc})`;
+    }
 
     const styles = {
       ...this.styles,

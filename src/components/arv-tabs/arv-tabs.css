@@ -1,0 +1,57 @@
+:host,
+.root {
+  overflow: hidden;
+  width: 100%;
+}
+.root {
+  display: flex;
+  flex-direction: column;  
+}
+.tabBody {
+  display: none;
+}
+
+.tabBody.loaded {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition: left 0.3s;
+}
+
+.tabItem {
+  cursor: pointer;
+  padding: 0.75em 1em;
+  text-align: center;    
+  width: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: transparent;
+  transition: all 0.3s;
+}
+
+.tabItem.active {
+  border-bottom-color: var(--default-color);    
+}
+
+.tabHeader {
+  background-color: var(--default-background-color);
+  color: var(--default-font-color);
+}
+
+.primary .tabHeader {
+  background-color: var(--primary-dark-color);
+  color: var(--primary-font-color);    
+}
+
+.primary .tabItem.active {
+  border-bottom-color: var(--secondary-dark-color);
+}
+
+.secondary .tabHeader {
+  background-color: var(--secondary-dark-color);
+  color: var(--secondary-font-color);    
+}
+  
+.secondary .tabItem.active {
+  border-bottom-color: var(--primary-dark-color);
+}

@@ -464,6 +464,45 @@ export namespace Components {
     'steps'?: any;
   }
 
+  interface ArvTable {
+    'activeSort': string;
+    'controls': any;
+    'isAscending': boolean;
+    'multiSelectable': boolean;
+    'selectable': boolean;
+    'sortable': boolean;
+    'styles': any;
+    'tableData': any;
+    'tableHeaders': string[];
+    'tableProps': any;
+  }
+  interface ArvTableAttributes extends StencilHTMLAttributes {
+    'activeSort'?: string;
+    'controls'?: any;
+    'isAscending'?: boolean;
+    'multiSelectable'?: boolean;
+    'onHeaderClick'?: (event: CustomEvent) => void;
+    'onRowClick'?: (event: CustomEvent) => void;
+    'onRowItemClick'?: (event: CustomEvent) => void;
+    'selectable'?: boolean;
+    'sortable'?: boolean;
+    'styles'?: any;
+    'tableData'?: any;
+    'tableHeaders'?: string[];
+    'tableProps'?: any;
+  }
+
+  interface ArvTabs {
+    'color': string;
+    'selectedTab': string;
+    'tabs': string[];
+  }
+  interface ArvTabsAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'selectedTab'?: string;
+    'tabs'?: string[];
+  }
+
   interface ArvText {
     'color': string;
     'lineHeight': string;
@@ -550,6 +589,8 @@ declare global {
     'ArvSelectOption': Components.ArvSelectOption;
     'ArvSelect': Components.ArvSelect;
     'ArvStepper': Components.ArvStepper;
+    'ArvTable': Components.ArvTable;
+    'ArvTabs': Components.ArvTabs;
     'ArvText': Components.ArvText;
     'ArvTransition': Components.ArvTransition;
     'ArvVirtualPortal': Components.ArvVirtualPortal;
@@ -590,6 +631,8 @@ declare global {
     'arv-select-option': Components.ArvSelectOptionAttributes;
     'arv-select': Components.ArvSelectAttributes;
     'arv-stepper': Components.ArvStepperAttributes;
+    'arv-table': Components.ArvTableAttributes;
+    'arv-tabs': Components.ArvTabsAttributes;
     'arv-text': Components.ArvTextAttributes;
     'arv-transition': Components.ArvTransitionAttributes;
     'arv-virtual-portal': Components.ArvVirtualPortalAttributes;
@@ -790,6 +833,18 @@ declare global {
     new (): HTMLArvStepperElement;
   };
 
+  interface HTMLArvTableElement extends Components.ArvTable, HTMLStencilElement {}
+  var HTMLArvTableElement: {
+    prototype: HTMLArvTableElement;
+    new (): HTMLArvTableElement;
+  };
+
+  interface HTMLArvTabsElement extends Components.ArvTabs, HTMLStencilElement {}
+  var HTMLArvTabsElement: {
+    prototype: HTMLArvTabsElement;
+    new (): HTMLArvTabsElement;
+  };
+
   interface HTMLArvTextElement extends Components.ArvText, HTMLStencilElement {}
   var HTMLArvTextElement: {
     prototype: HTMLArvTextElement;
@@ -853,6 +908,8 @@ declare global {
     'arv-select-option': HTMLArvSelectOptionElement
     'arv-select': HTMLArvSelectElement
     'arv-stepper': HTMLArvStepperElement
+    'arv-table': HTMLArvTableElement
+    'arv-tabs': HTMLArvTabsElement
     'arv-text': HTMLArvTextElement
     'arv-transition': HTMLArvTransitionElement
     'arv-virtual-portal': HTMLArvVirtualPortalElement
@@ -893,6 +950,8 @@ declare global {
     'arv-select-option': HTMLArvSelectOptionElement;
     'arv-select': HTMLArvSelectElement;
     'arv-stepper': HTMLArvStepperElement;
+    'arv-table': HTMLArvTableElement;
+    'arv-tabs': HTMLArvTabsElement;
     'arv-text': HTMLArvTextElement;
     'arv-transition': HTMLArvTransitionElement;
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
