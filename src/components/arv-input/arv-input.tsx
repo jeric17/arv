@@ -22,6 +22,8 @@ export class Input {
 
   @Prop() icon: string;
 
+  @Prop() inputProps = {};  
+
   @Prop() input: (e: any) => void;
 
   @Prop() inputStyle = {};
@@ -229,7 +231,8 @@ export class Input {
             onFocus={this._focus.bind(this)}
             onBlur={this._blur.bind(this)}
             autocomplete={this.autocomplete}
-            value={this.value} />
+            value={this.value}
+            {...this.inputProps} />
         );
       }
       return (
@@ -245,7 +248,8 @@ export class Input {
             onInput={this._input.bind(this)}
             onFocus={this._focus.bind(this)}
             onBlur={this._blur.bind(this)}
-            value={this.value} />
+            value={this.value}
+            {...this.inputProps} />
         );
     };
 

@@ -59,19 +59,20 @@
 .primary:hover {
   background-color: var(--primary-dark-color);
 }
+.bordered.primary,
 .flat.primary {
-  --default-icon-color: var(--primary-dark-color);  
-  --default-font-color: var(--primary-dark-color);
-  color: var(--primary-dark-color);
+  --default-icon-color: var(--primary-color);  
+  --default-font-color: var(--primary-color);
+  color: var(--primary-color);
 }
-.flat.primary:hover {
-  background-color: var(--default-background-color);
-}
+.bordered.secondary,
 .flat.secondary {
-  --default-icon-color: var(--secondary-dark-color);  
-  --default-font-color: var(--secondary-dark-color);
-  color: var(--secondary-dark-color);
+  --default-icon-color: var(--secondary-color);  
+  --default-font-color: var(--secondary-color);
+  color: var(--secondary-color);
 }
+
+.flat.primary:hover,
 .flat.secondary:hover {
   background-color: var(--default-background-color);
 }
@@ -82,6 +83,21 @@
 }
 .secondary:hover {
   background-color: var(--secondary-dark-color);
+}
+
+.warning {
+  background-color: var(--warning-color);
+  color: var(--warning-font-color);
+  --default-icon-color: var(--icon-color, var(--warning-font-color));
+}
+.warning:hover {
+  background-color: var(--warning-dark-color);
+}
+.bordered.warning,
+.flat.warning {
+  --default-icon-color: var(--warning-color);  
+  --default-font-color: var(--warning-color);
+  color: var(--warning-color);
 }
 
 /* flat */
@@ -97,6 +113,12 @@
   color: var(--secondary-color);
 }
 
+.warning.flatIcon,
+.warning.bordered,
+.warning.flat {
+  color: var(--warning-color);
+}
+
 /* bordered */
 .bordered {
   border-color: var(--default-color);
@@ -104,12 +126,32 @@
   border-width: 1px;
 }
 .bordered.primary {
-  border-color: var(--primary-light-color);
+  border-color: var(--primary-color);
 }
 .bordered.secondary {
-  border-color: var(--secondary-light-color);
+  border-color: var(--secondary-color);
 }
-
+.bordered.warning {
+  border-color: var(--warning-color);
+}
+.bordered.primary:hover {
+  border-color: var(--primary-color);
+  background-color: var(--primary-color);
+  --default-icon-color: var(--primary-font);
+  --default-font-color: var(--primary-font);
+}
+.bordered.secondary:hover {
+  border-color: var(--secondary-color);
+  background-color: var(--secondary-color);
+  --default-icon-color: var(--secondary-font);
+  --default-font-color: var(--secondary-font);
+}
+.bordered.warning:hover {
+  border-color: var(--warning-color);
+  background-color: var(--warning-color);
+  --default-icon-color: var(--warning-font);
+  --default-font-color: var(--warning-font);
+}
 /* raised */
 .raisedIcon,
 .raised,
@@ -135,6 +177,9 @@
 }
 .secondary.raised:hover {
   background-color: var(--secondary-dark-color);
+}
+.warning.raised:hover {
+  background-color: var(--warning-dark-color);
 }
 
 .disabled.flatIcon,

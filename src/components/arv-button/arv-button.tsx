@@ -70,6 +70,7 @@ export class Button {
       inherit: this.color === 'inherit',
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
+      warning: this.color === 'warning',
       disabled: this.disabled,
       full: this.full,
       small: this.size === 'small',

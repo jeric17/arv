@@ -37,6 +37,14 @@ body {
   --secondary-dark-color: #14cba8;
   --secondary-font-color: #333;
 
+  --warning-color: rgb(255, 166, 0);
+  --warning-light-color: rgb(255, 210, 126);
+  --warning-dark-color: rgb(124, 81, 0);
+  --warning-font-color: rgb(255, 166, 0);
+
+  --warning-dark-font: rgb(124, 81, 0);
+  --warning-light-color: rgb(255, 166, 0);
+
   --radius: 2px;
   --padding: 1em;
 

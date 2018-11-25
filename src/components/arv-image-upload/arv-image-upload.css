@@ -1,0 +1,65 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.root {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 2px rgba(3,3,3,0.3);
+  background-color: #dcdcdc;
+}
+
+.img {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.large {
+  height: 150px;    
+  width: 150px;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.hover {
+  animation: fadeIn 0.3s;
+  display: none;
+  background-color: rgba(3,3,3,0.5);
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.hoverText {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(3,3,3,0.3);
+}
+
+.root:hover .hover {
+  display: flex;   
+}

@@ -1,6 +1,7 @@
 .root {
   font-family: var(--font-family);
   color: var(--default-font-color);
+  transition: all 0.3s;
 }
 .strike {
   opacity: 0.5;

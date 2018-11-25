@@ -2,14 +2,23 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+@keyframes fade-in-out {
+  0% { opacity: 0.5 }
+  50% { opacity: 1 }
+  100% { opacity: 0.5 }
+}
   
 .contained {
+  animation: fade-in-out 1.5s infinite;
   display: flex;
   justify-content: center;
   align-items: center;    
   height: 100%;     
   position: absolute;
-  width: 100%;      
+  width: 100%;
+  z-index: 1;
+  background-color: rgba(51, 51, 51, 0.1);
 }
   
 .spinner {

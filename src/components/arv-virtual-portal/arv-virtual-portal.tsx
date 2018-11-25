@@ -20,8 +20,15 @@ export class VirtualPortal {
     this.onSelect(evt);
   }
 
-  getStyle() {
+  getStyle(h) {
     const rect = this.parentEl.getBoundingClientRect();
+    if ((rect.top + 32 + h) > window.innerHeight) {
+      return {
+        top: `${rect.top - h}px`,
+        left: `${rect.x}px`,
+        width: `${rect.width}px`
+      };  
+    }
     return {
       top: `${rect.top + 32}px`,
       left: `${rect.x}px`,
@@ -37,7 +44,7 @@ export class VirtualPortal {
       target.appendChild(d);
     });
 
-    const { top, left, width } = this.getStyle();
+    const { top, left, width } = this.getStyle(target.clientHeight);
 
     target.style.top = top;
     target.style.left = left;

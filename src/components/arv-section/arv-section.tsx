@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-section',
@@ -6,10 +6,25 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class Section {
+
+  @Prop() icon: string;
+
+  @Prop() sectionTitle: string;
+
+  @Prop() titleColor: string;
+
+  @Prop() titleVariant = 'heading3';
+
   render() {
     return (
       <div class="root">
-        <slot />
+        <div class="title">
+           {this.icon && <arv-icon icon={this.icon}></arv-icon>}
+           <arv-text variant={this.titleVariant}>{this.sectionTitle}</arv-text>
+        </div>
+        <div class="content">
+          <slot />
+        </div>
       </div>    
     );    
   }

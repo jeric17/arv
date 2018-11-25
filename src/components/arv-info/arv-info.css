@@ -1,0 +1,30 @@
+.root {
+  border-radius: var(--radius);
+  display: flex;
+  overflow: hidden;
+  border-style: solid;    
+  border-width: 1px;    
+}
+.primary {
+  border-color: var(--primary-color);
+}
+.secondary {
+  border-color: var(--secondary-color);
+}
+.warning {
+  border-color: var(--warning-color);
+}
+.primary .image {
+  background-color: var(--primary-color);
+}
+.secondary .image {
+  background-color: var(--secondary-color);
+}
+.warning .image {
+  background-color: var(--warning-color);
+}
+.image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

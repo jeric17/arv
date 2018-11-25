@@ -287,6 +287,33 @@ export namespace Components {
     'withButtonIcon'?: boolean;
   }
 
+  interface ArvImageUpload {
+    'imgSrc': string;
+    'size': string;
+  }
+  interface ArvImageUploadAttributes extends StencilHTMLAttributes {
+    'imgSrc'?: string;
+    'onUpload'?: (event: CustomEvent) => void;
+    'size'?: string;
+  }
+
+  interface ArvInfo {
+    'color': string;
+    'icon': string;
+    'imageSrc': string;
+    'infoDescription': string;
+    'infoTitle': string;
+    'variant': string;
+  }
+  interface ArvInfoAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'icon'?: string;
+    'imageSrc'?: string;
+    'infoDescription'?: string;
+    'infoTitle'?: string;
+    'variant'?: string;
+  }
+
   interface ArvInput {
     'autocomplete': string;
     'disabled': boolean;
@@ -298,6 +325,7 @@ export namespace Components {
     'inputBlur': (e: any) => void;
     'inputChange': (e: any) => void;
     'inputFocus': (e: any) => void;
+    'inputProps': any;
     'inputStyle': any;
     'label': string;
     'layout': string;
@@ -321,6 +349,7 @@ export namespace Components {
     'inputBlur'?: (e: any) => void;
     'inputChange'?: (e: any) => void;
     'inputFocus'?: (e: any) => void;
+    'inputProps'?: any;
     'inputStyle'?: any;
     'label'?: string;
     'layout'?: string;
@@ -417,8 +446,18 @@ export namespace Components {
     'textVariant'?: string;
   }
 
-  interface ArvSection {}
-  interface ArvSectionAttributes extends StencilHTMLAttributes {}
+  interface ArvSection {
+    'icon': string;
+    'sectionTitle': string;
+    'titleColor': string;
+    'titleVariant': string;
+  }
+  interface ArvSectionAttributes extends StencilHTMLAttributes {
+    'icon'?: string;
+    'sectionTitle'?: string;
+    'titleColor'?: string;
+    'titleVariant'?: string;
+  }
 
   interface ArvSelectOption {
     'parse': boolean;
@@ -589,6 +628,8 @@ declare global {
     'ArvForm': Components.ArvForm;
     'ArvHeader': Components.ArvHeader;
     'ArvIcon': Components.ArvIcon;
+    'ArvImageUpload': Components.ArvImageUpload;
+    'ArvInfo': Components.ArvInfo;
     'ArvInput': Components.ArvInput;
     'ArvLink': Components.ArvLink;
     'ArvListItem': Components.ArvListItem;
@@ -632,6 +673,8 @@ declare global {
     'arv-form': Components.ArvFormAttributes;
     'arv-header': Components.ArvHeaderAttributes;
     'arv-icon': Components.ArvIconAttributes;
+    'arv-image-upload': Components.ArvImageUploadAttributes;
+    'arv-info': Components.ArvInfoAttributes;
     'arv-input': Components.ArvInputAttributes;
     'arv-link': Components.ArvLinkAttributes;
     'arv-list-item': Components.ArvListItemAttributes;
@@ -780,6 +823,18 @@ declare global {
     new (): HTMLArvIconElement;
   };
 
+  interface HTMLArvImageUploadElement extends Components.ArvImageUpload, HTMLStencilElement {}
+  var HTMLArvImageUploadElement: {
+    prototype: HTMLArvImageUploadElement;
+    new (): HTMLArvImageUploadElement;
+  };
+
+  interface HTMLArvInfoElement extends Components.ArvInfo, HTMLStencilElement {}
+  var HTMLArvInfoElement: {
+    prototype: HTMLArvInfoElement;
+    new (): HTMLArvInfoElement;
+  };
+
   interface HTMLArvInputElement extends Components.ArvInput, HTMLStencilElement {}
   var HTMLArvInputElement: {
     prototype: HTMLArvInputElement;
@@ -916,6 +971,8 @@ declare global {
     'arv-form': HTMLArvFormElement
     'arv-header': HTMLArvHeaderElement
     'arv-icon': HTMLArvIconElement
+    'arv-image-upload': HTMLArvImageUploadElement
+    'arv-info': HTMLArvInfoElement
     'arv-input': HTMLArvInputElement
     'arv-link': HTMLArvLinkElement
     'arv-list-item': HTMLArvListItemElement
@@ -959,6 +1016,8 @@ declare global {
     'arv-form': HTMLArvFormElement;
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
+    'arv-image-upload': HTMLArvImageUploadElement;
+    'arv-info': HTMLArvInfoElement;
     'arv-input': HTMLArvInputElement;
     'arv-link': HTMLArvLinkElement;
     'arv-list-item': HTMLArvListItemElement;

@@ -25,6 +25,8 @@ export class Icon {
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
+      xlarge: this.size === 'xlarge',
+      xxlarge: this.size === 'xxlarge',
       noMargin: this.noMargin,
       withButtonIcon: this.withButtonIcon
     };
