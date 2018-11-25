@@ -1,0 +1,37 @@
+@keyframes ui-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+  
+.contained {
+  display: flex;
+  justify-content: center;
+  align-items: center;    
+  height: 100%;     
+  position: absolute;
+  width: 100%;      
+}
+  
+.spinner {
+  animation: ui-spin 0.5s linear infinite;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: #f3f3f3;
+  border-width: 6px;
+  border-top-width: 6px;
+  border-top-style: solid;
+  border-top-color: var(--primary-color);
+  height: 80px;
+  min-height: 80px;
+  min-width: 80px;
+  width: 80px;
+}
+
+.spinner.small {
+  border-width: 3px;
+  border-top-width: 3px;  
+  height: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  width: 40px;
+}

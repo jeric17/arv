@@ -85,9 +85,12 @@ export class Button {
       noPad: !this.padded
     };
 
+    const iconMode = ['fab', 'flat-icon', 'raised-icon'];
+
     const Icon = () => (
       <arv-icon
         noMargin={rootClassNames.flatIcon || rootClassNames.raisedIcon || rootClassNames.fab}
+        withButtonIcon={this.icon && !iconMode.includes(this.variant)}
         size={this.size}
         icon={this.icon}>
       </arv-icon>

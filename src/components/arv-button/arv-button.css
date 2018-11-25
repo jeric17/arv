@@ -59,8 +59,21 @@
 .primary:hover {
   background-color: var(--primary-dark-color);
 }
+.flat.primary {
+  --default-icon-color: var(--primary-dark-color);  
+  --default-font-color: var(--primary-dark-color);
+  color: var(--primary-dark-color);
+}
 .flat.primary:hover {
-  background-color: var(--primary-dark-color);
+  background-color: var(--default-background-color);
+}
+.flat.secondary {
+  --default-icon-color: var(--secondary-dark-color);  
+  --default-font-color: var(--secondary-dark-color);
+  color: var(--secondary-dark-color);
+}
+.flat.secondary:hover {
+  background-color: var(--default-background-color);
 }
 .secondary {
   background-color: var(--secondary-color);

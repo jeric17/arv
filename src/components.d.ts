@@ -277,12 +277,14 @@ export namespace Components {
     'noMargin': boolean;
     'size': string;
     'styles': any;
+    'withButtonIcon': boolean;
   }
   interface ArvIconAttributes extends StencilHTMLAttributes {
     'icon'?: string;
     'noMargin'?: boolean;
     'size'?: string;
     'styles'?: any;
+    'withButtonIcon'?: boolean;
   }
 
   interface ArvInput {
@@ -371,6 +373,15 @@ export namespace Components {
   }
   interface ArvListAttributes extends StencilHTMLAttributes {
     'color'?: string;
+  }
+
+  interface ArvLoader {
+    'contained': boolean;
+    'size': string;
+  }
+  interface ArvLoaderAttributes extends StencilHTMLAttributes {
+    'contained'?: boolean;
+    'size'?: string;
   }
 
   interface ArvMenu {
@@ -582,6 +593,7 @@ declare global {
     'ArvLink': Components.ArvLink;
     'ArvListItem': Components.ArvListItem;
     'ArvList': Components.ArvList;
+    'ArvLoader': Components.ArvLoader;
     'ArvMenu': Components.ArvMenu;
     'ArvPaper': Components.ArvPaper;
     'ArvSectionTitle': Components.ArvSectionTitle;
@@ -624,6 +636,7 @@ declare global {
     'arv-link': Components.ArvLinkAttributes;
     'arv-list-item': Components.ArvListItemAttributes;
     'arv-list': Components.ArvListAttributes;
+    'arv-loader': Components.ArvLoaderAttributes;
     'arv-menu': Components.ArvMenuAttributes;
     'arv-paper': Components.ArvPaperAttributes;
     'arv-section-title': Components.ArvSectionTitleAttributes;
@@ -791,6 +804,12 @@ declare global {
     new (): HTMLArvListElement;
   };
 
+  interface HTMLArvLoaderElement extends Components.ArvLoader, HTMLStencilElement {}
+  var HTMLArvLoaderElement: {
+    prototype: HTMLArvLoaderElement;
+    new (): HTMLArvLoaderElement;
+  };
+
   interface HTMLArvMenuElement extends Components.ArvMenu, HTMLStencilElement {}
   var HTMLArvMenuElement: {
     prototype: HTMLArvMenuElement;
@@ -901,6 +920,7 @@ declare global {
     'arv-link': HTMLArvLinkElement
     'arv-list-item': HTMLArvListItemElement
     'arv-list': HTMLArvListElement
+    'arv-loader': HTMLArvLoaderElement
     'arv-menu': HTMLArvMenuElement
     'arv-paper': HTMLArvPaperElement
     'arv-section-title': HTMLArvSectionTitleElement
@@ -943,6 +963,7 @@ declare global {
     'arv-link': HTMLArvLinkElement;
     'arv-list-item': HTMLArvListItemElement;
     'arv-list': HTMLArvListElement;
+    'arv-loader': HTMLArvLoaderElement;
     'arv-menu': HTMLArvMenuElement;
     'arv-paper': HTMLArvPaperElement;
     'arv-section-title': HTMLArvSectionTitleElement;

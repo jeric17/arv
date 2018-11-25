@@ -16,6 +16,8 @@ export class Icon {
 
   @Prop() styles: any = {};
 
+  @Prop() withButtonIcon: boolean;
+
   render() {
     const rootClassNames = {
       'material-icons': true,
@@ -23,7 +25,8 @@ export class Icon {
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
-      noMargin: this.noMargin
+      noMargin: this.noMargin,
+      withButtonIcon: this.withButtonIcon
     };
 
     return (

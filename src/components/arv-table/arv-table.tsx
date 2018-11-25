@@ -84,7 +84,7 @@ export class Table {
       ascending: this.isAscending
     };
 
-    return (
+    return [
       <table
         style={this.styles.table}
         class={rootClassNames}
@@ -146,9 +146,10 @@ export class Table {
                 </td>  
               )}
           </tr>)})}
+          <slot />
         </tbody>
 
       </table>
-    );
+    ];
   }
 }
