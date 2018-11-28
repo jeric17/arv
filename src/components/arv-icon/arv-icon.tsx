@@ -7,6 +7,8 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Icon {
 
+  @Prop() color: string;
+
   @Prop() icon: string;
 
   @Prop() noMargin: boolean;
@@ -28,7 +30,8 @@ export class Icon {
       xlarge: this.size === 'xlarge',
       xxlarge: this.size === 'xxlarge',
       noMargin: this.noMargin,
-      withButtonIcon: this.withButtonIcon
+      withButtonIcon: this.withButtonIcon,
+      defaultColor: this.color === 'default'
     };
 
     return (

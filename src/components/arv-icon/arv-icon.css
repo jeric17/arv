@@ -44,3 +44,7 @@
 .withButtonIcon {
   margin: 0 0.5em 0 0;  
 }
+
+.defaultColor {
+  color: var(--default-color);
+}

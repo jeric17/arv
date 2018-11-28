@@ -2,6 +2,12 @@
   background-color: #fff;
   cursor: pointer;
   padding: 0.5em;
+  transition: all 0.3s;
+}
+
+.root:hover {
+  background-color: var(--primary-color);
+  color: var(--primary-font-color);
 }
 
 .arv-select-option:hover {

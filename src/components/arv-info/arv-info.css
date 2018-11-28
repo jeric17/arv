@@ -3,13 +3,17 @@
   display: flex;
   overflow: hidden;
   border-style: solid;    
-  border-width: 1px;    
+  border-width: 1px;
+  border-color: #dedede;
 }
 .primary {
   border-color: var(--primary-color);
 }
 .secondary {
   border-color: var(--secondary-color);
+}
+.error {
+  border-color: var(--error-color);
 }
 .warning {
   border-color: var(--warning-color);

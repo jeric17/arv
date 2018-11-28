@@ -164,13 +164,15 @@
 .raised:hover {
   box-shadow: 0 2px 2px rgba(3, 3, 3, 0.35);
 }
+.disabled {
+  cursor: not-allowed;
+}
 .disabled.raisedIcon,
 .disabled.raisedIcon:hover,
 .disabled.raised,
 .disabled.raised:hover {
   box-shadow: 0 0 0 transparent;
   background-color: #efefef;
-  cursor: not-allowed;
 }
 .primary.raised:hover {
   background-color: var(--primary-dark-color);
@@ -180,17 +182,6 @@
 }
 .warning.raised:hover {
   background-color: var(--warning-dark-color);
-}
-
-.disabled.flatIcon,
-.disabled.flat,
-.disabled.bordered,
-.disabled.raised {
-  color: #8a8a8a;
-}
-
-.disabled.raised:hover {
-  background-color: #efefef;
 }
 
 .flatIcon,
@@ -227,4 +218,20 @@
 .flatIcon,
 .raisedIcon {
   padding: 0 0.5em;
+}
+
+.disabled.flatIcon,
+.disabled.flat,
+.disabled.flat.primary,
+.disabled.flat.secondary,
+.disabled.bordered,
+.disabled.bordered.primary,
+.disabled.bordered.secondary,
+.disabled.raised {
+  --default-font-color: #8a8a8a;
+  --default-icon-color: #8a8a8a;
+}
+
+.disabled.raised:hover {
+  background-color: #efefef;
 }

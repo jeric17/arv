@@ -108,7 +108,7 @@ export class Table {
                   {headerItem}
                 </th>
             ))}
-            {this.controls.length && (<th class="th" style={this.styles.th}></th>)}
+            {Boolean(this.controls.length) && (<th class="th" style={this.styles.th}></th>)}
           </tr>
         </thead>
 
@@ -133,7 +133,7 @@ export class Table {
                   {this.generateRowItem(rowItem)}
                 </td>
               ))}
-              {this.controls.length && (
+              {Boolean(this.controls.length) && (
                 <td class="td controls">
                   <arv-flex>
                     {this.controls.map(ctrlItem => (

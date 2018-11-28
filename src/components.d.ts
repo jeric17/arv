@@ -273,6 +273,7 @@ export namespace Components {
   }
 
   interface ArvIcon {
+    'color': string;
     'icon': string;
     'noMargin': boolean;
     'size': string;
@@ -280,6 +281,7 @@ export namespace Components {
     'withButtonIcon': boolean;
   }
   interface ArvIconAttributes extends StencilHTMLAttributes {
+    'color'?: string;
     'icon'?: string;
     'noMargin'?: boolean;
     'size'?: string;

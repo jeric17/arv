@@ -34,10 +34,13 @@ export class Info {
           </div>    
         )}
         <arv-flex layout="column" padded>
-              <arv-text variant="heading4">{this.infoTitle}</arv-text>
-              <arv-divider transparent />
-              <arv-text variant="caption">{this.infoDescription}</arv-text>
-              <arv-divider transparent />
+              {this.infoTitle && [
+                <arv-text variant="heading4">{this.infoTitle}</arv-text>,
+                <arv-divider transparent />
+              ]}
+              {this.infoDescription && [
+                <arv-text variant="caption">{this.infoDescription}</arv-text>,
+              ]}
               <slot />
        </arv-flex>
       </div>
