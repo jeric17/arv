@@ -22,19 +22,7 @@
   animation: fade-out 0.3s;
   animation-fill-mode: forwards;
 }
-@keyframes slide-in-top {
-  from {
-    opacity: 0;
-    transform: translateY(-50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-}
-.slideInTop {
-  animation: slide-in-top 0.3s;
-}
+
 @keyframes slide-in-top {
   from {
     opacity: 0;
@@ -76,6 +64,20 @@
 .slideOutBottom {
   animation: slide-out-bottom 0.3s;
   animation-fill-mode: forwards;
+}
+
+@keyframes slide-out-top {
+  from {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+}
+.slideOutTop {
+  animation: slide-out-top 0.3s;
 }
 
 .root {

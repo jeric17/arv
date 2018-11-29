@@ -1,0 +1,17 @@
+.root {
+  --default-font-color: #fff;
+
+  position: fixed;
+  z-index: 9;
+}
+
+.error {
+   --default-font-color: var(--error-color);
+}
+
+.content {
+    border-radius: var(--radius);
+    background-color: var(--snackbar-bg, #333);
+    padding: 1em 2em;
+    box-shadow: 0 2px 1px rgba(3, 3, 3, 0.3);    
+}

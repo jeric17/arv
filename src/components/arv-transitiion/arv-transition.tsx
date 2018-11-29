@@ -19,6 +19,7 @@ export class Transition {
       fadeOut: this.animation === 'fadeOut',
       slideInTop: this.animation === 'slideInTop',
       slideInBottom: this.animation === 'slideInBottom',
+      slideOutTop: this.animation === 'slideOutTop',
       slideOutBottom: this.animation === 'slideOutBottom',
     };
 
