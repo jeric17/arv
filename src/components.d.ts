@@ -184,14 +184,17 @@ export namespace Components {
   }
 
   interface ArvDialog {
+    'actions': any;
     'dialogTitle': string;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
   }
   interface ArvDialogAttributes extends StencilHTMLAttributes {
+    'actions'?: any;
     'dialogTitle'?: string;
     'onOnClose'?: (event: CustomEvent) => void;
+    'onOnOk'?: (event: CustomEvent) => void;
     'parent'?: HTMLElement;
     'scrollable'?: boolean;
     'show'?: boolean;
@@ -290,11 +293,14 @@ export namespace Components {
   }
 
   interface ArvImageUpload {
+    'disabled': boolean;
     'imgSrc': string;
     'size': string;
   }
   interface ArvImageUploadAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
     'imgSrc'?: string;
+    'onRemove'?: (event: CustomEvent) => void;
     'onUpload'?: (event: CustomEvent) => void;
     'size'?: string;
   }
@@ -482,6 +488,7 @@ export namespace Components {
     'labelVariant': string;
     'layout': string;
     'onSelectChange': (item: any) => void;
+    'optionValue': string;
     'placeholder': string;
     'toggle': () => void;
     'value': string;
@@ -501,6 +508,7 @@ export namespace Components {
     'onOnInput'?: (event: CustomEvent) => void;
     'onOnInputChange'?: (event: CustomEvent) => void;
     'onSelectChange'?: (event: CustomEvent) => void;
+    'optionValue'?: string;
     'placeholder'?: string;
     'value'?: string;
     /**
@@ -512,24 +520,24 @@ export namespace Components {
   interface ArvSnackbar {
     'animationIn': string;
     'animationOut': string;
-    'color': string;
     'horizontal': string;
     'icon': string;
     'message': string;
     'open': boolean;
     'timing': number;
+    'variant': string;
     'vertical': string;
   }
   interface ArvSnackbarAttributes extends StencilHTMLAttributes {
     'animationIn'?: string;
     'animationOut'?: string;
-    'color'?: string;
     'horizontal'?: string;
     'icon'?: string;
     'message'?: string;
     'onHandleClose'?: (event: CustomEvent) => void;
     'open'?: boolean;
     'timing'?: number;
+    'variant'?: string;
     'vertical'?: string;
   }
 
@@ -600,6 +608,9 @@ export namespace Components {
     'weight'?: number;
   }
 
+  interface ArvTooltip {}
+  interface ArvTooltipAttributes extends StencilHTMLAttributes {}
+
   interface ArvTransition {
     'animation': string;
     'full': boolean;
@@ -613,11 +624,13 @@ export namespace Components {
     'content': any;
     'onSelect': (evt: any) => void;
     'parentEl': any;
+    'value': string;
   }
   interface ArvVirtualPortalAttributes extends StencilHTMLAttributes {
     'content'?: any;
     'onSelect'?: (evt: any) => void;
     'parentEl'?: any;
+    'value'?: string;
   }
 
   interface BbBolts {
@@ -672,6 +685,7 @@ declare global {
     'ArvTable': Components.ArvTable;
     'ArvTabs': Components.ArvTabs;
     'ArvText': Components.ArvText;
+    'ArvTooltip': Components.ArvTooltip;
     'ArvTransition': Components.ArvTransition;
     'ArvVirtualPortal': Components.ArvVirtualPortal;
     'BbBolts': Components.BbBolts;
@@ -718,6 +732,7 @@ declare global {
     'arv-table': Components.ArvTableAttributes;
     'arv-tabs': Components.ArvTabsAttributes;
     'arv-text': Components.ArvTextAttributes;
+    'arv-tooltip': Components.ArvTooltipAttributes;
     'arv-transition': Components.ArvTransitionAttributes;
     'arv-virtual-portal': Components.ArvVirtualPortalAttributes;
     'bb-bolts': Components.BbBoltsAttributes;
@@ -959,6 +974,12 @@ declare global {
     new (): HTMLArvTextElement;
   };
 
+  interface HTMLArvTooltipElement extends Components.ArvTooltip, HTMLStencilElement {}
+  var HTMLArvTooltipElement: {
+    prototype: HTMLArvTooltipElement;
+    new (): HTMLArvTooltipElement;
+  };
+
   interface HTMLArvTransitionElement extends Components.ArvTransition, HTMLStencilElement {}
   var HTMLArvTransitionElement: {
     prototype: HTMLArvTransitionElement;
@@ -1023,6 +1044,7 @@ declare global {
     'arv-table': HTMLArvTableElement
     'arv-tabs': HTMLArvTabsElement
     'arv-text': HTMLArvTextElement
+    'arv-tooltip': HTMLArvTooltipElement
     'arv-transition': HTMLArvTransitionElement
     'arv-virtual-portal': HTMLArvVirtualPortalElement
     'bb-bolts': HTMLBbBoltsElement
@@ -1069,6 +1091,7 @@ declare global {
     'arv-table': HTMLArvTableElement;
     'arv-tabs': HTMLArvTabsElement;
     'arv-text': HTMLArvTextElement;
+    'arv-tooltip': HTMLArvTooltipElement;
     'arv-transition': HTMLArvTransitionElement;
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;

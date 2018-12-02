@@ -39,6 +39,8 @@ export class Select {
 
   @Prop() placeholder: string;
 
+  @Prop() optionValue: string;
+
   @Prop() value: string;
   @Watch('value')
   valueHandler() {
@@ -106,6 +108,7 @@ export class Select {
     const elem:any = document.createElement(this.portal);
     elem.onSelect = this.optionSelectedHandler.bind(this);
     elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
+    elem.value = this.optionValue || this.value;
 
     elem.appendChild(dialog);
     Array.from(slot).forEach(d => {
@@ -150,8 +153,8 @@ export class Select {
         onClick={this.onValueClick.bind(this)}
         class="value targetValue">
         {this.value}
-        <arv-divider></arv-divider>
-        <arv-icon icon="keyboard_arrow_down"></arv-icon>
+        <arv-divider layout="column" transparent></arv-divider>
+        <arv-icon color="default" icon="keyboard_arrow_down"></arv-icon>
       </div>
     );
 

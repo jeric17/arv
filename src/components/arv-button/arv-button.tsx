@@ -71,6 +71,7 @@ export class Button {
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
       warning: this.color === 'warning',
+      error: this.color === 'error',
       disabled: this.disabled,
       full: this.full,
       small: this.size === 'small',

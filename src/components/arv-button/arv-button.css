@@ -71,7 +71,12 @@
   --default-font-color: var(--secondary-color);
   color: var(--secondary-color);
 }
-
+.bordered.error,
+.flat.error {
+  --default-icon-color: var(--error-font);  
+  --default-font-color: var(--error-font);
+  color: var(--error-font);
+}
 .flat.primary:hover,
 .flat.secondary:hover {
   background-color: var(--default-background-color);
@@ -133,6 +138,9 @@
 }
 .bordered.warning {
   border-color: var(--warning-color);
+}
+.bordered.error {
+  border-color: var(--error-color);
 }
 .bordered.primary:hover {
   border-color: var(--primary-color);

@@ -48,3 +48,7 @@
 .defaultColor {
   color: var(--default-color);
 }
+
+.warning {
+  color: var(--warning-color);
+}

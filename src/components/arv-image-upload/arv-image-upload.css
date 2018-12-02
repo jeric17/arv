@@ -42,6 +42,17 @@
   cursor: pointer;
 }
 
+.remove-button {
+  --icon-color: #fff;
+  --default-light-color: rgba(3, 3, 3, 0.3);
+
+  display: none;  
+  position: absolute;
+  z-index: 9;
+  width: 100%;
+  justify-content: flex-end;
+}
+
 .hover {
   animation: fadeIn 0.3s;
   display: none;
@@ -62,4 +73,13 @@
 
 .root:hover .hover {
   display: flex;   
+}
+
+.root:hover .remove-button {
+  display: flex;
+}
+
+.disabled,
+.disabled .input {
+  cursor: not-allowed;
 }

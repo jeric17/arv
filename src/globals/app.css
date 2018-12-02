@@ -45,6 +45,10 @@ body {
   --warning-dark-font: rgb(124, 81, 0);
   --warning-light-color: rgb(255, 166, 0);
 
+  --success-color: #43a047;
+  --success-light-color: #c8fdcb;
+  --success-dark-color: #112c12;
+
   --radius: 2px;
   --padding: 1em;
 

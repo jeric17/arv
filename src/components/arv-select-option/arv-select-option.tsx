@@ -26,6 +26,12 @@ export class SelectOption {
     this.optionSelected.emit(data);
   }
 
+  hostData() {
+    return {
+      'data-value': this.value
+    }
+  }
+
   render() {
     const rootClassNames = {
       root: true,

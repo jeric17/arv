@@ -7,6 +7,7 @@ import { Component, Event, EventEmitter, Element, Prop, State } from '@stencil/c
 })
 export class Snackbar {
 
+  loading: boolean;
   padding = 8;
   timeout = null;
 
@@ -20,7 +21,7 @@ export class Snackbar {
 
   @Prop() animationOut = 'slideOutTop';
 
-  @Prop() color: string;
+  @Prop() variant: string;
 
   @Prop() horizontal = 'center';
 
@@ -41,18 +42,30 @@ export class Snackbar {
   }
 
   componentDidLoad() {
-    this.elementStyles = this.getStyles(this.vertical, this.horizontal);
-
-    if (this.timing) {
-      this.timingClose();
-    }
+    this.init();
   }
+
+  componentDidUpdate() {
+    this.init();
+  }  
 
   componentDidUnload() {
     clearTimeout(this.timeout);
   }
 
-  private getStyles(v, h) {
+  init() {
+    if (!this.open) {
+      return false;  
+    }
+
+    this.elementStyles = this.getStyles(this.vertical, this.horizontal);
+
+    if (this.timing) {
+      this.timingClose();
+    }    
+  }
+
+  getStyles(v, h) {
     const style = {};
     
     const height = window.innerHeight;
@@ -95,12 +108,18 @@ export class Snackbar {
   }
 
   private timingClose() {
-     this.timeout = setTimeout(() => {    
-       this.animation = this.animationOut;
-       setTimeout(() => {
-         this.handleClose.emit();
-       }, 250);
-     }, (this.timing * 1000) - 300);
+    if (this.loading || this.variant === 'loading') {
+      return false
+    }
+    this.loading = true;
+    this.timeout = setTimeout(() => {    
+      this.animation = this.animationOut;
+      setTimeout(() => {
+        this.loading = false;
+        this.animation = this.animationIn;
+        this.handleClose.emit();
+      }, 250);
+    }, (this.timing * 1000) - 300);
   }
 
   render() {
@@ -110,8 +129,26 @@ export class Snackbar {
 
     const rootClassNames = {
       root: true,
-      error: this.color === 'error'
+      error: this.variant === 'error',
+      warning: this.variant === 'warning',
+      success: this.variant === 'success'
     };
+
+    const icon = (() => {
+      if (this.icon) {
+        return this.icon;  
+      }
+      if (this.variant === 'error') {
+        return 'error';
+      }
+      if (this.variant === 'warning') {
+        return 'warning';
+      }
+      if (this.variant === 'success') {
+        return 'check_circle'  
+      }
+      return null;
+    })();
 
     return (
         <div 
@@ -120,8 +157,12 @@ export class Snackbar {
           <arv-transition animation={this.animation}>
             <div class="content">
             <arv-flex items="center">
-                {this.icon && [
-                  <arv-icon icon={this.icon} noMargin/>,
+                {icon && [
+                  <arv-icon icon={icon} noMargin/>,
+                  <arv-divider layout="column" transparent />
+                ]}
+                {(this.variant === 'loading') && [
+                  <arv-loader size="xsmall" />,
                   <arv-divider layout="column" transparent />
                 ]}
                 <arv-text>

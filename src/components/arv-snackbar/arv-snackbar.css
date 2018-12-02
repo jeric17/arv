@@ -6,7 +6,18 @@
 }
 
 .error {
-   --default-font-color: var(--error-color);
+   --default-font-color: #fff;
+   --snackbar-bg: var(--error-background-color);
+}
+
+.warning {
+  --default-font-color: #fff;
+  --snackbar-bg: var(--warning-color);
+}
+
+.success {
+  --default-font-color: #fff;
+  --snackbar-bg: var(--success-color);
 }
 
 .content {

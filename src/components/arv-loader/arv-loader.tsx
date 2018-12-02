@@ -18,6 +18,7 @@ export class Loader {
 
     const spinnerClassNames = {
       spinner: true,
+      xsmall: this.size === 'xsmall',
       small: this.size === 'small',
       large: this.size === 'large'
     };   

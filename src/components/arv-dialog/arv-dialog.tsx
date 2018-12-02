@@ -11,6 +11,8 @@ export class Dialog {
 
   @Element() el: HTMLElement;
 
+  @Prop() actions: any;
+
   @Prop() dialogTitle: string;  
 
   @Prop() scrollable: boolean;
@@ -28,13 +30,19 @@ export class Dialog {
 
   @Prop() parent: HTMLElement;
 
-  @Event() onClose: EventEmitter;
+  @Event() onOk: EventEmitter;
 
-  onHandleClose() {
+  @Event() onClose: EventEmitter;  
+
+  onHandleClose(ok = false) {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
     portal['removeDialog']();
     setTimeout(() => {
-      this.onClose.emit(true);  
+      if (!ok) {
+        this.onClose.emit(true);  
+        return false;
+      }
+      this.onOk.emit(true);
     }, 300);
   }
 
@@ -79,9 +87,31 @@ export class Dialog {
               <arv-button
                 variant="flat-icon"
                 icon="close"
-                buttonClick={this.onHandleClose.bind(this)}></arv-button>
+                buttonClick={this.onHandleClose.bind(this, false)}></arv-button>
             </arv-flex>
             {slot}
+            {this.actions && [
+              <arv-divider transparent/>,
+              <arv-flex justify="end">
+                {this.actions.cancel && (
+                  <arv-button
+                    variant={this.actions.cancel.variant}
+                    color={this.actions.cancel.color}
+                    buttonClick={this.onHandleClose.bind(this)}>
+                    {this.actions.cancel.text || 'Cancel'}
+                  </arv-button>  
+                )}
+                <arv-divider layout="column" transparent />
+                {this.actions.ok && (
+                  <arv-button
+                    variant={this.actions.ok.variant || 'raised'}
+                    color={this.actions.ok.color || 'primary'}
+                    buttonClick={this.onHandleClose.bind(this, true)}>
+                    {this.actions.ok.text || 'Ok'}
+                  </arv-button>  
+                )}
+              </arv-flex>
+            ]}
           </div>
         </arv-dialog-content>
       </arv-container>

@@ -15,6 +15,8 @@ export class VirtualPortal {
 
   @Prop() parentEl: any;
 
+  @Prop() value: string;
+
   @Listen('optionSelected')
   optionSelectedHandler(evt) {
     this.onSelect(evt);
@@ -43,13 +45,19 @@ export class VirtualPortal {
     Array.from(children).forEach(d => {
       target.appendChild(d);
     });
-
-    const { top, left, width } = this.getStyle(target.clientHeight);
+    const h = target.clientHeight;
+    const { top, left, width } = this.getStyle(h);
 
     target.style.top = top;
     target.style.left = left;
     target.style.width = width;
     target.zIndex = 999;
+
+    const targetOption: HTMLElement = this.el.shadowRoot.querySelector(`arv-select-option[data-value="${this.value}"]`);
+
+    if (targetOption) {
+      target.scrollTo(0, (targetOption.offsetTop - (h / 2)));
+    }
   }
 
   render() {
@@ -58,8 +66,10 @@ export class VirtualPortal {
         <arv-backdrop
           onBackdropClick={() => this.onSelect(null) }
           transparent></arv-backdrop>
-        <div class="arv-virtual-portal">
-        </div>
+        <arv-transition animation="fadeIn">
+          <div class="arv-virtual-portal">
+          </div>
+        </arv-transition>
       </div>
     );
   }

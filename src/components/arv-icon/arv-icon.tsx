@@ -31,7 +31,8 @@ export class Icon {
       xxlarge: this.size === 'xxlarge',
       noMargin: this.noMargin,
       withButtonIcon: this.withButtonIcon,
-      defaultColor: this.color === 'default'
+      defaultColor: this.color === 'default',
+      warning: this.color === 'warning'
     };
 
     return (
