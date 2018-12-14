@@ -24,15 +24,16 @@ export class VirtualPortal {
 
   getStyle(h) {
     const rect = this.parentEl.getBoundingClientRect();
+    const top = this.parentEl.offsetTop;
     if ((rect.top + 32 + h) > window.innerHeight) {
       return {
-        top: `${rect.top - h}px`,
+        top: `${top - h}px`,
         left: `${rect.x}px`,
         width: `${rect.width}px`
       };  
     }
     return {
-      top: `${rect.top + 32}px`,
+      top: `${top + 32}px`,
       left: `${rect.x}px`,
       width: `${rect.width}px`
     };
