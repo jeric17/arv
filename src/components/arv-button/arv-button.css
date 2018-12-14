@@ -6,10 +6,10 @@
   border: none;
   cursor: pointer;
   font-size: 1rem;
-  height: 2rem;
+  height: 2.2rem;
   outline: none;
   padding: 0 1em;
-  transition: var(--transition);
+  transition: all 0.3s ease-out;
 
   display: flex;
   align-items: center;
@@ -53,22 +53,21 @@
 }
 .primary {
   background-color: var(--primary-color);
-  color: var(--primary-font-color);
-  --default-icon-color: var(--icon-color, var(--primary-font-color));
+  color: var(--primary-font);
+  --default-font-color: var(--primary-font);
+  --default-icon-color: var(--icon-color, var(--primary-font));
 }
 .primary:hover {
   background-color: var(--primary-dark-color);
 }
 .bordered.primary,
 .flat.primary {
-  --default-icon-color: var(--primary-color);  
-  --default-font-color: var(--primary-color);
   color: var(--primary-color);
 }
 .bordered.secondary,
 .flat.secondary {
   --default-icon-color: var(--secondary-color);  
-  --default-font-color: var(--secondary-color);
+  --default-font-color: var(--secondary-font);
   color: var(--secondary-color);
 }
 .bordered.error,
@@ -84,7 +83,8 @@
 .secondary {
   background-color: var(--secondary-color);
   color: var(--secondary-font-color);
-  --default-icon-color: var(--icon-color, var(--secondary-font-color));
+  --default-font-color: var(--secondary-font);
+  --default-icon-color: var(--icon-color, var(--secondary-font));
 }
 .secondary:hover {
   background-color: var(--secondary-dark-color);
@@ -93,7 +93,7 @@
 .warning {
   background-color: var(--warning-color);
   color: var(--warning-font-color);
-  --default-icon-color: var(--icon-color, var(--warning-font-color));
+  --default-icon-color: var(--icon-color, var(--warning-font));
 }
 .warning:hover {
   background-color: var(--warning-dark-color);
@@ -164,9 +164,7 @@
 .raisedIcon,
 .raised,
 .fab {
-  box-shadow: 0px 1px 5px 0px rgba(0, 0, 0, 0.2), 
-  0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-   0px 3px 1px -2px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 3px 1px rgba(3,3,3,0.1);
 }
 .raisedIcon:hover,
 .raised:hover {

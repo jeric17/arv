@@ -332,6 +332,7 @@ export namespace Components {
     'input': (e: any) => void;
     'inputBlur': (e: any) => void;
     'inputChange': (e: any) => void;
+    'inputEnter': (e: any) => void;
     'inputFocus': (e: any) => void;
     'inputProps': any;
     'inputStyle': any;
@@ -356,6 +357,7 @@ export namespace Components {
     'input'?: (e: any) => void;
     'inputBlur'?: (e: any) => void;
     'inputChange'?: (e: any) => void;
+    'inputEnter'?: (e: any) => void;
     'inputFocus'?: (e: any) => void;
     'inputProps'?: any;
     'inputStyle'?: any;
@@ -468,12 +470,14 @@ export namespace Components {
   }
 
   interface ArvSelectOption {
+    'onSelect': (e: any) => void;
     'parse': boolean;
     'selected': boolean;
     'value': string;
   }
   interface ArvSelectOptionAttributes extends StencilHTMLAttributes {
     'onOptionSelected'?: (event: CustomEvent) => void;
+    'onSelect'?: (e: any) => void;
     'parse'?: boolean;
     'selected'?: boolean;
     'value'?: string;
@@ -520,6 +524,7 @@ export namespace Components {
   interface ArvSnackbar {
     'animationIn': string;
     'animationOut': string;
+    'close': () => void;
     'horizontal': string;
     'icon': string;
     'message': string;
@@ -531,6 +536,7 @@ export namespace Components {
   interface ArvSnackbarAttributes extends StencilHTMLAttributes {
     'animationIn'?: string;
     'animationOut'?: string;
+    'close'?: () => void;
     'horizontal'?: string;
     'icon'?: string;
     'message'?: string;

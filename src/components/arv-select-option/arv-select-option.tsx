@@ -13,6 +13,8 @@ export class SelectOption {
 
   @Prop() parse: boolean;
 
+  @Prop() onSelect: (e: any) => void;
+
   @Event() optionSelected: EventEmitter;
 
   optionHandler() {
@@ -22,6 +24,10 @@ export class SelectOption {
       }
       return this.value;
     })();
+
+    if (this.onSelect) {
+      this.onSelect(data);
+    }
 
     this.optionSelected.emit(data);
   }

@@ -35,6 +35,8 @@ export class Snackbar {
 
   @Prop() vertical = 'top';
 
+  @Prop() close: () => void;  
+
   @Event() handleClose: EventEmitter;
 
   componentWillLoad() {
@@ -118,6 +120,9 @@ export class Snackbar {
         this.loading = false;
         this.animation = this.animationIn;
         this.handleClose.emit();
+        if (this.close) {
+          this.close();  
+        }
       }, 250);
     }, (this.timing * 1000) - 300);
   }

@@ -34,6 +34,8 @@ export class Input {
 
   @Prop() inputChange: (e: any) => void;
 
+  @Prop() inputEnter: (e: any) => void;  
+
   @Prop() label: string;
 
   /* oneOf: [column, row] */
@@ -73,6 +75,10 @@ export class Input {
       }
       return this.el.shadowRoot.querySelector('textarea');
     })();
+
+    if (this.inputEnter) {
+      this.inputEnter(e);
+    }
 
     this.onInputEnter.emit({
       target: inputElement,
