@@ -295,6 +295,8 @@ export namespace Components {
   interface ArvImageUpload {
     'disabled': boolean;
     'imgSrc': string;
+    'onRemove': () => void;
+    'onUpload': (e: any) => void;
     'size': string;
   }
   interface ArvImageUploadAttributes extends StencilHTMLAttributes {

@@ -54,8 +54,8 @@ export class Menu {
       show: this.show,
       top: this.yPosition === 'top',
       bottom: this.yPosition === 'bottom',
-      left: this.yPosition === 'left',
-      right: this.yPosition === 'right'
+      left: this.xPosition === 'left',
+      right: this.xPosition === 'right'
     };
 
     return (

@@ -13,6 +13,10 @@ export class ImageUpload {
 
   @Prop() imgSrc: string;
 
+  @Prop() onUpload: (e: any) => void;
+
+  @Prop() onRemove: () => void;  
+
   @Event() upload: EventEmitter;
 
   @Event() remove: EventEmitter;
@@ -22,10 +26,16 @@ export class ImageUpload {
       target: evt.target,
       files: evt.target.files    
     });
+    if (this.onUpload) {
+      this.onUpload(evt.target);
+    }
   }
 
   removeItem() {
     this.remove.emit();
+    if (this.onRemove) {
+      this.onRemove();
+    }
   }
 
   render() {

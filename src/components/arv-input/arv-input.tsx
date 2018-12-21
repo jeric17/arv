@@ -6,6 +6,9 @@ import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@s
   shadow: true
 })
 export class Input {
+
+  inputElement: any;
+
   @Element() el: HTMLElement;
 
   @State() error = false;
@@ -71,7 +74,7 @@ export class Input {
   handleKeyEnter(e) {
     const inputElement = (() => {
       if (!this.multiple) {
-        return this.el.shadowRoot.querySelector('input');  
+        return this.el.shadowRoot.querySelector('input');
       }
       return this.el.shadowRoot.querySelector('textarea');
     })();
@@ -90,12 +93,12 @@ export class Input {
     });
   }
 
-  validate(value) {
-    if (this.required && !value) {
-      this.error = true;  
-    } else {
-      this.error = false;  
-    }
+  componentDidLoad() {
+    this.inputElement = this.el.shadowRoot.querySelector('input');
+  }
+
+  validate() {
+    this.error = this.inputElement.validationMessage;
   }
 
   private _change(e) {
@@ -105,7 +108,7 @@ export class Input {
       }
       return e.target.value;
     })();
-    this.validate(value);
+    this.validate();
     if (this.inputChange) {
       this.inputChange(e);
     }
