@@ -633,12 +633,14 @@ export namespace Components {
     'onSelect': (evt: any) => void;
     'parentEl': any;
     'value': string;
+    'variant': string;
   }
   interface ArvVirtualPortalAttributes extends StencilHTMLAttributes {
     'content'?: any;
     'onSelect'?: (evt: any) => void;
     'parentEl'?: any;
     'value'?: string;
+    'variant'?: string;
   }
 
   interface BbBolts {

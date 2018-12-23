@@ -109,6 +109,7 @@ export class Select {
     elem.onSelect = this.optionSelectedHandler.bind(this);
     elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
     elem.value = this.optionValue || this.value;
+    elem.variant = this.variant;
 
     elem.appendChild(dialog);
     Array.from(slot).forEach(d => {

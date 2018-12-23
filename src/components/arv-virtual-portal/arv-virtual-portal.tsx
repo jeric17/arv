@@ -17,6 +17,8 @@ export class VirtualPortal {
 
   @Prop() value: string;
 
+  @Prop() variant: string;  
+
   @Listen('optionSelected')
   optionSelectedHandler(evt) {
     this.onSelect(evt);
@@ -24,7 +26,12 @@ export class VirtualPortal {
 
   getStyle(h) {
     const rect = this.parentEl.getBoundingClientRect();
-    const top = this.parentEl.offsetTop;
+    const top = (() => {
+      if (this.variant === 'select') {
+        return this.parentEl.offsetTop;
+      }
+      return rect.top;
+    })();
     if ((rect.top + 32 + h) > window.innerHeight) {
       return {
         top: `${top - h}px`,
