@@ -1,5 +1,6 @@
 :host(.full) {
   width: 100%;
+  --required-color: #d61b34;
 }
 
 .input {
@@ -105,4 +106,8 @@ textarea.input {
   cursor: not-allowed;  
   background-color: #fdfdfd;
   border: #cdcdcd;
+}
+.required {
+  color: var(--required-color);
+  margin-left: 5px;
 }

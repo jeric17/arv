@@ -94,7 +94,13 @@ export class Input {
   }
 
   componentDidLoad() {
-    this.inputElement = this.el.shadowRoot.querySelector('input');
+    const elem = (() => {
+      if (!this.multiple) {
+        return 'input';
+      }
+      return 'textarea';
+    })();  
+    this.inputElement = this.el.shadowRoot.querySelector(elem);
   }
 
   validate() {
@@ -204,7 +210,12 @@ export class Input {
 
     const Label = () => (
       <label
-        class={labelClass}>{this.label}</label>
+        class={labelClass}>
+        {this.label}
+        {this.required && (
+          <span class="required">*</span>  
+        )}
+        </label>
     );
 
     const layout = (() => {
