@@ -436,6 +436,23 @@ export namespace Components {
     'yPosition'?: string;
   }
 
+  interface ArvMultipleInput {
+    'disabled': boolean;
+    'onAdd': (e: any) => void;
+    'onInputChange': (e: any) => void;
+    'onInputEnter': (e: any) => void;
+    'onRemove': (e: any) => void;
+    'values': string[];
+  }
+  interface ArvMultipleInputAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
+    'onAdd'?: (event: CustomEvent) => void;
+    'onInputChange'?: (event: CustomEvent) => void;
+    'onInputEnter'?: (event: CustomEvent) => void;
+    'onRemove'?: (event: CustomEvent) => void;
+    'values'?: string[];
+  }
+
   interface ArvPaper {
     'height': string;
     'padded': boolean;
@@ -687,6 +704,7 @@ declare global {
     'ArvList': Components.ArvList;
     'ArvLoader': Components.ArvLoader;
     'ArvMenu': Components.ArvMenu;
+    'ArvMultipleInput': Components.ArvMultipleInput;
     'ArvPaper': Components.ArvPaper;
     'ArvSectionTitle': Components.ArvSectionTitle;
     'ArvSection': Components.ArvSection;
@@ -734,6 +752,7 @@ declare global {
     'arv-list': Components.ArvListAttributes;
     'arv-loader': Components.ArvLoaderAttributes;
     'arv-menu': Components.ArvMenuAttributes;
+    'arv-multiple-input': Components.ArvMultipleInputAttributes;
     'arv-paper': Components.ArvPaperAttributes;
     'arv-section-title': Components.ArvSectionTitleAttributes;
     'arv-section': Components.ArvSectionAttributes;
@@ -926,6 +945,12 @@ declare global {
     new (): HTMLArvMenuElement;
   };
 
+  interface HTMLArvMultipleInputElement extends Components.ArvMultipleInput, HTMLStencilElement {}
+  var HTMLArvMultipleInputElement: {
+    prototype: HTMLArvMultipleInputElement;
+    new (): HTMLArvMultipleInputElement;
+  };
+
   interface HTMLArvPaperElement extends Components.ArvPaper, HTMLStencilElement {}
   var HTMLArvPaperElement: {
     prototype: HTMLArvPaperElement;
@@ -1046,6 +1071,7 @@ declare global {
     'arv-list': HTMLArvListElement
     'arv-loader': HTMLArvLoaderElement
     'arv-menu': HTMLArvMenuElement
+    'arv-multiple-input': HTMLArvMultipleInputElement
     'arv-paper': HTMLArvPaperElement
     'arv-section-title': HTMLArvSectionTitleElement
     'arv-section': HTMLArvSectionElement
@@ -1093,6 +1119,7 @@ declare global {
     'arv-list': HTMLArvListElement;
     'arv-loader': HTMLArvLoaderElement;
     'arv-menu': HTMLArvMenuElement;
+    'arv-multiple-input': HTMLArvMultipleInputElement;
     'arv-paper': HTMLArvPaperElement;
     'arv-section-title': HTMLArvSectionTitleElement;
     'arv-section': HTMLArvSectionElement;
