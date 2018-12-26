@@ -17,7 +17,9 @@ export class VirtualPortal {
 
   @Prop() value: string;
 
-  @Prop() variant: string;  
+  @Prop() variant: string;
+
+  @Prop() inputText: string;
 
   @Listen('optionSelected')
   optionSelectedHandler(evt) {
@@ -26,13 +28,15 @@ export class VirtualPortal {
 
   getStyle(h) {
     const rect = this.parentEl.getBoundingClientRect();
-    const top = (() => {
-      if (this.variant === 'select') {
-        return this.parentEl.offsetTop;
-      }
-      return rect.top;
-    })();
-    if ((rect.top + 32 + h) > window.innerHeight) {
+    // const top = (() => {
+    //   if (this.variant === 'select') {
+    //     return this.parentEl.offsetTop;
+    //   }
+    //   return rect.top;
+    // })();
+    const { top } = rect;
+
+    if ((top + 32 + h) > window.innerHeight) {
       return {
         top: `${top - h}px`,
         left: `${rect.x}px`,

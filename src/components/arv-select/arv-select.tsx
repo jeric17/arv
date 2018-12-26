@@ -13,6 +13,8 @@ export class Select {
 
   @State() inputValue: string;
 
+  @State() virtualElement: any;
+
   @State() show: boolean;
   @Watch('show')
   showChanged() {
@@ -46,6 +48,10 @@ export class Select {
   valueHandler() {
     if (this.variant === 'input') {
       this.inputValue = this.value;
+      this._hideContent();
+      setTimeout(() => {
+        this._showContent();
+      }, 0);
     }
   }
 
@@ -110,6 +116,7 @@ export class Select {
     elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
     elem.value = this.optionValue || this.value;
     elem.variant = this.variant;
+    elem.inputValue = this.inputValue;
 
     elem.appendChild(dialog);
     Array.from(slot).forEach(d => {
@@ -118,6 +125,7 @@ export class Select {
     });
 
     document.body.appendChild(elem);
+    this.virtualElement = elem;
   }
 
   private _hideContent() {
@@ -132,6 +140,7 @@ export class Select {
     });
 
     document.body.removeChild(portal);
+    this.virtualElement = null;
   }
 
   onValueClick() {

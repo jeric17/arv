@@ -630,6 +630,7 @@ export namespace Components {
 
   interface ArvVirtualPortal {
     'content': any;
+    'inputText': string;
     'onSelect': (evt: any) => void;
     'parentEl': any;
     'value': string;
@@ -637,6 +638,7 @@ export namespace Components {
   }
   interface ArvVirtualPortalAttributes extends StencilHTMLAttributes {
     'content'?: any;
+    'inputText'?: string;
     'onSelect'?: (evt: any) => void;
     'parentEl'?: any;
     'value'?: string;

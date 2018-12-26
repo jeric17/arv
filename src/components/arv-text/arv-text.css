@@ -2,39 +2,49 @@
   font-family: var(--font-family);
   color: var(--default-font-color);
   transition: all 0.3s;
+  font-weight: var(--font-weight, normal);
 }
 .strike {
   opacity: 0.5;
   text-decoration: line-through;
 }
 .heading1 {
-  font-size: 2rem;
+  font-size: var(--font-size, 2rem);
+  line-height: var(--line-height, 2.8rem);
 }
 .heading2 {
-  font-size: 1.8rem;
+  font-size: var(--font-size, 1.8rem);
+  line-height: var(--line-height, 2.4rem);
 }
 .heading3 {
-  font-size: 1.5rem;
+  font-size: var(--font-size, 1.5rem);
+  line-height: var(--line-height, 2.25rem);
 }
 .heading4 {
-  font-size: 1.2rem;
+  font-size: var(--font-size, 1.2rem);
+  line-height: var(--line-height, 1.8rem);
 }
 .body1 {
-  font-size: 1rem;
+  font-size: var(--font-size, 1rem);
+  line-height: var(--line-height, 1.5rem);
 }
 .body2 {
-  font-size: 0.9rem;
+  font-size: var(--font-size, 0.9rem);
+  line-height: var(--line-height, 1.3rem);
 }
 .caption {
-  font-size: 0.9rem;
+  font-size: var(--font-size, 0.9rem);
+  line-height: var(--line-height, 1.3rem);
 }
 .caption2 {
   color: var(--default-light-font-color);
-  font-size: 0.75rem;
+  font-size: var(--font-size, 0.75rem);
+  line-height: var(--line-height, 1.1rem);
 }
 .subtle {
   color: var(--default-light-font-color);
-  font-size: 0.7rem;
+  font-size: var(--font-size, 0.7rem);
+  line-height: var(--line-height, 1rem);
 }
 .strong {
   font-weight: bold;

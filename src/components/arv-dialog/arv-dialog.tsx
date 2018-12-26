@@ -97,7 +97,7 @@ export class Dialog {
                   <arv-button
                     variant={this.actions.cancel.variant}
                     color={this.actions.cancel.color}
-                    buttonClick={this.onHandleClose.bind(this)}>
+                    buttonClick={this.onHandleClose.bind(this, false)}>
                     {this.actions.cancel.text || 'Cancel'}
                   </arv-button>  
                 )}
