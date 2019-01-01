@@ -1,0 +1,61 @@
+:host, .root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+@keyframes right-to-left {
+  from {
+      transform: translate(-100%);
+  }
+  to {
+      transform: translate(0%);
+  }
+}
+
+.imageContent {
+  display: flex;
+  transition: all 0.3s;
+}
+
+.imageContentItem {
+  background-position: center;
+  background-size: cover;
+  min-width: 100%;
+  padding-top: 51%;
+  width: 100%;
+}
+.control {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+.right {
+  animation: right-to-left 0.3s reverse ease-in-out;
+}
+
+.left {
+  animation: right-to-left 0.3s ease-in-out;
+}
+
+.control-item {
+  --default-color: #fff;
+  --default-light-color: transparent;
+  display: none;
+  height: 100%;
+}
+
+.root:hover .control-item {
+  display: block;
+}
+
+.control-item__left {
+  background: linear-gradient(to left, transparent 0%, rgba(0, 0, 0, 0.25) 100%) !important;
+}
+
+.control-item__right {
+  background: linear-gradient(to right, transparent 0%, rgba(0, 0, 0, 0.25) 100%) !important;
+}

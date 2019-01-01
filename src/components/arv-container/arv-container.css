@@ -6,3 +6,21 @@
 .hidden {
   display: none;
 }
+
+.max1080 {
+  max-width: 1080px;
+}
+
+.responsive {
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1128px) {
+  .responsive {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}

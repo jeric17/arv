@@ -80,7 +80,10 @@ export class Input {
     })();
 
     if (this.inputEnter) {
-      this.inputEnter(e);
+      this.inputEnter({
+        target: this.inputElement,
+        event: e,
+      });
     }
 
     this.onInputEnter.emit({

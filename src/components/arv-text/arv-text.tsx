@@ -23,6 +23,8 @@ export class Text {
 
   @Prop() strike: boolean;
 
+  @Prop() textOverflow: boolean;
+
   render() {
     const rootClassNames = {
       root: true,
@@ -40,7 +42,8 @@ export class Text {
       strong: this.strong,
       noWrap: this.noWrap,
       strike: this.strike,
-      preWrap: this.preWrap
+      preWrap: this.preWrap,
+      textOverflow: this.textOverflow
     };
 
     const styles = {

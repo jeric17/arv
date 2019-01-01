@@ -5,4 +5,5 @@
   padding-top: var(--card-media-height);
   background-position: center;
   background-size: cover;
+  background-color: #efefef;
 }

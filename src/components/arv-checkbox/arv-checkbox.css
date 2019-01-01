@@ -11,6 +11,7 @@
   width: 20px;
 }
 .checkbox {
+  background-color: #fff;
   align-items: center;
   border: 2px solid #333;
   border-radius: 2px;

@@ -13,18 +13,22 @@ export class Paper {
 
   @Prop() transparent: boolean;
 
+  @Prop() weight = 2;  
+
   @Prop() width: string;
 
   render() {
     const rootClassNames = {
       root: true,
       padded: this.padded,
-      transparent: this.transparent
+      transparent: this.transparent,
+      one: this.weight === 1,
+      two: this.weight === 2
     };
 
     const styles = {
       height: this.height,
-      width: this.width,
+      width: this.width
     };
 
     return (

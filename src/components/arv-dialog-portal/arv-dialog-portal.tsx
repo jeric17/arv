@@ -42,9 +42,7 @@ export class DialogPortal {
 
     return (
       <div class={classNames}>
-        <arv-transition animation={this.backdropAnimation}>
-          <arv-backdrop></arv-backdrop>
-        </arv-transition>
+        <arv-backdrop></arv-backdrop>
       </div>
     );
   }

@@ -15,15 +15,25 @@ export class Checkbox {
 
   @Prop() layout = 'row';
 
+  @Prop() name: string;
+
   @Prop() styles: any;
 
   @Prop() textWidth = 'auto';
 
   @Prop() value = false;
 
+  @Prop() onTick: (e: any) => void;
+
   @Event() onInputChange: EventEmitter;
 
   click(e) {
+    if (this.onTick && typeof this.onTick === 'function') {
+      this.onTick({
+        name: this.name,
+        value: this.value
+      });
+    }
     this.onInputChange.emit(e);
   }
 

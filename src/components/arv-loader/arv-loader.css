@@ -10,7 +10,6 @@
 }
   
 .contained {
-  animation: fade-in-out 1.5s infinite;
   display: flex;
   justify-content: center;
   align-items: center;    
@@ -29,13 +28,17 @@
   border-width: 6px;
   border-top-width: 6px;
   border-top-style: solid;
-  border-top-color: var(--primary-color);
   height: 80px;
   min-height: 80px;
   min-width: 80px;
   width: 80px;
 }
-
+.spinner.primary {
+  border-top-color: var(--primary-color);
+}
+.spinner.secondary {
+  border-top-color: var(--secondary-color);
+}
 .spinner.small {
   border-width: 3px;
   border-top-width: 3px;  

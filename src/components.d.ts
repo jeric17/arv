@@ -8,6 +8,9 @@
 import '@stencil/core';
 
 
+import {
+  ImageItem,
+} from './components/arv-carousel/arv-carousel.model';
 
 
 export namespace Components {
@@ -127,11 +130,26 @@ export namespace Components {
     'width'?: string;
   }
 
+  interface ArvCarousel {
+    'externalUrl': string;
+    'images': ImageItem[];
+    'loading': boolean;
+    'target': string;
+  }
+  interface ArvCarouselAttributes extends StencilHTMLAttributes {
+    'externalUrl'?: string;
+    'images'?: ImageItem[];
+    'loading'?: boolean;
+    'target'?: string;
+  }
+
   interface ArvCheckbox {
     'color': string;
     'label': string;
     'labelVariant': string;
     'layout': string;
+    'name': string;
+    'onTick': (e: any) => void;
     'styles': any;
     'textWidth': string;
     'value': boolean;
@@ -141,7 +159,9 @@ export namespace Components {
     'label'?: string;
     'labelVariant'?: string;
     'layout'?: string;
+    'name'?: string;
     'onOnInputChange'?: (event: CustomEvent) => void;
+    'onTick'?: (e: any) => void;
     'styles'?: any;
     'textWidth'?: string;
     'value'?: boolean;
@@ -152,8 +172,10 @@ export namespace Components {
     'height': string;
     'hidden': boolean;
     'margin': string;
+    'max1080': boolean;
     'padding': string;
     'styles': any;
+    'variant': string;
     'width': string;
   }
   interface ArvContainerAttributes extends StencilHTMLAttributes {
@@ -161,8 +183,10 @@ export namespace Components {
     'height'?: string;
     'hidden'?: boolean;
     'margin'?: string;
+    'max1080'?: boolean;
     'padding'?: string;
     'styles'?: any;
+    'variant'?: string;
     'width'?: string;
   }
 
@@ -417,10 +441,12 @@ export namespace Components {
   }
 
   interface ArvLoader {
+    'color': string;
     'contained': boolean;
     'size': string;
   }
   interface ArvLoaderAttributes extends StencilHTMLAttributes {
+    'color'?: string;
     'contained'?: boolean;
     'size'?: string;
   }
@@ -442,6 +468,8 @@ export namespace Components {
     'onInputChange': (e: any) => void;
     'onInputEnter': (e: any) => void;
     'onRemove': (e: any) => void;
+    'onUpdate': (e: any) => void;
+    'placeholder': string;
     'values': string[];
   }
   interface ArvMultipleInputAttributes extends StencilHTMLAttributes {
@@ -450,6 +478,8 @@ export namespace Components {
     'onInputChange'?: (event: CustomEvent) => void;
     'onInputEnter'?: (event: CustomEvent) => void;
     'onRemove'?: (event: CustomEvent) => void;
+    'onUpdate'?: (event: CustomEvent) => void;
+    'placeholder'?: string;
     'values'?: string[];
   }
 
@@ -457,12 +487,14 @@ export namespace Components {
     'height': string;
     'padded': boolean;
     'transparent': boolean;
+    'weight': number;
     'width': string;
   }
   interface ArvPaperAttributes extends StencilHTMLAttributes {
     'height'?: string;
     'padded'?: boolean;
     'transparent'?: boolean;
+    'weight'?: number;
     'width'?: string;
   }
 
@@ -619,6 +651,7 @@ export namespace Components {
     'preWrap': boolean;
     'strike': boolean;
     'strong': boolean;
+    'textOverflow': boolean;
     'variant': string;
     'weight': number;
   }
@@ -629,6 +662,7 @@ export namespace Components {
     'preWrap'?: boolean;
     'strike'?: boolean;
     'strong'?: boolean;
+    'textOverflow'?: boolean;
     'variant'?: string;
     'weight'?: number;
   }
@@ -684,6 +718,7 @@ declare global {
     'ArvCardHeader': Components.ArvCardHeader;
     'ArvCardMedia': Components.ArvCardMedia;
     'ArvCard': Components.ArvCard;
+    'ArvCarousel': Components.ArvCarousel;
     'ArvCheckbox': Components.ArvCheckbox;
     'ArvContainer': Components.ArvContainer;
     'ArvDialogContent': Components.ArvDialogContent;
@@ -732,6 +767,7 @@ declare global {
     'arv-card-header': Components.ArvCardHeaderAttributes;
     'arv-card-media': Components.ArvCardMediaAttributes;
     'arv-card': Components.ArvCardAttributes;
+    'arv-carousel': Components.ArvCarouselAttributes;
     'arv-checkbox': Components.ArvCheckboxAttributes;
     'arv-container': Components.ArvContainerAttributes;
     'arv-dialog-content': Components.ArvDialogContentAttributes;
@@ -823,6 +859,12 @@ declare global {
   var HTMLArvCardElement: {
     prototype: HTMLArvCardElement;
     new (): HTMLArvCardElement;
+  };
+
+  interface HTMLArvCarouselElement extends Components.ArvCarousel, HTMLStencilElement {}
+  var HTMLArvCarouselElement: {
+    prototype: HTMLArvCarouselElement;
+    new (): HTMLArvCarouselElement;
   };
 
   interface HTMLArvCheckboxElement extends Components.ArvCheckbox, HTMLStencilElement {}
@@ -1051,6 +1093,7 @@ declare global {
     'arv-card-header': HTMLArvCardHeaderElement
     'arv-card-media': HTMLArvCardMediaElement
     'arv-card': HTMLArvCardElement
+    'arv-carousel': HTMLArvCarouselElement
     'arv-checkbox': HTMLArvCheckboxElement
     'arv-container': HTMLArvContainerElement
     'arv-dialog-content': HTMLArvDialogContentElement
@@ -1099,6 +1142,7 @@ declare global {
     'arv-card-header': HTMLArvCardHeaderElement;
     'arv-card-media': HTMLArvCardMediaElement;
     'arv-card': HTMLArvCardElement;
+    'arv-carousel': HTMLArvCarouselElement;
     'arv-checkbox': HTMLArvCheckboxElement;
     'arv-container': HTMLArvContainerElement;
     'arv-dialog-content': HTMLArvDialogContentElement;

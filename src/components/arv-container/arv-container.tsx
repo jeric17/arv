@@ -7,6 +7,11 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Container {
 
+  // oneOf [main]
+  @Prop() variant: string;
+
+  @Prop() max1080: boolean;
+
   @Prop() height: string;
 
   @Prop() hidden: boolean;
@@ -26,6 +31,8 @@ export class Container {
       container: true,
       full: this.full,
       hidden: this.hidden,
+      responsive: this.variant === 'responsive',
+      max1080: this.max1080
     };
 
     const style = {

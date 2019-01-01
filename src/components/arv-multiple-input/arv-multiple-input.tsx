@@ -14,17 +14,30 @@ export class MultipleInput {
 
   @Prop() onRemove: (e: any) => void;
 
+  @Prop() onUpdate: (e: any) => void;
+
   @Prop() disabled: boolean;
 
   @Prop() values: string[] = [];
 
+  @Prop() placeholder: string;
+
   @Event() add: EventEmitter;
+
+  @Event() update: EventEmitter;  
 
   @Event() inputChange: EventEmitter;
 
   @Event() inputEnter: EventEmitter;
 
   @Event() remove: EventEmitter;
+
+  triggerUpdate(data) {
+    if (this.onUpdate && typeof this.onUpdate === 'function') {
+      this.onUpdate(data);
+    }
+    this.update.emit(data);
+  }
 
   change(index, event) {
     event.index = index;
@@ -33,6 +46,11 @@ export class MultipleInput {
     }
 
     this.inputChange.emit(event);
+
+    const values = [...this.values];
+    values[index] = event.target.value;
+
+    this.triggerUpdate(values);
   }
 
   enter(index, event) {
@@ -50,6 +68,8 @@ export class MultipleInput {
     }
 
     this.add.emit(event);
+
+    this.triggerUpdate(this.values.concat([event.target.value]));
   }
 
   removeItem(index) {
@@ -57,6 +77,9 @@ export class MultipleInput {
       this.onRemove(index);
     }    
     this.remove.emit(index);
+    const values = [...this.values];
+    values.splice(index, 1);
+    this.triggerUpdate(values);
   }
 
   render() {
@@ -81,6 +104,7 @@ export class MultipleInput {
         ))}
         <arv-form-control>
           <arv-input
+            placeholder={this.placeholder}
             disabled={this.disabled}
             inputChange={this.addItem.bind(this)}
             full

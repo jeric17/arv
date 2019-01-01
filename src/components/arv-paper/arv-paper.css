@@ -2,10 +2,17 @@
   background-color: #FFF;
   border-radius: var(--radius);
   /* box-shadow: 0 -1px 0 rgba(0,0,0,0), 0 0 2px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.1); */
-  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
+}
+
+.root.one {
+  box-shadow: 0 1px 2px rgba(3,3,3,0.1);
+}
+
+.root.two {
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);  
 }
 
 .padded {
