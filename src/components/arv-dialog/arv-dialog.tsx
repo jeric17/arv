@@ -19,12 +19,16 @@ export class Dialog {
 
   @Prop() show: boolean;
 
+  @Prop() handleClose: () => void;
+
   @Watch('show')
   showChanged() {
     if (this.show) {
+      this._addBodyOverlay();
       return this._showContent();
     }
 
+    this._removeBodyOverlay();
     return this._hideContent();
   }
 
@@ -38,6 +42,9 @@ export class Dialog {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
     portal['removeDialog']();
     setTimeout(() => {
+      if (this.handleClose) {
+        this.handleClose();
+      }
       if (!ok) {
         this.onClose.emit(true);  
         return false;
@@ -45,6 +52,14 @@ export class Dialog {
       this.onOk.emit(true);
     }, 300);
   }
+
+  private _addBodyOverlay() {
+    document.body.style.overflow = 'hidden';
+  }
+
+  private _removeBodyOverlay() {
+    document.body.style.overflow = 'auto';
+  }  
 
   private _showContent() {
     const dialog = this.el.shadowRoot.querySelector(`.${this.rootClassName}`);

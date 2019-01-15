@@ -14,6 +14,12 @@
   }
 }
 
+.content,
+.imageContent,
+.imageContentItem {
+  height: 100%;
+}
+
 .imageContent {
   display: flex;
   transition: all 0.3s;
@@ -23,7 +29,6 @@
   background-position: center;
   background-size: cover;
   min-width: 100%;
-  padding-top: 51%;
   width: 100%;
 }
 .control {
@@ -45,6 +50,12 @@
   --default-color: #fff;
   --default-light-color: transparent;
   display: none;
+  height: 100%;
+}
+
+.middle {
+  display: block;
+  width: 100%;
   height: 100%;
 }
 

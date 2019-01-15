@@ -58,7 +58,7 @@ export class Select {
   @Prop() onSelectChange: (item: any) => void;
 
   /** oneOf [select, input] */
-  @Prop() variant = 'select';  
+  @Prop() variant = 'select';
 
   @Method()
   toggle() {
@@ -79,7 +79,7 @@ export class Select {
 
   componentWillLoad() {
     if (this.variant === 'input') {
-      this.inputValue = this.value;  
+      this.inputValue = this.value;
     }
   }
 
@@ -102,7 +102,7 @@ export class Select {
   // }
 
   private _input(e) {
-    // this.show = true;  
+    // this.show = true;
     this.inputValue = e.target.value;
     // this.onInput.emit(e);
   }
@@ -150,8 +150,8 @@ export class Select {
   hostData() {
     return {
       class: {
-        full: this.full  
-      }  
+        full: this.full
+      }
     };
   }
 
@@ -186,26 +186,26 @@ export class Select {
         return 'column';
       }
       return 'row';
-    })();  
+    })();
 
     const variant = (() => {
       if (this.labelVariant) {
-        return this.labelVariant;  
+        return this.labelVariant;
       }
 
       return this.layout === 'column' ? 'caption2' : 'body2';
     })();
     const Label = () => ([
       <arv-text variant={variant}>{this.label}</arv-text>,
-      <arv-divider 
+      <arv-divider
         noMargin={layout === 'row' ? true : false}
-        layout={layout} 
+        layout={layout}
         transparent></arv-divider>
     ]);
 
     const targetValueElement = (() => {
       if (this.variant === 'select') {
-        return <SelectValue />;  
+        return <SelectValue />;
       }
       return <InputValue />;
     })();
@@ -214,7 +214,7 @@ export class Select {
       root: true,
       full: this.full,
       icon: Boolean(this.icon)
-    };    
+    };
 
     return (
       <div class={classNames}>

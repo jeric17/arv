@@ -18,7 +18,19 @@
 }
 
 .large {
-  border-radius: 444px;
+  border-radius: 44px;
   height: 88px;
   width: 88px;
+}
+
+.xlarge {
+  border-radius: 60px;
+  height: 120px;
+  width: 120px;
+}
+
+.xxlarge {
+  border-radius: 80px;
+  height: 160px;
+  width: 160px;
 }

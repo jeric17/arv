@@ -27,6 +27,7 @@ export class VirtualPortal {
   }
 
   getStyle(h) {
+    console.log(this.parentEl);
     const rect = this.parentEl.getBoundingClientRect();
     // const top = (() => {
     //   if (this.variant === 'select') {
@@ -34,14 +35,15 @@ export class VirtualPortal {
     //   }
     //   return rect.top;
     // })();
-    const { top } = rect;
+    const { top: _t } = rect;
+    const top = _t + window.scrollY;
 
-    if ((top + 32 + h) > window.innerHeight) {
+    if ((top + 32 + h - window.scrollY) > window.innerHeight) {
       return {
         top: `${top - h}px`,
         left: `${rect.x}px`,
         width: `${rect.width}px`
-      };  
+      };
     }
     return {
       top: `${top + 32}px`,

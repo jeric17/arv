@@ -97,33 +97,36 @@ export class Carousel {
       <div class="root">
 
         <div class="content">
-          <a href={this.externalUrl} target={this.target} aria-hidden="true">
-            <ImageContent />
-          </a>
+          <ImageContent />
         </div>
 
         <div class="control">
-           <arv-flex justify="between" items="center">
-              <div class="control-item control-item__left">
-                <arv-flex justify="center" items="center">
-                  <arv-button
-                    size="large"
-                    buttonClick={this.clickLeft.bind(this)}
-                    icon="chevron_left" 
-                    variant="flat-icon" />
-                </arv-flex>
-              </div>
-              <div class="control-item control-item__right">
-                <arv-flex justify="center" items="center">
-                  <arv-button
-                    size="large"
-                    buttonClick={this.clickRight.bind(this)}
-                    icon="chevron_right"
-                    variant="flat-icon" />
-                </arv-flex>
-              </div>
-           </arv-flex>
-        </div>
+            <arv-flex justify="between" items="center">
+                {this.images.length > 1 && (
+                <div class="control-item control-item__left">
+                  <arv-flex justify="center" items="center">
+                    <arv-button
+                      size="large"
+                      buttonClick={this.clickLeft.bind(this)}
+                      icon="chevron_left" 
+                      variant="flat-icon" />
+                  </arv-flex>
+                </div>  
+                )}
+                <a href={this.externalUrl} target={this.target} aria-hidden="true" class="middle"></a>
+                {this.images.length > 1 && (
+                <div class="control-item control-item__right">
+                  <arv-flex justify="center" items="center">
+                    <arv-button
+                      size="large"
+                      buttonClick={this.clickRight.bind(this)}
+                      icon="chevron_right"
+                      variant="flat-icon" />
+                  </arv-flex>
+                </div>  
+                )}
+            </arv-flex>
+          </div>  
         {/* control */}
       </div>
     );

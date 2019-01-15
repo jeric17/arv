@@ -167,6 +167,19 @@ export namespace Components {
     'value'?: boolean;
   }
 
+  interface ArvChips {
+    'size': string;
+    'target': string;
+    'url': string;
+    'variant': string;
+  }
+  interface ArvChipsAttributes extends StencilHTMLAttributes {
+    'size'?: string;
+    'target'?: string;
+    'url'?: string;
+    'variant'?: string;
+  }
+
   interface ArvContainer {
     'full': boolean;
     'height': string;
@@ -210,6 +223,7 @@ export namespace Components {
   interface ArvDialog {
     'actions': any;
     'dialogTitle': string;
+    'handleClose': () => void;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
@@ -217,6 +231,7 @@ export namespace Components {
   interface ArvDialogAttributes extends StencilHTMLAttributes {
     'actions'?: any;
     'dialogTitle'?: string;
+    'handleClose'?: () => void;
     'onOnClose'?: (event: CustomEvent) => void;
     'onOnOk'?: (event: CustomEvent) => void;
     'parent'?: HTMLElement;
@@ -720,6 +735,7 @@ declare global {
     'ArvCard': Components.ArvCard;
     'ArvCarousel': Components.ArvCarousel;
     'ArvCheckbox': Components.ArvCheckbox;
+    'ArvChips': Components.ArvChips;
     'ArvContainer': Components.ArvContainer;
     'ArvDialogContent': Components.ArvDialogContent;
     'ArvDialogPortal': Components.ArvDialogPortal;
@@ -769,6 +785,7 @@ declare global {
     'arv-card': Components.ArvCardAttributes;
     'arv-carousel': Components.ArvCarouselAttributes;
     'arv-checkbox': Components.ArvCheckboxAttributes;
+    'arv-chips': Components.ArvChipsAttributes;
     'arv-container': Components.ArvContainerAttributes;
     'arv-dialog-content': Components.ArvDialogContentAttributes;
     'arv-dialog-portal': Components.ArvDialogPortalAttributes;
@@ -871,6 +888,12 @@ declare global {
   var HTMLArvCheckboxElement: {
     prototype: HTMLArvCheckboxElement;
     new (): HTMLArvCheckboxElement;
+  };
+
+  interface HTMLArvChipsElement extends Components.ArvChips, HTMLStencilElement {}
+  var HTMLArvChipsElement: {
+    prototype: HTMLArvChipsElement;
+    new (): HTMLArvChipsElement;
   };
 
   interface HTMLArvContainerElement extends Components.ArvContainer, HTMLStencilElement {}
@@ -1095,6 +1118,7 @@ declare global {
     'arv-card': HTMLArvCardElement
     'arv-carousel': HTMLArvCarouselElement
     'arv-checkbox': HTMLArvCheckboxElement
+    'arv-chips': HTMLArvChipsElement
     'arv-container': HTMLArvContainerElement
     'arv-dialog-content': HTMLArvDialogContentElement
     'arv-dialog-portal': HTMLArvDialogPortalElement
@@ -1144,6 +1168,7 @@ declare global {
     'arv-card': HTMLArvCardElement;
     'arv-carousel': HTMLArvCarouselElement;
     'arv-checkbox': HTMLArvCheckboxElement;
+    'arv-chips': HTMLArvChipsElement;
     'arv-container': HTMLArvContainerElement;
     'arv-dialog-content': HTMLArvDialogContentElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;

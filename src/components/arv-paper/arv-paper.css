@@ -5,6 +5,8 @@
   box-sizing: border-box;
   height: 100%;
   overflow: hidden;
+  position: relative;
+  z-index: 0;
 }
 
 .root.one {
