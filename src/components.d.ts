@@ -598,6 +598,7 @@ export namespace Components {
     'message': string;
     'open': boolean;
     'timing': number;
+    'top': number;
     'variant': string;
     'vertical': string;
   }
@@ -611,6 +612,7 @@ export namespace Components {
     'onHandleClose'?: (event: CustomEvent) => void;
     'open'?: boolean;
     'timing'?: number;
+    'top'?: number;
     'variant'?: string;
     'vertical'?: string;
   }

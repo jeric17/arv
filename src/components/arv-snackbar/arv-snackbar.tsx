@@ -31,7 +31,9 @@ export class Snackbar {
 
   @Prop() open = false;
 
-  @Prop() timing = 3;  
+  @Prop() timing = 3;
+
+  @Prop() top = 0;
 
   @Prop() vertical = 'top';
 
@@ -83,11 +85,11 @@ export class Snackbar {
     const elementWidth = root.clientWidth;
 
     if (v === 'top') {
-      style['top'] = `${this.padding}px`;
+      style['top'] = `${this.padding + this.top}px`;
     }
 
     if (v === 'center') {
-      style['top'] = `${height / 2 - (elementHeight / 2)}px`;
+      style['top'] = `${this.top + height / 2 - (elementHeight / 2)}px`;
     }
 
     if (v === 'bottom') {

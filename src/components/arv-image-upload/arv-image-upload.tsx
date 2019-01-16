@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-image-upload',
@@ -6,6 +6,8 @@ import { Component, Event, EventEmitter, Prop } from '@stencil/core';
   shadow: true
 })
 export class ImageUpload {
+
+  @Element() el: HTMLElement;  
 
   @Prop() disabled: boolean;
 
@@ -32,6 +34,8 @@ export class ImageUpload {
   }
 
   removeItem() {
+    const input = this.el.shadowRoot.querySelector('input');  
+    input.value = null;
     this.remove.emit();
     if (this.onRemove) {
       this.onRemove();
