@@ -15,6 +15,9 @@ export class Checkbox {
 
   @Prop() layout = 'row';
 
+  // checkbox, option
+  @Prop() mode = 'checkbox';  
+
   @Prop() name: string;
 
   @Prop() styles: any;
@@ -48,7 +51,8 @@ export class Checkbox {
       checked: this.value === true,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
-      'default': this.color === 'default'
+      'default': this.color === 'default',
+      option: this.mode === 'option'
     };
     const dividerLayout = this.layout === 'row' ? 'column' : 'row';
     const layoutItems = this.layout === 'row' ? 'center' : 'start';

@@ -41,6 +41,8 @@ export class ImageUpload {
   render() {
     const rootClassNames = {
       root: true,
+      xsmall: this.size === 'xsmall',
+      small: this.size === 'small',
       large: this.size === 'large',
       disabled: this.disabled
     };

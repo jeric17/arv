@@ -48,3 +48,6 @@ arv-icon {
   position: relative;
   z-index: -1;
 }
+.option {
+  border-radius: 100%;  
+}

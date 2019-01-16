@@ -148,6 +148,7 @@ export namespace Components {
     'label': string;
     'labelVariant': string;
     'layout': string;
+    'mode': string;
     'name': string;
     'onTick': (e: any) => void;
     'styles': any;
@@ -159,6 +160,7 @@ export namespace Components {
     'label'?: string;
     'labelVariant'?: string;
     'layout'?: string;
+    'mode'?: string;
     'name'?: string;
     'onOnInputChange'?: (event: CustomEvent) => void;
     'onTick'?: (e: any) => void;
@@ -620,6 +622,15 @@ export namespace Components {
     'steps'?: any;
   }
 
+  interface ArvSwitch {
+    'color': string;
+    'value': boolean;
+  }
+  interface ArvSwitchAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'value'?: boolean;
+  }
+
   interface ArvTable {
     'activeSort': string;
     'controls': any;
@@ -763,6 +774,7 @@ declare global {
     'ArvSelect': Components.ArvSelect;
     'ArvSnackbar': Components.ArvSnackbar;
     'ArvStepper': Components.ArvStepper;
+    'ArvSwitch': Components.ArvSwitch;
     'ArvTable': Components.ArvTable;
     'ArvTabs': Components.ArvTabs;
     'ArvText': Components.ArvText;
@@ -813,6 +825,7 @@ declare global {
     'arv-select': Components.ArvSelectAttributes;
     'arv-snackbar': Components.ArvSnackbarAttributes;
     'arv-stepper': Components.ArvStepperAttributes;
+    'arv-switch': Components.ArvSwitchAttributes;
     'arv-table': Components.ArvTableAttributes;
     'arv-tabs': Components.ArvTabsAttributes;
     'arv-text': Components.ArvTextAttributes;
@@ -1058,6 +1071,12 @@ declare global {
     new (): HTMLArvStepperElement;
   };
 
+  interface HTMLArvSwitchElement extends Components.ArvSwitch, HTMLStencilElement {}
+  var HTMLArvSwitchElement: {
+    prototype: HTMLArvSwitchElement;
+    new (): HTMLArvSwitchElement;
+  };
+
   interface HTMLArvTableElement extends Components.ArvTable, HTMLStencilElement {}
   var HTMLArvTableElement: {
     prototype: HTMLArvTableElement;
@@ -1146,6 +1165,7 @@ declare global {
     'arv-select': HTMLArvSelectElement
     'arv-snackbar': HTMLArvSnackbarElement
     'arv-stepper': HTMLArvStepperElement
+    'arv-switch': HTMLArvSwitchElement
     'arv-table': HTMLArvTableElement
     'arv-tabs': HTMLArvTabsElement
     'arv-text': HTMLArvTextElement
@@ -1196,6 +1216,7 @@ declare global {
     'arv-select': HTMLArvSelectElement;
     'arv-snackbar': HTMLArvSnackbarElement;
     'arv-stepper': HTMLArvStepperElement;
+    'arv-switch': HTMLArvSwitchElement;
     'arv-table': HTMLArvTableElement;
     'arv-tabs': HTMLArvTabsElement;
     'arv-text': HTMLArvTextElement;

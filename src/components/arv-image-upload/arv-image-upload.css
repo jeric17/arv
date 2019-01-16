@@ -27,6 +27,16 @@
   justify-content: center;
 }
 
+.small {
+  height: 80px;    
+  width: 80px;
+}
+
+.xsmall {
+  height: 40px; 
+  width: 40px;
+}
+
 .large {
   height: 150px;    
   width: 150px;
@@ -69,6 +79,14 @@
 .hoverText {
   color: #fff;
   text-shadow: 1px 1px 1px rgba(3,3,3,0.3);
+}
+
+.small .hoverText {
+  font-size: 0.8rem;
+}
+
+.xsmall .hoverText {
+  display: none;
 }
 
 .root:hover .hover {
