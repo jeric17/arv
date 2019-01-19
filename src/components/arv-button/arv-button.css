@@ -1,5 +1,6 @@
 :host(.full) {
   width: 100%;
+  display: block;
 }
 .button {
   border-radius: var(--radius);

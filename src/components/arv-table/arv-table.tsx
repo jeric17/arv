@@ -34,6 +34,8 @@ export class Table {
 
   @Prop() tableProps = {};
 
+  @Prop() onSelect: (row: any) => void;
+
   @Event() rowClick: EventEmitter;
 
   @Event() rowItemClick: EventEmitter;
@@ -51,7 +53,10 @@ export class Table {
     this.rowClick.emit({
       evt,
       item  
-    });  
+    });
+    if (this.onSelect) {
+      this.onSelect(item);
+    }
   }
 
   tdItemClick(item, evt) {
@@ -135,7 +140,7 @@ export class Table {
               ))}
               {Boolean(this.controls.length) && (
                 <td class="td controls">
-                  <arv-flex>
+                  <arv-flex justify="end">
                     {this.controls.map(ctrlItem => (
                       <arv-button
                         variant="flat-icon"

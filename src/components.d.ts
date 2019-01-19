@@ -258,6 +258,13 @@ export namespace Components {
     'width'?: string;
   }
 
+  interface ArvEditor {
+    'disabled': boolean;
+  }
+  interface ArvEditorAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
+  }
+
   interface ArvFlex {
     'bordered': boolean;
     'content': string;
@@ -642,6 +649,7 @@ export namespace Components {
     'controls': any;
     'isAscending': boolean;
     'multiSelectable': boolean;
+    'onSelect': (row: any) => void;
     'selectable': boolean;
     'sortable': boolean;
     'styles': any;
@@ -657,6 +665,7 @@ export namespace Components {
     'onHeaderClick'?: (event: CustomEvent) => void;
     'onRowClick'?: (event: CustomEvent) => void;
     'onRowItemClick'?: (event: CustomEvent) => void;
+    'onSelect'?: (row: any) => void;
     'selectable'?: boolean;
     'sortable'?: boolean;
     'styles'?: any;
@@ -758,6 +767,7 @@ declare global {
     'ArvDialogPortal': Components.ArvDialogPortal;
     'ArvDialog': Components.ArvDialog;
     'ArvDivider': Components.ArvDivider;
+    'ArvEditor': Components.ArvEditor;
     'ArvFlex': Components.ArvFlex;
     'ArvFluidContainer': Components.ArvFluidContainer;
     'ArvFormControl': Components.ArvFormControl;
@@ -809,6 +819,7 @@ declare global {
     'arv-dialog-portal': Components.ArvDialogPortalAttributes;
     'arv-dialog': Components.ArvDialogAttributes;
     'arv-divider': Components.ArvDividerAttributes;
+    'arv-editor': Components.ArvEditorAttributes;
     'arv-flex': Components.ArvFlexAttributes;
     'arv-fluid-container': Components.ArvFluidContainerAttributes;
     'arv-form-control': Components.ArvFormControlAttributes;
@@ -943,6 +954,12 @@ declare global {
   var HTMLArvDividerElement: {
     prototype: HTMLArvDividerElement;
     new (): HTMLArvDividerElement;
+  };
+
+  interface HTMLArvEditorElement extends Components.ArvEditor, HTMLStencilElement {}
+  var HTMLArvEditorElement: {
+    prototype: HTMLArvEditorElement;
+    new (): HTMLArvEditorElement;
   };
 
   interface HTMLArvFlexElement extends Components.ArvFlex, HTMLStencilElement {}
@@ -1149,6 +1166,7 @@ declare global {
     'arv-dialog-portal': HTMLArvDialogPortalElement
     'arv-dialog': HTMLArvDialogElement
     'arv-divider': HTMLArvDividerElement
+    'arv-editor': HTMLArvEditorElement
     'arv-flex': HTMLArvFlexElement
     'arv-fluid-container': HTMLArvFluidContainerElement
     'arv-form-control': HTMLArvFormControlElement
@@ -1200,6 +1218,7 @@ declare global {
     'arv-dialog-portal': HTMLArvDialogPortalElement;
     'arv-dialog': HTMLArvDialogElement;
     'arv-divider': HTMLArvDividerElement;
+    'arv-editor': HTMLArvEditorElement;
     'arv-flex': HTMLArvFlexElement;
     'arv-fluid-container': HTMLArvFluidContainerElement;
     'arv-form-control': HTMLArvFormControlElement;

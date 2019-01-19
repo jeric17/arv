@@ -1,0 +1,69 @@
+:host,
+.root,
+.editor {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  --icon-color: #333;
+}
+
+.root {
+  position: relative;
+}
+
+.editor {
+  overflow-y: scroll;
+  border-radius: var(--radius);
+  border: 1px solid #efefef;
+  padding: 1em;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.headingList {
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+}
+
+.control {
+  border: 1px solid #efefef;
+  display: flex;
+  height: 33px;
+  min-height: 33px;
+}
+
+.wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+}
+
+.input {
+  opacity: 0;
+  opacity: 0;
+  display: block;
+  width: 33px;
+  height: 33px;
+  position: absolute;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  width: 33px;
+  height: 33px;
+  --default-icon-color: #333;
+}
+
+.editor img {
+  max-width: 50%;
+  display: block;
+}
