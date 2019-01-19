@@ -27,7 +27,6 @@ export class VirtualPortal {
   }
 
   getStyle(h) {
-    console.log(this.parentEl);
     const rect = this.parentEl.getBoundingClientRect();
     // const top = (() => {
     //   if (this.variant === 'select') {

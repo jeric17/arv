@@ -23,6 +23,8 @@ export class Input {
 
   @Prop() hasError: boolean;
 
+  @Prop() hashKey: number;
+
   @Prop() icon: string;
 
   @Prop() inputProps = {};  

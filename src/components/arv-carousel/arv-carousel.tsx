@@ -97,7 +97,12 @@ export class Carousel {
       <div class="root">
 
         <div class="content">
-          <ImageContent />
+          {Boolean(this.images.length) && <ImageContent />}
+          {!Boolean(this.images.length) && (
+            <arv-flex justify="center" items="center">
+              <arv-icon icon="image" />
+            </arv-flex>  
+          )}
         </div>
 
         <div class="control">

@@ -11,6 +11,8 @@ export class ImageUpload {
 
   @Prop() disabled: boolean;
 
+  @Prop() hashKey: number;  
+
   @Prop() size: string;
 
   @Prop() imgSrc: string;

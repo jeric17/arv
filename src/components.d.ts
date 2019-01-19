@@ -335,6 +335,7 @@ export namespace Components {
 
   interface ArvImageUpload {
     'disabled': boolean;
+    'hashKey': number;
     'imgSrc': string;
     'onRemove': () => void;
     'onUpload': (e: any) => void;
@@ -342,6 +343,7 @@ export namespace Components {
   }
   interface ArvImageUploadAttributes extends StencilHTMLAttributes {
     'disabled'?: boolean;
+    'hashKey'?: number;
     'imgSrc'?: string;
     'onRemove'?: (event: CustomEvent) => void;
     'onUpload'?: (event: CustomEvent) => void;
@@ -371,6 +373,7 @@ export namespace Components {
     'fileUpload': boolean;
     'full': boolean;
     'hasError': boolean;
+    'hashKey': number;
     'icon': string;
     'input': (e: any) => void;
     'inputBlur': (e: any) => void;
@@ -396,6 +399,7 @@ export namespace Components {
     'fileUpload'?: boolean;
     'full'?: boolean;
     'hasError'?: boolean;
+    'hashKey'?: number;
     'icon'?: string;
     'input'?: (e: any) => void;
     'inputBlur'?: (e: any) => void;

@@ -42,8 +42,11 @@ export class Flex {
   }
 
   render() {
-    const rootClassNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto': ''} ${this.padded ? 'padded': ''}  ${this.wrap ? 'wrap': ''}`;
-
+    const classNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto': ''} ${this.padded ? 'padded': ''}  ${this.wrap ? 'wrap': ''}`;
+    const rootClassNames = {
+      [classNames]: true,
+      bordered: this.bordered
+    };
     const styles = {
       '--order': `${this.order}`
     };
