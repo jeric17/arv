@@ -1,4 +1,4 @@
-import { Component, Prop, Element } from '@stencil/core';
+import { Component, Prop, Element, Method } from '@stencil/core';
 
 @Component({
   tag: 'arv-editor',
@@ -11,13 +11,36 @@ export class Editor {
 
   @Prop() disabled: boolean;
 
+  @Prop() disabledTools: string[] = [];
+
+  @Prop() handleImage: (editor: any) => void;
+
+  @Method()
+  setValue(value: string) {
+    const editorContent = this.el.shadowRoot.querySelector('.editor');
+    editorContent.innerHTML = value;
+  }
+
+  @Method()
+  async getValue() {
+    const editorContent = this.el.shadowRoot.querySelector('.editor');
+    return editorContent.innerHTML;
+  }
+
   formatBlock(block: string) {
     document.execCommand('formatBlock', false, block);
   }
 
+  imageGet() {
+    if (this.handleImage) {
+      const editorContent = this.el.shadowRoot.querySelector('.editor');
+      this.handleImage(editorContent);
+    }
+  }
+
   getImage() {
-    const file = this.el.shadowRoot.querySelector('input[type=file]')['files'][0];
     const editorContent = this.el.shadowRoot.querySelector('.editor');
+    const file = this.el.shadowRoot.querySelector('input[type=file]')['files'][0];
     const reader = new FileReader();
 
     reader.addEventListener(
@@ -112,7 +135,9 @@ export class Editor {
         icon: 'link_off',
         comm: 'unlink',
       }
-    ];
+    ].filter(d => {
+      return !this.disabledTools.includes(d.comm);
+    });
     const headings = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
     const sizes = [1, 2, 3, 4, 5, 6, 7];
 
@@ -176,10 +201,10 @@ export class Editor {
               </div>
             </arv-menu>
             <span class="inputWrapper">
-              <arv-icon icon="image"></arv-icon>
-              <input
+              <arv-icon onClick={this.imageGet.bind(this)} icon="image"></arv-icon>
+              {!Boolean(this.handleImage) && (<input
                 class="input"
-                onChange={this.getImage.bind(this)} type="file" accept="image/*" />
+                onChange={this.getImage.bind(this)} type="file" accept="image/*" />)}
             </span>
           </div>
           <arv-divider transparent/>

@@ -8,10 +8,10 @@
 
 @keyframes right-to-left {
   from {
-      transform: translate(-100%);
+      transform: translateX(-100%);
   }
   to {
-      transform: translate(0%);
+      transform: translateX(0%);
   }
 }
 
@@ -23,7 +23,7 @@
 
 .imageContent {
   display: flex;
-  transition: all 0.3s;
+  transform: translateX(-100%);
 }
 
 .imageContentItem {
@@ -40,11 +40,11 @@
   z-index: 1;
 }
 .right {
-  animation: right-to-left 0.3s reverse ease-in-out;
+  animation: right-to-left 0.5s reverse ease-in-out;
 }
 
 .left {
-  animation: right-to-left 0.3s ease-in-out;
+  animation: right-to-left 0.5s ease-in-out;
 }
 
 .control-item {

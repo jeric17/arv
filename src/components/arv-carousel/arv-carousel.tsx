@@ -32,6 +32,7 @@ export class Carousel {
 
   clickRight() {
     let index = this.currentIndex;
+
     if (index >= this.images.length - 1) {
       index = 0;
     } else {
@@ -44,15 +45,16 @@ export class Carousel {
     setTimeout(() => {
       this.transitioning = false;  
       this.direction = '';
-    }, 300);
+    }, 500);
   }
 
   clickLeft() {
     let index = this.currentIndex;
+
     if (!index) {
       index = this.images.length - 1;
     } else {
-      index -= 1;      
+      index -= 1;
     }
     this.currentIndex = index;
     this.direction = 'left';
@@ -60,7 +62,7 @@ export class Carousel {
     setTimeout(() => {
       this.transitioning = false;  
       this.direction = '';
-    }, 300);
+    }, 500);
   }
 
   render() {
@@ -72,14 +74,34 @@ export class Carousel {
         left: this.direction === 'left',
       };
 
-      const startIndex = (() => {
-        if (this.direction === 'right') {
-          return this.currentIndex - 1;
-        }
-        return this.currentIndex;
-      })();
+      const content = (() => {
+        const _c = this.images.slice(this.currentIndex, this.currentIndex + 2);
+        const l = this.images.length;
 
-      const content = this.images.slice(startIndex, startIndex + 2);
+        if (this.direction === 'left' && this.currentIndex === l - 1) {
+          return [this.images[l - 1], this.images[0], this.images[l - 1]];
+        }
+
+        if (this.direction === 'left') {
+          return _c;          
+        }        
+
+        if (this.currentIndex === 0) {
+          return [this.images[l - 1]].concat(_c);
+        }
+
+        if (this.currentIndex === (l - 1)) {
+          return this.images.slice(l - 2, l).concat(this.images[0]);
+        }
+
+        if (this.currentIndex > (l - 1)) {
+          return [this.images[l - 1], this.images[0], this.images[l - 1]];
+        }
+
+        const sliced = this.images.slice(this.currentIndex - 1, this.currentIndex + 2);
+        
+        return sliced;
+      })()
 
       return (
         <div class={classNames}>

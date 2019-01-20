@@ -260,9 +260,15 @@ export namespace Components {
 
   interface ArvEditor {
     'disabled': boolean;
+    'disabledTools': string[];
+    'getValue': () => Promise<string>;
+    'handleImage': (editor: any) => void;
+    'setValue': (value: string) => void;
   }
   interface ArvEditorAttributes extends StencilHTMLAttributes {
     'disabled'?: boolean;
+    'disabledTools'?: string[];
+    'handleImage'?: (editor: any) => void;
   }
 
   interface ArvFlex {
