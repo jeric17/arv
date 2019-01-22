@@ -1,4 +1,4 @@
-import { Component, Prop, Element, Method } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, Element, Method } from '@stencil/core';
 
 @Component({
   tag: 'arv-editor',
@@ -15,6 +15,8 @@ export class Editor {
 
   @Prop() handleImage: (editor: any) => void;
 
+  @Event() editorOnBlur: EventEmitter;
+
   @Method()
   setValue(value: string) {
     const editorContent = this.el.shadowRoot.querySelector('.editor');
@@ -25,6 +27,10 @@ export class Editor {
   async getValue() {
     const editorContent = this.el.shadowRoot.querySelector('.editor');
     return editorContent.innerHTML;
+  }
+
+  onBlur() {
+    this.editorOnBlur.emit();
   }
 
   formatBlock(block: string) {
@@ -212,7 +218,12 @@ export class Editor {
           <arv-flex layout="column">
             {controlsWrapper}
             <arv-divider transparent/>
-            <div class="editor" contenteditable onChange={e => console.log(e)}></div>
+            <div class="editor" 
+            contenteditable 
+            onBlur={() => {
+            console.log('blur');
+             this.onBlur();
+            }}></div>
           </arv-flex>
       </div>
     );

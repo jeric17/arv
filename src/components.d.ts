@@ -269,6 +269,7 @@ export namespace Components {
     'disabled'?: boolean;
     'disabledTools'?: string[];
     'handleImage'?: (editor: any) => void;
+    'onEditorOnBlur'?: (event: CustomEvent) => void;
   }
 
   interface ArvFlex {
