@@ -141,75 +141,79 @@ export class Editor {
     const headings = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
     const sizes = [1, 2, 3, 4, 5, 6, 7];
 
-    return (
-      <div class={rootClassNames}>
-        <arv-flex layout="column">
-          <div class="control">
-            {controls.map((d, i) => (
-              <arv-button
-                key={i}
-                onClick={this.comm.bind(this, d.comm)}
-                icon={d.icon}
-                variant="flat-icon"
-                rounded={false}/>
-            ))}
+    const controlsWrapper = (
+      <div class="control">
+        {controls.map((d, i) => (
+          <arv-button
+            key={i}
+            onClick={this.comm.bind(this, d.comm)}
+            icon={d.icon}
+            variant="flat-icon"
+            rounded={false}/>
+        ))}
+        <arv-button
+          onClick={this.showLink.bind(this)}
+          icon="insert_link"
+          variant="flat-icon"
+          rounded={false}/>
+        <arv-menu xPosition="left">
+          <div slot="menu">
             <arv-button
-              onClick={this.showLink.bind(this)}
-              icon="insert_link"
+              icon="title"
               variant="flat-icon"
               rounded={false}/>
-            <arv-menu xPosition="left">
-              <div slot="menu">
-                <arv-button
-                  icon="title"
-                  variant="flat-icon"
-                  rounded={false}/>
-              </div>
-              <div
-                class="headingList"
-                slot="menu-list">
-                {headings.map((d, i) => (
-                  <arv-button
-                    rounded={false}
-                    key={i}
-                    onClick={this.formatBlock.bind(this, d)}
-                    full>
-                    Heading {i + 1}
-                  </arv-button>
-                ))}
-              </div>
-            </arv-menu>
-            <arv-menu xPosition="left">
-              <div slot="menu">
-                <arv-button
-                  icon="format_size"
-                  variant="flat-icon"
-                  rounded={false}/>
-              </div>
-              <div
-                class="headingList"
-                slot="menu-list">
-                {sizes.map(d => (
-                  <arv-button
-                    rounded={false}
-                    key={d}
-                    onClick={this.size.bind(this, d)}
-                    full>
-                    {d}
-                  </arv-button>
-                ))}
-              </div>
-            </arv-menu>
-            <span class="inputWrapper">
-              <arv-icon onClick={this.imageGet.bind(this)} icon="image"></arv-icon>
-              {!Boolean(this.handleImage) && (<input
-                class="input"
-                onChange={this.getImage.bind(this)} type="file" accept="image/*" />)}
-            </span>
           </div>
-          <arv-divider transparent/>
-          <div class="editor" contenteditable></div>
-        </arv-flex>
+          <div
+            class="headingList"
+            slot="menu-list">
+            {headings.map((d, i) => (
+              <arv-button
+                rounded={false}
+                key={i}
+                onClick={this.formatBlock.bind(this, d)}
+                full>
+                Heading {i + 1}
+              </arv-button>
+            ))}
+          </div>
+        </arv-menu>
+        <arv-menu xPosition="left">
+          <div slot="menu">
+            <arv-button
+              icon="format_size"
+              variant="flat-icon"
+              rounded={false}/>
+          </div>
+          <div
+            class="headingList"
+            slot="menu-list">
+            {sizes.map(d => (
+              <arv-button
+                rounded={false}
+                key={d}
+                onClick={this.size.bind(this, d)}
+                full>
+                {d}
+              </arv-button>
+            ))}
+          </div>
+        </arv-menu>
+        <span class="inputWrapper">
+          <arv-icon onClick={this.imageGet.bind(this)} icon="image"></arv-icon>
+          {!Boolean(this.handleImage) && (<input
+            class="input"
+            onChange={this.getImage.bind(this)} type="file" accept="image/*" />)}
+        </span>
+      </div>
+    );
+
+    return (
+      <div class={rootClassNames}>
+          <arv-flex layout="column">
+            {controlsWrapper}
+            <arv-divider transparent/>
+            <div class="editor" contenteditable onChange={e => console.log(e)}></div>
+          </arv-flex>
       </div>
     );
   }
