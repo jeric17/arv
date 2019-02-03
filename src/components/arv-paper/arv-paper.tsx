@@ -13,7 +13,9 @@ export class Paper {
 
   @Prop() transparent: boolean;
 
-  @Prop() weight = 2;  
+  @Prop() box: boolean;
+
+  @Prop() weight = 2;
 
   @Prop() width: string;
 
@@ -23,7 +25,8 @@ export class Paper {
       padded: this.padded,
       transparent: this.transparent,
       one: this.weight === 1,
-      two: this.weight === 2
+      two: this.weight === 2,
+      box: this.box
     };
 
     const styles = {

@@ -25,13 +25,13 @@
   font-size: 0.8rem;
 }
 .medium {
-  font-size: 1.2rem;
+  font-size: var(--icon-size, 1.2rem);
 }
 .large {
-  font-size: 2rem;
+  font-size: var(--icon-size, 2rem);
 }
 .xlarge {
-  font-size: 4rem;
+  font-size: var(--icon-size, 4rem);
 }
 .xxlarge {
   font-size: 8rem;
@@ -42,7 +42,7 @@
 }
 
 .withButtonIcon {
-  margin: 0 0.5em 0 0;  
+  margin: 0 0.5em 0 0;
 }
 
 .defaultColor {

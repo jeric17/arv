@@ -14,7 +14,7 @@ export class Button {
 
   @Prop() full: boolean = false;
 
-  @Prop() href: string;  
+  @Prop() href: string;
 
   @Prop() icon: string;
 
@@ -77,6 +77,7 @@ export class Button {
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
+      xlarge: this.size === 'xlarge',
       bordered: this.variant === 'bordered',
       flat: this.variant === 'flat',
       raised: this.variant === 'raised',
@@ -108,8 +109,8 @@ export class Button {
             <slot></slot>
           </arv-text>
         </div>
-      </arv-flex>  
-    );  
+      </arv-flex>
+    );
 
     const T = ({ p }) => {
       if (this.href) {

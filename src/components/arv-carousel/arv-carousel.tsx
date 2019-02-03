@@ -149,23 +149,23 @@ export class Carousel {
         <div class="control">
             <arv-flex justify="between" items="center">
                 {this.images.length > 1 && (
-                <div class="control-item control-item__left">
+                <div onClick={this.clickLeft.bind(this)} class="control-item control-item__left">
                   <arv-flex justify="center" items="center">
                     <arv-button
                       size="large"
-                      buttonClick={this.clickLeft.bind(this)}
                       icon="chevron_left" 
                       variant="flat-icon" />
                   </arv-flex>
                 </div>  
                 )}
-                <a href={this.externalUrl} target={this.target} aria-hidden="true" class="middle"></a>
+                {Boolean(this.externalUrl) && (
+                  <a href={this.externalUrl} target={this.target} aria-hidden="true" class="middle"></a>  
+                )}
                 {this.images.length > 1 && (
-                <div class="control-item control-item__right">
+                <div onClick={this.clickRight.bind(this)} class="control-item control-item__right">
                   <arv-flex justify="center" items="center">
                     <arv-button
                       size="large"
-                      buttonClick={this.clickRight.bind(this)}
                       icon="chevron_right"
                       variant="flat-icon" />
                   </arv-flex>

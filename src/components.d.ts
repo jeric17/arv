@@ -207,33 +207,43 @@ export namespace Components {
 
   interface ArvDialogContent {
     'animation': string;
+    'full': boolean;
   }
   interface ArvDialogContentAttributes extends StencilHTMLAttributes {
     'animation'?: string;
+    'full'?: boolean;
   }
 
   interface ArvDialogPortal {
     'content': any;
+    'full': boolean;
     'removeDialog': () => void;
     'scrollable': boolean;
   }
   interface ArvDialogPortalAttributes extends StencilHTMLAttributes {
     'content'?: any;
+    'full'?: boolean;
     'scrollable'?: boolean;
   }
 
   interface ArvDialog {
     'actions': any;
+    'bgColor': string;
     'dialogTitle': string;
+    'full': boolean;
     'handleClose': () => void;
+    'hideClose': boolean;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
   }
   interface ArvDialogAttributes extends StencilHTMLAttributes {
     'actions'?: any;
+    'bgColor'?: string;
     'dialogTitle'?: string;
+    'full'?: boolean;
     'handleClose'?: () => void;
+    'hideClose'?: boolean;
     'onOnClose'?: (event: CustomEvent) => void;
     'onOnOk'?: (event: CustomEvent) => void;
     'parent'?: HTMLElement;
@@ -518,7 +528,21 @@ export namespace Components {
     'values'?: string[];
   }
 
+  interface ArvPaginator {
+    'currentPage': number;
+    'itemsPerPage': number;
+    'onSelect': (index: number) => void;
+    'totalItems': number;
+  }
+  interface ArvPaginatorAttributes extends StencilHTMLAttributes {
+    'currentPage'?: number;
+    'itemsPerPage'?: number;
+    'onSelect'?: (index: number) => void;
+    'totalItems'?: number;
+  }
+
   interface ArvPaper {
+    'box': boolean;
     'height': string;
     'padded': boolean;
     'transparent': boolean;
@@ -526,6 +550,7 @@ export namespace Components {
     'width': string;
   }
   interface ArvPaperAttributes extends StencilHTMLAttributes {
+    'box'?: boolean;
     'height'?: string;
     'padded'?: boolean;
     'transparent'?: boolean;
@@ -794,6 +819,7 @@ declare global {
     'ArvLoader': Components.ArvLoader;
     'ArvMenu': Components.ArvMenu;
     'ArvMultipleInput': Components.ArvMultipleInput;
+    'ArvPaginator': Components.ArvPaginator;
     'ArvPaper': Components.ArvPaper;
     'ArvSectionTitle': Components.ArvSectionTitle;
     'ArvSection': Components.ArvSection;
@@ -846,6 +872,7 @@ declare global {
     'arv-loader': Components.ArvLoaderAttributes;
     'arv-menu': Components.ArvMenuAttributes;
     'arv-multiple-input': Components.ArvMultipleInputAttributes;
+    'arv-paginator': Components.ArvPaginatorAttributes;
     'arv-paper': Components.ArvPaperAttributes;
     'arv-section-title': Components.ArvSectionTitleAttributes;
     'arv-section': Components.ArvSectionAttributes;
@@ -1063,6 +1090,12 @@ declare global {
     new (): HTMLArvMultipleInputElement;
   };
 
+  interface HTMLArvPaginatorElement extends Components.ArvPaginator, HTMLStencilElement {}
+  var HTMLArvPaginatorElement: {
+    prototype: HTMLArvPaginatorElement;
+    new (): HTMLArvPaginatorElement;
+  };
+
   interface HTMLArvPaperElement extends Components.ArvPaper, HTMLStencilElement {}
   var HTMLArvPaperElement: {
     prototype: HTMLArvPaperElement;
@@ -1193,6 +1226,7 @@ declare global {
     'arv-loader': HTMLArvLoaderElement
     'arv-menu': HTMLArvMenuElement
     'arv-multiple-input': HTMLArvMultipleInputElement
+    'arv-paginator': HTMLArvPaginatorElement
     'arv-paper': HTMLArvPaperElement
     'arv-section-title': HTMLArvSectionTitleElement
     'arv-section': HTMLArvSectionElement
@@ -1245,6 +1279,7 @@ declare global {
     'arv-loader': HTMLArvLoaderElement;
     'arv-menu': HTMLArvMenuElement;
     'arv-multiple-input': HTMLArvMultipleInputElement;
+    'arv-paginator': HTMLArvPaginatorElement;
     'arv-paper': HTMLArvPaperElement;
     'arv-section-title': HTMLArvSectionTitleElement;
     'arv-section': HTMLArvSectionElement;

@@ -1,0 +1,42 @@
+.root {
+  display: flex;
+}
+
+.pageItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 32px;
+  min-height: 32px;
+  width: 32px;
+  height: 32px;
+  margin-right: 4px;
+  margin-left: 4px;
+  border-radius: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--primary-color);
+  color: var(--primary-dark-color);
+  cursor: pointer;
+  --default-icon-color: var(--primary-dark-color);
+}
+.pageItem.active {
+  color: var(--active-color, #fff);
+  background-color: var(--primary-color);
+}
+.root:first-child {
+  margin-right: 0;
+}
+.root:last-child {
+  margin-left: 0;
+}
+.pageItem.prev {
+  margin-right: 16px;
+}
+.pageItem.next {
+  margin-left: 16px;
+}
+.pageItem.noBorder {
+  cursor: auto;
+  border-color: transparent;
+}

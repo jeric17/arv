@@ -52,6 +52,7 @@
   --default-light-color: transparent;
   display: none;
   height: 100%;
+  cursor: pointer;
 }
 
 .middle {
@@ -61,7 +62,7 @@
 }
 
 .root:hover .control-item {
-  display: block;
+  display: var(--show-controls, block);
 }
 
 .control-item__left {

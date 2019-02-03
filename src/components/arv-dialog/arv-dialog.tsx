@@ -13,13 +13,19 @@ export class Dialog {
 
   @Prop() actions: any;
 
-  @Prop() dialogTitle: string;  
+  @Prop() dialogTitle: string;
+
+  @Prop() full: boolean;
+
+  @Prop() bgColor = '#fff';
 
   @Prop() scrollable: boolean;
 
   @Prop() show: boolean;
 
   @Prop() handleClose: () => void;
+
+  @Prop() hideClose: boolean;
 
   @Watch('show')
   showChanged() {
@@ -36,7 +42,7 @@ export class Dialog {
 
   @Event() onOk: EventEmitter;
 
-  @Event() onClose: EventEmitter;  
+  @Event() onClose: EventEmitter;
 
   onHandleClose(ok = false) {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
@@ -46,7 +52,7 @@ export class Dialog {
         this.handleClose();
       }
       if (!ok) {
-        this.onClose.emit(true);  
+        this.onClose.emit(true);
         return false;
       }
       this.onOk.emit(true);
@@ -59,7 +65,7 @@ export class Dialog {
 
   private _removeBodyOverlay() {
     document.body.style.overflow = 'auto';
-  }  
+  }
 
   private _showContent() {
     const dialog = this.el.shadowRoot.querySelector(`.${this.rootClassName}`);
@@ -68,6 +74,10 @@ export class Dialog {
 
     if (this.scrollable) {
       elem.setAttribute('scrollable', 'true');
+    }
+
+    if (this.full) {
+      elem.setAttribute('full', 'true');
     }
 
     elem.appendChild(dialog);
@@ -79,12 +89,12 @@ export class Dialog {
   private _hideContent() {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
     if (!portal) {
-      return false;  
+      return false;
     }
     this.el.shadowRoot.appendChild(portal.shadowRoot.querySelector(`.${this.rootClassName}`));
     this.el.appendChild(portal.children[0]);
 
-    document.body.removeChild(portal); 
+    document.body.removeChild(portal);
   }
 
   render() {
@@ -92,40 +102,49 @@ export class Dialog {
 
     return (
       <arv-container
-        margin="1em"
+        margin={this.full ? '' : '1em'}
         class={this.rootClassName}
         hidden={!this.show}>
-        <arv-dialog-content>
-          <div class="content arv-dialog-content">
-            <arv-flex justify="between" items="center">
-              <arv-text variant="heading3">{this.dialogTitle}</arv-text>
-              <arv-button
-                variant="flat-icon"
-                icon="close"
-                buttonClick={this.onHandleClose.bind(this, false)}></arv-button>
-            </arv-flex>
+        <arv-dialog-content
+          full={this.full}
+          style={{'--paper-color': this.bgColor}}
+        >
+          <div class={{
+            content: true,
+            'arv-dialog-content': true,
+            contentFull: this.full
+          }}>
+            {!this.hideClose && (
+               <arv-flex justify="between" items="center">
+                 <arv-text variant="heading3">{this.dialogTitle}</arv-text>
+                 <arv-button
+                   variant="flat-icon"
+                   icon="close"
+                   buttonClick={this.onHandleClose.bind(this, false)}></arv-button>
+               </arv-flex>
+            )}
             {slot}
             {this.actions && [
-              <arv-divider transparent/>,
-              <arv-flex justify="end">
-                {this.actions.cancel && (
-                  <arv-button
-                    variant={this.actions.cancel.variant}
-                    color={this.actions.cancel.color}
-                    buttonClick={this.onHandleClose.bind(this, false)}>
-                    {this.actions.cancel.text || 'Cancel'}
-                  </arv-button>  
-                )}
-                <arv-divider layout="column" transparent />
-                {this.actions.ok && (
-                  <arv-button
-                    variant={this.actions.ok.variant || 'raised'}
-                    color={this.actions.ok.color || 'primary'}
-                    buttonClick={this.onHandleClose.bind(this, true)}>
-                    {this.actions.ok.text || 'Ok'}
-                  </arv-button>  
-                )}
-              </arv-flex>
+               <arv-divider transparent/>,
+               <arv-flex justify="end">
+                 {this.actions.cancel && (
+                    <arv-button
+                      variant={this.actions.cancel.variant}
+                      color={this.actions.cancel.color}
+                      buttonClick={this.onHandleClose.bind(this, false)}>
+                      {this.actions.cancel.text || 'Cancel'}
+                    </arv-button>
+                 )}
+                 <arv-divider layout="column" transparent />
+                 {this.actions.ok && (
+                    <arv-button
+                      variant={this.actions.ok.variant || 'raised'}
+                      color={this.actions.ok.color || 'primary'}
+                      buttonClick={this.onHandleClose.bind(this, true)}>
+                      {this.actions.ok.text || 'Ok'}
+                    </arv-button>
+                 )}
+               </arv-flex>
             ]}
           </div>
         </arv-dialog-content>

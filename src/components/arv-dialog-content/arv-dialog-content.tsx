@@ -8,15 +8,20 @@ import { Component, Prop } from '@stencil/core';
 export class DialogContent {
   @Prop() animation = 'slideInBottom';
 
+  @Prop() full: boolean;
+
   render() {
     return (
-      <div class="root">
+      <div class={{
+        root: true,
+        full: this.full
+      }}>
         <arv-transition animation={this.animation}>
-          <arv-paper padded>
+          <arv-paper padded={!this.full} box={this.full}>
             <slot />
           </arv-paper>
         </arv-transition>
       </div>
-    );    
-  }    
+    );
+  }
 }

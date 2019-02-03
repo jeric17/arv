@@ -11,6 +11,8 @@ export class DialogPortal {
 
   @State() backdropAnimation = 'fadeIn';
 
+  @Prop() full: boolean;
+
   @Prop() content: any;
 
   @Prop() scrollable: boolean;
@@ -37,7 +39,7 @@ export class DialogPortal {
   render() {
     const classNames = {
       'arv-dialog-portal': true,
-      scrollable: this.scrollable  
+      scrollable: this.scrollable
     };
 
     return (
