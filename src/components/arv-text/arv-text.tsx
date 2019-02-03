@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Element, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-text',
@@ -7,11 +7,15 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Text {
 
+  @Element() el: HTMLElement;
+
   @Prop() color: string;
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
 
   @Prop() lineHeight: string;
+
+  @Prop() maxChars: number;
 
   @Prop() weight: number;
 
@@ -25,7 +29,24 @@ export class Text {
 
   @Prop() textOverflow: boolean;
 
-  render() {
+  componentDidUpdate() {
+    this.setText();
+  }
+
+  componentDidLoad() {
+    setTimeout(() => {
+      this.setText();
+    }, 0);
+  }  
+
+  setText() {
+    const { innerText } = this.el;
+    if (this.maxChars && innerText.length > this.maxChars) {
+      this.el.innerText = innerText.substring(0, this.maxChars) + '...';
+    }  
+  }  
+
+  render() {     
     const rootClassNames = {
       root: true,
       primary: this.color === 'primary',

@@ -1,4 +1,4 @@
-import { Component, Prop, State } from '@stencil/core';
+import { Component, Listen, Prop, State } from '@stencil/core';
 import { ImageItem } from './arv-carousel.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { ImageItem } from './arv-carousel.model';
   shadow: true
 })
 export class Carousel {
+  touchX: number;
 
   @State() transitioning = true;
 
@@ -22,6 +23,24 @@ export class Carousel {
   @Prop() loading: boolean;  
 
   @Prop() target: string;
+
+  @Listen('touchstart')
+  handleTouchStart(event: TouchEvent) {
+    const touch = event.changedTouches[0];
+    this.touchX = touch.clientX;
+  }
+
+  @Listen('touchend')
+  handleTouchEnd(event: TouchEvent) {
+    const touch = event.changedTouches[0];  
+    const { clientX } = touch;
+    if (this.touchX < clientX) {
+      this.clickLeft();
+    } else {
+      this.clickRight();
+    }
+    this.touchX = 0;
+  }  
 
   _componentDidLoad() {
     setTimeout(() => {

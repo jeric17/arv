@@ -72,6 +72,11 @@ export class Input {
 
   @Event() onInputEnter: EventEmitter;
 
+  @Listen('focus')
+  focusHandler() {
+    this.inputElement.focus();
+  }
+
   @Listen('keydown.enter')
   handleKeyEnter(e) {
     const inputElement = (() => {
@@ -135,6 +140,7 @@ export class Input {
   }
 
   private _focus(e) {
+    this.inputElement.focus();
     const value = e.target['value'];
     if (this.inputFocus) {
       this.inputFocus(e);
@@ -257,6 +263,7 @@ export class Input {
             onBlur={this._blur.bind(this)}
             autocomplete={this.autocomplete}
             value={this.value}
+            tabindex={0}
             {...this.inputProps} />
         );
       }

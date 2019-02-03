@@ -111,3 +111,6 @@ textarea.input {
   color: var(--required-color);
   margin-left: 5px;
 }
+.input:required {
+  box-shadow: none;
+}

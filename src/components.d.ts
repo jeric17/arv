@@ -644,10 +644,12 @@ export namespace Components {
 
   interface ArvSwitch {
     'color': string;
+    'disabled': boolean;
     'value': boolean;
   }
   interface ArvSwitchAttributes extends StencilHTMLAttributes {
     'color'?: string;
+    'disabled'?: boolean;
     'value'?: boolean;
   }
 
@@ -695,6 +697,7 @@ export namespace Components {
   interface ArvText {
     'color': string;
     'lineHeight': string;
+    'maxChars': number;
     'noWrap': boolean;
     'preWrap': boolean;
     'strike': boolean;
@@ -706,6 +709,7 @@ export namespace Components {
   interface ArvTextAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'lineHeight'?: string;
+    'maxChars'?: number;
     'noWrap'?: boolean;
     'preWrap'?: boolean;
     'strike'?: boolean;

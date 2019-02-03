@@ -220,10 +220,7 @@ export class Editor {
             <arv-divider transparent/>
             <div class="editor" 
             contenteditable 
-            onBlur={() => {
-            console.log('blur');
-             this.onBlur();
-            }}></div>
+            onBlur={this.onBlur}></div>
           </arv-flex>
       </div>
     );

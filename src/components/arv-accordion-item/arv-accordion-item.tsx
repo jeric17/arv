@@ -27,7 +27,10 @@ export class AccordionItem {
 
     return (
         <div class={rootClassNames}>
-            <div onClick={e => this.itemClick.emit(e)} class="header">
+            <div
+              onClick={e => this.itemClick.emit(e)} 
+              class="header"
+            >
                 <div class="title">
                   <arv-text strong>{this.itemTitle}</arv-text>
                 </div>

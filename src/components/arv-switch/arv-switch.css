@@ -55,3 +55,7 @@
 .active.secondary .bar {
   background-color: var(--secondary-dark-color);
 }
+
+.disabled {
+  cursor: not-allowed;
+}

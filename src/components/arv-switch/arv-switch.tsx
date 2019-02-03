@@ -8,6 +8,8 @@ import { Component, Prop } from '@stencil/core';
 export class Switch {
   @Prop() color = 'primary';
 
+  @Prop() disabled: boolean;
+
   @Prop() value: boolean;
 
   render() {
@@ -16,6 +18,7 @@ export class Switch {
       active: this.value,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
+      disabled: this.disabled
     };
 
     return (
