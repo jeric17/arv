@@ -1,5 +1,11 @@
 .root {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.pages {
+  display: flex;
 }
 
 .pageItem {
@@ -39,4 +45,7 @@
 .pageItem.noBorder {
   cursor: auto;
   border-color: transparent;
+}
+.invi {
+  opacity: 0;
 }

@@ -21,7 +21,7 @@ export class Paginator {
 
   onPrev() {
     this.onSelect(this.currentPage - 1);
-  } 
+  }
 
   numberLoop(max, x, i = 1, arr = []) {
     if(i > x) {
@@ -34,7 +34,7 @@ export class Paginator {
 
     arr.push(i);
 
-    return this.numberLoop(max, x, i+1, arr); 
+    return this.numberLoop(max, x, i+1, arr);
   }
 
   render() {
@@ -43,6 +43,10 @@ export class Paginator {
     const numberOfPages = Math.ceil(this.totalItems / this.itemsPerPage);
     const pageArray = this.numberLoop(numberOfPages, numberOfPages);
 
+    if (numberOfPages === 1) {
+      return <span></span>;
+    }
+
     const visiblePages = (()=>{
       if (numberOfPages < maxVisiblePages) {
         return pageArray;
@@ -50,7 +54,7 @@ export class Paginator {
 
       if (this.currentPage >= (numberOfPages - 3)) {
         return this.numberLoop(numberOfPages, numberOfPages, numberOfPages - 4);
-      }      
+      }
 
       if (this.currentPage >= 4) {
         return this.numberLoop(numberOfPages, this.currentPage + 2, this.currentPage - 2);
@@ -59,7 +63,7 @@ export class Paginator {
       return this.numberLoop(numberOfPages, 5, this.currentPage);
     })();
 
-    const l = visiblePages.length;    
+    const l = visiblePages.length;
 
     const result = (() => {
       if (l < 3) {
@@ -75,7 +79,7 @@ export class Paginator {
         visiblePages[l - 1] === numberOfPages - 1) {
         return visiblePages.concat(numberOfPages);
       }
-      if (visiblePages[0] === 2 && 
+      if (visiblePages[0] === 2 &&
         visiblePages[l - 1] !== numberOfPages) {
         visiblePages.pop();
         return [1].concat(visiblePages).concat([null, numberOfPages]);
@@ -87,7 +91,7 @@ export class Paginator {
         ) {
         return [1, null].concat(visiblePages).concat([null, numberOfPages]);
       }
-      if (visiblePages[0] === 2 && 
+      if (visiblePages[0] === 2 &&
         visiblePages[1] !== 3 &&
         visiblePages[l - 1] === numberOfPages) {
         visiblePages.shift();
@@ -117,51 +121,64 @@ export class Paginator {
       return visiblePages;
     })();
 
+    const currentPageOffset = (this.currentPage - 1) * this.itemsPerPage;
+    const targetToOffset = currentPageOffset + this.itemsPerPage;
+    const toOffset = targetToOffset <= this.totalItems ? targetToOffset : this.totalItems;
+
     return (
       <div class="root">
-        {this.currentPage !== 1 && (
-          <div class="pageItem prev">
-            <arv-button 
-              buttonClick={this.onPrev.bind(this)}
-              styles={{backgroundColor: 'transparent'}}
-              icon="chevron_left" 
-              variant="flat-icon" 
-              padded={false} />
-          </div>
-        )}
-        {result.map(d => {
-          const value = (() => {
-            if (!d) {
-              return '...'
-            }
-            return d;
-          })();
-          return (
-            <div 
-              onClick={() => {
-                if (value !== '...') {
-                  this.onSelect(d);
-                }
-              }}
-              class={{
-                pageItem: true,
-                noBorder: value === '...',
-                active: this.currentPage === d
-              }}>
-              {value}
+        <div class="pages">
+          {this.currentPage !== 1 && (
+            <div class={{
+              pageItem: true,
+              prev: true,
+            }}>
+              <arv-button
+                buttonClick={this.onPrev.bind(this)}
+                styles={{backgroundColor: 'transparent'}}
+                icon="chevron_left"
+                variant="flat-icon"
+                padded={false} />
             </div>
-          );
-        })}
-        {this.currentPage !== numberOfPages && (
-          <div class="pageItem next">
-            <arv-button 
-              buttonClick={this.onNext.bind(this)}
-              styles={{backgroundColor: 'transparent'}}
-              icon="chevron_right" 
-              variant="flat-icon" 
-              padded={false} />
-          </div>
-        )}
+          )}
+          {result.map(d => {
+            const value = (() => {
+              if (!d) {
+                return '...'
+              }
+              return d;
+            })();
+            return (
+              <div
+                onClick={() => {
+                  if (value !== '...') {
+                    this.onSelect(d);
+                  }
+                }}
+                class={{
+                  pageItem: true,
+                  noBorder: value === '...',
+                  active: this.currentPage === d
+                }}>
+                {value}
+              </div>
+            );
+          })}
+          {this.currentPage !== numberOfPages && (
+            <div class="pageItem next">
+              <arv-button
+                buttonClick={this.onNext.bind(this)}
+                styles={{backgroundColor: 'transparent'}}
+                icon="chevron_right"
+                variant="flat-icon"
+                padded={false} />
+            </div>
+          )}
+        </div>
+        <arv-divider transparent></arv-divider>
+        <arv-text>
+          {currentPageOffset + 1} - {toOffset} of {this.totalItems}
+        </arv-text>
       </div>
     );
   }
