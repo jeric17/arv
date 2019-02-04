@@ -1,5 +1,5 @@
 .material-icons {
-  font-family: var(--icon-font-family);
+  font-family: var(--icon-font-family, 'Material Icons');
   font-weight: normal;
   font-style: normal;
   font-size: 1rem;

@@ -6,7 +6,7 @@
 .input {
   font-family: var(--font-family);
   background-color: #fff;
-  border-radius: var(--radius);
+  border-radius: var(--radius, 2px);
   border-width: 1px;
   border-style: solid;
   border-color: #efefef;
@@ -24,7 +24,7 @@
 }
 
 input:hover {
-  border-color: var(--primary-color);
+  border-color: var(--primary-color, #009fe5);
 }
 
 input:focus {
@@ -51,7 +51,7 @@ input:focus {
 }
 
 .inputWrapper {
-  border-radius: var(--radius);
+  border-radius: var(--radius, 2px);
   position: relative;
   width: 100%;
 }
@@ -72,7 +72,7 @@ input:focus {
 }
 
 .fileUpload.primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color, #009fe5);
 }
 
 .fileUpload.secondary {

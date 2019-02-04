@@ -59,7 +59,7 @@
   background-color: inherit;
 }
 .primary {
-  background-color: var(--primary-color);
+  background-color: var(--primary-color, #009fe5);
   color: var(--primary-font);
   --default-font-color: var(--primary-font);
   --default-icon-color: var(--icon-color, var(--primary-font));
