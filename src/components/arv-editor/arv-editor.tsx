@@ -29,7 +29,7 @@ export class Editor {
     return editorContent.innerHTML;
   }
 
-  onBlur() {
+  onBlur () => {
     this.editorOnBlur.emit();
   }
 

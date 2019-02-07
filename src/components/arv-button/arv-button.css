@@ -3,6 +3,7 @@
   display: block;
 }
 .button {
+  background-color: #fff;
   border-radius: var(--radius);
   border: none;
   cursor: pointer;
