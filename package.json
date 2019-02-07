@@ -1,6 +1,6 @@
 {
   "name": "arv",
-  "version": "0.0.44",
+  "version": "0.0.45",
   "description": "web components ui",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
