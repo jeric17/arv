@@ -21,15 +21,32 @@
   border-radius: 100%;
   border-width: 1px;
   border-style: solid;
-  border-color: var(--primary-color);
-  color: var(--primary-dark-color);
   cursor: pointer;
-  --default-icon-color: var(--primary-dark-color);
 }
 .pageItem.active {
   color: var(--active-color, #fff);
+}
+
+.primary .pageItem {
+  --default-text-color: var(--primary-dark-color);
+
+  border-color: var(--primary-color);
+  color: var(--primary-dark-color);
+}
+.primary .pageItem.active {
   background-color: var(--primary-color);
 }
+
+.secondary .pageItem {
+  --default-text-color: var(--secondary-dark-color);
+
+  border-color: var(--secondary-color);
+  color: var(--secondary-dark-color);
+}
+.secondary .pageItem.active {
+  background-color: var(--secondary-color);
+}
+
 .root:first-child {
   margin-right: 0;
 }

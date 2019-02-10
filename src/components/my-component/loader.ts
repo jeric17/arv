@@ -1,6 +1,6 @@
-export const Switch = {
-  name: 'Switch',
-  element: 'arv-switch',
+export const Loader = {
+  name: 'Loader',
+  element: 'arv-loader',
   slot: false,
   props: [
     {
@@ -10,9 +10,10 @@ export const Switch = {
       value: 'primary'
     },
     {
-      name: 'value',
-      type: 'boolean',
-      value: 'true'
+      name: 'size',
+      type: 'oneOf',
+      data: ['xsmall', 'small', 'large'],
+      value: 'small'
     }
   ]
 };

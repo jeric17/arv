@@ -533,12 +533,14 @@ export namespace Components {
   }
 
   interface ArvPaginator {
+    'color': string;
     'currentPage': number;
     'itemsPerPage': number;
     'onSelect': (index: number) => void;
     'totalItems': number;
   }
   interface ArvPaginatorAttributes extends StencilHTMLAttributes {
+    'color'?: string;
     'currentPage'?: number;
     'itemsPerPage'?: number;
     'onSelect'?: (index: number) => void;

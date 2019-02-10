@@ -17,6 +17,8 @@ import { Carousel } from './carousel';
 import { Checkbox } from './checkbox';
 import { Chips } from './chips';
 import { Table } from './table';
+import { Loader } from './loader';
+import { Paginator } from './paginator';
 
 @Component({
   tag: 'my-component',
@@ -37,6 +39,8 @@ export class MyComponent {
     {...Header},
     {...Icon},
     {...Input},
+    {...Loader},
+    {...Paginator},
     {...Paper},
     {...Snackbar},
     {...Stepper},

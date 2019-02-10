@@ -208,6 +208,33 @@ export class Bolts {
           <arv-flex padded full={false}>
             <arv-text color="light">arv@0.0.46</arv-text>
           </arv-flex>
+
+          <arv-flex padded full={false}>
+            <arv-text color="light">Installation</arv-text>
+          </arv-flex>
+          {
+            [
+              {name: 'Angular', target: 'https://stenciljs.com/docs/angular'},
+              {name: 'React', target: 'https://stenciljs.com/docs/react'},
+              {name: 'Vue', target: 'https://stenciljs.com/docs/vue'},
+            ].map(d => {
+              return (
+                <arv-button
+                  buttonClick={() => {
+                    window.open(d.target);
+                  }}
+                  textAlign="start"
+                  color="light"
+                  rounded={false}
+                  full
+                  >{d.name}</arv-button>
+              );
+            })
+          }
+
+          <arv-flex padded full={false}>
+            <arv-text color="light">Components</arv-text>
+          </arv-flex>
           {this.items.map((d, i) => {
              return (
                <arv-button

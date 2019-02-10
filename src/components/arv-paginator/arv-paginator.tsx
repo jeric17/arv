@@ -7,6 +7,8 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Paginator {
 
+  @Prop() color: string;
+
   @Prop() currentPage: number;
 
   @Prop() itemsPerPage: number;
@@ -125,54 +127,63 @@ export class Paginator {
     const targetToOffset = currentPageOffset + this.itemsPerPage;
     const toOffset = targetToOffset <= this.totalItems ? targetToOffset : this.totalItems;
 
+    const classNames = {
+      root: true,
+      'default': this.color === 'default',
+      primary: this.color === 'primary',
+      secondary: this.color === 'secondary',
+      light: this.color === 'light',
+      dark: this.color === 'dark',
+    };
+
     return (
-      <div class="root">
+      <div class={classNames}>
         <div class="pages">
           {this.currentPage !== 1 && (
-            <div class={{
-              pageItem: true,
-              prev: true,
-            }}>
-              <arv-button
-                buttonClick={this.onPrev.bind(this)}
-                styles={{backgroundColor: 'transparent'}}
-                icon="chevron_left"
-                variant="flat-icon"
-                padded={false} />
-            </div>
+             <div class={{
+               pageItem: true,
+               prev: true,
+             }}>
+               <arv-button
+                 buttonClick={this.onPrev.bind(this)}
+                 styles={{backgroundColor: 'transparent'}}
+                 icon="chevron_left"
+                 variant="flat-icon"
+                 padded={false} />
+             </div>
           )}
           {result.map(d => {
-            const value = (() => {
-              if (!d) {
-                return '...'
-              }
-              return d;
-            })();
-            return (
-              <div
-                onClick={() => {
-                  if (value !== '...') {
-                    this.onSelect(d);
-                  }
-                }}
-                class={{
-                  pageItem: true,
-                  noBorder: value === '...',
-                  active: this.currentPage === d
-                }}>
-                {value}
-              </div>
-            );
+             const value = (() => {
+               if (!d) {
+                 return '...'
+               }
+               return d;
+             })();
+             return (
+               <div
+                 onClick={() => {
+                   if (value !== '...') {
+                     this.onSelect(d);
+                   }
+                 }}
+                 class={{
+                   pageItem: true,
+                   noBorder: value === '...',
+                   active: this.currentPage === d
+                 }}>
+                 {value}
+               </div>
+             );
           })}
           {this.currentPage !== numberOfPages && (
-            <div class="pageItem next">
-              <arv-button
-                buttonClick={this.onNext.bind(this)}
-                styles={{backgroundColor: 'transparent'}}
-                icon="chevron_right"
-                variant="flat-icon"
-                padded={false} />
-            </div>
+             <div class="pageItem next">
+               <arv-button
+                 buttonClick={this.onNext.bind(this)}
+                 styles={{backgroundColor: 'transparent'}}
+                 icon="chevron_right"
+                 variant="flat-icon"
+                 padded={false} />
+             </div>
           )}
         </div>
         <arv-divider transparent></arv-divider>
