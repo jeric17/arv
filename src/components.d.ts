@@ -414,7 +414,6 @@ export namespace Components {
     'inputStyle': any;
     'label': string;
     'layout': string;
-    'multiple': boolean;
     'name': string;
     'placeholder': string;
     'required': boolean;
@@ -440,7 +439,6 @@ export namespace Components {
     'inputStyle'?: any;
     'label'?: string;
     'layout'?: string;
-    'multiple'?: boolean;
     'name'?: string;
     'onOnBlur'?: (event: CustomEvent) => void;
     'onOnFocus'?: (event: CustomEvent) => void;

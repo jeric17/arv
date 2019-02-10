@@ -27,19 +27,19 @@ export class Input {
 
   @Prop() icon: string;
 
-  @Prop() inputProps = {};  
+  @Prop() inputProps = {};
 
   @Prop() input: (e: any) => void;
 
   @Prop() inputStyle = {};
 
-  @Prop() inputBlur: (e: any) => void;  
+  @Prop() inputBlur: (e: any) => void;
 
   @Prop() inputFocus: (e: any) => void;
 
   @Prop() inputChange: (e: any) => void;
 
-  @Prop() inputEnter: (e: any) => void;  
+  @Prop() inputEnter: (e: any) => void;
 
   @Prop() label: string;
 
@@ -58,9 +58,7 @@ export class Input {
 
   @Prop() value: string;
 
-  @Prop() multiple: boolean;
-
-  @Prop() rows: number = 5;
+  @Prop() rows: number = 0;
 
   @Event() onInput: EventEmitter;
 
@@ -80,7 +78,7 @@ export class Input {
   @Listen('keydown.enter')
   handleKeyEnter(e) {
     const inputElement = (() => {
-      if (!this.multiple) {
+      if (!this.rows) {
         return this.el.shadowRoot.querySelector('input');
       }
       return this.el.shadowRoot.querySelector('textarea');
@@ -105,7 +103,7 @@ export class Input {
 
   componentDidLoad() {
     const elem = (() => {
-      if (!this.multiple) {
+      if (!this.rows) {
         return 'input';
       }
       return 'textarea';
@@ -191,9 +189,9 @@ export class Input {
   hostData() {
     return {
       class: {
-        full: this.full  
+        full: this.full
       }
-    };  
+    };
   }
 
   render() {
@@ -247,7 +245,7 @@ export class Input {
     };
 
     const Input = () => {
-      if (!this.multiple) {
+      if (!this.rows) {
         return (
           <input
             style={this.inputStyle}

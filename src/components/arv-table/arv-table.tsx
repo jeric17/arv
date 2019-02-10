@@ -10,7 +10,7 @@ export class Table {
 
   @Prop() controls = [];
 
-  @Prop() multiSelectable: boolean;  
+  @Prop() multiSelectable: boolean;
 
   @Prop() selectable: boolean;
 
@@ -40,7 +40,7 @@ export class Table {
 
   @Event() rowItemClick: EventEmitter;
 
-  @Event() headerClick: EventEmitter;  
+  @Event() headerClick: EventEmitter;
 
   thItemClick(item, evt) {
     this.headerClick.emit({
@@ -49,10 +49,10 @@ export class Table {
     });
   }
 
-  trItemClick(item, evt) { 
+  trItemClick(item, evt) {
     this.rowClick.emit({
       evt,
-      item  
+      item
     });
     if (this.onSelect) {
       this.onSelect(item);

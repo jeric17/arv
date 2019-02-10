@@ -1,28 +1,32 @@
 .root {
-  --default-font-color: #fff;
+  --dark-text-color: #fff;
+  --snackbar-bg: var(--dark-color);
 
   position: fixed;
   z-index: 9;
 }
 
+.content {
+  border-radius: var(--radius);
+  background-color: var(--snackbar-bg);
+  padding: 1em 2em;
+  box-shadow: 0 2px 1px rgba(3, 3, 3, 0.3);
+}
+
 .error {
-   --default-font-color: #fff;
-   --snackbar-bg: var(--error-background-color);
+  /* --dark-text-color: #fff; */
+  --dark-text-color: var(--dark-text-color);
+  --snackbar-bg: var(--error-color);
 }
 
 .warning {
-  --default-font-color: #fff;
+  /* --dark-text-color: #fff; */
+  --dark-text-color: var(--dark-text-color);
   --snackbar-bg: var(--warning-color);
 }
 
 .success {
-  --default-font-color: #fff;
+  /* --default-font-color: #fff; */
+  --dark-text-color: var(--dark-text-color);
   --snackbar-bg: var(--success-color);
-}
-
-.content {
-    border-radius: var(--radius);
-    background-color: var(--snackbar-bg, #333);
-    padding: 1em 2em;
-    box-shadow: 0 2px 1px rgba(3, 3, 3, 0.3);    
 }

@@ -1,6 +1,7 @@
 export const Avatar = {
   name: 'Avatar',
   element: 'arv-avatar',
+  slot: false,
   props: [
     {
       name: 'img-src',

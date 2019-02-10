@@ -1,6 +1,7 @@
 export const Input = {
   name: 'Input',
   element: 'arv-input',
+  slot: false,
   props: [
     {
       name: 'label',
@@ -20,6 +21,26 @@ export const Input = {
     },
     {
       name: 'full',
+      type: 'boolean',
+      value: 'false'
+    },
+    {
+      name: 'rows',
+      type: 'string',
+      value: 0
+    },
+    {
+      name: 'has-error',
+      type: 'boolean',
+      value: 'false'
+    },
+    {
+      name: 'required',
+      type: 'boolean',
+      value: 'false'
+    },
+    {
+      name: 'disabled',
       type: 'boolean',
       value: 'false'
     },

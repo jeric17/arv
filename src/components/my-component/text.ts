@@ -24,6 +24,6 @@ export const Text = {
       name: 'strong',
       type: 'boolean',
       value: 'false'
-    }
+    },
   ]
 };

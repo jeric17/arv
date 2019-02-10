@@ -132,7 +132,7 @@ export class Snackbar {
   render() {
     if (!this.open) {
       return false;
-    }    
+    }
 
     const rootClassNames = {
       root: true,
@@ -143,7 +143,7 @@ export class Snackbar {
 
     const icon = (() => {
       if (this.icon) {
-        return this.icon;  
+        return this.icon;
       }
       if (this.variant === 'error') {
         return 'error';
@@ -152,13 +152,13 @@ export class Snackbar {
         return 'warning';
       }
       if (this.variant === 'success') {
-        return 'check_circle'  
+        return 'check_circle'
       }
       return null;
     })();
 
     return (
-        <div 
+        <div
             style={this.elementStyles}
             class={rootClassNames}>
           <arv-transition animation={this.animation}>

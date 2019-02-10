@@ -9,6 +9,14 @@ import { Text } from './text';
 import { Container } from './container';
 import { Dialog } from './dialog';
 import { Stepper } from './stepper';
+import { Snackbar } from './snackbar';
+import { Flex } from './flex';
+import { Switch } from './switch';
+import { Icon } from './icon';
+import { Carousel } from './carousel';
+import { Checkbox } from './checkbox';
+import { Chips } from './chips';
+import { Table } from './table';
 
 @Component({
   tag: 'my-component',
@@ -18,15 +26,23 @@ import { Stepper } from './stepper';
 export class MyComponent {
 
   items = [
-    {...Button},
-    {...Input},
-    {...Header},
     {...Avatar},
-    {...Paper},
-    {...Text},
+    {...Button},
+    {...Carousel},
+    {...Checkbox},
+    {...Chips},
     {...Container},
     {...Dialog},
+    {...Flex},
+    {...Header},
+    {...Icon},
+    {...Input},
+    {...Paper},
+    {...Snackbar},
     {...Stepper},
+    {...Switch},
+    {...Table},
+    {...Text},
   ];
 
   render() {

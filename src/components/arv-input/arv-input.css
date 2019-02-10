@@ -43,10 +43,12 @@ input:focus {
 }
 
 .column .label {
+  display: flex;
   align-self: flex-start;
 }
 
 .row .label {
+  display: flex;
   align-self: center;
 }
 
@@ -67,7 +69,7 @@ input:focus {
 }
 
 .fileUpload input {
-  cursor: pointer;  
+  cursor: pointer;
   opacity: 0;
   position: relative;
   z-index: 1;
@@ -109,12 +111,12 @@ textarea.input {
 }
 
 .input:disabled {
-  cursor: not-allowed;  
+  cursor: not-allowed;
   background-color: #fdfdfd;
   border: #cdcdcd;
 }
 .required {
-  color: var(--required-color);
+  color: var(--error-color);
   margin-left: 5px;
 }
 .input:required {

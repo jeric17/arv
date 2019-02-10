@@ -213,7 +213,8 @@ export class Select {
     const classNames = {
       root: true,
       full: this.full,
-      icon: Boolean(this.icon)
+      icon: Boolean(this.icon),
+      show: this.show
     };
 
     return (

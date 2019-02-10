@@ -45,7 +45,12 @@ export class Bolts {
       <arv-select
         label={name}
         value={value}
-        onSelectChange={e => this.onPropsChange(name, e.detail)}>
+        onSelectChange={e => {
+          if (!e) {
+            return false;
+          }
+          this.onPropsChange(name, e.detail)
+        }}>
         {item.data.map(d => (
           <arv-select-option
             selected={value === d }
@@ -90,6 +95,10 @@ export class Bolts {
     );
   }
 
+  generateObj(item) {
+    console.log({ item });
+  }
+
   setControls() {
     if (!this.selectedItem) {
       return false;
@@ -107,6 +116,9 @@ export class Bolts {
       if (type === 'string') {
         return this.generateString(d);
       }
+      if (type === 'object') {
+        return this.generateObj(d);
+      }
     });
   }
 
@@ -121,16 +133,30 @@ export class Bolts {
     const slotContent = slot ? slot.replace(/</g, '&lt').replace(/>/g, '&gt') : '';
     const codeText = this.addProps(element, props);
     container.innerHTML = codeText;
+
+    const componentElem = container.querySelector(this.selectedItem.element);
+    props.forEach(d => {
+      if (d.type !== 'object') {
+        return false;
+      }
+      try {
+        const obj = JSON.parse(d.value);
+        componentElem[d.name] = obj;
+      } catch(e) {
+        console.log(e.message);
+      }
+    });
+
     const code = container.innerHTML
-      .replace(/ /g, '\n   ')
+                          .replace(/ /g, '\n   ')
       .replace('></', '\n></')
       .replace(/</g, '&lt')
       .replace(/>/g, '&gt')
-      .split('\n');     
+      .split('\n');
 
     code[0] = `<span class="html-elem">${code[0]}`;
     code[code.length - 1] = `<span class="html-elem">${code[code.length -1]}`;
-    code[code.length - 1] = code[code.length - 1].replace('&gt&lt', 
+    code[code.length - 1] = code[code.length - 1].replace('&gt&lt',
     `&gt<span class="html-slot">${slotContent || ''}</span>&lt`
     );
     const codes = code.map((d, i) => {
@@ -179,6 +205,9 @@ export class Bolts {
     const List = () => (
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
+          <arv-flex padded full={false}>
+            <arv-text color="light">arv@0.0.46</arv-text>
+          </arv-flex>
           {this.items.map((d, i) => {
              return (
                <arv-button
@@ -218,7 +247,9 @@ export class Bolts {
         >
           <arv-text>Attributes</arv-text>
           <arv-divider></arv-divider>
-          <SlotControl />
+          {this.selectedItem && this.selectedItem.slot !== false && (
+             <SlotControl />
+          )}
           {this.setControls()}
         </arv-flex>
       </arv-container>
@@ -239,7 +270,7 @@ export class Bolts {
             padded
           >
             <arv-flex
-              style={{'backgroundColor': '#cdcdcd'}}
+              style={{'backgroundColor': '#cdcdcd', 'height': '200px'}}
               items="center"
               justify="center"
               padded
