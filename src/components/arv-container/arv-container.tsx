@@ -26,13 +26,23 @@ export class Container {
 
   @Prop() full: boolean;
 
+  @Prop() color: string;
+
+  @Prop() scrollable: boolean;
+
   render() {
     const rootClassNames = {
       container: true,
       full: this.full,
       hidden: this.hidden,
       responsive: this.variant === 'responsive',
-      max1080: this.max1080
+      max1080: this.max1080,
+      primary: this.color === 'primary',
+      secondary: this.color === 'secondary',
+      warning: this.color === 'warning',
+      light: this.color === 'light',
+      dark: this.color === 'dark',
+      scrollable: this.scrollable
     };
 
     const style = {

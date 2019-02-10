@@ -1,6 +1,6 @@
 .root {
   font-family: var(--font-family);
-  color: var(--default-font-color);
+  color: var(--dark-text-color);
   transition: all 0.3s;
   font-weight: var(--font-weight, normal);
 }
@@ -37,12 +37,11 @@
   line-height: var(--line-height, 1.3rem);
 }
 .caption2 {
-  color: var(--default-light-font-color);
-  font-size: var(--font-size, 0.75rem);
-  line-height: var(--line-height, 1.1rem);
+  font-size: var(--font-size, 0.8rem);
+  line-height: var(--line-height, 1.5rem);
 }
 .subtle {
-  color: var(--default-light-font-color);
+  color: var(--light-text-color);
   font-size: var(--font-size, 0.7rem);
   line-height: var(--line-height, 1rem);
 }
@@ -56,14 +55,32 @@
   white-space: pre-wrap;
 }
 .primary {
-  color: var(--primary-color);
+  color: var(--primary-color) !important;
 }
 .secondary {
-  color: var(--secondary-color);
+  color: var(--secondary-color) !important;
+}
+.primaryDark {
+  color: var(--primary-dark-color) !important;
+}
+.secondaryDark {
+  color: var(--secondary-dark-color) !important;
+}
+.light {
+  color: var(--light-text-color) !important;
+}
+.dark {
+  color: var(--dark-text-color) !important;
+}
+.warning {
+  color: var(--warning-color) !important;
 }
 .textOverflow {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
   width: 100%;
+}
+.textCenter {
+  text-align: center;
 }

@@ -2,6 +2,16 @@
   outline: none;
 }
 
+@keyframes scale-up {
+  from { transform: scaleY(0); }
+  to { transform: scaleY(1); }
+}
+
+@keyframes hide {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
 .root {
   position: relative;
 }
@@ -16,11 +26,13 @@
 }
 
 .list {
+  animation: scale-up 0.1s ease-out forwards;
   display: none;
   position: absolute;
   margin: 0;
   padding: 0;
   z-index: 9;
+  transform-origin: top right;
 }
 
 .show {
@@ -31,3 +43,6 @@
   cursor: pointer;
 }
 
+.listHide {
+  animation: hide 0.2s forwards;
+}

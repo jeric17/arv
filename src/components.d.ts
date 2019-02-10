@@ -68,6 +68,7 @@ export namespace Components {
     'full': boolean;
     'href': string;
     'icon': string;
+    'layout': string;
     'padded': boolean;
     'roleType': string;
     'rounded': boolean;
@@ -84,6 +85,7 @@ export namespace Components {
     'full'?: boolean;
     'href'?: string;
     'icon'?: string;
+    'layout'?: string;
     'onOnButtonClick'?: (event: CustomEvent) => void;
     'padded'?: boolean;
     'roleType'?: string;
@@ -183,23 +185,27 @@ export namespace Components {
   }
 
   interface ArvContainer {
+    'color': string;
     'full': boolean;
     'height': string;
     'hidden': boolean;
     'margin': string;
     'max1080': boolean;
     'padding': string;
+    'scrollable': boolean;
     'styles': any;
     'variant': string;
     'width': string;
   }
   interface ArvContainerAttributes extends StencilHTMLAttributes {
+    'color'?: string;
     'full'?: boolean;
     'height'?: string;
     'hidden'?: boolean;
     'margin'?: string;
     'max1080'?: boolean;
     'padding'?: string;
+    'scrollable'?: boolean;
     'styles'?: any;
     'variant'?: string;
     'width'?: string;
@@ -544,6 +550,7 @@ export namespace Components {
   interface ArvPaper {
     'box': boolean;
     'height': string;
+    'noOverflow': boolean;
     'padded': boolean;
     'transparent': boolean;
     'weight': number;
@@ -552,6 +559,7 @@ export namespace Components {
   interface ArvPaperAttributes extends StencilHTMLAttributes {
     'box'?: boolean;
     'height'?: string;
+    'noOverflow'?: boolean;
     'padded'?: boolean;
     'transparent'?: boolean;
     'weight'?: number;
@@ -727,6 +735,7 @@ export namespace Components {
     'preWrap': boolean;
     'strike': boolean;
     'strong': boolean;
+    'textAlign': string;
     'textOverflow': boolean;
     'variant': string;
     'weight': number;
@@ -739,6 +748,7 @@ export namespace Components {
     'preWrap'?: boolean;
     'strike'?: boolean;
     'strong'?: boolean;
+    'textAlign'?: string;
     'textOverflow'?: boolean;
     'variant'?: string;
     'weight'?: number;

@@ -17,7 +17,7 @@ export class DialogContent {
         full: this.full
       }}>
         <arv-transition animation={this.animation}>
-          <arv-paper padded={!this.full} box={this.full}>
+          <arv-paper padded={!this.full} box={this.full} noOverflow>
             <slot />
           </arv-paper>
         </arv-transition>

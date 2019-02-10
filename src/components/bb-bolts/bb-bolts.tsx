@@ -11,6 +11,8 @@ export class Bolts {
 
   @State() selectedItem: any;
 
+  @State() codeText: string;
+
   @Prop() items: any[] = [];
 
   componentDidLoad() {
@@ -40,56 +42,51 @@ export class Bolts {
   generateOneOf(item) {
     const { name, value } = item;
     return (
-      <div>
-        <arv-select
-          label={name}
-          value={value}
-          onSelectChange={e => this.onPropsChange(name, e.detail)}>
-          {item.data.map(d => (
-            <arv-select-option
-              selected={value === d }
-              value={d}>
-              {d}
-            </arv-select-option>
-          ))}
-        </arv-select>
-      </div>
+      <arv-select
+        label={name}
+        value={value}
+        onSelectChange={e => this.onPropsChange(name, e.detail)}>
+        {item.data.map(d => (
+          <arv-select-option
+            selected={value === d }
+            value={d}>
+            {d}
+          </arv-select-option>
+        ))}
+      </arv-select>
     );
   }
 
   generateBoolean(item) {
     const { name, value } = item;
     return (
-      <div>
-        <arv-select
-          label={name}
-          value={value}
-          onSelectChange={e => this.onPropsChange(name, e.detail)}>
-          <arv-select-option
-            selected={value}
-            value="true">
-            true
-          </arv-select-option>
-          <arv-select-option
-            selected={value === 'false'}
-            value="false">
-            false
-          </arv-select-option>
-        </arv-select>
-      </div>
+      <arv-select
+        label={name}
+        value={value}
+        onSelectChange={e => this.onPropsChange(name, e.detail)}>
+        <arv-select-option
+          selected={value}
+          value="true">
+          true
+        </arv-select-option>
+        <arv-select-option
+          selected={value === 'false'}
+          value="false">
+          false
+        </arv-select-option>
+      </arv-select>
     );
   }
 
   generateString(item) {
     const { name, value } = item;
     return (
-      <arv-flex>
-        <arv-input
-          label={name}
-          inputChange={e => this.onPropsChange(name, e.target['value'])}
-          type="text"
-          value={value}/>
-      </arv-flex>
+      <arv-input
+        label={name}
+        inputChange={e => this.onPropsChange(name, e.target['value'])}
+        type="text"
+        value={value}
+      />
     );
   }
 
@@ -121,8 +118,39 @@ export class Bolts {
   generate() {
     const { element, slot, props } = this.selectedItem;
     const container = this.el.shadowRoot.querySelector('#bolt');
+    const slotContent = slot ? slot.replace(/</g, '&lt').replace(/>/g, '&gt') : '';
+    const codeText = this.addProps(element, props);
+    container.innerHTML = codeText;
+    const code = container.innerHTML
+      .replace(/ /g, '\n   ')
+      .replace('></', '\n></')
+      .replace(/</g, '&lt')
+      .replace(/>/g, '&gt')
+      .split('\n');     
 
-    container.innerHTML = this.addProps(element, props);
+    code[0] = `<span class="html-elem">${code[0]}`;
+    code[code.length - 1] = `<span class="html-elem">${code[code.length -1]}`;
+    code[code.length - 1] = code[code.length - 1].replace('&gt&lt', 
+    `&gt<span class="html-slot">${slotContent || ''}</span>&lt`
+    );
+    const codes = code.map((d, i) => {
+
+      if (i === 0 || i === code.length - 1) {
+        return d;
+      }
+      const values = d.split('=');
+      return [
+        `<span class="html-attr">${values[0]}</span>`,
+        '<span class="html-eql">=<span>',
+        `<span class="html-attr-value">${values[1]}</span>`,
+        '<br/>'
+      ].join('');
+    });
+
+    const codeContent = `${codes.join('</span><span>')}</span>`;
+
+    const codeElem = this.el.shadowRoot.querySelector('code');
+    codeElem.innerHTML = codeContent;
 
     if (slot) {
       const span = document.createElement('span');
@@ -149,16 +177,24 @@ export class Bolts {
 
   render() {
     const List = () => (
-      <arv-list>
-        {this.items.map((d, i) => {
-           return (
-             <arv-list-item
-               itemClick={() => this.setItem(i) }>
-               {d.name}
-             </arv-list-item>
-           );
-        })}
-      </arv-list>
+      <arv-container height="100vh" width="200px" color="dark" scrollable>
+        <arv-flex layout="column">
+          {this.items.map((d, i) => {
+             return (
+               <arv-button
+                 textAlign="start"
+                 color={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light' }
+                 variant={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'flat' }
+                 buttonClick={() => this.setItem(i) }
+                 rounded={false}
+                 full
+                 >
+                 {d.name}
+               </arv-button>
+             );
+          })}
+        </arv-flex>
+      </arv-container>
     );
 
     const slot = this.selectedItem ? this.selectedItem.slot : '';
@@ -170,33 +206,49 @@ export class Bolts {
         inputChange={e => this.slotChanged(e.target['value']) } />
     );
 
+    const Controls = () => (
+      <arv-container
+        height="100vh"
+        width="300px"
+        scrollable
+      >
+        <arv-flex
+          layout="column"
+          padded
+        >
+          <arv-text>Attributes</arv-text>
+          <arv-divider></arv-divider>
+          <SlotControl />
+          {this.setControls()}
+        </arv-flex>
+      </arv-container>
+    );
+
     return (
       <arv-container
         height="100vh"
         full>
         <arv-flex items="stretch">
           <List />
+          <Controls />
           <arv-flex
+            style={{'backgroundColor': '#efefef'}}
+            justify="center"
+            items="start"
             layout="column"
-            items="stretch">
-
-            <arv-header>
-              <arv-paper
-                height="64px"
-                padded
-                transparent>
-                <arv-flex
-                  justify="space-around"
-                  items="center">
-                  <SlotControl />
-                  {this.setControls()}
-                </arv-flex>
-              </arv-paper>
-            </arv-header>
-
-            <div id="bolt">
-            </div>
-
+            padded
+          >
+            <arv-flex
+              style={{'backgroundColor': '#cdcdcd'}}
+              items="center"
+              justify="center"
+              padded
+              id="bolt">
+            </arv-flex>
+            <pre>
+              <code>
+              </code>
+            </pre>
           </arv-flex>
         </arv-flex>
       </arv-container>

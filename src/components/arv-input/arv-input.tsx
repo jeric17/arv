@@ -215,18 +215,18 @@ export class Input {
 
     const labelClass = {
       label: true,
-      labelRow: this.layout === 'row',
-      labelColumn: this.layout === 'column'
+      labelRow: this.layout === 'row'
     };
 
     const Label = () => (
       <label
         class={labelClass}>
-        {this.label}
+        {this.layout === 'column' && <arv-text variant="caption2">{this.label}</arv-text>}
+        {this.layout === 'row' && this.label}
         {this.required && (
-          <span class="required">*</span>  
+           <span class="required">*</span>
         )}
-        </label>
+      </label>
     );
 
     const layout = (() => {

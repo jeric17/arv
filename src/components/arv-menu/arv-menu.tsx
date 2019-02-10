@@ -9,12 +9,13 @@ export class Menu {
 
   @Element() el: HTMLElement;
 
-  @State() show: boolean = false;
+  @State() hide: boolean;
+  @State() show: boolean;
 
-  @Prop() yPosition: string = 'bottom';
-  @Prop() xPosition: string = 'right';
+  @Prop() yPosition = 'bottom';
+  @Prop() xPosition = 'right';
 
-  @Prop() disableBackdropClick: boolean;  
+  @Prop() disableBackdropClick: boolean;
 
   @Listen('mouseup')
   mouseUpHandler() {
@@ -23,10 +24,14 @@ export class Menu {
 
   @Listen('blur')
   blurHandler() {
+    if (!this.disableBackdropClick) {
+      this.hide = true;
+    }
     setTimeout(() => {
       if (this.disableBackdropClick) {
-        return false;  
+        return false;
       }
+      this.hide = false;
       this.show = false;
     }, 250);
   }
@@ -55,7 +60,8 @@ export class Menu {
       top: this.yPosition === 'top',
       bottom: this.yPosition === 'bottom',
       left: this.xPosition === 'left',
-      right: this.xPosition === 'right'
+      right: this.xPosition === 'right',
+      listHide: this.hide
     };
 
     return (

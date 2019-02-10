@@ -1,3 +1,26 @@
 #bolt {
   width: 100%;
 }
+
+code {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  background-color: #141f46;
+  color: #fff;
+  max-width: 50vw;
+  overflow-x: scroll;
+}
+
+.html-elem {
+  color: #ffe000;
+}
+.html-attr {
+  color: #ef40ef;
+}
+.html-attr-value {
+  color: #40ef4d;
+}
+.html-slot {
+  color: #FFF;
+}

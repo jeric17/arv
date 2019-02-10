@@ -23,11 +23,13 @@ export class Text {
 
   @Prop() noWrap: boolean;
 
-  @Prop() preWrap: boolean;  
+  @Prop() preWrap: boolean;
 
   @Prop() strike: boolean;
 
   @Prop() textOverflow: boolean;
+
+  @Prop() textAlign = 'left';
 
   componentDidUpdate() {
     this.setText();
@@ -37,20 +39,25 @@ export class Text {
     setTimeout(() => {
       this.setText();
     }, 0);
-  }  
+  }
 
   setText() {
     const { innerText } = this.el;
     if (this.maxChars && innerText.length > this.maxChars) {
       this.el.innerText = innerText.substring(0, this.maxChars) + '...';
-    }  
-  }  
+    }
+  }
 
-  render() {     
+  render() {
     const rootClassNames = {
       root: true,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
+      primaryDark: this.color === 'primary-dark',
+      secondaryDark: this.color === 'secondary-dark',
+      dark: this.color === 'dark',
+      light: this.color === 'light',
+      warning: this.color === 'warning',
       heading1: this.variant === 'heading1',
       heading2: this.variant === 'heading2',
       heading3: this.variant === 'heading3',
@@ -64,7 +71,11 @@ export class Text {
       noWrap: this.noWrap,
       strike: this.strike,
       preWrap: this.preWrap,
-      textOverflow: this.textOverflow
+      textOverflow: this.textOverflow,
+      textCenter: this.textAlign === 'center',
+      textLeft: this.textAlign === 'left',
+      textRight: this.textAlign === 'right',
+      textJustify: this.textAlign === 'justify'
     };
 
     const styles = {

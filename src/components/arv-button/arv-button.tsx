@@ -20,6 +20,8 @@ export class Button {
 
   @Prop() buttonClick: (e: MouseEvent) => void;
 
+  @Prop() layout: string;
+
   @Prop() padded = true;
 
   @Prop() rounded: boolean = true;
@@ -71,6 +73,8 @@ export class Button {
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
       warning: this.color === 'warning',
+      light: this.color === 'light',
+      dark: this.color === 'dark',
       error: this.color === 'error',
       disabled: this.disabled === true,
       full: this.full === true,
@@ -101,6 +105,7 @@ export class Button {
 
     const C = () => (
       <arv-flex
+        layout={this.layout}
         items="center"
         justify={this.textAlign}>
         {this.icon && <Icon />}
@@ -124,7 +129,7 @@ export class Button {
        class: rootClassNames,
        type: this.type,
        onClick: this.btnClick.bind(this)
-    };    
+    };
 
     return (
       <T p={props}></T>

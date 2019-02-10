@@ -3,6 +3,11 @@
   --required-color: #d61b34;
 }
 
+::placeholder {
+  color: #999;
+  font-size: 0.8rem;
+}
+
 .input {
   font-family: var(--font-family);
   background-color: #fff;
@@ -11,6 +16,7 @@
   border-style: solid;
   border-color: #efefef;
   box-sizing: border-box;
+  color: var(--default-font-color, #343434);
   font-size: 1rem;
   line-height: 2rem;
   margin: 0;
@@ -45,7 +51,7 @@ input:focus {
 }
 
 .labelColumn {
-  color: rgba(0, 0, 0, 0.54);
+  color: var(--dark-text-color);
   font-size: 0.8rem;
   margin: 0.5em 0 0;
 }

@@ -23,7 +23,7 @@ export class Flex {
 
   @Prop() padded: boolean;
 
-  @Prop() bordered: boolean;  
+  @Prop() bordered: boolean;
 
   /* oneOf: [start, end, center, stretch, baseline] */
   @Prop() self: string = 'auto';

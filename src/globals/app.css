@@ -17,45 +17,46 @@ body {
 }
 
 :root {
-  --error-color: rgb(255, 68, 68);
-  --error-background-color: #e66465;
+  --primary-color: #00e5ff;
+  --primary-light-color: #6effff;
+  --primary-dark-color: #00b2cc;
+  --primary-text-color: #000000;
 
-  --default-background-color: #efefef;
-  --default-color: #333;
-  --default-light-color: #fafafa;
-  --default-dark-color: #cdcdcd;
-  --default-light-font-color: #888;
-  --default-icon-color: #fff;
+  --secondary-color: #7c4dff;
+  --secondary-light-color: #b47cff;
+  --secondary-dark-color: #3f1dcb;
+  --secondary-text-color: #ffffff;
 
-  --primary-color: #ffd54f;
-  --primary-light-color: #fff8e1;
-  --primary-dark-color: #c8a415;
-  --primary-font-color: #333;
+  --default-color: #fafafa;
+  --default-light-color: #ffffff;
+  --default-dark-color: #c7c7c7;
+  --default-text-color: #000000;
 
-  --secondary-color: #64ffda;
-  --secondary-light-color: #d0ffff;
-  --secondary-dark-color: #14cba8;
-  --secondary-font-color: #333;
+  --light-color: #f5f5f5;
+  --light-text-color: #c2c2c2;
 
-  --warning-color: rgb(255, 166, 0);
-  --warning-light-color: rgb(255, 210, 126);
-  --warning-dark-color: rgb(124, 81, 0);
-  --warning-font-color: rgb(255, 166, 0);
+  --dark-color: #263238;
+  --dark-text-color: #102027;
 
-  --warning-dark-font: rgb(124, 81, 0);
-  --warning-light-color: rgb(255, 166, 0);
+  --error-color: #f44336;
+  --error-light-color: #ff7961;
+  --error-dark-color: #ba000d;
+  --error-text-color: #000000;
 
-  --success-color: #43a047;
-  --success-light-color: #c8fdcb;
-  --success-dark-color: #112c12;
+  --warning-color: #ff9800;
+  --warning-light-color: #ffc947;
+  --warning-dark-color: #c66900;
+  --warning-text-color: #000000;
+
+  --success-color: #8bc34a;
+  --success-light-color: #bef67a;
+  --success-dark-color: #5a9216;
+  --success-text-color: #000000;
 
   --radius: 2px;
   --padding: 1em;
-
   --card-media-height: 56%;
-
   --transition: all 0.3s ease-in-out;
-
   --icon-font-family: 'Material Icons';
   --font-family: 'Source Sans Pro', sans-serif;
 }

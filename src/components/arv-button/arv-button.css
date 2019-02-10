@@ -21,11 +21,11 @@
   border-radius: 0;
 }
 .default {
-  color: var(--default-color);
-  --default-icon-color: var(--icon-color, var(--default-color));
+  color: var(--default-text-color);
+  --default-icon-color: var(--default-text-color);
 }
 .default:hover {
-  background-color: var(--default-light-color);
+  background-color: var(--default-dark-color);
 }
 
 .arv-button.disabled {
@@ -44,8 +44,6 @@
   height: var(--button-height, 1.5rem);
 }
 
-.medium {}
-
 .large {
   font-size: var(--button-font-size, 1.5rem);
   height: var(--button-height, 3rem);
@@ -58,59 +56,69 @@
 .inherit {
   color: inherit;
   background-color: inherit;
+  -dark-text-color: inherit;
 }
 .primary {
   background-color: var(--primary-color, #009fe5);
   color: var(--primary-font);
-  --default-font-color: var(--primary-font);
-  --default-icon-color: var(--icon-color, var(--primary-font));
+  --dark-text-color: var(--primary-text-color);
+  --default-icon-color: var(--icon-color, var(--primary-text-color));
 }
 .primary:hover {
   background-color: var(--primary-dark-color);
 }
-.bordered.primary,
-.flat.primary {
-  color: var(--primary-color);
+.primary.bordered,
+.primary.flat {
+  --default-icon-color: var(--primary-dark-color);
+  --dark-text-color: var(--primary-dark-color);
 }
-.bordered.secondary,
-.flat.secondary {
-  --default-icon-color: var(--secondary-color);
-  --default-font-color: var(--secondary-font);
-  color: var(--secondary-color);
+.primary.flat:hover {
+  background-color: var(--primary-dark-color);
+  --default-icon-color: var(--primary-text-color);
+  --dark-text-color: var(--primary-text-color);
 }
+
 .bordered.error,
 .flat.error {
-  --default-icon-color: var(--error-font);  
-  --default-font-color: var(--error-font);
-  color: var(--error-font);
+  --default-icon-color: var(--error-text-color);
+  --dark-text-color: var(--error-text-color);
 }
-.flat.primary:hover,
-.flat.secondary:hover {
-  background-color: var(--default-background-color);
-}
+
 .secondary {
   background-color: var(--secondary-color);
-  color: var(--secondary-font-color);
-  --default-font-color: var(--secondary-font);
-  --default-icon-color: var(--icon-color, var(--secondary-font));
+  color: var(--secondary-text-color);
+  --dark-text-color: var(--secondary-text-color);
+  --default-icon-color: var(--icon-color, var(--secondary-text-color));
 }
 .secondary:hover {
   background-color: var(--secondary-dark-color);
+  --default-icon-color: var(--secondary-text-color);
+  --dark-text-color: var(--secondary-text-color);
+}
+.secondary.bordered,
+.secondary.flat {
+  --default-icon-color: var(--secondary-dark-color);
+  --dark-text-color: var(--secondary-dark-color);
+}
+.secondary.flat:hover {
+  background-color: var(--secondary-dark-color);
+  --default-icon-color: var(--secondary-text-color);
+  --dark-text-color: var(--secondary-text-color);
 }
 
 .warning {
   background-color: var(--warning-color);
-  color: var(--warning-font-color);
-  --default-icon-color: var(--icon-color, var(--warning-font));
+  color: var(--warning-text-color);
+  --default-icon-color: var(--icon-color, var(--warning-text-color));
 }
 .warning:hover {
   background-color: var(--warning-dark-color);
 }
 .bordered.warning,
 .flat.warning {
-  --default-icon-color: var(--warning-color);
-  --default-font-color: var(--warning-color);
-  color: var(--warning-color);
+  --default-icon-color: var(--warning-text-color);
+  --dark-text-color: var(--warning-text-color);
+  color: var(--warning-text-color);
 }
 
 /* flat */
@@ -137,42 +145,50 @@
   border-color: var(--default-color);
   border-style: solid;
   border-width: 1px;
+  --dark-text-color: var(--default-dark-color);
 }
 .bordered.primary {
   border-color: var(--primary-color);
+  --dark-text-color: var(--primary-dark-color);
 }
 .bordered.secondary {
   border-color: var(--secondary-color);
+  --dark-text-color: var(--secondary-dark-color);
 }
 .bordered.warning {
   border-color: var(--warning-color);
+  --dark-text-color: var(--warning-dark-color);
 }
 .bordered.error {
   border-color: var(--error-color);
 }
+.bordered:hover {
+  border-color: var(--default-color);
+  --dark-text-color: var(--default-text-color);
+}
 .bordered.primary:hover {
   border-color: var(--primary-color);
   background-color: var(--primary-color);
-  --default-icon-color: var(--primary-font);
-  --default-font-color: var(--primary-font);
+  --default-icon-color: var(--primary-text-color);
+  --dark-text-color: var(--primary-text-color);
 }
 .bordered.secondary:hover {
   border-color: var(--secondary-color);
   background-color: var(--secondary-color);
-  --default-icon-color: var(--secondary-font);
-  --default-font-color: var(--secondary-font);
+  --default-icon-color: var(--secondary-text-color);
+  --dark-text-color: var(--secondary-text-color);
 }
 .bordered.warning:hover {
   border-color: var(--warning-color);
   background-color: var(--warning-color);
-  --default-icon-color: var(--warning-font);
-  --default-font-color: var(--warning-font);
+  --default-icon-color: var(--warning-text-color);
+  --dark-text-color: var(--warning-text-color);
 }
 /* raised */
 .raisedIcon,
 .raised,
 .fab {
-  box-shadow: 0 2px 3px 1px rgba(3,3,3,0.1);
+  box-shadow: 0 2px 3px rgba(6,6,6,0.2);
 }
 .raisedIcon:hover,
 .raised:hover {
@@ -214,6 +230,9 @@
 .raisedIcon .slot{
   display: none;
 }
+.slot {
+  margin: 0 8px;
+}
 .noPad {
   padding: 0 !important;
 }
@@ -238,14 +257,38 @@
 .disabled.flat,
 .disabled.flat.primary,
 .disabled.flat.secondary,
+.disabled.flat.light,
+.disabled.flat.dark,
 .disabled.bordered,
 .disabled.bordered.primary,
 .disabled.bordered.secondary,
+.disabled.bordered.light,
+.disabled.bordered.dark,
 .disabled.raised {
-  --default-font-color: #8a8a8a;
+  --dark-text-color: #8a8a8a;
   --default-icon-color: #8a8a8a;
 }
 
 .disabled.raised:hover {
   background-color: #efefef;
+}
+
+.light {
+  --dark-text-color: var(--light-text-color);
+  --default-icon-color: var(--light-text-color);
+}
+.light:hover {
+  background-color: var(--light-color);
+  --dark-text-color: var(--dark-text-color);
+  --default-icon-color: var(--dark-text-color);
+}
+
+.dark {
+  --dark-text-color: var(--dark-text-color);
+  --default-icon-color: var(--dark-text-color);
+}
+.dark:hover {
+  background-color: var(--dark-color);
+  --dark-text-color: var(--light-text-color);
+  --default-icon-color: var(--light-text-color);
 }
