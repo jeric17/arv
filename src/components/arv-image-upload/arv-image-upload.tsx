@@ -78,7 +78,7 @@ export class ImageUpload {
               disabled={this.disabled}
               buttonClick={this.removeItem.bind(this)}
               icon="close"
-              variant="flat-icon"
+              variant="raised-icon"
             ></arv-button>
           </div>  
         )}

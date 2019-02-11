@@ -50,10 +50,12 @@ export class Select {
   valueHandler() {
     if (this.variant === 'input') {
       this.inputValue = this.value;
-      this._hideContent();
-      setTimeout(() => {
-        this._showContent();
-      }, 0);
+      const hide = this._hideContent();
+      if (hide) {
+        setTimeout(() => {
+          this._showContent();
+        }, 0);
+      }
     }
   }
 
@@ -131,7 +133,12 @@ export class Select {
   }
 
   private _hideContent() {
-    const portal = document.body.querySelector(`:scope > ${this.portal}`);
+    const portal = document.body.querySelector(`:scope > arv-virtual-portal`);
+    
+    if (!portal) {
+      return false;
+    }
+
     const t = portal.shadowRoot.querySelector(`.${this.rootClassName}`);
 
     this.el.shadowRoot.appendChild(t);
@@ -143,6 +150,7 @@ export class Select {
 
     document.body.removeChild(portal);
     this.virtualElement = null;
+    return true;
   }
 
   onValueClick() {
