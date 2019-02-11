@@ -15,6 +15,11 @@ export const Button = {
           value: 'false'
         },
         {
+          name: 'loading',
+          type: 'boolean',
+          value: 'false'
+        },
+        {
           name: 'full',
           type: 'boolean',
           value: 'false'

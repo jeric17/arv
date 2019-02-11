@@ -5,6 +5,9 @@
   transform: scale(0.9);
   --default-text-color: var(--primary-dark-color);
 }
+.root {
+  position: relative;
+}
 .value {
   align-items: center;
   background-color: #FFF;
@@ -33,4 +36,10 @@ arv-icon {
 }
 .show arv-icon {
   transform: rotate(180deg);
+}
+.loader {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  z-index: 2;
 }

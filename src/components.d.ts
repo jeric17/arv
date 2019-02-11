@@ -610,6 +610,7 @@ export namespace Components {
     'label': string;
     'labelVariant': string;
     'layout': string;
+    'loading': boolean;
     'onSelectChange': (item: any) => void;
     'optionValue': string;
     'placeholder': string;
@@ -628,6 +629,7 @@ export namespace Components {
     'label'?: string;
     'labelVariant'?: string;
     'layout'?: string;
+    'loading'?: boolean;
     'onOnInput'?: (event: CustomEvent) => void;
     'onOnInputChange'?: (event: CustomEvent) => void;
     'onSelectChange'?: (event: CustomEvent) => void;

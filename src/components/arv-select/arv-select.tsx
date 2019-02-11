@@ -43,6 +43,8 @@ export class Select {
 
   @Prop() optionValue: string;
 
+  @Prop() loading: boolean;
+
   @Prop() value: string;
   @Watch('value')
   valueHandler() {
@@ -219,6 +221,7 @@ export class Select {
 
     return (
       <div class={classNames}>
+        {this.loading && <arv-loader class="loader" size="xsmall"/>}
         <arv-flex
           layout={this.layout}
           items={this.layout === 'column' ? 'start' : 'center'}>
