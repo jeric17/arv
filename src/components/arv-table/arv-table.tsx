@@ -143,7 +143,7 @@ export class Table {
                   <arv-flex justify="end">
                     {this.controls.map(ctrlItem => (
                       <arv-button
-                        variant="flat-icon"
+                        variant="ghost-icon"
                         icon={ctrlItem.icon}
                         buttonClick={() => ctrlItem.fn(rowData)}></arv-button>
                     ))}

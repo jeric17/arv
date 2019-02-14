@@ -9,6 +9,8 @@ export class Select {
   rootClassName = 'select-list';
   portal = 'arv-virtual-portal';
 
+  fromSelect: boolean;
+
   @Element() el: HTMLElement;
 
   @State() inputValue: string;
@@ -50,12 +52,16 @@ export class Select {
   valueHandler() {
     if (this.variant === 'input') {
       this.inputValue = this.value;
+
       const hide = this._hideContent();
-      if (hide) {
+
+      if (hide && !this.fromSelect) {
         setTimeout(() => {
           this._showContent();
         }, 0);
       }
+
+      this.fromSelect = false;
     }
   }
 
@@ -88,7 +94,8 @@ export class Select {
   }
 
   optionSelectedHandler(evt) {
-    if (!evt && this.variant === 'input') {
+    if (this.variant === 'input') {
+      this.fromSelect = true;  
       this.selectChange.emit(this.inputValue);
     }
     if (this.onSelectChange) {
@@ -96,6 +103,7 @@ export class Select {
     }
     this.selectChange.emit(evt);
     this.show = false;
+    this._hideContent();
   }
 
   // private _inputChange(e) {

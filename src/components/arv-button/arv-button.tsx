@@ -88,6 +88,8 @@ export class Button {
       flatIcon: this.variant === 'flat-icon',
       raisedIcon: this.variant === 'raised-icon',
       fab: this.variant === 'fab',
+      ghost: this.variant === 'ghost',
+      ghostIcon: this.variant === 'ghost-icon'
       boxed: !this.rounded,
       noPad: !this.padded
     };

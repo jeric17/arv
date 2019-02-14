@@ -68,7 +68,8 @@
   background-color: var(--primary-dark-color);
 }
 .primary.bordered,
-.primary.flat {
+.primary.flat,
+.primary.ghost {
   --default-icon-color: var(--primary-dark-color);
   --dark-text-color: var(--primary-dark-color);
 }
@@ -96,7 +97,8 @@
   --dark-text-color: var(--secondary-text-color);
 }
 .secondary.bordered,
-.secondary.flat {
+.secondary.flat,
+.secondary.ghost {
   --default-icon-color: var(--secondary-dark-color);
   --dark-text-color: var(--secondary-dark-color);
 }
@@ -115,7 +117,8 @@
   background-color: var(--warning-dark-color);
 }
 .bordered.warning,
-.flat.warning {
+.flat.warning,
+.warning.ghost{
   --default-icon-color: var(--warning-text-color);
   --dark-text-color: var(--warning-text-color);
   color: var(--warning-text-color);
@@ -124,19 +127,25 @@
 /* flat */
 .primary.flatIcon,
 .primary.bordered,
-.primary.flat {
+.primary.flat,
+.primary.ghost,
+.primary.ghostIcon {
   color: var(--primary-color);
 }
 
 .secondary.flatIcon,
 .secondary.bordered,
-.secondary.flat {
+.secondary.flat,
+.secondary.ghost,
+.secondary.ghostIcon {
   color: var(--secondary-color);
 }
 
 .warning.flatIcon,
 .warning.bordered,
-.warning.flat {
+.warning.flat,
+.warning.ghost,
+.warning.ghostIcon {
   color: var(--warning-color);
 }
 
@@ -223,9 +232,10 @@
 .disabled.flat,
 .bordered,
 .flat {
-  background-color: transparent;
+  background-color: var(--light-color);
 }
 
+.ghostIcon .slot,
 .flatIcon .slot,
 .raisedIcon .slot{
   display: none;
@@ -248,6 +258,7 @@
   bottom: 10px;
 }
 
+.ghostIcon,
 .flatIcon,
 .raisedIcon {
   padding: 0 0.5em;
@@ -291,4 +302,8 @@
   background-color: var(--dark-color);
   --dark-text-color: var(--light-text-color);
   --default-icon-color: var(--light-text-color);
+}
+.ghost, 
+.ghostIcon {
+  background-color: transparent;
 }
