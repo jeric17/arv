@@ -1,5 +1,5 @@
-import { Component, Element, Event, EventEmitter, Prop, Watch } from '@stencil/core';
-
+import { Component, Element, Event, EventEmitter, Listen, Prop, State, Watch } from '@stencil/core';
+import { DialogActions } from './arv-dialog.model';
 @Component({
   tag: 'arv-dialog',
   styleUrl: 'arv-dialog.css',
@@ -9,9 +9,21 @@ export class Dialog {
   rootClassName = 'arv-dialog';
   portal = 'arv-dialog-portal';
 
+  @State() dialogActions: DialogActions;
+
   @Element() el: HTMLElement;
 
-  @Prop() actions: any;
+  @Prop() actions: DialogActions;
+
+  @Watch('actions')
+  handleActionsChange(newValue: DialogActions | string) {
+    if (typeof newValue === 'string') {
+        console.log('string');
+       this.dialogActions = JSON.parse(newValue);  
+    } else {
+      this.dialogActions = newValue;
+    }
+  }
 
   @Prop() dialogTitle: string;
 
@@ -43,6 +55,16 @@ export class Dialog {
   @Event() onOk: EventEmitter;
 
   @Event() onClose: EventEmitter;
+
+  @Listen('cancel')
+  handleCancel() {
+    console.log('cancel');  
+    this.onClose.emit();
+  }
+
+  componentWillLoad() {
+    this.handleActionsChange(this.actions);
+  }
 
   onHandleClose(ok = false) {
     const portal = document.body.querySelector(`:scope > ${this.portal}`);
@@ -124,24 +146,24 @@ export class Dialog {
                </arv-flex>
             )}
             {slot}
-            {this.actions && [
+            {this.dialogActions && [
                <arv-divider transparent/>,
                <arv-flex justify="end">
-                 {this.actions.cancel && (
+                 {this.dialogActions.cancel && (
                     <arv-button
-                      variant={this.actions.cancel.variant}
-                      color={this.actions.cancel.color}
+                      variant={this.dialogActions.cancel.variant}
+                      color={this.dialogActions.cancel.color}
                       buttonClick={this.onHandleClose.bind(this, false)}>
-                      {this.actions.cancel.text || 'Cancel'}
+                      {this.dialogActions.cancel.text || 'Cancel'}
                     </arv-button>
                  )}
                  <arv-divider layout="column" transparent />
-                 {this.actions.ok && (
+                 {this.dialogActions.ok && (
                     <arv-button
-                      variant={this.actions.ok.variant || 'raised'}
-                      color={this.actions.ok.color || 'primary'}
+                      variant={this.dialogActions.ok.variant || 'raised'}
+                      color={this.dialogActions.ok.color || 'primary'}
                       buttonClick={this.onHandleClose.bind(this, true)}>
-                      {this.actions.ok.text || 'Ok'}
+                      {this.dialogActions.ok.text || 'Ok'}
                     </arv-button>
                  )}
                </arv-flex>

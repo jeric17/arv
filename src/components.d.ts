@@ -11,6 +11,9 @@ import '@stencil/core';
 import {
   ImageItem,
 } from './components/arv-carousel/arv-carousel.model';
+import {
+  DialogActions,
+} from './components/arv-dialog/arv-dialog.model';
 
 
 export namespace Components {
@@ -69,6 +72,7 @@ export namespace Components {
     'href': string;
     'icon': string;
     'layout': string;
+    'loading': boolean;
     'padded': boolean;
     'roleType': string;
     'rounded': boolean;
@@ -86,6 +90,7 @@ export namespace Components {
     'href'?: string;
     'icon'?: string;
     'layout'?: string;
+    'loading'?: boolean;
     'onOnButtonClick'?: (event: CustomEvent) => void;
     'padded'?: boolean;
     'roleType'?: string;
@@ -184,6 +189,9 @@ export namespace Components {
     'variant'?: string;
   }
 
+  interface ArvCode {}
+  interface ArvCodeAttributes extends StencilHTMLAttributes {}
+
   interface ArvContainer {
     'color': string;
     'full': boolean;
@@ -233,7 +241,7 @@ export namespace Components {
   }
 
   interface ArvDialog {
-    'actions': any;
+    'actions': DialogActions;
     'bgColor': string;
     'dialogTitle': string;
     'full': boolean;
@@ -244,7 +252,7 @@ export namespace Components {
     'show': boolean;
   }
   interface ArvDialogAttributes extends StencilHTMLAttributes {
-    'actions'?: any;
+    'actions'?: DialogActions;
     'bgColor'?: string;
     'dialogTitle'?: string;
     'full'?: boolean;
@@ -255,6 +263,15 @@ export namespace Components {
     'parent'?: HTMLElement;
     'scrollable'?: boolean;
     'show'?: boolean;
+  }
+
+  interface ArvDiff {
+    'source1': string;
+    'source2': string;
+  }
+  interface ArvDiffAttributes extends StencilHTMLAttributes {
+    'source1'?: string;
+    'source2'?: string;
   }
 
   interface ArvDivider {
@@ -543,6 +560,7 @@ export namespace Components {
     'color'?: string;
     'currentPage'?: number;
     'itemsPerPage'?: number;
+    'onChange'?: (event: CustomEvent) => void;
     'onSelect'?: (index: number) => void;
     'totalItems'?: number;
   }
@@ -564,6 +582,20 @@ export namespace Components {
     'transparent'?: boolean;
     'weight'?: number;
     'width'?: string;
+  }
+
+  interface ArvScrollableContent {
+    'hashKey': string;
+    'onScrollTop': () => void;
+    'startAt': string;
+    'toBottom': () => Promise<void>;
+    'toTop': () => Promise<void>;
+  }
+  interface ArvScrollableContentAttributes extends StencilHTMLAttributes {
+    'hashKey'?: string;
+    'onScrollTop'?: () => void;
+    'onScrolledTop'?: (event: CustomEvent) => void;
+    'startAt'?: string;
   }
 
   interface ArvSectionTitle {
@@ -810,10 +842,12 @@ declare global {
     'ArvCarousel': Components.ArvCarousel;
     'ArvCheckbox': Components.ArvCheckbox;
     'ArvChips': Components.ArvChips;
+    'ArvCode': Components.ArvCode;
     'ArvContainer': Components.ArvContainer;
     'ArvDialogContent': Components.ArvDialogContent;
     'ArvDialogPortal': Components.ArvDialogPortal;
     'ArvDialog': Components.ArvDialog;
+    'ArvDiff': Components.ArvDiff;
     'ArvDivider': Components.ArvDivider;
     'ArvEditor': Components.ArvEditor;
     'ArvFlex': Components.ArvFlex;
@@ -833,6 +867,7 @@ declare global {
     'ArvMultipleInput': Components.ArvMultipleInput;
     'ArvPaginator': Components.ArvPaginator;
     'ArvPaper': Components.ArvPaper;
+    'ArvScrollableContent': Components.ArvScrollableContent;
     'ArvSectionTitle': Components.ArvSectionTitle;
     'ArvSection': Components.ArvSection;
     'ArvSelectOption': Components.ArvSelectOption;
@@ -863,10 +898,12 @@ declare global {
     'arv-carousel': Components.ArvCarouselAttributes;
     'arv-checkbox': Components.ArvCheckboxAttributes;
     'arv-chips': Components.ArvChipsAttributes;
+    'arv-code': Components.ArvCodeAttributes;
     'arv-container': Components.ArvContainerAttributes;
     'arv-dialog-content': Components.ArvDialogContentAttributes;
     'arv-dialog-portal': Components.ArvDialogPortalAttributes;
     'arv-dialog': Components.ArvDialogAttributes;
+    'arv-diff': Components.ArvDiffAttributes;
     'arv-divider': Components.ArvDividerAttributes;
     'arv-editor': Components.ArvEditorAttributes;
     'arv-flex': Components.ArvFlexAttributes;
@@ -886,6 +923,7 @@ declare global {
     'arv-multiple-input': Components.ArvMultipleInputAttributes;
     'arv-paginator': Components.ArvPaginatorAttributes;
     'arv-paper': Components.ArvPaperAttributes;
+    'arv-scrollable-content': Components.ArvScrollableContentAttributes;
     'arv-section-title': Components.ArvSectionTitleAttributes;
     'arv-section': Components.ArvSectionAttributes;
     'arv-select-option': Components.ArvSelectOptionAttributes;
@@ -976,6 +1014,12 @@ declare global {
     new (): HTMLArvChipsElement;
   };
 
+  interface HTMLArvCodeElement extends Components.ArvCode, HTMLStencilElement {}
+  var HTMLArvCodeElement: {
+    prototype: HTMLArvCodeElement;
+    new (): HTMLArvCodeElement;
+  };
+
   interface HTMLArvContainerElement extends Components.ArvContainer, HTMLStencilElement {}
   var HTMLArvContainerElement: {
     prototype: HTMLArvContainerElement;
@@ -998,6 +1042,12 @@ declare global {
   var HTMLArvDialogElement: {
     prototype: HTMLArvDialogElement;
     new (): HTMLArvDialogElement;
+  };
+
+  interface HTMLArvDiffElement extends Components.ArvDiff, HTMLStencilElement {}
+  var HTMLArvDiffElement: {
+    prototype: HTMLArvDiffElement;
+    new (): HTMLArvDiffElement;
   };
 
   interface HTMLArvDividerElement extends Components.ArvDivider, HTMLStencilElement {}
@@ -1114,6 +1164,12 @@ declare global {
     new (): HTMLArvPaperElement;
   };
 
+  interface HTMLArvScrollableContentElement extends Components.ArvScrollableContent, HTMLStencilElement {}
+  var HTMLArvScrollableContentElement: {
+    prototype: HTMLArvScrollableContentElement;
+    new (): HTMLArvScrollableContentElement;
+  };
+
   interface HTMLArvSectionTitleElement extends Components.ArvSectionTitle, HTMLStencilElement {}
   var HTMLArvSectionTitleElement: {
     prototype: HTMLArvSectionTitleElement;
@@ -1217,10 +1273,12 @@ declare global {
     'arv-carousel': HTMLArvCarouselElement
     'arv-checkbox': HTMLArvCheckboxElement
     'arv-chips': HTMLArvChipsElement
+    'arv-code': HTMLArvCodeElement
     'arv-container': HTMLArvContainerElement
     'arv-dialog-content': HTMLArvDialogContentElement
     'arv-dialog-portal': HTMLArvDialogPortalElement
     'arv-dialog': HTMLArvDialogElement
+    'arv-diff': HTMLArvDiffElement
     'arv-divider': HTMLArvDividerElement
     'arv-editor': HTMLArvEditorElement
     'arv-flex': HTMLArvFlexElement
@@ -1240,6 +1298,7 @@ declare global {
     'arv-multiple-input': HTMLArvMultipleInputElement
     'arv-paginator': HTMLArvPaginatorElement
     'arv-paper': HTMLArvPaperElement
+    'arv-scrollable-content': HTMLArvScrollableContentElement
     'arv-section-title': HTMLArvSectionTitleElement
     'arv-section': HTMLArvSectionElement
     'arv-select-option': HTMLArvSelectOptionElement
@@ -1270,10 +1329,12 @@ declare global {
     'arv-carousel': HTMLArvCarouselElement;
     'arv-checkbox': HTMLArvCheckboxElement;
     'arv-chips': HTMLArvChipsElement;
+    'arv-code': HTMLArvCodeElement;
     'arv-container': HTMLArvContainerElement;
     'arv-dialog-content': HTMLArvDialogContentElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;
     'arv-dialog': HTMLArvDialogElement;
+    'arv-diff': HTMLArvDiffElement;
     'arv-divider': HTMLArvDividerElement;
     'arv-editor': HTMLArvEditorElement;
     'arv-flex': HTMLArvFlexElement;
@@ -1293,6 +1354,7 @@ declare global {
     'arv-multiple-input': HTMLArvMultipleInputElement;
     'arv-paginator': HTMLArvPaginatorElement;
     'arv-paper': HTMLArvPaperElement;
+    'arv-scrollable-content': HTMLArvScrollableContentElement;
     'arv-section-title': HTMLArvSectionTitleElement;
     'arv-section': HTMLArvSectionElement;
     'arv-select-option': HTMLArvSelectOptionElement;

@@ -75,6 +75,12 @@
 .warning {
   color: var(--warning-color) !important;
 }
+.error {
+  color: var(--error-color);
+}
+.success {
+  color: var(--success-color);
+}
 .textOverflow {
   text-overflow: ellipsis;
   overflow: hidden;

@@ -55,6 +55,8 @@ export class Text {
       secondary: this.color === 'secondary',
       primaryDark: this.color === 'primary-dark',
       secondaryDark: this.color === 'secondary-dark',
+      error: this.color === 'error',
+      success: this.color === 'success',
       dark: this.color === 'dark',
       light: this.color === 'light',
       warning: this.color === 'warning',

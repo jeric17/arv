@@ -22,6 +22,8 @@ export class Button {
 
   @Prop() layout: string;
 
+  @Prop() loading: boolean;
+
   @Prop() padded = true;
 
   @Prop() rounded: boolean = true;
@@ -53,7 +55,7 @@ export class Button {
   }
 
   btnClick(e: MouseEvent) {
-    if (this.disabled) {
+    if (this.disabled || this.loading) {
       return false;
     }
     this.onButtonClick.emit({
@@ -76,6 +78,7 @@ export class Button {
       light: this.color === 'light',
       dark: this.color === 'dark',
       error: this.color === 'error',
+      success: this.color === 'success',
       disabled: this.disabled === true,
       full: this.full === true,
       small: this.size === 'small',
@@ -89,9 +92,10 @@ export class Button {
       raisedIcon: this.variant === 'raised-icon',
       fab: this.variant === 'fab',
       ghost: this.variant === 'ghost',
-      ghostIcon: this.variant === 'ghost-icon'
+      ghostIcon: this.variant === 'ghost-icon',
       boxed: !this.rounded,
-      noPad: !this.padded
+      noPad: !this.padded,
+      loading: this.loading
     };
 
     const iconMode = ['fab', 'flat-icon', 'raised-icon'];
@@ -119,11 +123,22 @@ export class Button {
       </arv-flex>
     );
 
+    const Loader = () => (
+      <arv-flex items="center" justify="center">
+        <arv-loader size="xsmall"></arv-loader>
+      </arv-flex>  
+    );    
+
     const T = ({ p }) => {
       if (this.href) {
         return <a href={this.href} {...p}><C /></a>
       }
-      return <button {...p}><C /></button>
+      return (
+        <button {...p}>
+          {!this.loading && <C />}
+          {this.loading && <Loader />}
+        </button>
+      );
     };
 
     const props = {

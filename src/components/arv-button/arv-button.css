@@ -73,6 +73,7 @@
   --default-icon-color: var(--primary-dark-color);
   --dark-text-color: var(--primary-dark-color);
 }
+.primary.ghost:hover,
 .primary.flat:hover {
   background-color: var(--primary-dark-color);
   --default-icon-color: var(--primary-text-color);
@@ -102,6 +103,8 @@
   --default-icon-color: var(--secondary-dark-color);
   --dark-text-color: var(--secondary-dark-color);
 }
+
+.secondary.ghost:hover,
 .secondary.flat:hover {
   background-color: var(--secondary-dark-color);
   --default-icon-color: var(--secondary-text-color);
@@ -122,6 +125,28 @@
   --default-icon-color: var(--warning-text-color);
   --dark-text-color: var(--warning-text-color);
   color: var(--warning-text-color);
+}
+
+.success {
+  background-color: var(--success-color, #009fe5);
+  color: var(--success-font);
+  --dark-text-color: var(--success-text-color);
+  --default-icon-color: var(--icon-color, var(--success-text-color));
+}
+.success:hover {
+  background-color: var(--success-dark-color);
+}
+.success.bordered,
+.success.flat,
+.success.ghost {
+  --default-icon-color: var(--success-dark-color);
+  --dark-text-color: var(--success-dark-color);
+}
+.success.ghost:hover,
+.success.flat:hover {
+  background-color: var(--success-dark-color);
+  --default-icon-color: var(--success-text-color);
+  --dark-text-color: var(--success-text-color);
 }
 
 /* flat */
@@ -149,6 +174,14 @@
   color: var(--warning-color);
 }
 
+.success.flatIcon,
+.success.bordered,
+.success.flat,
+.success.ghost,
+.success.ghostIcon {
+  color: var(--success-color);
+}
+
 /* bordered */
 .bordered {
   border-color: var(--default-color);
@@ -171,6 +204,10 @@
 .bordered.error {
   border-color: var(--error-color);
 }
+.bordered.success {
+  border-color: var(--success-color);
+  --dark-text-color: var(--success-dark-color);
+}
 .bordered:hover {
   border-color: var(--default-color);
   --dark-text-color: var(--default-text-color);
@@ -180,6 +217,12 @@
   background-color: var(--primary-color);
   --default-icon-color: var(--primary-text-color);
   --dark-text-color: var(--primary-text-color);
+}
+.bordered.success:hover {
+  border-color: var(--success-color);
+  background-color: var(--success-color);
+  --default-icon-color: var(--success-text-color);
+  --dark-text-color: var(--success-text-color);
 }
 .bordered.secondary:hover {
   border-color: var(--secondary-color);

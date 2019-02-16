@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-paginator',
@@ -17,12 +17,22 @@ export class Paginator {
 
   @Prop() totalItems: number;
 
+  @Event() change: EventEmitter;
+
   onNext() {
-    this.onSelect(this.currentPage + 1);
+    const target = this.currentPage + 1;  
+    if (this.onSelect) {
+      this.onSelect(target);
+    }
+    this.change.emit(target);
   }
 
   onPrev() {
-    this.onSelect(this.currentPage - 1);
+    const target = this.currentPage - 1;  
+    if (this.onSelect) {
+      this.onSelect(target);
+    }
+    this.change.emit(target);
   }
 
   numberLoop(max, x, i = 1, arr = []) {
@@ -37,6 +47,13 @@ export class Paginator {
     arr.push(i);
 
     return this.numberLoop(max, x, i+1, arr);
+  }
+
+  onPageClick(d) {
+    if (this.onSelect) {
+      this.onSelect(d);
+    }
+    this.change.emit(d);
   }
 
   render() {
@@ -163,7 +180,7 @@ export class Paginator {
                <div
                  onClick={() => {
                    if (value !== '...') {
-                     this.onSelect(d);
+                     this.onPageClick(d);
                    }
                  }}
                  class={{
