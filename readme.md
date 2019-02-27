@@ -68,18 +68,14 @@ More about installation at Stencil's documentation [here](https://stenciljs.com/
 
 ### React
 ```javascript
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 
 function MyButton() {
-  el = React.createRef();
+  const el = useRef(null);
   
-  componentDidMount() {
-    this.el.current.buttonClick = this.click;
-  }
-  
-  click = () => {
-    alert('Hello!');
-  }
+  useEffect(() => {
+    el.current.buttonClick = props.onClick;
+  });
   
   return (
     <arv-button
