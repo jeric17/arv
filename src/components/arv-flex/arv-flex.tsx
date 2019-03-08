@@ -33,10 +33,15 @@ export class Flex {
 
   @Prop() full: boolean = true;
 
+  @Prop() fullHeight: boolean;
+
+  @Prop() fullWidth = true;
+
   hostData() {
     return {
       class: {
-        'host-full': this.full,
+        'host-full-width': this.fullWidth,
+        'host-full-height': this.fullHeight,
       },
     };
   }

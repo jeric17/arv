@@ -25,6 +25,16 @@ export const Flex = {
       name: 'padded',
       type: 'boolean',
       value: 'true'
+    },
+    {
+      name: 'full-width',
+      type: 'boolean',
+      value: 'true'
+    },
+    {
+      name: 'full-height',
+      type: 'boolean',
+      value: 'true'
     }
   ]
 };

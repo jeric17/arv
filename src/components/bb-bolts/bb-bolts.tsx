@@ -201,12 +201,28 @@ export class Bolts {
     this.generate();
   }
 
+  eventDescription() {
+    if (!this.selectedItem || !this.selectedItem.events) {
+      return false;
+    }
+
+    const headers = ['Name', 'Description'];
+    const data = this.selectedItem.events.map(d => [0, d.name, d.description]);
+
+    return (
+      <arv-table
+        tableData={data}
+        tableHeaders={headers}
+      ></arv-table>
+    );
+  }
+
   render() {
     const List = () => (
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.2</arv-text>
+            <arv-text color="light">arv@0.1.3</arv-text>
           </arv-flex>
 
           <arv-flex padded full={false}>
@@ -225,6 +241,7 @@ export class Bolts {
                   }}
                   textAlign="start"
                   color="light"
+                  variant="ghost"
                   rounded={false}
                   full
                   >{d.name}</arv-button>
@@ -240,7 +257,7 @@ export class Bolts {
                <arv-button
                  textAlign="start"
                  color={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light' }
-                 variant={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'flat' }
+                 variant={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'ghost' }
                  buttonClick={() => this.setItem(i) }
                  rounded={false}
                  full
@@ -290,14 +307,23 @@ export class Bolts {
           <List />
           <Controls />
           <arv-flex
-            style={{'backgroundColor': '#efefef'}}
-            justify="center"
+            style={{backgroundColor: '#efefef', overflowY: 'scroll'}}
+            justify="start"
             items="start"
             layout="column"
             padded
           >
+            <arv-divider transparent></arv-divider>
+            {this.selectedItem && (
+               <arv-flex layout="column">
+                 {this.selectedItem.description && this.selectedItem.description.map(d => (
+                   <arv-text>{d}</arv-text>
+                 ))}
+               </arv-flex>
+            )}
+            <arv-divider transparent></arv-divider>
             <arv-flex
-              style={{'backgroundColor': '#cdcdcd', 'height': '200px'}}
+              style={{'backgroundColor': '#fff', 'height': '200px'}}
               items="center"
               justify="center"
               padded
@@ -307,6 +333,10 @@ export class Bolts {
               <code>
               </code>
             </pre>
+
+            {this.eventDescription()}
+
+            <arv-divider transparent></arv-divider>
           </arv-flex>
         </arv-flex>
       </arv-container>

@@ -18,12 +18,12 @@ export const Table = {
   slot: false,
   props: [
     {
-      name: 'tableData',
+      name: 'table-data',
       type: 'object',
       value: JSON.stringify(data),
     },
     {
-      name: 'tableHeaders',
+      name: 'table-headers',
       type: 'object',
       value: JSON.stringify(headers),
     },

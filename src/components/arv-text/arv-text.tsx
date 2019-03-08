@@ -1,4 +1,4 @@
-import { Component, Element, Prop } from '@stencil/core';
+import { Component, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-text',
@@ -8,6 +8,8 @@ import { Component, Element, Prop } from '@stencil/core';
 export class Text {
 
   @Element() el: HTMLElement;
+
+  @State() show = true;
 
   @Prop() color: string;
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
@@ -31,14 +33,22 @@ export class Text {
 
   @Prop() textAlign = 'left';
 
+  @Prop() textShadow: boolean;
+
+  @Prop() textDecoration: string;
+
   componentDidUpdate() {
     this.setText();
   }
 
   componentDidLoad() {
+    if (this.maxChars) {
+      this.show = false;
+    }
     setTimeout(() => {
       this.setText();
-    }, 0);
+      this.show = true;
+    }, 100);
   }
 
   setText() {
@@ -77,12 +87,18 @@ export class Text {
       textCenter: this.textAlign === 'center',
       textLeft: this.textAlign === 'left',
       textRight: this.textAlign === 'right',
-      textJustify: this.textAlign === 'justify'
+      textJustify: this.textAlign === 'justify',
+      show: this.show,
+      textShadow: this.textShadow
     };
 
     const styles = {
       'font-weight': `${this.weight}`
     };
+
+    if (this.textDecoration) {
+      styles['text-decoration'] = this.textDecoration;
+    }
 
     if (this.lineHeight) {
       styles['line-height'] = this.lineHeight;

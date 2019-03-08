@@ -1,7 +1,17 @@
 export const Button = {
-      name: 'Button',
-      element: 'arv-button',
-      slot: 'Test Button',
+  name: 'Button',
+  element: 'arv-button',
+  slot: 'Test Button',
+  description: [
+    'Button component used to trigger events',
+    'Can also have an icon, only icons from https://material.io/tools/icons/?style=baseline is supported',
+  ],
+  events: [
+    {
+      name: 'onButtonClick',
+      description: 'event fired when button is clicked'
+    },
+  ],
       props: [
         {
           name: 'color',

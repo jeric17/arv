@@ -26,7 +26,7 @@ export class Loader {
       xsmall: this.size === 'xsmall',
       small: this.size === 'small',
       large: this.size === 'large'
-    };   
+    };
 
     return (
       <div class={rootClassNames}>

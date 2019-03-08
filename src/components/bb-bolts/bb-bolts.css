@@ -8,8 +8,14 @@ code {
   padding: 1em;
   background-color: #141f46;
   color: #fff;
-  max-width: 50vw;
+  width: 100%;
+  box-sizing: border-box;
   overflow-x: scroll;
+}
+
+pre {
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .html-elem {

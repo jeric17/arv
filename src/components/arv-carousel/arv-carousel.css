@@ -48,7 +48,7 @@
 }
 
 .control-item {
-  --default-color: #fff;
+  --light-text-color: #fff;
   --default-light-color: transparent;
   display: none;
   height: 100%;

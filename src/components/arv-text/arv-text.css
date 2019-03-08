@@ -1,4 +1,5 @@
 .root {
+  display: none;
   font-family: var(--font-family);
   color: var(--dark-text-color);
   transition: all 0.3s;
@@ -89,4 +90,13 @@
 }
 .textCenter {
   text-align: center;
+}
+.textRight {
+  text-align: right;
+}
+.show {
+  display: block;
+}
+.textShadow {
+  text-shadow: 1px 1px 1px rgba(3, 3, 3, 0.8);
 }

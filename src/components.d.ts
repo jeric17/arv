@@ -40,6 +40,26 @@ export namespace Components {
     'variant'?: string;
   }
 
+  interface ArvAvatarGroup {
+    'bordered': boolean;
+    'imageItems': string[];
+    'index': number;
+    'maxItems': number;
+    'showMore': () => void;
+    'size': string;
+    'styles': any;
+  }
+  interface ArvAvatarGroupAttributes extends StencilHTMLAttributes {
+    'bordered'?: boolean;
+    'imageItems'?: string[];
+    'index'?: number;
+    'maxItems'?: number;
+    'onOnShowMore'?: (event: CustomEvent) => void;
+    'showMore'?: () => void;
+    'size'?: string;
+    'styles'?: any;
+  }
+
   interface ArvAvatar {
     'alt': string;
     'imgSrc': string;
@@ -309,6 +329,8 @@ export namespace Components {
     'bordered': boolean;
     'content': string;
     'full': boolean;
+    'fullHeight': boolean;
+    'fullWidth': boolean;
     'items': string;
     'justify': string;
     'layout': string;
@@ -321,6 +343,8 @@ export namespace Components {
     'bordered'?: boolean;
     'content'?: string;
     'full'?: boolean;
+    'fullHeight'?: boolean;
+    'fullWidth'?: boolean;
     'items'?: string;
     'justify'?: string;
     'layout'?: string;
@@ -770,7 +794,9 @@ export namespace Components {
     'strike': boolean;
     'strong': boolean;
     'textAlign': string;
+    'textDecoration': string;
     'textOverflow': boolean;
+    'textShadow': boolean;
     'variant': string;
     'weight': number;
   }
@@ -783,7 +809,9 @@ export namespace Components {
     'strike'?: boolean;
     'strong'?: boolean;
     'textAlign'?: string;
+    'textDecoration'?: string;
     'textOverflow'?: boolean;
+    'textShadow'?: boolean;
     'variant'?: string;
     'weight'?: number;
   }
@@ -833,6 +861,7 @@ declare global {
     'ArvAccordionItem': Components.ArvAccordionItem;
     'ArvAccordion': Components.ArvAccordion;
     'ArvAlertText': Components.ArvAlertText;
+    'ArvAvatarGroup': Components.ArvAvatarGroup;
     'ArvAvatar': Components.ArvAvatar;
     'ArvBackdrop': Components.ArvBackdrop;
     'ArvButton': Components.ArvButton;
@@ -889,6 +918,7 @@ declare global {
     'arv-accordion-item': Components.ArvAccordionItemAttributes;
     'arv-accordion': Components.ArvAccordionAttributes;
     'arv-alert-text': Components.ArvAlertTextAttributes;
+    'arv-avatar-group': Components.ArvAvatarGroupAttributes;
     'arv-avatar': Components.ArvAvatarAttributes;
     'arv-backdrop': Components.ArvBackdropAttributes;
     'arv-button': Components.ArvButtonAttributes;
@@ -958,6 +988,12 @@ declare global {
   var HTMLArvAlertTextElement: {
     prototype: HTMLArvAlertTextElement;
     new (): HTMLArvAlertTextElement;
+  };
+
+  interface HTMLArvAvatarGroupElement extends Components.ArvAvatarGroup, HTMLStencilElement {}
+  var HTMLArvAvatarGroupElement: {
+    prototype: HTMLArvAvatarGroupElement;
+    new (): HTMLArvAvatarGroupElement;
   };
 
   interface HTMLArvAvatarElement extends Components.ArvAvatar, HTMLStencilElement {}
@@ -1264,6 +1300,7 @@ declare global {
     'arv-accordion-item': HTMLArvAccordionItemElement
     'arv-accordion': HTMLArvAccordionElement
     'arv-alert-text': HTMLArvAlertTextElement
+    'arv-avatar-group': HTMLArvAvatarGroupElement
     'arv-avatar': HTMLArvAvatarElement
     'arv-backdrop': HTMLArvBackdropElement
     'arv-button': HTMLArvButtonElement
@@ -1320,6 +1357,7 @@ declare global {
     'arv-accordion-item': HTMLArvAccordionItemElement;
     'arv-accordion': HTMLArvAccordionElement;
     'arv-alert-text': HTMLArvAlertTextElement;
+    'arv-avatar-group': HTMLArvAvatarGroupElement;
     'arv-avatar': HTMLArvAvatarElement;
     'arv-backdrop': HTMLArvBackdropElement;
     'arv-button': HTMLArvButtonElement;

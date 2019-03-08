@@ -140,39 +140,41 @@ export class Carousel {
         <div class="content">
           {Boolean(this.images.length) && <ImageContent />}
           {!Boolean(this.images.length) && (
-            <arv-flex justify="center" items="center">
-              <arv-icon icon="image" />
-            </arv-flex>  
+             <arv-flex justify="center" items="center">
+               <arv-icon icon="image" />
+             </arv-flex>  
           )}
         </div>
 
         <div class="control">
-            <arv-flex justify="between" items="center">
-                {this.images.length > 1 && (
-                <div onClick={this.clickLeft.bind(this)} class="control-item control-item__left">
-                  <arv-flex justify="center" items="center">
-                    <arv-button
-                      size="large"
-                      icon="chevron_left" 
-                      variant="flat-icon" />
-                  </arv-flex>
-                </div>  
-                )}
-                {Boolean(this.externalUrl) && (
-                  <a href={this.externalUrl} target={this.target} aria-hidden="true" class="middle"></a>  
-                )}
-                {this.images.length > 1 && (
-                <div onClick={this.clickRight.bind(this)} class="control-item control-item__right">
-                  <arv-flex justify="center" items="center">
-                    <arv-button
-                      size="large"
-                      icon="chevron_right"
-                      variant="flat-icon" />
-                  </arv-flex>
-                </div>  
-                )}
-            </arv-flex>
-          </div>  
+          <arv-flex justify="between" items="center">
+            {this.images.length > 1 && (
+               <div onClick={this.clickLeft.bind(this)} class="control-item control-item__left">
+                 <arv-flex justify="center" items="center">
+                   <arv-button
+                     color="light"
+                     size="large"
+                     icon="chevron_left" 
+                     variant="ghost-icon" />
+                 </arv-flex>
+               </div>  
+            )}
+            {Boolean(this.externalUrl) && (
+               <a href={this.externalUrl} target={this.target} aria-hidden="true" class="middle"></a>  
+            )}
+            {this.images.length > 1 && (
+               <div onClick={this.clickRight.bind(this)} class="control-item control-item__right">
+                 <arv-flex justify="center" items="center">
+                   <arv-button
+                     color="light"
+                     size="large"
+                     icon="chevron_right"
+                     variant="ghost-icon" />
+                 </arv-flex>
+               </div>  
+            )}
+          </arv-flex>
+        </div>  
         {/* control */}
       </div>
     );

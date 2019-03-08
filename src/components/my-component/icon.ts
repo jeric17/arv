@@ -2,6 +2,9 @@ export const Icon = {
   name: 'Icon',
   element: 'arv-icon',
   slot: false,
+  description: [
+    'Renders a material icon from https://material.io/tools/icons/?style=baseline'
+  ],
   props: [
     {
       name: 'icon',

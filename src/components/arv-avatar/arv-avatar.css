@@ -2,6 +2,7 @@
   background-color: #efefef;
   background-position: center center;
   background-size: cover;
+  box-sizing: border-box;
   overflow: hidden;
 }
 

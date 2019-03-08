@@ -19,7 +19,7 @@ export class Dialog {
   handleActionsChange(newValue: DialogActions | string) {
     if (typeof newValue === 'string') {
         console.log('string');
-       this.dialogActions = JSON.parse(newValue);  
+       this.dialogActions = JSON.parse(newValue);
     } else {
       this.dialogActions = newValue;
     }
@@ -58,7 +58,6 @@ export class Dialog {
 
   @Listen('cancel')
   handleCancel() {
-    console.log('cancel');  
     this.onClose.emit();
   }
 
