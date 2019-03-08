@@ -20,7 +20,7 @@ export class Paginator {
   @Event() change: EventEmitter;
 
   onNext() {
-    const target = this.currentPage + 1;  
+    const target = this.currentPage + 1;
     if (this.onSelect) {
       this.onSelect(target);
     }
@@ -28,7 +28,7 @@ export class Paginator {
   }
 
   onPrev() {
-    const target = this.currentPage - 1;  
+    const target = this.currentPage - 1;
     if (this.onSelect) {
       this.onSelect(target);
     }

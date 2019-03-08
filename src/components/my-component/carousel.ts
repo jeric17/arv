@@ -9,8 +9,8 @@ export const Carousel = {
   props: [
     {
       name: 'images',
-      type: 'object',
-      value: `[{"imageUrl":"${image1}"},{"imageUrl":"${image2}"}]`
+      type: 'string',
+      value: JSON.stringify([{"imageUrl":image1},{"imageUrl":image2}])
     }
   ],
 };

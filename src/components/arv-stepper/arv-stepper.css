@@ -2,7 +2,7 @@
   width: 100%;
 }
 .stepperItem {
-  --default-font-color: #898989;
+  --dark-font-color: var(--dark-text-color);
 
   align-items: center;
   display: flex;
@@ -12,7 +12,7 @@
   --default-font-color: #333;
 }
 .done .stepperIndex {
-  background-color: var(--primary-color);
+  background-color: #cdcdcd;
 }
 .stepperIndex {
   align-items: center;
@@ -31,4 +31,18 @@
   height: 2px;
   width: 100%;
   margin: 0 8px;
+}
+
+.primary.stepperItem {
+  --dark-font-color: var(--primary-text-color);
+}
+.primary.done .stepperIndex {
+  background-color: var(--primary-color);
+}
+
+.secondary.stepperItem {
+  --dark-font-color: var(--secondary-text-color);
+}
+.secondary.done .stepperIndex {
+  background-color: var(--secondary-color);
 }

@@ -1,3 +1,14 @@
+const steps = [{
+  "done": true,
+  "title":"StepOne"
+}, {
+  "done": false,
+  "title":"StepTwo"
+}, {
+  "done": false,
+  "title":"StepThree"
+}];
+
 export const Stepper = {
   name: 'Stepper',
   element: 'arv-stepper',
@@ -5,8 +16,14 @@ export const Stepper = {
   props: [
     {
       name: 'steps',
-      type: 'array',
-      value: ''
+      type: 'string',
+      value: JSON.stringify(steps)
+    },
+    {
+      name: 'color',
+      type: 'oneOf',
+      data: ['default', 'primary', 'secondary'],
+      value: 'primary'
     }
   ],
 };

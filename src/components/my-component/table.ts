@@ -40,7 +40,7 @@ export const Table = {
     {
       name: 'controls',
       type: 'TableControl[]',
-      description: 'TableControl - compose of icon and fn fields. E.g. [{ icon: "create", fb: data => alert(data) }]'
+      description: 'TableControl - composed of icon and fn fields. E.g. [{ icon: "create", fn: data => alert(data) }]'
     },
   ],
   props: [

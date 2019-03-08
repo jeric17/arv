@@ -9,9 +9,6 @@ import '@stencil/core';
 
 
 import {
-  ImageItem,
-} from './components/arv-carousel/arv-carousel.model';
-import {
   DialogActions,
 } from './components/arv-dialog/arv-dialog.model';
 
@@ -159,13 +156,13 @@ export namespace Components {
 
   interface ArvCarousel {
     'externalUrl': string;
-    'images': ImageItem[];
+    'images': any;
     'loading': boolean;
     'target': string;
   }
   interface ArvCarouselAttributes extends StencilHTMLAttributes {
     'externalUrl'?: string;
-    'images'?: ImageItem[];
+    'images'?: any;
     'loading'?: boolean;
     'target'?: string;
   }
@@ -727,9 +724,11 @@ export namespace Components {
   }
 
   interface ArvStepper {
+    'color': string;
     'steps': any;
   }
   interface ArvStepperAttributes extends StencilHTMLAttributes {
+    'color'?: string;
     'steps'?: any;
   }
 
