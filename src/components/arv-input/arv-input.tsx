@@ -23,7 +23,7 @@ export class Input {
 
   @Prop() hasError: boolean;
 
-  @Prop() hashKey: number;
+  @Prop() hashKey: any;
 
   @Prop() icon: string;
 
@@ -208,7 +208,8 @@ export class Input {
     const inputClassNames = {
       input: true,
       error: this.error || this.hasError,
-      large: this.size === 'large'
+      large: this.size === 'large',
+      color: this.type === 'color'
     };
 
     const labelClass = {

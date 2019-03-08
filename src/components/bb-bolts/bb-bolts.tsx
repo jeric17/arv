@@ -13,6 +13,8 @@ export class Bolts {
 
   @State() codeText: string;
 
+  @State() themeMode: boolean;
+
   @Prop() items: any[] = [];
 
   componentDidLoad() {
@@ -68,7 +70,12 @@ export class Bolts {
       <arv-select
         label={name}
         value={value}
-        onSelectChange={e => this.onPropsChange(name, e.detail)}>
+        onSelectChange={e => {
+          if (!e) {
+            return false;
+          }
+          this.onPropsChange(name, e.detail)
+        }}>
         <arv-select-option
           selected={value}
           value="true">
@@ -99,6 +106,10 @@ export class Bolts {
     console.log({ item });
   }
 
+  generateObj2(item) {
+    console.log({ item });
+  }
+
   setControls() {
     if (!this.selectedItem) {
       return false;
@@ -119,10 +130,21 @@ export class Bolts {
       if (type === 'object') {
         return this.generateObj(d);
       }
+      if (type === 'object2') {
+        return this.generateObj2(d);
+      }
     });
   }
 
   setItem(index = 0) {
+    if (this.themeMode) {
+      this.themeMode = false;
+      setTimeout(() => {
+        this.selectedItem = this.items[index];
+        this.generate();
+      }, 100);
+      return false;
+    }
     this.selectedItem = this.items[index];
     this.generate();
   }
@@ -136,6 +158,9 @@ export class Bolts {
 
     const componentElem = container.querySelector(this.selectedItem.element);
     props.forEach(d => {
+      if (d.type === 'object2') {
+        componentElem[d.name] = d.value;
+      }
       if (d.type !== 'object') {
         return false;
       }
@@ -173,7 +198,7 @@ export class Bolts {
       ].join('');
     });
 
-    const codeContent = `${codes.join('</span><span>')}</span>`;
+    const codeContent = `${codes.join('</span><span>').replace('::', '=').replace('---', '=>')}</span>`;
 
     const codeElem = this.el.shadowRoot.querySelector('code');
     codeElem.innerHTML = codeContent;
@@ -187,10 +212,15 @@ export class Bolts {
 
   addProps(element: string, props: any) {
     const propsString = props.reduce((c, n) => {
+      if (n.type === 'object' || n.type === 'object2') {
+        return c;
+      }
       if (!n.value) {
         return c;
       }
-      return `${c} ${n.name}=${n.value}`;
+      const name = n.displayName ? n.displayName : n.name;
+      const value = n.displayValue ? n.displayValue : n.value;
+      return `${c} ${name}=${value}`;
     }, '');
 
     return `<${element} ${propsString} />`;
@@ -211,10 +241,32 @@ export class Bolts {
 
     return (
       <arv-table
+        table-title="Events"
         tableData={data}
         tableHeaders={headers}
       ></arv-table>
     );
+  }
+
+  propsDescription() {
+    if (!this.selectedItem || !this.selectedItem.propsDescription) {
+      return false;
+    }
+
+    const headers = ['Name', 'Type', 'Description'];
+    const data = this.selectedItem.propsDescription.map(d => [0, d.name, d.type, d.description]);
+
+    return (
+      <arv-table
+        table-title="Attributes"
+        tableData={data}
+        tableHeaders={headers}
+      ></arv-table>
+    );
+  }
+
+  toggleTheme() {
+    this.themeMode = !this.themeMode;
   }
 
   render() {
@@ -226,7 +278,7 @@ export class Bolts {
           </arv-flex>
 
           <arv-flex padded full={false}>
-            <arv-text color="light">Installation</arv-text>
+            <arv-text color="primary">Installation</arv-text>
           </arv-flex>
           {
             [
@@ -249,15 +301,23 @@ export class Bolts {
             })
           }
 
+          <arv-button
+            color={this.themeMode ? 'primary' : 'light' }
+            variant={this.themeMode ? 'raised' : 'ghost' }
+            textAlign="start"
+            rounded={false}
+            buttonClick={this.toggleTheme.bind(this)}
+            full>Theming</arv-button>
+
           <arv-flex padded full={false}>
-            <arv-text color="light">Components</arv-text>
+            <arv-text color="primary">Components</arv-text>
           </arv-flex>
           {this.items.map((d, i) => {
              return (
                <arv-button
                  textAlign="start"
-                 color={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light' }
-                 variant={(this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'ghost' }
+                 color={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light' }
+                 variant={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'ghost' }
                  buttonClick={() => this.setItem(i) }
                  rounded={false}
                  full
@@ -299,45 +359,56 @@ export class Bolts {
       </arv-container>
     );
 
+    const Content = () => (
+      <arv-flex
+        style={{backgroundColor: '#efefef', overflowY: 'scroll'}}
+        justify="start"
+        items="start"
+        layout="column"
+        padded
+      >
+        <arv-divider transparent></arv-divider>
+        {this.selectedItem && (
+           <arv-flex layout="column">
+             {this.selectedItem.description && this.selectedItem.description.map(d => (
+               <arv-text variant="caption2">{d}</arv-text>
+             ))}
+           </arv-flex>
+        )}
+        <arv-divider transparent></arv-divider>
+        <arv-text variant="heading3">Demo</arv-text>
+        <arv-flex
+          style={{'backgroundColor': '#fff', 'height': '200px'}}
+          items="center"
+          justify="center"
+          padded
+          id="bolt">
+        </arv-flex>
+        <pre>
+          <code>
+          </code>
+        </pre>
+
+        {this.propsDescription()}
+
+        <arv-divider transparent></arv-divider>
+
+        {this.eventDescription()}
+
+        <arv-divider transparent></arv-divider>
+      </arv-flex>
+    );
+
     return (
       <arv-container
-        height="100vh"
-        full>
-        <arv-flex items="stretch">
-          <List />
-          <Controls />
-          <arv-flex
-            style={{backgroundColor: '#efefef', overflowY: 'scroll'}}
-            justify="start"
-            items="start"
-            layout="column"
-            padded
-          >
-            <arv-divider transparent></arv-divider>
-            {this.selectedItem && (
-               <arv-flex layout="column">
-                 {this.selectedItem.description && this.selectedItem.description.map(d => (
-                   <arv-text>{d}</arv-text>
-                 ))}
-               </arv-flex>
-            )}
-            <arv-divider transparent></arv-divider>
-            <arv-flex
-              style={{'backgroundColor': '#fff', 'height': '200px'}}
-              items="center"
-              justify="center"
-              padded
-              id="bolt">
-            </arv-flex>
-            <pre>
-              <code>
-              </code>
-            </pre>
-
-            {this.eventDescription()}
-
-            <arv-divider transparent></arv-divider>
-          </arv-flex>
+      height="100vh"
+      full
+      >
+      <arv-flex items="stretch">
+      <List />
+      {!this.themeMode && <Controls />}
+      {!this.themeMode && <Content />}
+          {this.themeMode && <my-theme-section />}
         </arv-flex>
       </arv-container>
     );

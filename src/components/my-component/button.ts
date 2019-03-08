@@ -43,7 +43,7 @@ export const Button = {
         {
           name: 'variant',
           type: 'oneOf',
-          data: ['bordered', 'flat', 'raised', 'flat-icon', 'raised-icon'],
+          data: ['bordered', 'flat', 'ghost', 'raised', 'flat-icon', 'raised-icon'],
           value: 'raised'
         },
         {

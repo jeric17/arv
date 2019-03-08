@@ -28,6 +28,10 @@ export class Table {
     tfoot: {},
   };
 
+  @Prop() tableTitle: string;
+
+  @Prop() titleVariant = 'heading3';
+
   @Prop() tableData: any = [];
 
   @Prop() tableHeaders: string[] = [];
@@ -62,13 +66,13 @@ export class Table {
   tdItemClick(item, evt) {
     this.rowItemClick.emit({
       evt,
-      item  
-    })  
+      item
+    })
   }
 
   private generateRowItem(value) {
     if (typeof value === 'string') {
-      return value;  
+      return value;
     }
 
     if (Array.isArray(value)) {
@@ -89,72 +93,78 @@ export class Table {
       ascending: this.isAscending
     };
 
-    return [
-      <table
-        style={this.styles.table}
-        class={rootClassNames}
-        {...this.tableProps}>
+    return (
+      <div class={rootClassNames}>
+        {Boolean(this.tableTitle) && (
+           <arv-flex padded>
+             <arv-text variant={this.titleVariant}>{this.tableTitle}</arv-text>
+           </arv-flex>
+        )}
+        <table
+          style={this.styles.table}
+          class="table"
+          {...this.tableProps}>
 
-        <thead style={this.styles.thead}>
-          <tr
-            class="tr" 
-            style={this.styles.tr}>
-            {this.multiSelectable && (
-              <th class="th thCheckbox" style={this.styles.th}><arv-checkbox /></th>  
-            )}
-            {this.tableHeaders.map(headerItem => (
-              <th
-                onClick={this.thItemClick.bind(this, headerItem)}
-                class={{
-                  th: true,
-                  thActive: this.sortable && (headerItem === this.activeSort)
-                }}
-                style={this.styles.th}>
+          <thead style={this.styles.thead}>
+            <tr
+              class="tr"
+              style={this.styles.tr}>
+              {this.multiSelectable && (
+                 <th class="th thCheckbox" style={this.styles.th}><arv-checkbox /></th>
+              )}
+              {this.tableHeaders.map(headerItem => (
+                <th
+                  onClick={this.thItemClick.bind(this, headerItem)}
+                  class={{
+                    th: true,
+                    thActive: this.sortable && (headerItem === this.activeSort)
+                  }}
+                  style={this.styles.th}>
                   {headerItem}
                 </th>
-            ))}
-            {Boolean(this.controls.length) && (<th class="th" style={this.styles.th}></th>)}
-          </tr>
-        </thead>
-
-        <tbody style={this.styles.tbody}>
-          {this.tableData.map(rowData => {
-            const [id, ...dataBody] = rowData;
-            
-            return (<tr
-              data-id={id}
-              class="tr"
-              onClick={this.trItemClick.bind(this, rowData)}
-              style={this.styles.tr}>
-              {(this.selectable || this.multiSelectable) && (
-                <td class="td tdCheckbox"><arv-checkbox /></td>  
-              )}
-
-              {dataBody.map(rowItem => (
-                <td
-                  class="td"
-                  onClick={this.tdItemClick.bind(this, rowItem)}
-                  style={this.styles.td}>
-                  {this.generateRowItem(rowItem)}
-                </td>
               ))}
-              {Boolean(this.controls.length) && (
-                <td class="td controls">
-                  <arv-flex justify="end">
-                    {this.controls.map(ctrlItem => (
-                      <arv-button
-                        variant="ghost-icon"
-                        icon={ctrlItem.icon}
-                        buttonClick={() => ctrlItem.fn(rowData)}></arv-button>
-                    ))}
-                  </arv-flex>
-                </td>  
-              )}
-          </tr>)})}
-          <slot />
-        </tbody>
+              {Boolean(this.controls.length) && (<th class="th" style={this.styles.th}></th>)}
+            </tr>
+          </thead>
 
-      </table>
-    ];
+          <tbody style={this.styles.tbody}>
+            {this.tableData.map(rowData => {
+               const [id, ...dataBody] = rowData;
+               return (<tr
+                         data-id={id}
+                         class="tr"
+                         onClick={this.trItemClick.bind(this, rowData)}
+                         style={this.styles.tr}>
+                 {(this.selectable || this.multiSelectable) && (
+                    <td class="td tdCheckbox"><arv-checkbox /></td>
+                 )}
+
+                 {dataBody.map(rowItem => (
+                   <td
+                     class="td"
+                     onClick={this.tdItemClick.bind(this, rowItem)}
+                     style={this.styles.td}>
+                     {this.generateRowItem(rowItem)}
+                   </td>
+                 ))}
+                 {Boolean(this.controls.length) && (
+                    <td class="td controls">
+                      <arv-flex justify="end">
+                        {this.controls.map(ctrlItem => (
+                          <arv-button
+                            variant="ghost-icon"
+                            icon={ctrlItem.icon}
+                            buttonClick={() => ctrlItem.fn(rowData)}></arv-button>
+                        ))}
+                      </arv-flex>
+                    </td>  
+                 )}
+               </tr>)})}
+            <slot />
+          </tbody>
+
+        </table>
+      </div>
+    );
   }
 }

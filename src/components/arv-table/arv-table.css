@@ -4,14 +4,20 @@
 }
 
 .root {
-  display: table;  
+  display: table;
   border-radius: var(--radius);
   background-color: #FFF;
   overflow: hidden;
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.08), 0 2px 3px rgba(0,0,0,0.12);
+  position: relative;
+}
+
+.table {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
   border-spacing: 0;
   border-collapse: collapse;
-  position: relative;
 }
 
 .td,

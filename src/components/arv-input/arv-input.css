@@ -122,3 +122,8 @@ textarea.input {
 .input:required {
   box-shadow: none;
 }
+.color {
+  padding: 0;
+  height: 30px;
+  cursor: pointer;
+}

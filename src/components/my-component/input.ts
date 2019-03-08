@@ -2,6 +2,28 @@ export const Input = {
   name: 'Input',
   element: 'arv-input',
   slot: false,
+  events: [
+    {
+      name: 'onInput',
+      description: 'Fires the input event'
+    },
+    {
+      name: 'onBlur',
+      description: 'Fires the blur event'
+    },
+    {
+      name: 'onFocus',
+      description: 'Fires the focus event'
+    },
+    {
+      name: 'onInputChange',
+      description: 'Fires the change event'
+    },
+    {
+      name: 'onInputEnter',
+      description: 'Fires on keydown enter'
+    },
+  ],
   props: [
     {
       name: 'label',

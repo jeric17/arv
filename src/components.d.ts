@@ -444,7 +444,7 @@ export namespace Components {
     'fileUpload': boolean;
     'full': boolean;
     'hasError': boolean;
-    'hashKey': number;
+    'hashKey': any;
     'icon': string;
     'input': (e: any) => void;
     'inputBlur': (e: any) => void;
@@ -469,7 +469,7 @@ export namespace Components {
     'fileUpload'?: boolean;
     'full'?: boolean;
     'hasError'?: boolean;
-    'hashKey'?: number;
+    'hashKey'?: any;
     'icon'?: string;
     'input'?: (e: any) => void;
     'inputBlur'?: (e: any) => void;
@@ -756,6 +756,8 @@ export namespace Components {
     'tableData': any;
     'tableHeaders': string[];
     'tableProps': any;
+    'tableTitle': string;
+    'titleVariant': string;
   }
   interface ArvTableAttributes extends StencilHTMLAttributes {
     'activeSort'?: string;
@@ -772,6 +774,8 @@ export namespace Components {
     'tableData'?: any;
     'tableHeaders'?: string[];
     'tableProps'?: any;
+    'tableTitle'?: string;
+    'titleVariant'?: string;
   }
 
   interface ArvTabs {
@@ -854,6 +858,9 @@ export namespace Components {
 
   interface MyComponent {}
   interface MyComponentAttributes extends StencilHTMLAttributes {}
+
+  interface MyThemeSection {}
+  interface MyThemeSectionAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
@@ -912,6 +919,7 @@ declare global {
     'ArvVirtualPortal': Components.ArvVirtualPortal;
     'BbBolts': Components.BbBolts;
     'MyComponent': Components.MyComponent;
+    'MyThemeSection': Components.MyThemeSection;
   }
 
   interface StencilIntrinsicElements {
@@ -969,6 +977,7 @@ declare global {
     'arv-virtual-portal': Components.ArvVirtualPortalAttributes;
     'bb-bolts': Components.BbBoltsAttributes;
     'my-component': Components.MyComponentAttributes;
+    'my-theme-section': Components.MyThemeSectionAttributes;
   }
 
 
@@ -1296,6 +1305,12 @@ declare global {
     new (): HTMLMyComponentElement;
   };
 
+  interface HTMLMyThemeSectionElement extends Components.MyThemeSection, HTMLStencilElement {}
+  var HTMLMyThemeSectionElement: {
+    prototype: HTMLMyThemeSectionElement;
+    new (): HTMLMyThemeSectionElement;
+  };
+
   interface HTMLElementTagNameMap {
     'arv-accordion-item': HTMLArvAccordionItemElement
     'arv-accordion': HTMLArvAccordionElement
@@ -1351,6 +1366,7 @@ declare global {
     'arv-virtual-portal': HTMLArvVirtualPortalElement
     'bb-bolts': HTMLBbBoltsElement
     'my-component': HTMLMyComponentElement
+    'my-theme-section': HTMLMyThemeSectionElement
   }
 
   interface ElementTagNameMap {
@@ -1408,6 +1424,7 @@ declare global {
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;
+    'my-theme-section': HTMLMyThemeSectionElement;
   }
 
 

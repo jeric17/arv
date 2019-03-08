@@ -8,7 +8,7 @@ const headers = [
 const controls = [
   {
     icon: 'create',
-    fn: () => {},
+    fn: data => alert(JSON.stringify(data)),
   }
 ];
 
@@ -16,21 +16,64 @@ export const Table = {
   name: 'Table',
   element: 'arv-table',
   slot: false,
-  props: [
+  propsDescription: [
+    {
+      name: 'table-title',
+      type: 'string',
+      description: 'Title of the table'
+    },
+    {
+      name: 'title-variant',
+      type: 'string',
+      description: 'Text variant of the title'
+    },
+    {
+      name: 'table-headers',
+      type: 'string[]',
+      description: 'Table headers'
+    },
     {
       name: 'table-data',
+      type: 'string[][]',
+      description: 'table data, the first element of the child array is not visible, serves as a placeholder for the ID'
+    },
+    {
+      name: 'controls',
+      type: 'TableControl[]',
+      description: 'TableControl - compose of icon and fn fields. E.g. [{ icon: "create", fb: data => alert(data) }]'
+    },
+  ],
+  props: [
+    {
+      name: 'tableTitle',
+      displayName: 'table-title',
+      type: 'string',
+      value: ''
+    },
+    {
+      name: 'titleVariant',
+      displayName: 'title-variant',
+      type: 'oneOf',
+      data: ['heading1', 'heading2', 'heading3', 'heading4', 'body1', 'body2', 'caption', 'subtle'],
+      value: 'body1'
+    },
+    {
+      name: 'tableData',
+      displayName: 'table-data',
       type: 'object',
       value: JSON.stringify(data),
     },
     {
-      name: 'table-headers',
+      name: 'tableHeaders',
+      displayName: 'table-headers',
       type: 'object',
       value: JSON.stringify(headers),
     },
     {
       name: 'controls',
-      type: 'object',
-      value: JSON.stringify(controls)
+      type: 'object2',
+      value: controls,
+      displayValue: `{icon:'create',fn:data---alert(JSON.stringify(data))}`
     }
   ]
 };

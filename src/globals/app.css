@@ -16,7 +16,7 @@ body {
   src: url(https://fonts.gstatic.com/s/materialicons/v41/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2) format('woff2');
 }
 
-:root {
+body {
   --primary-color: #00e5ff;
   --primary-light-color: #6effff;
   --primary-dark-color: #00b2cc;

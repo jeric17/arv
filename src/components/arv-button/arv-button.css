@@ -163,7 +163,7 @@
 .secondary.flat,
 .secondary.ghost,
 .secondary.ghostIcon {
-  color: var(--secondary-color);
+  color: var(--secondary-text-color);
 }
 
 .warning.flatIcon,
@@ -196,6 +196,10 @@
 .bordered.secondary {
   border-color: var(--secondary-color);
   --dark-text-color: var(--secondary-dark-color);
+}
+.bordered.dark {
+  border-color: var(--dark-color);
+  --dark-text-color: var(--dark-text-color);
 }
 .bordered.warning {
   border-color: var(--warning-color);
@@ -236,6 +240,7 @@
   --default-icon-color: var(--warning-text-color);
   --dark-text-color: var(--warning-text-color);
 }
+
 /* raised */
 .raisedIcon,
 .raised,
