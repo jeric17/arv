@@ -6,7 +6,7 @@ export const Avatar = {
     {
       name: 'img-src',
       type: 'string',
-      value: 'https://res.cloudinary.com/teepublic/image/private/s--q1UQjdo3--/t_Preview/b_rgb:191919,c_limit,f_jpg,h_630,q_90,w_630/v1523777748/production/designs/2591906_0.jpg',
+      value: 'https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     },
     {
       name: 'size',

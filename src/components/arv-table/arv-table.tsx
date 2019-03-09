@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, Watch, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-table',
@@ -6,6 +6,11 @@ import { Component, Event, EventEmitter, Prop } from '@stencil/core';
   shadow: true
 })
 export class Table {
+
+  @State() tableDataArray: any[];
+
+  @State() tableHeadersData: string[];
+
   @Prop() activeSort: string;
 
   @Prop() controls = [];
@@ -34,7 +39,17 @@ export class Table {
 
   @Prop() tableData: any = [];
 
-  @Prop() tableHeaders: string[] = [];
+  @Watch('tableData')
+  handleTableData() {
+    this.load('tableData', 'tableDataArray');
+  }
+
+  @Prop() tableHeaders: any;
+
+  @Watch('tableHeaders')
+  handleTableHeaders() {
+    this.load('tableHeaders', 'tableHeadersData');
+  }
 
   @Prop() tableProps = {};
 
@@ -45,6 +60,28 @@ export class Table {
   @Event() rowItemClick: EventEmitter;
 
   @Event() headerClick: EventEmitter;
+
+  componentWillLoad() {
+    this.load('tableHeaders', 'tableHeadersData');
+    this.load('tableData', 'tableDataArray');
+  }
+
+  load(src: string, dest: string) {
+    if (!this[src]) {
+      this[dest] = [];
+      return false;
+    }
+    if (typeof this[src] !== 'string') {
+      this[dest] = this[src];
+      return false;
+    }
+    try {
+      const steps = JSON.parse(this[src]);
+      this[dest] = steps;
+    } catch(e) {
+      console.error(e);
+    }
+  }
 
   thItemClick(item, evt) {
     this.headerClick.emit({
@@ -112,7 +149,7 @@ export class Table {
               {this.multiSelectable && (
                  <th class="th thCheckbox" style={this.styles.th}><arv-checkbox /></th>
               )}
-              {this.tableHeaders.map(headerItem => (
+              {this.tableHeadersData.map(headerItem => (
                 <th
                   onClick={this.thItemClick.bind(this, headerItem)}
                   class={{
@@ -128,7 +165,7 @@ export class Table {
           </thead>
 
           <tbody style={this.styles.tbody}>
-            {this.tableData.map(rowData => {
+            {this.tableDataArray.map(rowData => {
                const [id, ...dataBody] = rowData;
                return (<tr
                          data-id={id}
@@ -157,7 +194,7 @@ export class Table {
                             buttonClick={() => ctrlItem.fn(rowData)}></arv-button>
                         ))}
                       </arv-flex>
-                    </td>  
+                    </td>
                  )}
                </tr>)})}
             <slot />

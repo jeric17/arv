@@ -1,3 +1,4 @@
+![](https://badgen.net/bundlephobia/min/arv) ![](https://badgen.net/npm/v/arv)
 # Arv - A custom-element(shadowdom) UI library
 
 ### Inspired by 💪 [Material-ui library](https://material-ui.com/)
@@ -97,4 +98,9 @@ export default MyButton;
 >
   Hello World!
 </arv-button>
+
+```
+
+```html
+<arv-table [tableHeaders]="['First Name', 'Last Name']"></arv-table>
 ```

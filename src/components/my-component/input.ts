@@ -26,6 +26,11 @@ export const Input = {
   ],
   props: [
     {
+      name: 'icon',
+      type: 'string',
+      value: 'edit'
+    },
+    {
       name: 'label',
       type: 'string',
       value: 'Username'
@@ -40,6 +45,12 @@ export const Input = {
       type: 'oneOf',
       data: ['row', 'column'],
       value: 'row'
+    },
+    {
+      name: 'size',
+      type: 'oneOf',
+      data: ['medium', 'large'],
+      value: 'medium'
     },
     {
       name: 'full',

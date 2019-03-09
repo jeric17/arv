@@ -151,12 +151,19 @@ export class Bolts {
   }
 
   generate() {
-    const { element, slot, props, eventsData } = this.selectedItem;
+    const { element, slot, props, eventsData, wrapper } = this.selectedItem;
     const container = this.el.shadowRoot.querySelector('#bolt');
     const slotContent = slot ? slot.replace(/</g, '&lt').replace(/>/g, '&gt') : '';
     const codeText = this.addProps(element, props, slot);
 
-    container.innerHTML = codeText;
+    if (wrapper) {
+      const div = document.createElement('div');
+      div.innerHTML = wrapper;
+      div.children[0].innerHTML = codeText;
+      container.innerHTML = div.innerHTML;
+    } else {
+      container.innerHTML = codeText;
+    }
 
     const componentElem = container.querySelector(this.selectedItem.element);
     props.forEach(d => {
@@ -252,6 +259,11 @@ export class Bolts {
     this.generate();
   }
 
+  wrapperChanged(wrapper: string) {
+    this.selectedItem = {...this.selectedItem, ...{ wrapper }};
+    this.generate();
+  }
+
   eventDescription() {
     if (!this.selectedItem || !this.selectedItem.events) {
       return false;
@@ -295,7 +307,7 @@ export class Bolts {
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.8</arv-text>
+            <arv-text color="light">arv@0.1.9</arv-text>
           </arv-flex>
 
           <arv-flex padded full={false}>
@@ -352,12 +364,24 @@ export class Bolts {
     );
 
     const slot = this.selectedItem ? this.selectedItem.slot : '';
+    const wrapper = this.selectedItem ? this.selectedItem.wrapper : '';
 
     const SlotControl = () => (
       <arv-input
+        full
+        rows={3}
         label="Slot"
         value={slot}
         inputChange={e => this.slotChanged(e.target['value']) } />
+    );
+
+    const WrapperControl = () => (
+      <arv-input
+        full
+        rows={3}
+        label="wrapper"
+        value={wrapper}
+        inputChange={e => this.wrapperChanged(e.target['value']) } />
     );
 
     const Controls = () => (
@@ -372,6 +396,9 @@ export class Bolts {
         >
           <arv-text>Attributes</arv-text>
           <arv-divider></arv-divider>
+          {this.selectedItem && this.selectedItem.wrapper && (
+             <WrapperControl />
+          )}
           {this.selectedItem && this.selectedItem.slot !== false && (
              <SlotControl />
           )}

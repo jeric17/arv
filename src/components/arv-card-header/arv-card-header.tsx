@@ -37,6 +37,7 @@ export class CardHeader {
         class="card-header">
         <arv-flex justify="between">
           {this.avatarImage && <Avatar />}
+          {this.avatarImage && <arv-divider layout="column"></arv-divider>}
           <arv-flex layout="column">
             {this.titleHeader && <Title />}
             {this.subHeader && <SubHeader />}

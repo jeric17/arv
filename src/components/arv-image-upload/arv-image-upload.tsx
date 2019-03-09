@@ -28,7 +28,7 @@ export class ImageUpload {
   change(evt) {
     this.upload.emit({
       target: evt.target,
-      files: evt.target.files    
+      files: evt.target.files
     });
     if (this.onUpload) {
       this.onUpload(evt.target);
@@ -36,7 +36,7 @@ export class ImageUpload {
   }
 
   removeItem() {
-    const input = this.el.shadowRoot.querySelector('input');  
+    const input = this.el.shadowRoot.querySelector('input');
     input.value = null;
     this.remove.emit();
     if (this.onRemove) {

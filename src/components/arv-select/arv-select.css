@@ -37,7 +37,7 @@
 arv-icon {
   transition: all 0.3s;
 }
-.show arv-icon {
+.show arv-icon.chevron {
   transform: rotate(180deg);
 }
 .loader {

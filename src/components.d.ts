@@ -753,7 +753,7 @@ export namespace Components {
     'sortable': boolean;
     'styles': any;
     'tableData': any;
-    'tableHeaders': string[];
+    'tableHeaders': any;
     'tableProps': any;
     'tableTitle': string;
     'titleVariant': string;
@@ -771,7 +771,7 @@ export namespace Components {
     'sortable'?: boolean;
     'styles'?: any;
     'tableData'?: any;
-    'tableHeaders'?: string[];
+    'tableHeaders'?: any;
     'tableProps'?: any;
     'tableTitle'?: string;
     'titleVariant'?: string;

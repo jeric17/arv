@@ -23,6 +23,10 @@ import { Editor } from './editor';
 import { Tabs } from './tabs';
 import { Menu } from './menu';
 import { Select } from './select';
+import { ImageUpload } from './image-upload';
+import { Section } from './section';
+import { CardMedia } from './card-media';
+import { Card } from './card';
 
 @Component({
   tag: 'my-component',
@@ -34,6 +38,8 @@ export class MyComponent {
   items = [
     {...Avatar},
     {...Button},
+    {...Card},
+    {...CardMedia},
     {...Carousel},
     {...Checkbox},
     {...Chips},
@@ -43,11 +49,13 @@ export class MyComponent {
     {...Flex},
     {...Header},
     {...Icon},
+    {...ImageUpload},
     {...Input},
     {...Loader},
     {...Menu},
     {...Paginator},
     {...Paper},
+    {...Section},
     {...Select},
     {...Snackbar},
     {...Stepper},

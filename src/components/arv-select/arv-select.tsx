@@ -189,7 +189,7 @@ export class Select {
           {this.value}
         </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
-        <arv-icon color="default" icon="keyboard_arrow_down"></arv-icon>
+        <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>
       </div>
     );
 

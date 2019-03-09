@@ -1,5 +1,5 @@
 const data = [
-  [1, 'John', 'Doe'],
+  [1, 'John', ['Doe', 'Strange']],
   [2, 'Jane', 'Doe'],
 ];
 const headers = [
@@ -66,13 +66,13 @@ export const Table = {
     {
       name: 'tableData',
       displayName: 'table-data',
-      type: 'object',
+      type: 'string',
       value: JSON.stringify(data),
     },
     {
       name: 'tableHeaders',
       displayName: 'table-headers',
-      type: 'object',
+      type: 'string',
       value: JSON.stringify(headers),
     },
     {
