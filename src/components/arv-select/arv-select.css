@@ -15,12 +15,15 @@
   border-radius: var(--radius);
   border-style: solid;
   border-width: 1px;
+  box-sizing: border-box;
   cursor: pointer;
   display: flex;
   font-size: 1rem;
   line-height: 2rem;
   padding: 0 0.5em 0 1em;
   transition: var(--transition);
+  display: flex;
+  justify-content: space-between;
 }
 
 .value:hover {

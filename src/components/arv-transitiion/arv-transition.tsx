@@ -26,7 +26,7 @@ export class Transition {
     return (
       <div class={classNames}>
         <slot />
-      </div>    
+      </div>
     );
   }
 }

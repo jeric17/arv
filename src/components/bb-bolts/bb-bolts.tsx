@@ -151,7 +151,7 @@ export class Bolts {
   }
 
   generate() {
-    const { element, slot, props } = this.selectedItem;
+    const { element, slot, props, eventsData } = this.selectedItem;
     const container = this.el.shadowRoot.querySelector('#bolt');
     const slotContent = slot ? slot.replace(/</g, '&lt').replace(/>/g, '&gt') : '';
     const codeText = this.addProps(element, props, slot);
@@ -175,7 +175,13 @@ export class Bolts {
       }
     });
 
-    let codeContainerHTML = container.innerHTML;
+    if (eventsData) {
+      eventsData.map(d => {
+        componentElem.addEventListener(d.name, d.fn);
+      });
+    }
+
+    let codeContainerHTML = container.innerHTML.replace(slot, '');
 
     props.forEach(d => {
       const name = d.displayName ? d.displayName : d.name;
@@ -289,7 +295,7 @@ export class Bolts {
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.7</arv-text>
+            <arv-text color="light">arv@0.1.8</arv-text>
           </arv-flex>
 
           <arv-flex padded full={false}>

@@ -16,13 +16,15 @@
   position: relative;
 }
 
-.top {}
+.top {
+  top: -200%;
+}
 .bottom {}
 .right {
-  right: 1em;
+  left: 1em;
 }
 .left {
-  left: 0;
+  right: 1em;
 }
 
 .list {
@@ -33,6 +35,10 @@
   padding: 0;
   z-index: 9;
   transform-origin: top right;
+}
+
+.list.top {
+  transform-origin: bottom right;
 }
 
 .show {

@@ -21,6 +21,8 @@ import { Loader } from './loader';
 import { Paginator } from './paginator';
 import { Editor } from './editor';
 import { Tabs } from './tabs';
+import { Menu } from './menu';
+import { Select } from './select';
 
 @Component({
   tag: 'my-component',
@@ -43,8 +45,10 @@ export class MyComponent {
     {...Icon},
     {...Input},
     {...Loader},
+    {...Menu},
     {...Paginator},
     {...Paper},
+    {...Select},
     {...Snackbar},
     {...Stepper},
     {...Switch},

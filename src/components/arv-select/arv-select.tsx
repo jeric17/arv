@@ -95,7 +95,7 @@ export class Select {
 
   optionSelectedHandler(evt) {
     if (this.variant === 'input') {
-      this.fromSelect = true;  
+      this.fromSelect = true;
       this.selectChange.emit(this.inputValue);
     }
     if (this.onSelectChange) {
@@ -142,7 +142,7 @@ export class Select {
 
   private _hideContent() {
     const portal = document.body.querySelector(`:scope > arv-virtual-portal`);
-    
+
     if (!portal) {
       return false;
     }
@@ -179,8 +179,15 @@ export class Select {
     const SelectValue = () => (
       <div
         onClick={this.onValueClick.bind(this)}
-        class="value targetValue">
-        {this.value}
+        class={{
+          value: true,
+          targetValue: true,
+          full: this.full
+        }}>
+        <arv-flex items="center">
+          {this.icon && <arv-icon color="default" icon={this.icon}></arv-icon>}
+          {this.value}
+        </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
         <arv-icon color="default" icon="keyboard_arrow_down"></arv-icon>
       </div>
