@@ -56,6 +56,8 @@
 }
 
 .inputWrapper {
+  background-color: #f5f5f5;
+  cursor: pointer;
   position: relative;
   display: flex;
   align-items: center;
@@ -63,6 +65,11 @@
   width: 33px;
   height: 33px;
   --default-icon-color: #333;
+  transition: all 0.3s;
+}
+
+.inputWrapper:hover {
+  background-color: #cdcdcd;
 }
 
 .editor img {

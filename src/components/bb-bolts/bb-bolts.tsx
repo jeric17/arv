@@ -154,11 +154,13 @@ export class Bolts {
     const { element, slot, props } = this.selectedItem;
     const container = this.el.shadowRoot.querySelector('#bolt');
     const slotContent = slot ? slot.replace(/</g, '&lt').replace(/>/g, '&gt') : '';
-    const codeText = this.addProps(element, props);
+    const codeText = this.addProps(element, props, slot);
+
     container.innerHTML = codeText;
 
     const componentElem = container.querySelector(this.selectedItem.element);
     props.forEach(d => {
+
       if (d.type === 'object2' || d.type === 'array') {
         componentElem[d.name] = d.value;
       }
@@ -173,8 +175,14 @@ export class Bolts {
       }
     });
 
-    const code = container.innerHTML
-                          .replace(/ /g, '\n   ')
+    let codeContainerHTML = container.innerHTML;
+
+    props.forEach(d => {
+      const name = d.displayName ? d.displayName : d.name;
+      codeContainerHTML = codeContainerHTML.replace(` ${name}`, `\n  ${name}`);
+    });
+
+    const code = codeContainerHTML
       .replace('></', '\n></')
       .replace(/</g, '&lt')
       .replace(/>/g, '&gt')
@@ -204,14 +212,20 @@ export class Bolts {
     const codeElem = this.el.shadowRoot.querySelector('code');
     codeElem.innerHTML = codeContent;
 
-    if (slot) {
-      const span = document.createElement('span');
-      span.innerHTML = slot;
-      container.lastElementChild.appendChild(span);
-    }
+    /* if (slot) {
+     *   const span = document.createElement('span');
+     *   span.innerHTML = slot;
+     *   container.lastElementChild.appendChild(span);
+     * } */
   }
 
-  addProps(element: string, props: any) {
+  addProps(element: string, props: any, _slot: any) {
+    const slot = (() => {
+      if (!_slot || _slot === 'false') {
+        return '';
+      }
+      return _slot;
+    })();
     const propsString = props.reduce((c, n) => {
       if (n.type === 'object' || n.type === 'object2') {
         return c;
@@ -221,10 +235,10 @@ export class Bolts {
       }
       const name = n.displayName ? n.displayName : n.name;
       const value = n.displayValue ? n.displayValue : n.value;
-      return `${c} ${name}=${value}`;
+      return `${c} ${name}='${value}'`;
     }, '');
 
-    return `<${element} ${propsString} />`;
+    return `<${element} ${propsString}>${slot}</${element}>`;
   }
 
   slotChanged(slot: string) {
@@ -275,7 +289,7 @@ export class Bolts {
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.4</arv-text>
+            <arv-text color="light">arv@0.1.7</arv-text>
           </arv-flex>
 
           <arv-flex padded full={false}>
@@ -387,7 +401,7 @@ export class Bolts {
         <arv-divider transparent></arv-divider>
         <arv-text variant="heading3">Demo</arv-text>
         <arv-flex
-          style={{'backgroundColor': '#fff', 'height': '200px'}}
+          style={{'backgroundColor': '#fff', 'height': '300px'}}
           items="center"
           justify="center"
           padded

@@ -44,6 +44,12 @@ export const Table = {
     },
   ],
   props: [
+    // {
+    //   name: 'multiSelectable',
+    //   displayName: 'multi-selectable',
+    //   type: 'boolean',
+    //   value: false
+    // },
     {
       name: 'tableTitle',
       displayName: 'table-title',

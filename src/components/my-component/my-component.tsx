@@ -19,6 +19,8 @@ import { Chips } from './chips';
 import { Table } from './table';
 import { Loader } from './loader';
 import { Paginator } from './paginator';
+import { Editor } from './editor';
+import { Tabs } from './tabs';
 
 @Component({
   tag: 'my-component',
@@ -35,6 +37,7 @@ export class MyComponent {
     {...Chips},
     {...Container},
     {...Dialog},
+    {...Editor},
     {...Flex},
     {...Header},
     {...Icon},
@@ -46,6 +49,7 @@ export class MyComponent {
     {...Stepper},
     {...Switch},
     {...Table},
+    {...Tabs},
     {...Text},
   ];
 

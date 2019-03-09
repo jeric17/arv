@@ -780,12 +780,12 @@ export namespace Components {
   interface ArvTabs {
     'color': string;
     'selectedTab': string;
-    'tabs': string[];
+    'tabs': any | string[];
   }
   interface ArvTabsAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'selectedTab'?: string;
-    'tabs'?: string[];
+    'tabs'?: any | string[];
   }
 
   interface ArvText {

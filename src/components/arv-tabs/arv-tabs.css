@@ -5,7 +5,7 @@
 }
 .root {
   display: flex;
-  flex-direction: column;  
+  flex-direction: column;
 }
 .tabBody {
   display: none;
@@ -21,7 +21,7 @@
 .tabItem {
   cursor: pointer;
   padding: 0.75em 1em;
-  text-align: center;    
+  text-align: center;
   width: 100%;
   border-bottom-style: solid;
   border-bottom-width: 2px;
@@ -30,7 +30,7 @@
 }
 
 .tabItem.active {
-  border-bottom-color: var(--default-color);    
+  border-bottom-color: var(--default-color);
 }
 
 .tabHeader {
@@ -39,19 +39,19 @@
 }
 
 .primary .tabHeader {
-  background-color: var(--primary-dark-color);
-  color: var(--primary-font-color);    
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
 }
 
 .primary .tabItem.active {
-  border-bottom-color: var(--secondary-dark-color);
+  border-bottom-color: var(--secondary-color);
 }
 
 .secondary .tabHeader {
-  background-color: var(--secondary-dark-color);
-  color: var(--secondary-font-color);    
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
 }
-  
+
 .secondary .tabItem.active {
-  border-bottom-color: var(--primary-dark-color);
+  border-bottom-color: var(--primary-color);
 }
