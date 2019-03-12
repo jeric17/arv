@@ -27,6 +27,7 @@ import { ImageUpload } from './image-upload';
 import { Section } from './section';
 import { CardMedia } from './card-media';
 import { Card } from './card';
+import { AvatarGroup } from './avatar-group';
 
 @Component({
   tag: 'my-component',
@@ -37,6 +38,7 @@ export class MyComponent {
 
   items = [
     {...Avatar},
+    {...AvatarGroup},
     {...Button},
     {...Card},
     {...CardMedia},

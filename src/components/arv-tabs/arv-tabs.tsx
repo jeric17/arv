@@ -79,6 +79,13 @@ export class Tabs {
   }
 
   showTab() {
+    Array.from(this.el.children).forEach((tabItem: HTMLElement, index: number) => {
+      if (index !== this.currentIndex) {
+        tabItem.style.visibility = 'hidden';
+        return false;
+      }
+      tabItem.style.visibility = 'visible';
+    });
     const tabBody:HTMLElement = this.el.shadowRoot.querySelector('.tabBody');
 
     tabBody.style.left = `${(this.currentIndex * this.rootWidth) * -1}px`;

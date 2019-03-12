@@ -115,19 +115,21 @@ export class Button {
         items="center"
         justify={this.textAlign}>
         {this.icon && <Icon />}
-        <div class="slot">
-          <arv-text>
-            <slot></slot>
-          </arv-text>
-        </div>
+        {(this.variant !== 'fab') && (
+           <div class="slot">
+             <arv-text>
+               <slot></slot>
+             </arv-text>
+           </div>
+        )}
       </arv-flex>
     );
 
     const Loader = () => (
       <arv-flex items="center" justify="center">
         <arv-loader size="xsmall"></arv-loader>
-      </arv-flex>  
-    );    
+      </arv-flex>
+    );
 
     const T = ({ p }) => {
       if (this.href) {

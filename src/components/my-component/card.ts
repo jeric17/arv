@@ -1,5 +1,5 @@
 const image = 'https://stmed.net/sites/default/files/mountain-wallpapers-27979-9780444.jpg';
-const avatar = 'https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&h=650&w=940';
+const avatar = 'https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg';
 
 export const Card = {
   name: 'Card',

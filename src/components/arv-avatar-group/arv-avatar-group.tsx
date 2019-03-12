@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-avatar-group',
@@ -7,13 +7,20 @@ import { Component, Prop, Event, EventEmitter } from '@stencil/core';
 })
 export class AvatarGroup {
 
+  @State() imageItemsData: string[];
+
   @Prop() index: number;
 
   @Prop() showMore: () => void;
 
-  @Prop() maxItems = 0;
+  @Prop() maxItems: any = 0;
 
-  @Prop() imageItems: string[] = [];
+  @Prop() imageItems: string | string[];
+
+  @Watch('imageItems')
+  handleImageItems() {
+    this.load();
+  }
 
   @Prop() size = 'small';
 
@@ -23,12 +30,37 @@ export class AvatarGroup {
 
   @Event() onShowMore: EventEmitter;
 
+  componentWillLoad() {
+    this.load();
+  }
+
+  load() {
+    if (!this.imageItems) {
+      this.imageItemsData = [];
+      return false;
+    }
+    if (typeof this.imageItems !== 'string') {
+      this.imageItemsData = this.imageItems;
+      return false;
+    }
+    try {
+      const imageItems = JSON.parse(this.imageItems);
+      this.imageItemsData = imageItems;
+    } catch(e) {
+      console.error(e);
+    }
+  }
+
   render() {
-    const imageLength = this.imageItems.length;
-    const more = imageLength > this.maxItems ? (imageLength - this.maxItems) : 0;
+    const imageLength = this.imageItemsData.length;
+    const more = imageLength > Number(this.maxItems) ? (imageLength - this.maxItems) : 0;
     const MoreBtn = () => (
       <div
-        onClick={() => this.showMore()}
+        onClick={() => {
+          if (this.showMore) {
+            this.showMore()
+          }
+        }}
         class={{
           more: true,
           small: this.size === 'small',
@@ -38,7 +70,7 @@ export class AvatarGroup {
       </div>
     );
 
-    const imageItems = this.imageItems.slice(0, this.maxItems);
+    const imageItems = this.imageItemsData.slice(0, this.maxItems);
 
     const styles: any = {};
 

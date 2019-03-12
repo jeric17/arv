@@ -20,6 +20,8 @@ export class Container {
 
   @Prop() padding: string;
 
+  @Prop() position: string;
+
   @Prop() styles: any;
 
   @Prop() width: string;
@@ -49,8 +51,9 @@ export class Container {
       height: this.height,
       width: this.width,
       padding: this.padding,
-      margin: this.margin
-    };
+      margin: this.margin,
+      position: this.position,
+    };    
 
     const styles = {
       ...this.styles,

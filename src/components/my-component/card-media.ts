@@ -7,7 +7,7 @@ export const CardMedia = {
   description: [
     'A relative size image component, adapts to the size of the container'
   ],
-  slot: 'false',
+  slot: false,
   props: [
     {
       name: 'imageSrc',

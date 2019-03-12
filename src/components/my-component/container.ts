@@ -4,14 +4,20 @@ export const Container = {
   slot: 'Hello World!',
   props: [
     {
+      name: 'color',
+      type: 'oneOf',
+      data: ['default', 'primary', 'secondary', 'warning'],
+      value: 'primary'
+    },
+    {
       name: 'height',
       type: 'string',
-      value: ''
+      value: '100px'
     },
     {
       name: 'width',
       type: 'string',
-      value: ''
+      value: '100px'
     },
     {
       name: 'margin',
@@ -24,9 +30,14 @@ export const Container = {
       value: ''
     },
     {
+      name: 'scrollable',
+      type: 'boolean',
+      value: false
+    },
+    {
       name: 'hidden',
       type: 'boolean',
-      value: 'false'
+      value: false
     },
   ]
 };

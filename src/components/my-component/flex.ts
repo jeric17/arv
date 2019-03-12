@@ -1,7 +1,7 @@
 export const Flex = {
   name: 'Flex',
   element: 'arv-flex',
-  slot: '<arv-container color="primary" height="50px" width="50px"></arv-container>',
+  slot: '<arv-button color="primary" variant="raised-icon" icon="add"></arv-button><arv-button variant="raised-icon" color="secondary" icon="edit"></arv-button><arv-button color="warning" variant="raised-icon" icon="delete"></arv-button>',
   props: [
     {
       name: 'layout',
@@ -18,7 +18,7 @@ export const Flex = {
     {
       name: 'justify',
       type: 'oneOf',
-      data: ['start', 'end', 'center', 'stretch'],
+      data: ['start', 'end', 'center', 'stretch', 'between', 'around'],
       value: 'start'
     },
     {

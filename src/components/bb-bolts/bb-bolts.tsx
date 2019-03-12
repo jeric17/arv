@@ -188,14 +188,17 @@ export class Bolts {
       });
     }
 
-    let codeContainerHTML = container.innerHTML.replace(slot, '');
+    const reSlot = new RegExp(slot, 'g');
+    let codeContainerHTML = container.innerHTML.replace(reSlot, '');
 
     props.forEach(d => {
       const name = d.displayName ? d.displayName : d.name;
+
       codeContainerHTML = codeContainerHTML.replace(` ${name}`, `\n  ${name}`);
     });
 
     const code = codeContainerHTML
+      .replace(slot, 'SLOT')
       .replace('></', '\n></')
       .replace(/</g, '&lt')
       .replace(/>/g, '&gt')
@@ -204,7 +207,7 @@ export class Bolts {
     code[0] = `<span class="html-elem">${code[0]}`;
     code[code.length - 1] = `<span class="html-elem">${code[code.length -1]}`;
     code[code.length - 1] = code[code.length - 1].replace('&gt&lt',
-    `&gt<span class="html-slot">${slotContent || ''}</span>&lt`
+    `&gt<span class="html-slot">\n  ${slotContent || ''}\n</span>&lt`
     );
     const codes = code.map((d, i) => {
 
@@ -292,6 +295,23 @@ export class Bolts {
     return (
       <arv-table
         table-title="Props"
+        tableData={data}
+        tableHeaders={headers}
+      ></arv-table>
+    );
+  }
+
+  cssVariablesDescription() {
+    if (!this.selectedItem || !this.selectedItem.cssVariables) {
+      return false;
+    }
+
+    const headers = ['Name', 'Description'];
+    const data = this.selectedItem.cssVariables.map(d => [0, d.name, d.description]);
+
+    return (
+      <arv-table
+        table-title="CSS Variables"
         tableData={data}
         tableHeaders={headers}
       ></arv-table>
@@ -450,6 +470,10 @@ export class Bolts {
         <arv-divider transparent></arv-divider>
 
         {this.eventDescription()}
+
+        <arv-divider transparent></arv-divider>
+
+        {this.cssVariablesDescription()}
 
         <arv-divider transparent></arv-divider>
       </arv-flex>

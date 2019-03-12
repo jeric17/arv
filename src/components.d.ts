@@ -39,18 +39,18 @@ export namespace Components {
 
   interface ArvAvatarGroup {
     'bordered': boolean;
-    'imageItems': string[];
+    'imageItems': string | string[];
     'index': number;
-    'maxItems': number;
+    'maxItems': any;
     'showMore': () => void;
     'size': string;
     'styles': any;
   }
   interface ArvAvatarGroupAttributes extends StencilHTMLAttributes {
     'bordered'?: boolean;
-    'imageItems'?: string[];
+    'imageItems'?: string | string[];
     'index'?: number;
-    'maxItems'?: number;
+    'maxItems'?: any;
     'onOnShowMore'?: (event: CustomEvent) => void;
     'showMore'?: () => void;
     'size'?: string;
@@ -217,6 +217,7 @@ export namespace Components {
     'margin': string;
     'max1080': boolean;
     'padding': string;
+    'position': string;
     'scrollable': boolean;
     'styles': any;
     'variant': string;
@@ -230,6 +231,7 @@ export namespace Components {
     'margin'?: string;
     'max1080'?: boolean;
     'padding'?: string;
+    'position'?: string;
     'scrollable'?: boolean;
     'styles'?: any;
     'variant'?: string;
