@@ -25,11 +25,15 @@ export class Dialog {
     }
   }
 
+  @Prop() dialogTitleIcon: string;
+
   @Prop() dialogTitle: string;
 
   @Prop() full: boolean;
 
   @Prop() bgColor = '#fff';
+
+  @Prop() iconColor = '#000';
 
   @Prop() scrollable: boolean;
 
@@ -128,22 +132,31 @@ export class Dialog {
         hidden={!this.show}>
         <arv-dialog-content
           full={this.full}
-          style={{'--paper-color': this.bgColor}}
+          style={{
+            '--paper-color': this.bgColor,
+            '--default-icon-color': this.iconColor,
+          }}
         >
           <div class={{
             content: true,
             'arv-dialog-content': true,
             contentFull: this.full
           }}>
-            {!this.hideClose && (
-               <arv-flex justify="between" items="center">
-                 <arv-text variant="heading3">{this.dialogTitle}</arv-text>
-                 <arv-button
-                   variant="flat-icon"
-                   icon="close"
-                   buttonClick={this.onHandleClose.bind(this, false)}></arv-button>
-               </arv-flex>
-            )}
+            <arv-flex justify="between" items="center">
+                <arv-flex items="center">
+                  {this.dialogTitleIcon && [
+                    <arv-icon class="icon" withButtonIcon icon={this.dialogTitleIcon} />,
+                    <arv-divider layout="column" transparent></arv-divider>
+                  ]}
+                  <arv-text variant="heading3">{this.dialogTitle}</arv-text>
+                </arv-flex>
+                {!this.hideClose && (
+                  <arv-button
+                    variant="flat-icon"
+                    icon="close"
+                    buttonClick={this.onHandleClose.bind(this, false)}></arv-button>  
+                )}
+              </arv-flex>
             {slot}
             {this.dialogActions && [
                <arv-divider transparent/>,

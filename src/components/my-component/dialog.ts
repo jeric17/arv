@@ -17,6 +17,18 @@ export const Dialog = {
       name: 'dialog-title',
       type: 'string',
       value: 'Title'
+    },
+    {
+      name: 'dialogTitleIcon',
+      displayName: 'dialog-title-icon',
+      type: 'string',
+      value: 'add'
+    },
+    {
+       name: 'hideClose',
+       displayName: 'hide-close',
+       type: 'boolean',
+       value: false
     }
   ],
 };

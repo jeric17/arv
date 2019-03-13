@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Element, Prop, State } from '@stencil/core';
+import { Component, Event, EventEmitter, Element, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-snackbar',
@@ -22,6 +22,11 @@ export class Snackbar {
   @Prop() animationOut = 'slideOutTop';
 
   @Prop() variant: string;
+  
+  @Watch('variant')
+  handleVariant() {
+    this.init();
+  }
 
   @Prop() horizontal = 'center';
 
@@ -30,6 +35,11 @@ export class Snackbar {
   @Prop() message: string;  
 
   @Prop() open = false;
+
+  @Watch('open')
+  handleOpen() {
+    this.init();
+  }
 
   @Prop() timing = 3;
 
@@ -46,12 +56,9 @@ export class Snackbar {
   }
 
   componentDidLoad() {
+
     this.init();
   }
-
-  componentDidUpdate() {
-    this.init();
-  }  
 
   componentDidUnload() {
     clearTimeout(this.timeout);
@@ -62,7 +69,7 @@ export class Snackbar {
       return false;  
     }
 
-    this.elementStyles = this.getStyles(this.vertical, this.horizontal);
+    // this.elementStyles = this.getStyles(this.vertical, this.horizontal);
 
     if (this.timing) {
       this.timingClose();
@@ -74,17 +81,10 @@ export class Snackbar {
     
     const height = window.innerHeight;
     const width = window.innerWidth;
-    
-    const root = this.el.shadowRoot.querySelector('.root');
+   
+    const elementHeight = 52;
 
-    if (!root) {
-      return style;    
-    }
-    
-    const elementHeight = root.clientHeight;
-    const elementWidth = root.clientWidth;
-
-    if (v === 'top') {
+    if (!v || v === 'top') {
       style['top'] = `${this.padding + this.top}px`;
     }
 
@@ -101,7 +101,7 @@ export class Snackbar {
     }
 
     if (h === 'center') {
-      style['left'] = `${width / 2 - (elementWidth / 2)}px`;
+      style['left'] = `${width / 2}px`;
     }
 
     if (h === 'right') {
@@ -133,7 +133,6 @@ export class Snackbar {
     if (!this.open) {
       return false;
     }
-
     const rootClassNames = {
       root: true,
       error: this.variant === 'error',
@@ -157,27 +156,37 @@ export class Snackbar {
       return null;
     })();
 
+    const Content = () => (
+      <div class={{
+        content: true,
+        hCenter: this.horizontal === 'center'  
+      }}>
+        <arv-flex items="center">
+            {icon && [
+              <arv-icon icon={icon} noMargin/>,
+              <arv-divider layout="column" transparent />
+            ]}
+            {(this.variant === 'loading') && [
+              <arv-loader size="xsmall" />,
+              <arv-divider layout="column" transparent />
+            ]}
+            <arv-text>
+                {this.message}
+            </arv-text>
+            <slot />
+        </arv-flex>
+      </div>  
+    );
+
+    const elementStyles = this.getStyles(this.vertical, this.horizontal);    
+
     return (
         <div
-            style={this.elementStyles}
-            class={rootClassNames}>
+          style={elementStyles}
+          class={rootClassNames}
+        >
           <arv-transition animation={this.animation}>
-            <div class="content">
-            <arv-flex items="center">
-                {icon && [
-                  <arv-icon icon={icon} noMargin/>,
-                  <arv-divider layout="column" transparent />
-                ]}
-                {(this.variant === 'loading') && [
-                  <arv-loader size="xsmall" />,
-                  <arv-divider layout="column" transparent />
-                ]}
-                <arv-text>
-                    {this.message}
-                </arv-text>
-                <slot />
-            </arv-flex>
-            </div>
+            <Content />
           </arv-transition>
         </div>
     );

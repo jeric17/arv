@@ -263,9 +263,11 @@ export namespace Components {
     'actions': DialogActions;
     'bgColor': string;
     'dialogTitle': string;
+    'dialogTitleIcon': string;
     'full': boolean;
     'handleClose': () => void;
     'hideClose': boolean;
+    'iconColor': string;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
@@ -274,9 +276,11 @@ export namespace Components {
     'actions'?: DialogActions;
     'bgColor'?: string;
     'dialogTitle'?: string;
+    'dialogTitleIcon'?: string;
     'full'?: boolean;
     'handleClose'?: () => void;
     'hideClose'?: boolean;
+    'iconColor'?: string;
     'onOnClose'?: (event: CustomEvent) => void;
     'onOnOk'?: (event: CustomEvent) => void;
     'parent'?: HTMLElement;

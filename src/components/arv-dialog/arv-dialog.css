@@ -6,3 +6,6 @@
   /* height: 100vh; */
   width: 100vw;
 }
+.icon {
+  --default-icon-color: var(--default-icon-color, #000);
+}

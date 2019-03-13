@@ -1,7 +1,7 @@
 .root {
   display: none;
   font-family: var(--font-family);
-  color: var(--dark-text-color);
+  color: var(--dark-text-color, #000);
   transition: all 0.3s;
   font-weight: var(--font-weight, normal);
 }
