@@ -31,10 +31,14 @@ export namespace Components {
   interface ArvAccordionAttributes extends StencilHTMLAttributes {}
 
   interface ArvAlertText {
-    'variant': string;
+    'color': string;
+    'icon': string;
+    'textAlign': string;
   }
   interface ArvAlertTextAttributes extends StencilHTMLAttributes {
-    'variant'?: string;
+    'color'?: string;
+    'icon'?: string;
+    'textAlign'?: string;
   }
 
   interface ArvAvatarGroup {
@@ -79,6 +83,15 @@ export namespace Components {
     'onBackdropClick'?: (event: Event) => void;
     'position'?: string;
     'transparent'?: boolean;
+  }
+
+  interface ArvBadge {
+    'color': string;
+    'size': string;
+  }
+  interface ArvBadgeAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'size'?: string;
   }
 
   interface ArvButton {
@@ -615,7 +628,7 @@ export namespace Components {
     'hashKey': string;
     'onScrollTop': () => void;
     'startAt': string;
-    'toBottom': () => Promise<void>;
+    'toBottom': () => Promise<boolean>;
     'toTop': () => Promise<void>;
   }
   interface ArvScrollableContentAttributes extends StencilHTMLAttributes {
@@ -876,6 +889,7 @@ declare global {
     'ArvAvatarGroup': Components.ArvAvatarGroup;
     'ArvAvatar': Components.ArvAvatar;
     'ArvBackdrop': Components.ArvBackdrop;
+    'ArvBadge': Components.ArvBadge;
     'ArvButton': Components.ArvButton;
     'ArvCardHeader': Components.ArvCardHeader;
     'ArvCardMedia': Components.ArvCardMedia;
@@ -934,6 +948,7 @@ declare global {
     'arv-avatar-group': Components.ArvAvatarGroupAttributes;
     'arv-avatar': Components.ArvAvatarAttributes;
     'arv-backdrop': Components.ArvBackdropAttributes;
+    'arv-badge': Components.ArvBadgeAttributes;
     'arv-button': Components.ArvButtonAttributes;
     'arv-card-header': Components.ArvCardHeaderAttributes;
     'arv-card-media': Components.ArvCardMediaAttributes;
@@ -1020,6 +1035,12 @@ declare global {
   var HTMLArvBackdropElement: {
     prototype: HTMLArvBackdropElement;
     new (): HTMLArvBackdropElement;
+  };
+
+  interface HTMLArvBadgeElement extends Components.ArvBadge, HTMLStencilElement {}
+  var HTMLArvBadgeElement: {
+    prototype: HTMLArvBadgeElement;
+    new (): HTMLArvBadgeElement;
   };
 
   interface HTMLArvButtonElement extends Components.ArvButton, HTMLStencilElement {}
@@ -1323,6 +1344,7 @@ declare global {
     'arv-avatar-group': HTMLArvAvatarGroupElement
     'arv-avatar': HTMLArvAvatarElement
     'arv-backdrop': HTMLArvBackdropElement
+    'arv-badge': HTMLArvBadgeElement
     'arv-button': HTMLArvButtonElement
     'arv-card-header': HTMLArvCardHeaderElement
     'arv-card-media': HTMLArvCardMediaElement
@@ -1381,6 +1403,7 @@ declare global {
     'arv-avatar-group': HTMLArvAvatarGroupElement;
     'arv-avatar': HTMLArvAvatarElement;
     'arv-backdrop': HTMLArvBackdropElement;
+    'arv-badge': HTMLArvBadgeElement;
     'arv-button': HTMLArvButtonElement;
     'arv-card-header': HTMLArvCardHeaderElement;
     'arv-card-media': HTMLArvCardMediaElement;

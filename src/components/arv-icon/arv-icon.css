@@ -49,6 +49,14 @@
   color: var(--default-text-color);
 }
 
+.primary {
+  color: var(--primary-color);
+}
+
+.secondary {
+  color: var(--secondary-color);
+}
+
 .warning {
-  color: var(--warning-text-color);
+  color: var(--warning-color);
 }

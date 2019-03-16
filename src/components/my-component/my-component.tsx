@@ -28,6 +28,8 @@ import { Section } from './section';
 import { CardMedia } from './card-media';
 import { Card } from './card';
 import { AvatarGroup } from './avatar-group';
+import { Badge } from './badge';
+import { AlertText } from './alert-text';
 
 @Component({
   tag: 'my-component',
@@ -37,8 +39,10 @@ import { AvatarGroup } from './avatar-group';
 export class MyComponent {
 
   items = [
+    {...AlertText},
     {...Avatar},
     {...AvatarGroup},
+    {...Badge},
     {...Button},
     {...Card},
     {...CardMedia},

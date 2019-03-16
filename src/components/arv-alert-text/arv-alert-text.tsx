@@ -7,20 +7,34 @@ import { Component, Prop } from '@stencil/core';
 })
 export class AlertText {
 
-  @Prop() variant = 'default';
+  @Prop() color = 'default';
+
+  @Prop() textAlign = 'start';
+
+  @Prop() icon: string;
 
   render() {
     const rootClassNames = {
       root: true,
-      'default': this.variant === 'default',
-      error: this.variant === 'error',
-      success: this.variant === 'success'
+      'default': this.color === 'default',
+      error: this.color === 'error',
+      success: this.color === 'success',
+      primary: this.color === 'primary',
+      secondary: this.color === 'secondary',
+      warning: this.color === 'warning'
     };
 
     return (
-      <div class={rootClassNames}>
-        <slot />
-      </div>
+      <arv-flex
+      justify={this.textAlign}
+        class={rootClassNames}
+        padded
+      >
+        <arv-flex items="center" fullWidth={false}>
+          {Boolean(this.icon) && <arv-icon icon={this.icon} />}
+          <slot />
+        </arv-flex>
+      </arv-flex>
     );
   }
 }

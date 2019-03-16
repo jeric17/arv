@@ -32,6 +32,8 @@ export class Icon {
       noMargin: this.noMargin,
       withButtonIcon: this.withButtonIcon,
       defaultColor: this.color === 'default',
+      primary: this.color === 'primary',
+      secondary: this.color === 'secondary',
       warning: this.color === 'warning'
     };
 

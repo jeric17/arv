@@ -26,6 +26,9 @@ export class ScrollableContent {
 
   @Method()
   async toBottom() {
+    if (!this.root) {
+      return false;
+    }
     this.el.scrollTop = this.root.scrollHeight;
   }
 
@@ -34,7 +37,7 @@ export class ScrollableContent {
     this.el.scrollTop = 0;
   }
 
-  @Event() scrolledTop: EventEmitter;  
+  @Event() scrolledTop: EventEmitter;
 
   @Listen('scroll')
   handleScroll() {
@@ -48,14 +51,26 @@ export class ScrollableContent {
 
   componentDidLoad() {
     this.init();
+    this.didLoad();
+  }
+
+  didLoad() {
+
+    if (!this.root || !this.root.scrollHeight) {
+      setTimeout(() => {
+        this.didLoad();
+      }, 100);
+    } else {
+      this.init();
+    }
   }
 
   init() {
-    this.root = this.el.shadowRoot.querySelector('.root');    
+    this.root = this.el.shadowRoot.querySelector('.root');
     if (this.startAt === 'bottom') {
       this.toBottom();
     }
-  }   
+  }
 
   render() {
     return (

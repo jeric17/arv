@@ -283,6 +283,16 @@
   background-color: var(--light-color);
 }
 
+.flatIcon.primary {
+  background-color: var(--primary-color);
+}
+.flatIcon.secondary {
+  background-color: var(--secondary-color);
+}
+.flatIcon.warning {
+  background-color: var(--warning-color);
+}
+
 .ghostIcon .slot,
 .flatIcon .slot,
 .raisedIcon .slot{
