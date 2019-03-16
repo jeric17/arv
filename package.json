@@ -1,6 +1,6 @@
 {
   "name": "arv",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "Framework agnostic UI library - custom element UI",
   "module": "dist/esm/index.js",
   "main": "dist/index.js",
