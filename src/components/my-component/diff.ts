@@ -1,9 +1,9 @@
 const pattern1 = {
   App: {
     Theme: {
-      NavBarFontColor: 3,  
+      NavBarFontColor: 3,
       ActionButtonColor: 3
-    }  
+    }
   },
   AppContent: {
     Name: 'four',
@@ -15,10 +15,10 @@ const pattern1 = {
 const pattern2 = {
   App: {
     Theme: {
-      NavBarFontColor: 3,  
+      NavBarFontColor: 3,
       ActionButtonColor: 3,
       Item: 2
-    }  
+    }
   },
   AppContent: {
     Name: 'four',

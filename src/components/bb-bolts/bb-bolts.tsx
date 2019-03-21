@@ -159,7 +159,9 @@ export class Bolts {
     if (wrapper) {
       const div = document.createElement('div');
       div.innerHTML = wrapper;
-      div.children[0].innerHTML = codeText;
+      if (!this.selectedItem.htmlMode) {
+        div.children[0].innerHTML = codeText;
+      }
       container.innerHTML = div.innerHTML;
     } else {
       container.innerHTML = codeText;

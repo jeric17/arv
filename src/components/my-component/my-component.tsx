@@ -31,6 +31,7 @@ import { AvatarGroup } from './avatar-group';
 import { Badge } from './badge';
 import { AlertText } from './alert-text';
 import { Diff } from './diff';
+import { Draggable } from './draggable';
 
 @Component({
   tag: 'my-component',
@@ -40,6 +41,7 @@ import { Diff } from './diff';
 export class MyComponent {
 
   items = [
+    {...Draggable},
     {...AlertText},
     {...Avatar},
     {...AvatarGroup},

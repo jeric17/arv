@@ -331,6 +331,19 @@ export namespace Components {
     'width'?: string;
   }
 
+  interface ArvDraggable {
+    'drop': (evt: DragEvent, k1: string, k2: string) => void;
+    'key': string;
+    'over': (evt: DragEvent, key: string) => void;
+    'start': (evt: DragEvent, key: string) => void;
+  }
+  interface ArvDraggableAttributes extends StencilHTMLAttributes {
+    'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'key'?: string;
+    'over'?: (evt: DragEvent, key: string) => void;
+    'start'?: (evt: DragEvent, key: string) => void;
+  }
+
   interface ArvEditor {
     'disabled': boolean;
     'disabledTools': string[];
@@ -908,6 +921,7 @@ declare global {
     'ArvDialog': Components.ArvDialog;
     'ArvDiff': Components.ArvDiff;
     'ArvDivider': Components.ArvDivider;
+    'ArvDraggable': Components.ArvDraggable;
     'ArvEditor': Components.ArvEditor;
     'ArvFlex': Components.ArvFlex;
     'ArvFluidContainer': Components.ArvFluidContainer;
@@ -967,6 +981,7 @@ declare global {
     'arv-dialog': Components.ArvDialogAttributes;
     'arv-diff': Components.ArvDiffAttributes;
     'arv-divider': Components.ArvDividerAttributes;
+    'arv-draggable': Components.ArvDraggableAttributes;
     'arv-editor': Components.ArvEditorAttributes;
     'arv-flex': Components.ArvFlexAttributes;
     'arv-fluid-container': Components.ArvFluidContainerAttributes;
@@ -1129,6 +1144,12 @@ declare global {
   var HTMLArvDividerElement: {
     prototype: HTMLArvDividerElement;
     new (): HTMLArvDividerElement;
+  };
+
+  interface HTMLArvDraggableElement extends Components.ArvDraggable, HTMLStencilElement {}
+  var HTMLArvDraggableElement: {
+    prototype: HTMLArvDraggableElement;
+    new (): HTMLArvDraggableElement;
   };
 
   interface HTMLArvEditorElement extends Components.ArvEditor, HTMLStencilElement {}
@@ -1363,6 +1384,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement
     'arv-diff': HTMLArvDiffElement
     'arv-divider': HTMLArvDividerElement
+    'arv-draggable': HTMLArvDraggableElement
     'arv-editor': HTMLArvEditorElement
     'arv-flex': HTMLArvFlexElement
     'arv-fluid-container': HTMLArvFluidContainerElement
@@ -1422,6 +1444,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement;
     'arv-diff': HTMLArvDiffElement;
     'arv-divider': HTMLArvDividerElement;
+    'arv-draggable': HTMLArvDraggableElement;
     'arv-editor': HTMLArvEditorElement;
     'arv-flex': HTMLArvFlexElement;
     'arv-fluid-container': HTMLArvFluidContainerElement;
