@@ -1,5 +1,5 @@
 const pattern1 = {
-  Ap: {
+  App: {
     Theme: {
       NavBarFontColor: 3,  
       ActionButtonColor: 3
@@ -9,9 +9,7 @@ const pattern1 = {
     Name: 'four',
     NavBarColor: '#fff000',
     Label: 'Home',
-  },
-  Lib: {},
-  ok: 1
+  }
 };
 
 const pattern2 = {

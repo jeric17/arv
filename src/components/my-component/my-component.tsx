@@ -40,7 +40,6 @@ import { Diff } from './diff';
 export class MyComponent {
 
   items = [
-    {...Diff},  
     {...AlertText},
     {...Avatar},
     {...AvatarGroup},
@@ -53,6 +52,7 @@ export class MyComponent {
     {...Chips},
     {...Container},
     {...Dialog},
+    {...Diff},
     {...Editor},
     {...Flex},
     {...Header},

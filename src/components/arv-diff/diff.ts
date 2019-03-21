@@ -37,10 +37,10 @@ export function diff(o: string, n: string) {
 
     if (d !== oItem && nextOccurence === -1) {
       nextOccurence = getNextOccurence(oRemaining, nRemaining, i);
-      console.log('nextOccurence', nextOccurence, d);  
+      // console.log('nextOccurence', nextOccurence, d);  
       const currentOIndex = oRemaining.indexOf(d);
       const validNextOIndex = (currentOIndex > - 1) ? (currentOIndex + i + 1) : -1;
-      console.log(currentOIndex, d, 'ITEM: ', oItem, validNextOIndex);
+      // console.log(currentOIndex, d, 'ITEM: ', oItem, validNextOIndex);
 
       if (
         validNextOIndex > i
@@ -66,7 +66,7 @@ export function diff(o: string, n: string) {
         let hasStreak = false;
         if (oItem) {
           hasStreak = true;
-          console.log('OITEM', oItem, validNextOIndex);
+          // console.log('OITEM', oItem, validNextOIndex);
           stringArray.push(`${minusSign}${oItem}${divider}${i}_${oIndex}`);
           indexes.push([i, oIndex, stringArray.length]);
         }
@@ -96,7 +96,7 @@ export function diff(o: string, n: string) {
       streakCount = 0;
       oIndex += 1;
     } else {
-      console.log('ELSE', d);
+      // console.log('ELSE', d);
       nextOccurence = -1;
     }
 
@@ -137,7 +137,7 @@ export function diff(o: string, n: string) {
     });
   }
 
-  console.log(oIndex, oArray.length);  
+  // console.log(oIndex, oArray.length);  
 
   const parsedData = stringArray.map(data => {
     const plus = data.indexOf(plusSign) > -1;
