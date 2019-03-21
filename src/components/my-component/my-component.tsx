@@ -30,6 +30,7 @@ import { Card } from './card';
 import { AvatarGroup } from './avatar-group';
 import { Badge } from './badge';
 import { AlertText } from './alert-text';
+import { Diff } from './diff';
 
 @Component({
   tag: 'my-component',
@@ -39,6 +40,7 @@ import { AlertText } from './alert-text';
 export class MyComponent {
 
   items = [
+    {...Diff},  
     {...AlertText},
     {...Avatar},
     {...AvatarGroup},

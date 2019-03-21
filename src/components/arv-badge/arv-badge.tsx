@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-badge',
@@ -7,9 +7,38 @@ import { Component, Prop } from '@stencil/core';
 })
 export class Badge {
 
+  @State() badgeStylesObj = {};  
+
   @Prop() color: string;
 
   @Prop() size: string;
+
+  @Prop() badgeStyle: any;
+
+  @Watch('badgeStyle')
+  handleStyles(badgeStyle) {
+    this.load(badgeStyle);
+  }
+
+  componentWillLoad() {  
+    this.load(this.badgeStyle);
+  }
+
+  load(badgeStyle) {
+    if (!badgeStyle) {  
+      return false;
+    }
+    if (typeof badgeStyle !== 'string') {
+      this.badgeStylesObj = badgeStyle;  
+      return false;
+    }
+    try {
+      const styles = JSON.parse(badgeStyle);
+      this.badgeStylesObj = styles;
+    } catch (e) {
+      console.error(e);
+    }
+  }  
 
   render() {
 
@@ -21,11 +50,14 @@ export class Badge {
       warning: this.color === 'warning',
       success: this.color === 'success',
       small: this.size === 'small'
-    };
+    };    
 
     return (
       <div class="root">
-        <div class={classNames}>
+        <div
+          style={this.badgeStylesObj}
+          class={classNames}
+        >
           <slot name="badge"></slot>
         </div>
         <slot></slot>

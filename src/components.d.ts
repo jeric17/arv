@@ -86,10 +86,12 @@ export namespace Components {
   }
 
   interface ArvBadge {
+    'badgeStyle': any;
     'color': string;
     'size': string;
   }
   interface ArvBadgeAttributes extends StencilHTMLAttributes {
+    'badgeStyle'?: any;
     'color'?: string;
     'size'?: string;
   }
@@ -302,12 +304,14 @@ export namespace Components {
   }
 
   interface ArvDiff {
-    'source1': string;
-    'source2': string;
+    'displayMode': string;
+    'newVersion': any;
+    'oldVersion': any;
   }
   interface ArvDiffAttributes extends StencilHTMLAttributes {
-    'source1'?: string;
-    'source2'?: string;
+    'displayMode'?: string;
+    'newVersion'?: any;
+    'oldVersion'?: any;
   }
 
   interface ArvDivider {

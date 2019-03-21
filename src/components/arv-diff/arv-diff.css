@@ -1,0 +1,48 @@
+:host,
+.root {
+  display: block;
+  width: 100%;
+  z-index: 99999;
+  position: fixed;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.root {
+  --font-family: Courier;
+  --font-size: 0.8rem;
+}
+
+.none .line-symbol {
+  opacity: 0;
+}
+
+.item {
+  display: block;
+  padding: 0 4px 0 0;
+  box-sizing: border-box;
+}
+
+.item.minus {
+  background-color: #ffc8c8;
+}
+
+.item.plus {
+  background-color: #c8ffcc;
+}
+
+.line {
+  box-sizing: border-box;
+  padding: 0 8px;
+  background-color: #efefef;
+}
+
+.line-wrapper {
+  width: 80px;
+  background-color: #efefef;
+  --font-size: 0.7rem;
+}
+
+arv-button {
+  --font-family: var(--font-family);
+}

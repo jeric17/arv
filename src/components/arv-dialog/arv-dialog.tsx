@@ -18,8 +18,7 @@ export class Dialog {
   @Watch('actions')
   handleActionsChange(newValue: DialogActions | string) {
     if (typeof newValue === 'string') {
-        console.log('string');
-       this.dialogActions = JSON.parse(newValue);
+      this.dialogActions = JSON.parse(newValue);
     } else {
       this.dialogActions = newValue;
     }
