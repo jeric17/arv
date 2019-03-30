@@ -80,6 +80,7 @@ function MyButton() {
   
   return (
     <arv-button
+      ref={el}
       variant="raised"
       color="primary"
     >Hello World!</arv-button>

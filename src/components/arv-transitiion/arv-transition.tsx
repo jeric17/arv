@@ -21,6 +21,8 @@ export class Transition {
       slideInBottom: this.animation === 'slideInBottom',
       slideOutTop: this.animation === 'slideOutTop',
       slideOutBottom: this.animation === 'slideOutBottom',
+      scaleUp: this.animation === 'scaleUp',
+      scaleHeight: this.animation === 'scaleHeight',
     };
 
     return (

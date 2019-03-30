@@ -24,6 +24,10 @@ export class Dialog {
     }
   }
 
+  @Prop() titleAlignment = 'start';
+
+  @Prop() titleImageIcon: string;
+
   @Prop() dialogTitleIcon: string;
 
   @Prop() dialogTitle: string;
@@ -40,7 +44,11 @@ export class Dialog {
 
   @Prop() handleClose: () => void;
 
-  @Prop() hideClose: boolean;
+  @Prop() hideClose = false;
+
+  @Prop() hideTitle = false;
+
+  @Prop() padded = true;
 
   @Watch('show')
   showChanged() {
@@ -95,7 +103,7 @@ export class Dialog {
     const dialog = this.el.shadowRoot.querySelector(`.${this.rootClassName}`);
     const slot = this.el.children[0];
     const elem = document.createElement(this.portal);
-
+    elem.setAttribute('padded', this.padded.toString());
     if (this.scrollable) {
       elem.setAttribute('scrollable', 'true');
     }
@@ -141,25 +149,33 @@ export class Dialog {
             'arv-dialog-content': true,
             contentFull: this.full
           }}>
-            <arv-flex justify="between" items="center">
-                <arv-flex items="center">
-                  {this.dialogTitleIcon && [
-                    <arv-icon class="icon" withButtonIcon icon={this.dialogTitleIcon} />,
-                    <arv-divider layout="column" transparent></arv-divider>
-                  ]}
-                  <arv-text variant="heading3">{this.dialogTitle}</arv-text>
-                </arv-flex>
-                {!this.hideClose && (
-                  <arv-button
-                    variant="flat-icon"
-                    icon="close"
-                    buttonClick={this.onHandleClose.bind(this, false)}></arv-button>  
-                )}
+            {!this.hideTitle && (
+              <arv-flex justify="between" items="center" padded>
+                  <arv-flex items="center" justify={this.titleAlignment}>
+                    {this.dialogTitleIcon && [
+                      <arv-icon class="icon" withButtonIcon icon={this.dialogTitleIcon} />,
+                      <arv-divider layout="column" transparent></arv-divider>
+                    ]}
+                    {this.titleImageIcon && [
+                      <img class="imgIcon" src={this.titleImageIcon} />,
+                      <arv-divider layout="column" transparent></arv-divider>
+                    ]}
+                    <arv-text variant="heading3">{this.dialogTitle}</arv-text>
+                  </arv-flex>
+                  {!this.hideClose && (
+                    <arv-button
+                      variant="flat-icon"
+                      icon="close"
+                      buttonClick={this.onHandleClose.bind(this, false)}></arv-button>  
+                  )}
               </arv-flex>
-            {slot}
+            )}
+            <arv-flex padded={this.padded}>
+              {slot}
+            </arv-flex>
             {this.dialogActions && [
                <arv-divider transparent/>,
-               <arv-flex justify="end">
+               <arv-flex justify="end" padded>
                  {this.dialogActions.cancel && (
                     <arv-button
                       variant={this.dialogActions.cancel.variant}

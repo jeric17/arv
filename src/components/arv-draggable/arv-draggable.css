@@ -1,0 +1,25 @@
+.top {
+  min-height: 2px;
+  height: 4px;
+}
+
+.topContent {
+  animation: show;
+}
+
+.isTopOver {
+  background-color: var(--primary-color);
+}
+
+arv-icon {
+  --default-icon-color: #565656;
+  cursor: move;
+}
+
+.primary arv-icon {
+  --default-icon-color: var(--primary-color);
+}
+
+.secondary arv-icon {
+  --default-icon-color: var(--secondary-color);
+}

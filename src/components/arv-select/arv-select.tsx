@@ -6,26 +6,18 @@ import { Component, Element, Event, EventEmitter, Listen, Method, Prop, State, W
   shadow: true
 })
 export class Select {
-  rootClassName = 'select-list';
-  portal = 'arv-virtual-portal';
-
   fromSelect: boolean;
+  currentSelected: boolean;
 
   @Element() el: HTMLElement;
 
-  @State() inputValue: string;
+  @State() willHide = false;
+
+  @State() inputValue = '';
 
   @State() virtualElement: any;
 
   @State() show: boolean;
-  @Watch('show')
-  showChanged() {
-    if (this.show) {
-      return this._showContent();
-    }
-
-    return this._hideContent();
-  }
 
   @Prop() dataSource: any;
 
@@ -47,19 +39,15 @@ export class Select {
 
   @Prop() loading: boolean;
 
-  @Prop() value: string;
+  @Prop() removeItem: (index: number) => void;
+
+  @Prop() multiple = false;
+
+  @Prop() value: any;
   @Watch('value')
   valueHandler() {
-    if (this.variant === 'input') {
+    if (this.variant === 'input' && !this.multiple) {
       this.inputValue = this.value;
-
-      const hide = this._hideContent();
-
-      if (hide && !this.fromSelect) {
-        setTimeout(() => {
-          this._showContent();
-        }, 0);
-      }
 
       this.fromSelect = false;
     }
@@ -77,9 +65,42 @@ export class Select {
 
   @Listen('onInputEnter')
   onInputChangeHandler() {
-    this.show = false;
+    if (!this.multiple) {
+      this.show = false;
+    }
+
     this.selectChange.emit(this.inputValue);
   }
+
+  @Listen('optionSelected')
+  optionSelectedHandler(evt) {
+    console.log('option select');
+    this.currentSelected = true;
+    if (this.variant === 'input' && !this.multiple) {
+      this.fromSelect = true;
+      this.selectChange.emit(this.inputValue);
+    }
+
+    if (this.onSelectChange) {
+      this.onSelectChange(evt);
+    }
+
+    this.selectChange.emit(evt);
+
+    if (!this.multiple || !evt) {
+      this.show = false;
+    }
+  }
+
+  @Listen('click')
+  clickHandler() {
+    if (this.variant === 'input') {
+      const inputEl = this.el.shadowRoot.querySelector('arv-input');
+      inputEl.arvFocus();
+    }
+  }
+
+  @Event() onRemoveItem: EventEmitter;
 
   @Event() onInput: EventEmitter;
 
@@ -88,81 +109,32 @@ export class Select {
   @Event() selectChange: EventEmitter;
 
   componentWillLoad() {
-    if (this.variant === 'input') {
+    if (this.variant === 'input' && !this.multiple) {
       this.inputValue = this.value;
     }
   }
 
-  optionSelectedHandler(evt) {
-    if (this.variant === 'input') {
-      this.fromSelect = true;
-      this.selectChange.emit(this.inputValue);
-    }
-    if (this.onSelectChange) {
-      this.onSelectChange(evt);
-    }
-    this.selectChange.emit(evt);
-    this.show = false;
-    this._hideContent();
-  }
-
-  // private _inputChange(e) {
-  //   if (this.inputChange) {
-  //     this.inputChange(e);
-  //   }
-  //   this.onInputChange.emit(e);
-  // }
-
   private _input(e) {
     // this.show = true;
+    console.log('E', e.target.value);
     this.inputValue = e.target.value;
-    // this.onInput.emit(e);
-  }
-
-  private _showContent() {
-    const dialog = this.el.shadowRoot.querySelector(`.${this.rootClassName}`);
-    const slot = this.el.children;
-
-    const elem:any = document.createElement(this.portal);
-    elem.onSelect = this.optionSelectedHandler.bind(this);
-    elem.parentEl = this.el.shadowRoot.querySelector('.targetValue');
-    elem.value = this.optionValue || this.value;
-    elem.variant = this.variant;
-    elem.inputValue = this.inputValue;
-
-    elem.appendChild(dialog);
-    Array.from(slot).forEach(d => {
-      d.classList.add('select-slot-item');
-      elem.appendChild(d);
-    });
-
-    document.body.appendChild(elem);
-    this.virtualElement = elem;
-  }
-
-  private _hideContent() {
-    const portal = document.body.querySelector(`:scope > arv-virtual-portal`);
-
-    if (!portal) {
-      return false;
-    }
-
-    const t = portal.shadowRoot.querySelector(`.${this.rootClassName}`);
-
-    this.el.shadowRoot.appendChild(t);
-    const slots = portal.shadowRoot.querySelectorAll('.select-slot-item');
-
-    Array.from(slots).forEach(d => {
-      this.el.appendChild(d);
-    });
-
-    document.body.removeChild(portal);
-    this.virtualElement = null;
-    return true;
   }
 
   onValueClick() {
+    this.willHide = false;
     this.show = true;
+    this.select();
+  }
+
+  select() {
+    setTimeout(() => {
+      const listWrapperEl = this.el.shadowRoot.querySelector('.listWrapper');
+
+      if (listWrapperEl && this.variant !== 'input') {
+        listWrapperEl['tabIndex'] = -1;
+        listWrapperEl['focus']();
+      }
+    }, 100);
   }
 
   hostData() {
@@ -173,8 +145,68 @@ export class Select {
     };
   }
 
+  itemDelete(index, event) {
+    event.preventDefault();
+    event.cancelBubble = true;
+    event.stopPropagation();
+    if (this.removeItem) {
+      this.removeItem(index);
+    }
+    this.onRemoveItem.emit(index);
+  }
+
+  animateHide() {
+    this.willHide = true;
+  }
+
+  listBlur = () => {
+    this.animateHide();
+
+    setTimeout(() => {
+      if (this.multiple && this.currentSelected) {
+        this.currentSelected = false;
+        return this.select();
+      }
+      if (!this.multiple) {
+        this.show = false;
+        return false;
+      }
+      if (this.currentSelected) {
+        this.currentSelected = false;
+        return false;
+      }
+      this.currentSelected = false;
+      this.show = false;
+    }, 100);
+  }
+
   render() {
-    const slot = this.show ? <slot></slot> : null;
+    const MultipleValues = ({ children }) => {
+      if (!Array.isArray(this.value)) {
+        return (
+          <arv-text class="textValue" variant="caption">
+            {this.value}
+          </arv-text>
+        );
+      }
+
+      return (
+        <arv-flex class="multipleValues" fullWidth={false} items="center" wrap>
+          {this.icon && <arv-icon color="default" icon={this.icon}></arv-icon>}
+          {this.value.map((d, i) => (
+            <div class="value-item">
+              <arv-text variant="caption2">{d}</arv-text>
+              <arv-icon
+                onClick={this.itemDelete.bind(this, i)}
+                icon="close"
+                size="small"
+                noMargin></arv-icon>
+            </div>
+          ))}
+          {children}
+        </arv-flex>
+      );
+    };
 
     const SelectValue = () => (
       <div
@@ -185,8 +217,7 @@ export class Select {
           full: this.full
         }}>
         <arv-flex items="center">
-          {this.icon && <arv-icon color="default" icon={this.icon}></arv-icon>}
-          {this.value}
+          <MultipleValues children={{}}/>
         </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
         <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>
@@ -194,16 +225,34 @@ export class Select {
     );
 
     const InputValue = () => (
-      <div class="inputWrapper targetValue">
+      <arv-flex class="targetValue" items="center">
         <arv-input
-         placeholder={this.placeholder}
-         icon={this.icon}
-         class="input"
-         inputFocus={() => { this.show = true; }}
-         input={this._input.bind(this)}
-         value={this.inputValue}
-         full />
-      </div>
+          icon={this.icon}
+          placeholder={this.placeholder}
+          class="input"
+          inputFocus={() => { this.show = true; }}
+          input={this._input.bind(this)}
+          value={this.inputValue}
+          full
+        />
+      </arv-flex>
+    );
+
+    const MultipleInput = () => (
+      <arv-flex class="targetValue" items="center" wrap>
+        <MultipleValues children={(
+          <arv-input
+            inputBlur={this.listBlur}
+            placeholder={this.placeholder}
+            class="input"
+            inputFocus={() => { this.show = true; }}
+            input={this._input.bind(this)}
+            value={this.inputValue}
+            hasBorder={false}
+            inputSize={this.inputValue.length + 2}
+          />
+        )}/>
+      </arv-flex>
     );
 
     const layout = (() => {
@@ -232,6 +281,9 @@ export class Select {
       if (this.variant === 'select') {
         return <SelectValue />;
       }
+      if (this.variant === 'input' && this.multiple) {
+        return <MultipleInput />;
+      }
       return <InputValue />;
     })();
 
@@ -251,8 +303,27 @@ export class Select {
           {this.label && <Label />}
           {targetValueElement}
         </arv-flex>
-        <div class="select-list">
-          {slot}
+        <div
+          class={{
+            listWrapper: true,
+            show: this.show
+          }}
+          onBlur={this.listBlur}
+          tabIndex={-1}
+        >
+          <div class={{
+            listContent: true
+          }}>
+            <arv-transition animation="scaleHeight">
+              <arv-paper padded={false}>
+                <div class="select-list">
+                  <div>
+                    <slot></slot>
+                  </div>
+                </div>
+              </arv-paper>
+            </arv-transition>
+          </div>
         </div>
       </div>
     );

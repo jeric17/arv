@@ -6,25 +6,34 @@ const pattern1 = {
     }
   },
   AppContent: {
-    Name: 'four',
-    NavBarColor: '#fff000',
     Label: 'Home',
-  }
+    NavBarColor: '#fff000',
+    NavBarFontColor: '#fff000',
+    Name: 'four'
+  },
+  SubViews: {
+    Label: 'Home'
+  },
+  Valid: true
 };
 
 const pattern2 = {
   App: {
     Theme: {
       NavBarFontColor: 3,
-      ActionButtonColor: 3,
-      Item: 2
+      ActionButtonColor: 3
     }
   },
   AppContent: {
     Name: 'four',
     NavBarColor: '#fff000',
-    Label: 'Home',
-  }
+    NavBarFontColor: '#fff000',
+    Label: 'Home'
+  },
+  SubViews: {
+    Label: 'Home'
+  },
+  Valid: true
 };
 
 export const Diff = {

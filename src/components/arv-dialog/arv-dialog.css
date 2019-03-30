@@ -9,3 +9,8 @@
 .icon {
   --default-icon-color: var(--default-icon-color, #000);
 }
+.imgIcon {
+  display: block;
+  width: 30px;
+  height: auto;
+}

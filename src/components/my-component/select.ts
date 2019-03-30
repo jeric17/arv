@@ -5,6 +5,7 @@ export const Select = {
   description: [
     'Use the <arv-select-option> component for the options',
   ],
+  wrapper: '<arv-container id="selectWrapper" width="400px"></arv-container>',
   events: [
     {
       name: 'selectChange',
@@ -21,14 +22,23 @@ export const Select = {
   eventsData: [
     {
       name: 'selectChange',
-      fn: params => alert(params)
+      fn: (evt, comp) => {
+        if (evt.detail === null) {
+          return false;
+        }
+        comp.value = comp.value.concat(evt.detail);
+      }
+    },
+    {
+      name: 'onRemoveItem',
+      fn: params => alert(params.detail)
     }
   ],
   propsDescription: [
     {
       name: 'icon',
       type: 'string',
-      description: 'Visible only if the variant is set to input. Use the material icons from https://material.io/tools/icons'
+      description: 'Use the material icons from https://material.io/tools/icons'
     },
     {
       name: 'toggle',
@@ -48,9 +58,14 @@ export const Select = {
   ],
   props: [
     {
+      name: 'removeItem',
+      type: 'function',
+      value: i => alert(i)
+    },
+    {
       name: 'value',
-      type: 'string',
-      value: 'Option 1'
+      type: 'array',
+      value: ['foo', 'bar', 'hello']
     },
     {
       name: 'icon',
@@ -61,17 +76,17 @@ export const Select = {
       name: 'variant',
       type: 'oneOf',
       data: ['select', 'input'],
-      value: 'select'
+      value: 'input'
     },
     {
       name: 'loading',
       type: 'boolean',
-      value: false
+      value: 'false'
     },
     {
       name: 'full',
       type: 'boolean',
-      value: false
+      value: 'false'
     },
     {
       name: 'layout',
@@ -83,6 +98,11 @@ export const Select = {
       name: 'label',
       type: 'string',
       value: 'Label'
-    }
+    },
+    {
+      name: 'multiple',
+      type: 'boolean',
+      value: 'true'
+    },
   ]
 };

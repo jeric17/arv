@@ -186,7 +186,7 @@ export class Bolts {
 
     if (eventsData) {
       eventsData.map(d => {
-        componentElem.addEventListener(d.name, d.fn);
+        componentElem.addEventListener(d.name, evt => d.fn(evt, componentElem));
       });
     }
 
@@ -483,13 +483,13 @@ export class Bolts {
 
     return (
       <arv-container
-      height="100vh"
-      full
+        height="100vh"
+        full
       >
-      <arv-flex items="stretch">
-      <List />
-      {!this.themeMode && <Controls />}
-      {!this.themeMode && <Content />}
+        <arv-flex items="stretch">
+          <List />
+          {!this.themeMode && <Controls />}
+          {!this.themeMode && <Content />}
           {this.themeMode && <my-theme-section />}
         </arv-flex>
       </arv-container>

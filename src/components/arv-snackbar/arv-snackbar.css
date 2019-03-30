@@ -4,7 +4,7 @@
   --default-icon-color: #fff;
 
   position: fixed;
-  z-index: 9;
+  z-index: 12;
 }
 
 .content {

@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Prop, State, Watch, Listen } from '@stencil/core';
 
 @Component({
   tag: 'arv-tabs',
@@ -6,10 +6,11 @@ import { Component, Element, Prop, State, Watch } from '@stencil/core';
   shadow: true
 })
 export class Tabs {
-
+  counter = 0;
   rootWidth: number;
   tabChildren: any;
   tabChildrenLength: number;
+  resizing = false;
 
   @Element() el: HTMLElement;
 
@@ -23,11 +24,28 @@ export class Tabs {
 
   @Prop() selectedTab: string;
 
+  @Prop() animated = true;    
+
+  @Prop() tabChange: (index: number) => void;  
+
   @Prop() tabs: any | string[];
+
+  @Prop() isDefault = true;
 
   @Watch('tabs')
   handleTabs() {
     this.loadTabs();
+  }
+
+  @Listen('window:resize')
+  handleResize() {
+    if (this.resizing) {
+      return false;  
+    }
+    setTimeout(() => {
+      this.init();
+      this.resizing = false;
+    }, 100);
   }
 
   componentWillLoad() {
@@ -56,13 +74,25 @@ export class Tabs {
     this.tabsData = tabs;
   }
 
-  private init() {
+  private init() {  
     const { width } = this.el.getBoundingClientRect();
+
+    if (!this.isDefault) {
+      return false;  
+    }
+
+    if (!width && this.counter < 10) {
+      setTimeout(() => {
+        this.counter += 1;  
+        this.init();
+      }, 100);  
+      return false;
+    }
     const tabBody:HTMLElement = this.el.shadowRoot.querySelector('.tabBody');
 
     this.rootWidth = width;
 
-    tabBody.style.left = '0px';
+    tabBody.style.left = `${width * this.currentIndex * -1}px`
     tabBody.style.width = `${width * this.tabChildrenLength}px`;
 
     Array.from(this.el.children).forEach((element: HTMLElement) => {
@@ -76,9 +106,15 @@ export class Tabs {
     }
     this.currentIndex = index;
     this.showTab();
+    if (this.tabChange) {
+      this.tabChange(index);
+    }
   }
 
   showTab() {
+    if (!this.isDefault) {
+      return false;  
+    }
     Array.from(this.el.children).forEach((tabItem: HTMLElement, index: number) => {
       if (index !== this.currentIndex) {
         tabItem.style.visibility = 'hidden';
@@ -116,7 +152,8 @@ export class Tabs {
         </div>
         <div class={{
           tabBody: true,
-          loaded: this.loaded
+          loaded: this.loaded,
+          animate: this.animated
         }}>
           <slot />
         </div>

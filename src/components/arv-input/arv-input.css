@@ -112,7 +112,7 @@ textarea.input {
 
 .input:disabled {
   cursor: not-allowed;
-  background-color: #fdfdfd;
+  background-color: #efefef;
   border: #cdcdcd;
 }
 .required {
@@ -126,4 +126,7 @@ textarea.input {
   padding: 0;
   height: 30px;
   cursor: pointer;
+}
+.noBorder {
+  border: 1px solid white !important;
 }

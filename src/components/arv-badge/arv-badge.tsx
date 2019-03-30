@@ -7,7 +7,9 @@ import { Component, Prop, State, Watch } from '@stencil/core';
 })
 export class Badge {
 
-  @State() badgeStylesObj = {};  
+  @State() badgeStylesObj = {};
+
+  @Prop() show = true;
 
   @Prop() color: string;
 
@@ -49,7 +51,8 @@ export class Badge {
       error: this.color === 'error',
       warning: this.color === 'warning',
       success: this.color === 'success',
-      small: this.size === 'small'
+      small: this.size === 'small',
+      hidden: !this.show
     };    
 
     return (

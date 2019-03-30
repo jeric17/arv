@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop, State } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Listen, Method, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-input',
@@ -24,6 +24,8 @@ export class Input {
   @Prop() hasError: boolean;
 
   @Prop() hashKey: any;
+
+  @Prop() hasBorder = true;
 
   @Prop() icon: string;
 
@@ -59,6 +61,8 @@ export class Input {
   @Prop() value: string;
 
   @Prop() rows: number = 0;
+
+  @Prop() inputSize: number;
 
   @Event() onInput: EventEmitter;
 
@@ -101,13 +105,18 @@ export class Input {
     });
   }
 
+  @Method() 
+  arvFocus() {
+    this.el.shadowRoot.querySelector('input').focus();
+  }
+
   componentDidLoad() {
     const elem = (() => {
       if (!this.rows) {
         return 'input';
       }
       return 'textarea';
-    })();  
+    })();
     this.inputElement = this.el.shadowRoot.querySelector(elem);
   }
 
@@ -126,7 +135,7 @@ export class Input {
     if (this.inputChange) {
       this.inputChange(e);
     }
-   
+
     this.onInputChange.emit({
       target: e.target,
       event: e,
@@ -168,7 +177,7 @@ export class Input {
 
   private _input(e) {
     if (this.input) {
-      this.input(e);  
+      this.input(e);
     }
     const value = (() => {
       if (this.type === 'file') {
@@ -209,7 +218,8 @@ export class Input {
       input: true,
       error: this.error || this.hasError,
       large: this.size === 'large',
-      color: this.type === 'color'
+      color: this.type === 'color',
+      noBorder: !this.hasBorder
     };
 
     const labelClass = {
@@ -263,6 +273,7 @@ export class Input {
             autocomplete={this.autocomplete}
             value={this.value}
             tabindex={0}
+            size={this.inputSize}
             {...this.inputProps} />
         );
       }

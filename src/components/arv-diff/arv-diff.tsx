@@ -1,5 +1,5 @@
 import { Component, Prop, State, Watch } from '@stencil/core';
-import { diff } from './diff';
+import * as jsdiff from 'diff';
 
 @Component({
   tag: 'arv-diff',
@@ -12,7 +12,7 @@ export class Diff {
 
   @State() n = '';
 
-  @State() currentMode: string;  
+  @State() currentMode: string;
 
   @Prop() oldVersion: any;
   @Watch('oldVersion')
@@ -57,12 +57,12 @@ export class Diff {
   }
 
   render() {
-    const diffData = diff(this.o, this.n);
+    let diffData = jsdiff.diffLines(this.o, this.n);
     if (this.currentMode === 'old') {
-      diffData.stringArray = diffData.stringArray.filter(d => d.minus || (!d.minus && !d.plus));
+      diffData = diffData.filter(d => d.removed || (!d.removed && !d.added));
     }
     if (this.currentMode === 'new') {
-      diffData.stringArray = diffData.stringArray.filter(d => d.plus || (!d.minus && !d.plus));
+      diffData = diffData.filter(d => d.added || (!d.removed && !d.added));
     }
 
     return (
@@ -93,30 +93,27 @@ export class Diff {
         <arv-divider transparent></arv-divider>
         <Content
           diffData={diffData}
-          currentMode={this.currentMode}
         />
       </arv-flex>
     );
   }
 }
 
-function Content({ diffData, currentMode }) {
-  const { stringArray } = diffData;
-
-  const data = stringArray.map(d => {
+function Content({ diffData }) {
+  const data = diffData.map(d => {
 
     const itemClass = {
-      plus: d.plus,
-      minus: d.minus,
-      none: !d.minus && !d.plus,
+      plus: d.added,
+      minus: d.removed,
+      none: !d.added && !d.removed,
       item: true
     };
 
     const itemSymbol = (() => {
-      if (d.plus) {
+      if (d.added) {
         return '+';
       }
-      if (d.minus) {
+      if (d.removed) {
         return '-';
       }
       return '_';
@@ -124,17 +121,9 @@ function Content({ diffData, currentMode }) {
 
     return (
       <arv-flex class={itemClass} items="center">
-        <arv-flex class="line-wrapper" justify="end">
-          {(currentMode === 'all' || currentMode === 'new') && (
-            <arv-text class="line">{Number(d.indexes[0]) + 1}</arv-text>  
-          )}
-          {(currentMode === 'all' || currentMode === 'old') && (
-            <arv-text class="line">{Number(d.indexes[1]) + 1}</arv-text>
-          )}
-        </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
         <span class="line-symbol">{itemSymbol}</span>
-        <arv-text preWrap>{d.data}</arv-text>
+        <arv-text preWrap>{d.value}</arv-text>
       </arv-flex>
     );
   });

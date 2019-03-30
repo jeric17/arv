@@ -29,15 +29,37 @@ export function diff(o: string, n: string) {
   let streakCount = 0;
   let startIndex = [];
   let nextOccurence = -1;
+  let firstSame = true;
 
   nArray.forEach((d: string, i: number) => {
     const oItem = oArray[oIndex];
     const oRemaining = oArray.slice(oIndex + 1);
     const nRemaining = nArray.slice(i + 1);
+    const sameRemaining = (() => {
+      const oString = oRemaining.join('');
+      const nString = nRemaining.join('');
+
+      return oString === nString;
+    })();
+
+    if (sameRemaining) {
+      streakCount = 0;
+      oIndex += 1;
+      nextOccurence = -1;
+
+      if (firstSame) {
+        stringArray.push(`${minusSign}${oItem}${divider}${i}_${oIndex}`);
+        stringArray.push(`${plusSign}${d}${divider}${i}_${oIndex}`);
+        firstSame = false;
+        return false;
+      }
+      stringArray.push(`${d}${divider}${i}_${oIndex}`);
+      return false;
+    }
 
     if (d !== oItem && nextOccurence === -1) {
       nextOccurence = getNextOccurence(oRemaining, nRemaining, i);
-      // console.log('nextOccurence', nextOccurence, d);  
+      // console.log('nextOccurence', nextOccurence, d);
       const currentOIndex = oRemaining.indexOf(d);
       const validNextOIndex = (currentOIndex > - 1) ? (currentOIndex + i + 1) : -1;
       // console.log(currentOIndex, d, 'ITEM: ', oItem, validNextOIndex);

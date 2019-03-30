@@ -17,6 +17,8 @@ export class DialogPortal {
 
   @Prop() scrollable: boolean;
 
+  @Prop() padded = true;
+
   @Method('removeDialog')
   removeDialog() {
     const target = this.el.shadowRoot.querySelector('.arv-dialog-portal');

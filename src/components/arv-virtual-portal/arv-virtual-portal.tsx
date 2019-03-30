@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop } from '@stencil/core';
+import { Component, Element, Listen, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-virtual-portal',
@@ -9,6 +9,8 @@ export class VirtualPortal {
 
   @Element() el: HTMLElement;
 
+  @State() isBottom: boolean;  
+
   @Prop() content: any;
 
   @Prop() onSelect: (evt: any) => void;
@@ -16,6 +18,10 @@ export class VirtualPortal {
   @Prop() parentEl: any;
 
   @Prop() value: string;
+  @Watch('value')
+  handleValueChange() {
+    this.updateTop();
+  }
 
   @Prop() variant: string;
 
@@ -37,21 +43,33 @@ export class VirtualPortal {
     const { top: _t } = rect;
     const top = _t + window.scrollY;
 
-    if ((top + 32 + h - window.scrollY) > window.innerHeight) {
+    if ((top + rect.height + h - window.scrollY) > window.innerHeight) {
+      this.isBottom = false;
       return {
         top: `${top - h}px`,
         left: `${rect.x}px`,
         width: `${rect.width}px`
       };
     }
+    this.isBottom = true;
     return {
-      top: `${top + 32}px`,
+      top: `${top + rect.height}px`,
       left: `${rect.x}px`,
       width: `${rect.width}px`
     };
   }
 
+  updateTop() {
+    setTimeout(() => {
+      const transitionEl: any = this.el.shadowRoot.querySelector('arv-transition');
+      const target: any = this.el.shadowRoot.querySelector('.arv-virtual-portal');
+      const { top } = this.getStyle(target.clientHeight);
+      transitionEl.style.top = top;
+    }, 100);
+  }
+
   componentDidLoad() {
+    const transitionEl: any = this.el.shadowRoot.querySelector('arv-transition');
     const target: any = this.el.shadowRoot.querySelector('.arv-virtual-portal');
     const { children } = this.el;
 
@@ -61,10 +79,14 @@ export class VirtualPortal {
     const h = target.clientHeight;
     const { top, left, width } = this.getStyle(h);
 
-    target.style.top = top;
-    target.style.left = left;
+    transitionEl.style.position = 'relative';
+    transitionEl.style.display = 'block';
+    transitionEl.style.top = top;
+    // target.style.top = top;
+    transitionEl.style.left = left;
+    transitionEl.style.width = width;
     target.style.width = width;
-    target.zIndex = 999;
+    transitionEl.zIndex = 999;
 
     const targetOption: HTMLElement = this.el.shadowRoot.querySelector(`arv-select-option[data-value="${this.value}"]`);
 
@@ -74,12 +96,13 @@ export class VirtualPortal {
   }
 
   render() {
+
     return (
       <div class="container">
         <arv-backdrop
           onBackdropClick={() => this.onSelect(null) }
           transparent></arv-backdrop>
-        <arv-transition animation="fadeIn">
+        <arv-transition animation="scaleHeight">
           <div class="arv-virtual-portal">
           </div>
         </arv-transition>

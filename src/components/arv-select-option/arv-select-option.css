@@ -7,13 +7,16 @@
 
 .root:hover {
   background-color: var(--primary-light-color);
-  color: var(--primary-font-color);
+  color: var(--primary-text-color);
+  --dark-text-color: var(--primary-text-color);
 }
 
 .arv-select-option:hover {
   background-color: var(--primary-light-color);
+  --dark-text-color: var(--primary-text-color);
 }
 .selected,
 .selected:hover {
   background-color: var(--primary-color);
+  --dark-text-color: var(--primary-text-color);
 }

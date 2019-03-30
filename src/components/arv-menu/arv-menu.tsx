@@ -40,6 +40,8 @@ export class Menu {
     this.show = !this.show;
     if (this.show) {
       this.el.focus();
+    } else {
+      this.el.blur();
     }
   }
 

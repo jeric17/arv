@@ -88,11 +88,13 @@ export namespace Components {
   interface ArvBadge {
     'badgeStyle': any;
     'color': string;
+    'show': boolean;
     'size': string;
   }
   interface ArvBadgeAttributes extends StencilHTMLAttributes {
     'badgeStyle'?: any;
     'color'?: string;
+    'show'?: boolean;
     'size'?: string;
   }
 
@@ -256,21 +258,25 @@ export namespace Components {
   interface ArvDialogContent {
     'animation': string;
     'full': boolean;
+    'padded': boolean;
   }
   interface ArvDialogContentAttributes extends StencilHTMLAttributes {
     'animation'?: string;
     'full'?: boolean;
+    'padded'?: boolean;
   }
 
   interface ArvDialogPortal {
     'content': any;
     'full': boolean;
+    'padded': boolean;
     'removeDialog': () => void;
     'scrollable': boolean;
   }
   interface ArvDialogPortalAttributes extends StencilHTMLAttributes {
     'content'?: any;
     'full'?: boolean;
+    'padded'?: boolean;
     'scrollable'?: boolean;
   }
 
@@ -282,10 +288,14 @@ export namespace Components {
     'full': boolean;
     'handleClose': () => void;
     'hideClose': boolean;
+    'hideTitle': boolean;
     'iconColor': string;
+    'padded': boolean;
     'parent': HTMLElement;
     'scrollable': boolean;
     'show': boolean;
+    'titleAlignment': string;
+    'titleImageIcon': string;
   }
   interface ArvDialogAttributes extends StencilHTMLAttributes {
     'actions'?: DialogActions;
@@ -295,12 +305,16 @@ export namespace Components {
     'full'?: boolean;
     'handleClose'?: () => void;
     'hideClose'?: boolean;
+    'hideTitle'?: boolean;
     'iconColor'?: string;
     'onOnClose'?: (event: CustomEvent) => void;
     'onOnOk'?: (event: CustomEvent) => void;
+    'padded'?: boolean;
     'parent'?: HTMLElement;
     'scrollable'?: boolean;
     'show'?: boolean;
+    'titleAlignment'?: string;
+    'titleImageIcon'?: string;
   }
 
   interface ArvDiff {
@@ -331,16 +345,48 @@ export namespace Components {
     'width'?: string;
   }
 
+  interface ArvDraggableWrapper {
+    'layout': string;
+  }
+  interface ArvDraggableWrapperAttributes extends StencilHTMLAttributes {
+    'layout'?: string;
+  }
+
   interface ArvDraggable {
+    'color': string;
+    'drag': (evt: DragEvent, key: string) => void;
     'drop': (evt: DragEvent, k1: string, k2: string) => void;
+    'dropTop': (evt: DragEvent, k1: string, k2: string) => void;
+    'end': (evt: DragEvent, key: string) => void;
+    'enter': (evt: DragEvent, key: string) => void;
+    'exit': (evt: DragEvent, key: string) => void;
     'key': string;
+    'leave': (evt: DragEvent, key: string) => void;
     'over': (evt: DragEvent, key: string) => void;
+    'showIcon': boolean;
     'start': (evt: DragEvent, key: string) => void;
   }
   interface ArvDraggableAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'drag'?: (evt: DragEvent, key: string) => void;
     'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'dropTop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'end'?: (evt: DragEvent, key: string) => void;
+    'enter'?: (evt: DragEvent, key: string) => void;
+    'exit'?: (evt: DragEvent, key: string) => void;
     'key'?: string;
+    'leave'?: (evt: DragEvent, key: string) => void;
+    'onItemDrag'?: (event: CustomEvent) => void;
+    'onItemDrop'?: (event: CustomEvent) => void;
+    'onItemDropTop'?: (event: CustomEvent) => void;
+    'onItemEnd'?: (event: CustomEvent) => void;
+    'onItemEnter'?: (event: CustomEvent) => void;
+    'onItemExit'?: (event: CustomEvent) => void;
+    'onItemLeave'?: (event: CustomEvent) => void;
+    'onItemOver'?: (event: CustomEvent) => void;
+    'onItemStart'?: (event: CustomEvent) => void;
     'over'?: (evt: DragEvent, key: string) => void;
+    'showIcon'?: boolean;
     'start'?: (evt: DragEvent, key: string) => void;
   }
 
@@ -472,10 +518,12 @@ export namespace Components {
   }
 
   interface ArvInput {
+    'arvFocus': () => void;
     'autocomplete': string;
     'disabled': boolean;
     'fileUpload': boolean;
     'full': boolean;
+    'hasBorder': boolean;
     'hasError': boolean;
     'hashKey': any;
     'icon': string;
@@ -485,6 +533,7 @@ export namespace Components {
     'inputEnter': (e: any) => void;
     'inputFocus': (e: any) => void;
     'inputProps': any;
+    'inputSize': number;
     'inputStyle': any;
     'label': string;
     'layout': string;
@@ -501,6 +550,7 @@ export namespace Components {
     'disabled'?: boolean;
     'fileUpload'?: boolean;
     'full'?: boolean;
+    'hasBorder'?: boolean;
     'hasError'?: boolean;
     'hashKey'?: any;
     'icon'?: string;
@@ -510,6 +560,7 @@ export namespace Components {
     'inputEnter'?: (e: any) => void;
     'inputFocus'?: (e: any) => void;
     'inputProps'?: any;
+    'inputSize'?: number;
     'inputStyle'?: any;
     'label'?: string;
     'layout'?: string;
@@ -700,11 +751,13 @@ export namespace Components {
     'labelVariant': string;
     'layout': string;
     'loading': boolean;
+    'multiple': boolean;
     'onSelectChange': (item: any) => void;
     'optionValue': string;
     'placeholder': string;
+    'removeItem': (index: number) => void;
     'toggle': () => void;
-    'value': string;
+    'value': any;
     /**
     * oneOf [select, input]
     */
@@ -719,12 +772,15 @@ export namespace Components {
     'labelVariant'?: string;
     'layout'?: string;
     'loading'?: boolean;
+    'multiple'?: boolean;
     'onOnInput'?: (event: CustomEvent) => void;
     'onOnInputChange'?: (event: CustomEvent) => void;
+    'onOnRemoveItem'?: (event: CustomEvent) => void;
     'onSelectChange'?: (event: CustomEvent) => void;
     'optionValue'?: string;
     'placeholder'?: string;
-    'value'?: string;
+    'removeItem'?: (index: number) => void;
+    'value'?: any;
     /**
     * oneOf [select, input]
     */
@@ -814,13 +870,19 @@ export namespace Components {
   }
 
   interface ArvTabs {
+    'animated': boolean;
     'color': string;
+    'isDefault': boolean;
     'selectedTab': string;
+    'tabChange': (index: number) => void;
     'tabs': any | string[];
   }
   interface ArvTabsAttributes extends StencilHTMLAttributes {
+    'animated'?: boolean;
     'color'?: string;
+    'isDefault'?: boolean;
     'selectedTab'?: string;
+    'tabChange'?: (index: number) => void;
     'tabs'?: any | string[];
   }
 
@@ -921,6 +983,7 @@ declare global {
     'ArvDialog': Components.ArvDialog;
     'ArvDiff': Components.ArvDiff;
     'ArvDivider': Components.ArvDivider;
+    'ArvDraggableWrapper': Components.ArvDraggableWrapper;
     'ArvDraggable': Components.ArvDraggable;
     'ArvEditor': Components.ArvEditor;
     'ArvFlex': Components.ArvFlex;
@@ -981,6 +1044,7 @@ declare global {
     'arv-dialog': Components.ArvDialogAttributes;
     'arv-diff': Components.ArvDiffAttributes;
     'arv-divider': Components.ArvDividerAttributes;
+    'arv-draggable-wrapper': Components.ArvDraggableWrapperAttributes;
     'arv-draggable': Components.ArvDraggableAttributes;
     'arv-editor': Components.ArvEditorAttributes;
     'arv-flex': Components.ArvFlexAttributes;
@@ -1144,6 +1208,12 @@ declare global {
   var HTMLArvDividerElement: {
     prototype: HTMLArvDividerElement;
     new (): HTMLArvDividerElement;
+  };
+
+  interface HTMLArvDraggableWrapperElement extends Components.ArvDraggableWrapper, HTMLStencilElement {}
+  var HTMLArvDraggableWrapperElement: {
+    prototype: HTMLArvDraggableWrapperElement;
+    new (): HTMLArvDraggableWrapperElement;
   };
 
   interface HTMLArvDraggableElement extends Components.ArvDraggable, HTMLStencilElement {}
@@ -1384,6 +1454,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement
     'arv-diff': HTMLArvDiffElement
     'arv-divider': HTMLArvDividerElement
+    'arv-draggable-wrapper': HTMLArvDraggableWrapperElement
     'arv-draggable': HTMLArvDraggableElement
     'arv-editor': HTMLArvEditorElement
     'arv-flex': HTMLArvFlexElement
@@ -1444,6 +1515,7 @@ declare global {
     'arv-dialog': HTMLArvDialogElement;
     'arv-diff': HTMLArvDiffElement;
     'arv-divider': HTMLArvDividerElement;
+    'arv-draggable-wrapper': HTMLArvDraggableWrapperElement;
     'arv-draggable': HTMLArvDraggableElement;
     'arv-editor': HTMLArvEditorElement;
     'arv-flex': HTMLArvFlexElement;

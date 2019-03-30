@@ -10,14 +10,21 @@ export class DialogContent {
 
   @Prop() full: boolean;
 
+  @Prop() padded = true;
+
   render() {
+
     return (
       <div class={{
         root: true,
         full: this.full
       }}>
         <arv-transition animation={this.animation}>
-          <arv-paper padded={!this.full} box={this.full} noOverflow>
+          <arv-paper
+            padded={false}
+            box={this.full}
+            noOverflow
+          >
             <slot />
           </arv-paper>
         </arv-transition>
