@@ -18,6 +18,7 @@ export class SelectOption {
   @Event() optionSelected: EventEmitter;
 
   optionHandler() {
+    console.log('option handler');
     const data = (() => {
       if (this.parse) {
         return JSON.parse(this.value);
@@ -46,7 +47,10 @@ export class SelectOption {
 
     return (
       <div
-        onClick={() => this.optionHandler() }
+        onClick={() => {
+          console.log('inside clicke!');
+          this.optionHandler();
+        }}
         class={rootClassNames}>
         <slot></slot>
       </div>

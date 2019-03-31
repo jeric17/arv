@@ -329,32 +329,8 @@ export class Bolts {
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.12</arv-text>
+            <arv-text color="light">arv@0.1.13</arv-text>
           </arv-flex>
-
-          <arv-flex padded full={false}>
-            <arv-text color="primary">Installation</arv-text>
-          </arv-flex>
-          {
-            [
-              {name: 'Angular', target: 'https://stenciljs.com/docs/angular'},
-              {name: 'React', target: 'https://stenciljs.com/docs/react'},
-              {name: 'Vue', target: 'https://stenciljs.com/docs/vue'},
-            ].map(d => {
-              return (
-                <arv-button
-                  buttonClick={() => {
-                    window.open(d.target);
-                  }}
-                  textAlign="start"
-                  color="light"
-                  variant="ghost"
-                  rounded={false}
-                  full
-                  >{d.name}</arv-button>
-              );
-            })
-          }
 
           <arv-button
             color={this.themeMode ? 'primary' : 'light' }
@@ -381,6 +357,29 @@ export class Bolts {
                </arv-button>
              );
           })}
+          <arv-flex padded full={false}>
+            <arv-text color="primary">Installation</arv-text>
+          </arv-flex>
+          {
+            [
+              {name: 'Angular', target: 'https://stenciljs.com/docs/angular'},
+              {name: 'React', target: 'https://stenciljs.com/docs/react'},
+              {name: 'Vue', target: 'https://stenciljs.com/docs/vue'},
+            ].map(d => {
+              return (
+                <arv-button
+                  buttonClick={() => {
+                    window.open(d.target);
+                  }}
+                  textAlign="start"
+                  color="light"
+                  variant="ghost"
+                  rounded={false}
+                  full
+                  >{d.name}</arv-button>
+              );
+            })
+          }
         </arv-flex>
       </arv-container>
     );

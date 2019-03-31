@@ -1,7 +1,7 @@
 export const Select = {
   name: 'Select',
   element: 'arv-select',
-  slot: '<arv-select-option>Option 1</arv-select-option>',
+  slot: '<arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option><arv-select-option>Option 1</arv-select-option>',
   description: [
     'Use the <arv-select-option> component for the options',
   ],
@@ -22,11 +22,11 @@ export const Select = {
   eventsData: [
     {
       name: 'selectChange',
-      fn: (evt, comp) => {
+      fn: (evt) => {
         if (evt.detail === null) {
           return false;
         }
-        comp.value = comp.value.concat(evt.detail);
+        // comp.value = comp.value.concat(evt.detail);
       }
     },
     {
@@ -64,8 +64,8 @@ export const Select = {
     },
     {
       name: 'value',
-      type: 'array',
-      value: ['foo', 'bar', 'hello']
+      type: 'string',
+      value: 'ok'
     },
     {
       name: 'icon',
@@ -102,7 +102,7 @@ export const Select = {
     {
       name: 'multiple',
       type: 'boolean',
-      value: 'true'
+      value: 'false'
     },
   ]
 };

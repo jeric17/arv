@@ -132,3 +132,8 @@ arv-icon {
 .multipleValues:hover {
   border-color: var(--primary-color);
 }
+.select-list {
+  overflow-y: scroll;
+  max-height: 200px;
+  height: 100%;
+}

@@ -78,7 +78,7 @@ export class Select {
     this.currentSelected = true;
     if (this.variant === 'input' && !this.multiple) {
       this.fromSelect = true;
-      this.selectChange.emit(this.inputValue);
+      // this.selectChange.emit(this.inputValue);
     }
 
     if (this.onSelectChange) {
@@ -86,6 +86,7 @@ export class Select {
     }
 
     this.selectChange.emit(evt);
+    // console.log('option select', evt);
 
     if (!this.multiple || !evt) {
       this.show = false;
@@ -95,6 +96,7 @@ export class Select {
   @Listen('click')
   clickHandler() {
     if (this.variant === 'input') {
+      /* console.log('input'); */
       const inputEl = this.el.shadowRoot.querySelector('arv-input');
       inputEl.arvFocus();
     }
@@ -118,6 +120,17 @@ export class Select {
     // this.show = true;
     console.log('E', e.target.value);
     this.inputValue = e.target.value;
+    /* this.listBlur(); */
+  }
+
+  itemInputChange = e => {
+    if (this.inputChange) {
+      this.inputChange(e);
+    }
+
+    // e.currentTarget.blur();
+    // this.show = false;
+    // this.currentSelected = false;
   }
 
   onValueClick() {
@@ -160,7 +173,8 @@ export class Select {
   }
 
   listBlur = () => {
-    this.animateHide();
+    /* console.log('blur', this.multiple, this.currentSelected); */
+    /* this.animateHide(); */
 
     setTimeout(() => {
       if (this.multiple && this.currentSelected) {
@@ -177,7 +191,7 @@ export class Select {
       }
       this.currentSelected = false;
       this.show = false;
-    }, 100);
+    }, 200);
   }
 
   render() {
@@ -227,11 +241,13 @@ export class Select {
     const InputValue = () => (
       <arv-flex class="targetValue" items="center">
         <arv-input
+          inputBlur={this.listBlur}
           icon={this.icon}
           placeholder={this.placeholder}
           class="input"
           inputFocus={() => { this.show = true; }}
           input={this._input.bind(this)}
+          inputChange={this.itemInputChange.bind(this)}
           value={this.inputValue}
           full
         />
@@ -246,6 +262,7 @@ export class Select {
             placeholder={this.placeholder}
             class="input"
             inputFocus={() => { this.show = true; }}
+            inputChange={this.itemInputChange.bind(this)}
             input={this._input.bind(this)}
             value={this.inputValue}
             hasBorder={false}

@@ -917,8 +917,20 @@ export namespace Components {
     'weight'?: number;
   }
 
-  interface ArvTooltip {}
-  interface ArvTooltipAttributes extends StencilHTMLAttributes {}
+  interface ArvTooltip {
+    'color': string;
+    'fixed': boolean;
+    'message': string;
+    'position': string;
+    'show': boolean;
+  }
+  interface ArvTooltipAttributes extends StencilHTMLAttributes {
+    'color'?: string;
+    'fixed'?: boolean;
+    'message'?: string;
+    'position'?: string;
+    'show'?: boolean;
+  }
 
   interface ArvTransition {
     'animation': string;

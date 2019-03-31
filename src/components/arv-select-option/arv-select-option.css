@@ -1,8 +1,11 @@
+:host {
+  display: block;
+  width: 100%;
+}
 .root {
   background-color: #fff;
   cursor: pointer;
   padding: 0.5em;
-  transition: all 0.3s;
 }
 
 .root:hover {

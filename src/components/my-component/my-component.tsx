@@ -32,7 +32,8 @@ import { Badge } from './badge';
 import { AlertText } from './alert-text';
 import { Diff } from './diff';
 import { Draggable } from './draggable';
-import { DraggableWrapper } from './draggable-wrapper';
+// import { DraggableWrapper } from './draggable-wrapper';
+import { Tooltip } from './tooltip';
 
 @Component({
   tag: 'my-component',
@@ -42,7 +43,6 @@ import { DraggableWrapper } from './draggable-wrapper';
 export class MyComponent {
 
   items = [
-    {...DraggableWrapper},
     {...AlertText},
     {...Avatar},
     {...AvatarGroup},
@@ -75,6 +75,7 @@ export class MyComponent {
     {...Table},
     {...Tabs},
     {...Text},
+    {...Tooltip},
   ];
 
   render() {
