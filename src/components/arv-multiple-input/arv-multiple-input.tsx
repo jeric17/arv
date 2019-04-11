@@ -86,7 +86,7 @@ export class MultipleInput {
     return (
       <arv-flex layout="column">
         {this.values.map((value, index) => (
-          <arv-flex padded>
+          <arv-flex class="item">
             <arv-input
               disabled={this.disabled}
               inputChange={this.change.bind(this, index)}

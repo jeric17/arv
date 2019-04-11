@@ -104,5 +104,11 @@ export const Select = {
       type: 'boolean',
       value: 'false'
     },
+    {
+      name: 'position',
+      type: 'oneOf',
+      data: ['top', 'bottom'],
+      value: 'bottom'
+    },
   ]
 };

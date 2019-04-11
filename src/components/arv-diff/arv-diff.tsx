@@ -91,9 +91,11 @@ export class Diff {
           <arv-divider layout="column" transparent></arv-divider>
         </arv-flex>
         <arv-divider transparent></arv-divider>
-        <Content
-          diffData={diffData}
-        />
+        <div class="contentWrapper">
+          <Content
+            diffData={diffData}
+          />
+        </div>
       </arv-flex>
     );
   }

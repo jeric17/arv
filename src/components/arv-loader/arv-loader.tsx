@@ -23,6 +23,9 @@ export class Loader {
       spinner: true,
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
+      warning: this.color === 'warning',
+      error: this.color === 'error',
+      success: this.color === 'success',
       xsmall: this.size === 'xsmall',
       small: this.size === 'small',
       large: this.size === 'large'
@@ -30,7 +33,10 @@ export class Loader {
 
     return (
       <div class={rootClassNames}>
-        <div class={spinnerClassNames}></div>
+        <arv-flex layout="column" justify="center" items="center">
+          <div class={spinnerClassNames}></div>
+          <slot />
+        </arv-flex>
       </div>
     );
   }

@@ -2,7 +2,8 @@ import { Component, Element, Prop, Event, EventEmitter, State } from '@stencil/c
 
 @Component({
   tag: 'arv-draggable',
-  styleUrl: 'arv-draggable.css'
+  styleUrl: 'arv-draggable.css',
+  shadow: true,
 })
 export class Draggable {
 
@@ -35,6 +36,8 @@ export class Draggable {
   @Prop() drop: (evt: DragEvent, k1: string, k2: string) => void;
 
   @Prop() dropTop: (evt: DragEvent, k1: string, k2: string) => void;
+
+  @Prop() disabled = false;
 
   @Event() itemDrag: EventEmitter;
 
@@ -140,7 +143,8 @@ export class Draggable {
       draggable: true,
       isOver: this.isOver,
       primary: this.color === 'primary',
-      secondary: this.color === 'secondary'
+      secondary: this.color === 'secondary',
+      disabled: this.disabled
     };
 
     const topClass = {
@@ -159,7 +163,7 @@ export class Draggable {
         onDragStart={this.onDragStart.bind(this)}
         onDrop={this.onDrop.bind(this)}
         onDrag={this.onDrag.bind(this)}
-        draggable
+        draggable={!this.disabled}
       >
         <div
           class={topClass}

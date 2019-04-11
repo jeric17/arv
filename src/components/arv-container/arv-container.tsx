@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, Prop, Listen } from '@stencil/core';
 
 @Component({
   tag: 'arv-container',
@@ -31,6 +31,15 @@ export class Container {
   @Prop() color: string;
 
   @Prop() scrollable: boolean;
+
+  @Prop() containerClick: (e: MouseEvent) => void;
+
+  @Listen('click')
+  handleClick(event) {
+    if (this.containerClick) {
+      this.containerClick(event);
+    }
+  }
 
   render() {
     const rootClassNames = {

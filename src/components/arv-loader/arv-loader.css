@@ -17,11 +17,11 @@
   position: absolute;
   width: 100%;
   z-index: 1;
-  background-color: rgba(51, 51, 51, 0.1);
+  background-color: var(--loader-bg, rgba(51, 51, 51, 0.1));
 }
   
 .spinner {
-  animation: ui-spin 0.3s linear infinite;
+  animation: ui-spin 0.5s linear infinite;
   border-radius: 50%;
   border-style: solid;
   border-color: #f3f3f3;
@@ -38,6 +38,15 @@
 }
 .spinner.secondary {
   border-top-color: var(--secondary-color);
+}
+.spinner.warning {
+  border-top-color: var(--warning-color);
+}
+.spinner.error {
+  border-top-color: var(--error-color);
+}
+.spinner.success {
+  border-top-color: var(--success-color);
 }
 .spinner.small {
   border-width: 3px;

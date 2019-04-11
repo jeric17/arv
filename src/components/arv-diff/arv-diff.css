@@ -42,3 +42,7 @@
 arv-button {
   --font-family: var(--font-family);
 }
+
+.contentWrapper {
+  background-color: var(--diff-bg, #fff);
+}

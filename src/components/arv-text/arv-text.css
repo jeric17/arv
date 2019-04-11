@@ -39,7 +39,7 @@
 }
 .caption2 {
   font-size: var(--font-size, 0.8rem);
-  line-height: var(--line-height, 1.5rem);
+  line-height: var(--line-height, 1.2rem);
 }
 .subtle {
   color: var(--light-text-color);

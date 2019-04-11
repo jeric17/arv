@@ -14,5 +14,11 @@ export const Tabs = {
       data: ['default', 'primary', 'secondary'],
       value: 'default'
     },
+    {
+      name: 'fullHeaderWidth',
+      displayName: 'full-header-width',
+      type: 'boolean',
+      value: 'true'
+    }
   ]
 };

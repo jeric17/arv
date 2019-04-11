@@ -19,7 +19,13 @@ export class Select {
 
   @State() show: boolean;
 
+  @Prop() textVariant = 'caption';
+
+  @Prop() listHeight: number;
+
   @Prop() dataSource: any;
+
+  @Prop() disabled = false;
 
   @Prop() full: boolean;
 
@@ -43,6 +49,14 @@ export class Select {
 
   @Prop() multiple = false;
 
+  @Prop() selectStyles = {};
+
+  @Prop() inputValueStyles = {};
+
+  @Prop() hideIcon = false;
+
+  @Prop() position = 'bottom';
+
   @Prop() value: any;
   @Watch('value')
   valueHandler() {
@@ -59,8 +73,17 @@ export class Select {
   @Prop() variant = 'select';
 
   @Method()
-  toggle() {
-    this.show = !this.show;
+  async toggle(show = null) {
+    const s = show !== null ? show : !this.show;
+    this.show = s;
+    if (s) {
+      this.select();
+    }
+  }
+
+  @Method()
+  toBlur() {
+    this.listBlur();
   }
 
   @Listen('onInputEnter')
@@ -95,6 +118,9 @@ export class Select {
 
   @Listen('click')
   clickHandler() {
+    if (this.disabled) {
+      return false;
+    }
     if (this.variant === 'input') {
       /* console.log('input'); */
       const inputEl = this.el.shadowRoot.querySelector('arv-input');
@@ -134,12 +160,38 @@ export class Select {
   }
 
   onValueClick() {
+    if (this.disabled) {
+      return false;
+    }
     this.willHide = false;
     this.show = true;
     this.select();
   }
 
+  getStyles = () => {
+    const data = {
+      rootStyles: {},
+      listWrapperStyles: {}  
+    };
+    const rootEl = this.el.shadowRoot.querySelector('.root');
+
+    if (!rootEl) {
+      return data;
+    }
+    const rootRect = rootEl.getBoundingClientRect();
+
+    if (this.position === 'top') {
+      data.listWrapperStyles = {
+        top: `-${rootRect.height}px`,
+      };
+    }
+    return data;
+  }
+
   select() {
+    if (this.disabled) {
+      return false;
+    }
     setTimeout(() => {
       const listWrapperEl = this.el.shadowRoot.querySelector('.listWrapper');
 
@@ -198,18 +250,27 @@ export class Select {
     const MultipleValues = ({ children }) => {
       if (!Array.isArray(this.value)) {
         return (
-          <arv-text class="textValue" variant="caption">
+          <arv-text
+            class="textValue"
+            variant={this.textVariant}
+          >
             {this.value}
           </arv-text>
         );
       }
 
+      const multipleValuesClass = {
+        multipleValues: true,
+        disabled: this.disabled,
+        selectMode: this.variant === 'select'
+      };
+
       return (
-        <arv-flex class="multipleValues" fullWidth={false} items="center" wrap>
+        <arv-flex class={multipleValuesClass} fullWidth={false} items="center" wrap>
           {this.icon && <arv-icon color="default" icon={this.icon}></arv-icon>}
           {this.value.map((d, i) => (
             <div class="value-item">
-              <arv-text variant="caption2">{d}</arv-text>
+              <arv-text variant={this.textVariant}>{d}</arv-text>
               <arv-icon
                 onClick={this.itemDelete.bind(this, i)}
                 icon="close"
@@ -225,22 +286,27 @@ export class Select {
     const SelectValue = () => (
       <div
         onClick={this.onValueClick.bind(this)}
+        style={this.selectStyles}
         class={{
           value: true,
           targetValue: true,
-          full: this.full
+          full: this.full,
+          disabled: this.disabled
         }}>
         <arv-flex items="center">
           <MultipleValues children={{}}/>
         </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
-        <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>
+        {!this.hideIcon && (
+          <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>  
+        )}
       </div>
     );
 
     const InputValue = () => (
-      <arv-flex class="targetValue" items="center">
+      <arv-flex style={this.inputValueStyles} class="targetValue" items="center">
         <arv-input
+          disabled={this.disabled}
           inputBlur={this.listBlur}
           icon={this.icon}
           placeholder={this.placeholder}
@@ -258,6 +324,7 @@ export class Select {
       <arv-flex class="targetValue" items="center" wrap>
         <MultipleValues children={(
           <arv-input
+            disabled={this.disabled}
             inputBlur={this.listBlur}
             placeholder={this.placeholder}
             class="input"
@@ -308,11 +375,22 @@ export class Select {
       root: true,
       full: this.full,
       icon: Boolean(this.icon),
-      show: this.show
+      show: this.show,
+      top: this.position === 'top'
     };
 
+    const { rootStyles, listWrapperStyles } = this.getStyles();
+    const listContentStyles = {};
+    let transformOrigin = null;
+    if (this.position === 'top') {
+      transformOrigin = 'bottom';
+    }
+    if (this.listHeight) {
+      listContentStyles['maxHeight'] = `${this.listHeight}px`;
+    }
+
     return (
-      <div class={classNames}>
+      <div class={classNames} style={rootStyles}>
         {this.loading && <arv-loader class="loader" size="xsmall"/>}
         <arv-flex
           layout={this.layout}
@@ -321,8 +399,10 @@ export class Select {
           {targetValueElement}
         </arv-flex>
         <div
+          style={listWrapperStyles}
           class={{
             listWrapper: true,
+            top: this.position === 'top',
             show: this.show
           }}
           onBlur={this.listBlur}
@@ -331,9 +411,9 @@ export class Select {
           <div class={{
             listContent: true
           }}>
-            <arv-transition animation="scaleHeight">
+            <arv-transition animation="scaleHeight" transformOrigin={transformOrigin}>
               <arv-paper padded={false}>
-                <div class="select-list">
+                <div class="select-list" style={listContentStyles}>
                   <div>
                     <slot></slot>
                   </div>

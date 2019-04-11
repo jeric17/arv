@@ -7,7 +7,9 @@ import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 })
 export class SelectOption {
 
-  @Prop() value: string;
+  @Prop() disabled = false;
+
+  @Prop() value: any;
 
   @Prop() selected: boolean;
 
@@ -15,10 +17,11 @@ export class SelectOption {
 
   @Prop() onSelect: (e: any) => void;
 
+  @Prop() noStyle = false;
+
   @Event() optionSelected: EventEmitter;
 
   optionHandler() {
-    console.log('option handler');
     const data = (() => {
       if (this.parse) {
         return JSON.parse(this.value);
@@ -42,13 +45,14 @@ export class SelectOption {
   render() {
     const rootClassNames = {
       root: true,
-      selected: this.selected
+      selected: this.selected,
+      noStyle: this.noStyle,
+      disabled: this.disabled
     };
 
     return (
       <div
         onClick={() => {
-          console.log('inside clicke!');
           this.optionHandler();
         }}
         class={rootClassNames}>

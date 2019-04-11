@@ -1,3 +1,14 @@
+@keyframes show {
+  from {
+    opacity: 0;
+    transform: scale(1, 0);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1, 1);
+  }
+}
+
 :host,
 .root,
 .title,
@@ -5,22 +16,41 @@
   width: 100%;
 }
 .root {
-  background-color: #FFF;
+  background-color: var(--accordion-bg, #fff);
   box-sizing: border-box;
   transition: all 0.3s;
   border-bottom: 1px solid #efefef;
+  margin-top: 0px;
+  margin-bottom: 8px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: all 0.3s;
 }
+
+.root.active {
+  overflow: visible;
+}
+.root.active.animated {
+  margin-top: 15px;
+  margin-bottom: 21px;
+}
+
 .root:hover .controls {
   display: block;
-}
-.header {
-  cursor: pointer;
 }
 
 .content {
   display: none;
-  padding: 0.7em 1em;
   box-sizing: border-box;
+  height: 0px;
+  border: 1px solid #efefef;
+  transform-origin: top;
+  background-color: var(--accordion-item-content, #fff);
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+.content.animated {
+  animation: show 0.3s forwards;
 }
 
 .controls {
@@ -32,12 +62,29 @@
 .active .content
 {
   display: block;
+  height: auto;
 }
 
 .header {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 20px;
-  padding: 0.7em 1em;
+  padding: .5em 1em;
+  background-color: var(--accordion-header-bg, #efefef);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+arv-icon {
+  transition: all 0.3s;
+  --icon-size: 1.5rem;
+}
+.active arv-icon {
+  transform: rotate(180deg);
+}
+
+.active .header {
+  background-color: var(--accordion-header-bg, #eee);
 }

@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component, Prop, Listen } from '@stencil/core';
 
 @Component({
   tag: 'arv-accordion',
@@ -6,11 +6,20 @@ import { Component } from '@stencil/core';
   shadow: true
 })
 export class Accordion {
+  @Prop() onItemChange: (index: any) => void;
+  
+  @Listen('itemClick')
+  itemClickHandler(event) {
+    if (this.onItemChange) {
+      this.onItemChange(event.detail);  
+    }
+  }
+
   render() {
     return (
-      <div class="root">
+      <arv-flex layout="column">
         <slot />
-      </div>    
+      </arv-flex>
     );    
   }
 }

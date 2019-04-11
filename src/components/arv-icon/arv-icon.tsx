@@ -34,7 +34,9 @@ export class Icon {
       defaultColor: this.color === 'default',
       primary: this.color === 'primary',
       secondary: this.color === 'secondary',
-      warning: this.color === 'warning'
+      warning: this.color === 'warning',
+      success: this.color === 'success',
+      error: this.color === 'error'
     };
 
     return (

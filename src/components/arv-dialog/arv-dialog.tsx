@@ -24,6 +24,8 @@ export class Dialog {
     }
   }
 
+  @Prop() enableBackDropClose = false;
+
   @Prop() titleAlignment = 'start';
 
   @Prop() titleImageIcon: string;
@@ -47,6 +49,8 @@ export class Dialog {
   @Prop() hideClose = false;
 
   @Prop() hideTitle = false;
+
+  @Prop() dialogTitleVariant = 'heading3';
 
   @Prop() padded = true;
 
@@ -129,11 +133,26 @@ export class Dialog {
     document.body.removeChild(portal);
   }
 
+  containerClick(event: MouseEvent) {
+    const dialogClassName = Array.from(event.target['classList']).includes('arv-dialog');
+
+    if (!dialogClassName) {
+      return false;
+    }
+
+    if (this.enableBackDropClose) {
+      this.handleClose();
+    }
+  }
+
   render() {
     const slot = this.show ? <slot></slot> : null;
 
     return (
       <arv-container
+        containerClick={e => {
+          this.containerClick(e);
+        }}
         margin={this.full ? '' : '1em'}
         class={this.rootClassName}
         hidden={!this.show}>
@@ -160,7 +179,7 @@ export class Dialog {
                       <img class="imgIcon" src={this.titleImageIcon} />,
                       <arv-divider layout="column" transparent></arv-divider>
                     ]}
-                    <arv-text variant="heading3">{this.dialogTitle}</arv-text>
+                    <arv-text variant={this.dialogTitleVariant}>{this.dialogTitle}</arv-text>
                   </arv-flex>
                   {!this.hideClose && (
                     <arv-button
@@ -180,7 +199,12 @@ export class Dialog {
                     <arv-button
                       variant={this.dialogActions.cancel.variant}
                       color={this.dialogActions.cancel.color}
-                      buttonClick={this.onHandleClose.bind(this, false)}>
+                      buttonClick={() => {
+                        if (this.dialogActions.cancel.fn) {
+                          this.dialogActions.cancel.fn();
+                        }
+                        this.onHandleClose(false);
+                      }}>
                       {this.dialogActions.cancel.text || 'Cancel'}
                     </arv-button>
                  )}
@@ -189,7 +213,12 @@ export class Dialog {
                     <arv-button
                       variant={this.dialogActions.ok.variant || 'raised'}
                       color={this.dialogActions.ok.color || 'primary'}
-                      buttonClick={this.onHandleClose.bind(this, true)}>
+                      buttonClick={() => {
+                        if (this.dialogActions.ok.fn) {
+                          this.dialogActions.ok.fn();
+                        }  
+                        this.onHandleClose(true)
+                      }}>
                       {this.dialogActions.ok.text || 'Ok'}
                     </arv-button>
                  )}

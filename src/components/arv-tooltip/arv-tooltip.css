@@ -3,13 +3,10 @@
   to { opacity: 1}
 }
 
-:host {
-  width: 100%;
-}
-
 .root {
   width: 100%;  
   position: relative;
+  z-index: 9;
 }
 
 .root.fixed.show .toolTip{
@@ -24,7 +21,7 @@
   animation: fade-in 0.3s;
   display: none;  
   --dark-text-color: #f1f1f1;  
-  background-color: rgba(3, 3, 3, 0.7);
+  background-color: rgba(3, 3, 3, 0.65);
   position: absolute;
   border-radius: var(--radius);
   box-sizing: border-box;

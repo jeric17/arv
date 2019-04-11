@@ -16,6 +16,10 @@ arv-icon {
   cursor: move;
 }
 
+.disabled arv-icon {
+  cursor: not-allowed;  
+}
+
 .primary arv-icon {
   --default-icon-color: var(--primary-color);
 }

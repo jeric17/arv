@@ -28,6 +28,7 @@
   transition: var(--transition);
   display: flex;
   justify-content: space-between;
+  min-height: 30px;
 }
 
 .value:hover {
@@ -46,9 +47,13 @@ arv-icon {
 }
 .loader {
   position: absolute;
-  right: 4px;
-  bottom: 4px;
+  left: 0;
+  top: 4px;
   z-index: 2;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 .value-item {
   border-radius: var(--radius);
@@ -128,6 +133,7 @@ arv-icon {
   border-style: solid;
   border-color: #efefef;
   border-radius: var(--radius);
+  min-height: 32px;
 }
 .multipleValues:hover {
   border-color: var(--primary-color);
@@ -136,4 +142,19 @@ arv-icon {
   overflow-y: scroll;
   max-height: 200px;
   height: 100%;
+}
+.multipleValues.disabled,
+.value.disabled {
+  background-color: #efefef;
+  cursor: not-allowed;
+}
+.multipleValues.disabled arv-input {
+  display: none;
+}
+.multipleValues.selectMode {
+  border: none;
+}
+.top .listContent {
+  transform-origin: bottom;
+  transform: translateY(-100%);
 }

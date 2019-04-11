@@ -17,7 +17,7 @@
   border-color: #efefef;
   box-sizing: border-box;
   color: var(--default-font-color, #343434);
-  font-size: 1rem;
+  font-size: var(--input-font-size, 0.9rem);
   line-height: 2rem;
   margin: 0;
   outline: none;

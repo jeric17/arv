@@ -23,3 +23,13 @@
   background-color: var(--primary-color);
   --dark-text-color: var(--primary-text-color);
 }
+.noStyle {
+  background-color: transparent !important;
+  cursor: auto;
+}
+.disabled {
+  --dark-text-color: #333 !important;  
+  
+  background-color: #eee !important;
+  cursor: not-allowed;
+}

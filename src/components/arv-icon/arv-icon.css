@@ -60,3 +60,11 @@
 .warning {
   color: var(--warning-color);
 }
+
+.success {
+  color: var(--success-color);
+}
+
+.error {
+  color: var(--error-color);
+}

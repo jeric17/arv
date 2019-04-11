@@ -17,18 +17,26 @@ export namespace Components {
 
   interface ArvAccordionItem {
     'active': boolean;
+    'animated': boolean;
     'color': string;
+    'itemIndex': any;
     'itemTitle': string;
   }
   interface ArvAccordionItemAttributes extends StencilHTMLAttributes {
     'active'?: boolean;
+    'animated'?: boolean;
     'color'?: string;
+    'itemIndex'?: any;
     'itemTitle'?: string;
     'onItemClick'?: (event: CustomEvent) => void;
   }
 
-  interface ArvAccordion {}
-  interface ArvAccordionAttributes extends StencilHTMLAttributes {}
+  interface ArvAccordion {
+    'onItemChange': (index: any) => void;
+  }
+  interface ArvAccordionAttributes extends StencilHTMLAttributes {
+    'onItemChange'?: (index: any) => void;
+  }
 
   interface ArvAlertText {
     'color': string;
@@ -228,6 +236,7 @@ export namespace Components {
 
   interface ArvContainer {
     'color': string;
+    'containerClick': (e: MouseEvent) => void;
     'full': boolean;
     'height': string;
     'hidden': boolean;
@@ -242,6 +251,7 @@ export namespace Components {
   }
   interface ArvContainerAttributes extends StencilHTMLAttributes {
     'color'?: string;
+    'containerClick'?: (e: MouseEvent) => void;
     'full'?: boolean;
     'height'?: string;
     'hidden'?: boolean;
@@ -285,6 +295,8 @@ export namespace Components {
     'bgColor': string;
     'dialogTitle': string;
     'dialogTitleIcon': string;
+    'dialogTitleVariant': string;
+    'enableBackDropClose': boolean;
     'full': boolean;
     'handleClose': () => void;
     'hideClose': boolean;
@@ -302,6 +314,8 @@ export namespace Components {
     'bgColor'?: string;
     'dialogTitle'?: string;
     'dialogTitleIcon'?: string;
+    'dialogTitleVariant'?: string;
+    'enableBackDropClose'?: boolean;
     'full'?: boolean;
     'handleClose'?: () => void;
     'hideClose'?: boolean;
@@ -354,6 +368,7 @@ export namespace Components {
 
   interface ArvDraggable {
     'color': string;
+    'disabled': boolean;
     'drag': (evt: DragEvent, key: string) => void;
     'drop': (evt: DragEvent, k1: string, k2: string) => void;
     'dropTop': (evt: DragEvent, k1: string, k2: string) => void;
@@ -368,6 +383,7 @@ export namespace Components {
   }
   interface ArvDraggableAttributes extends StencilHTMLAttributes {
     'color'?: string;
+    'disabled'?: boolean;
     'drag'?: (evt: DragEvent, key: string) => void;
     'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
     'dropTop'?: (evt: DragEvent, k1: string, k2: string) => void;
@@ -729,34 +745,46 @@ export namespace Components {
   }
 
   interface ArvSelectOption {
+    'disabled': boolean;
+    'noStyle': boolean;
     'onSelect': (e: any) => void;
     'parse': boolean;
     'selected': boolean;
-    'value': string;
+    'value': any;
   }
   interface ArvSelectOptionAttributes extends StencilHTMLAttributes {
+    'disabled'?: boolean;
+    'noStyle'?: boolean;
     'onOptionSelected'?: (event: CustomEvent) => void;
     'onSelect'?: (e: any) => void;
     'parse'?: boolean;
     'selected'?: boolean;
-    'value'?: string;
+    'value'?: any;
   }
 
   interface ArvSelect {
     'dataSource': any;
+    'disabled': boolean;
     'full': boolean;
+    'hideIcon': boolean;
     'icon': string;
     'inputChange': (e: any) => void;
+    'inputValueStyles': any;
     'label': string;
     'labelVariant': string;
     'layout': string;
+    'listHeight': number;
     'loading': boolean;
     'multiple': boolean;
     'onSelectChange': (item: any) => void;
     'optionValue': string;
     'placeholder': string;
+    'position': string;
     'removeItem': (index: number) => void;
-    'toggle': () => void;
+    'selectStyles': any;
+    'textVariant': string;
+    'toBlur': () => void;
+    'toggle': (show?: any) => Promise<void>;
     'value': any;
     /**
     * oneOf [select, input]
@@ -765,12 +793,16 @@ export namespace Components {
   }
   interface ArvSelectAttributes extends StencilHTMLAttributes {
     'dataSource'?: any;
+    'disabled'?: boolean;
     'full'?: boolean;
+    'hideIcon'?: boolean;
     'icon'?: string;
     'inputChange'?: (e: any) => void;
+    'inputValueStyles'?: any;
     'label'?: string;
     'labelVariant'?: string;
     'layout'?: string;
+    'listHeight'?: number;
     'loading'?: boolean;
     'multiple'?: boolean;
     'onOnInput'?: (event: CustomEvent) => void;
@@ -779,7 +811,10 @@ export namespace Components {
     'onSelectChange'?: (event: CustomEvent) => void;
     'optionValue'?: string;
     'placeholder'?: string;
+    'position'?: string;
     'removeItem'?: (index: number) => void;
+    'selectStyles'?: any;
+    'textVariant'?: string;
     'value'?: any;
     /**
     * oneOf [select, input]
@@ -872,7 +907,9 @@ export namespace Components {
   interface ArvTabs {
     'animated': boolean;
     'color': string;
+    'fullHeaderWidth': boolean;
     'isDefault': boolean;
+    'selectedIndex': number;
     'selectedTab': string;
     'tabChange': (index: number) => void;
     'tabs': any | string[];
@@ -880,7 +917,9 @@ export namespace Components {
   interface ArvTabsAttributes extends StencilHTMLAttributes {
     'animated'?: boolean;
     'color'?: string;
+    'fullHeaderWidth'?: boolean;
     'isDefault'?: boolean;
+    'selectedIndex'?: number;
     'selectedTab'?: string;
     'tabChange'?: (index: number) => void;
     'tabs'?: any | string[];
@@ -920,6 +959,7 @@ export namespace Components {
   interface ArvTooltip {
     'color': string;
     'fixed': boolean;
+    'full': boolean;
     'message': string;
     'position': string;
     'show': boolean;
@@ -927,6 +967,7 @@ export namespace Components {
   interface ArvTooltipAttributes extends StencilHTMLAttributes {
     'color'?: string;
     'fixed'?: boolean;
+    'full'?: boolean;
     'message'?: string;
     'position'?: string;
     'show'?: boolean;
@@ -935,10 +976,12 @@ export namespace Components {
   interface ArvTransition {
     'animation': string;
     'full': boolean;
+    'transformOrigin': string;
   }
   interface ArvTransitionAttributes extends StencilHTMLAttributes {
     'animation'?: string;
     'full'?: boolean;
+    'transformOrigin'?: string;
   }
 
   interface ArvVirtualPortal {

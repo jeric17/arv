@@ -9,6 +9,8 @@ export class Transition {
 
   @Prop() animation: string;
 
+  @Prop() transformOrigin: string;
+
   @Prop() full: boolean;
 
   render() {
@@ -25,8 +27,14 @@ export class Transition {
       scaleHeight: this.animation === 'scaleHeight',
     };
 
+    const styles = {};
+
+    if (this.transformOrigin) {
+      styles['transformOrigin'] = this.transformOrigin;
+    }
+
     return (
-      <div class={classNames}>
+      <div class={classNames} style={styles}>
         <slot />
       </div>
     );

@@ -15,7 +15,17 @@ export class Tooltip {
 
   @Prop() fixed = false;
 
-  @Prop() show = false;  
+  @Prop() show = false;
+
+  @Prop() full = false;
+
+  hostData() {
+    return {
+      style: {
+        width: this.full ? '100%': 'auto'
+      }  
+    };
+  }
 
   render() {
     const rootClass = {
@@ -39,7 +49,7 @@ export class Tooltip {
     return (
       <div class={rootClass}>
         <div class={toolTipClass}>
-          <arv-text variant="caption2">{this.message}</arv-text>
+          <arv-text preWrap variant="caption2">{this.message}</arv-text>
         </div>
         <slot></slot>
       </div>    

@@ -24,6 +24,12 @@ export class Tabs {
 
   @Prop() selectedTab: string;
 
+  @Prop() selectedIndex: number;  
+  @Watch('selectedIndex')
+  handleSelectedTab(index) {
+    this.currentIndex = index;
+  }
+
   @Prop() animated = true;    
 
   @Prop() tabChange: (index: number) => void;  
@@ -31,6 +37,8 @@ export class Tabs {
   @Prop() tabs: any | string[];
 
   @Prop() isDefault = true;
+
+  @Prop() fullHeaderWidth = true;
 
   @Watch('tabs')
   handleTabs() {
@@ -49,6 +57,9 @@ export class Tabs {
   }
 
   componentWillLoad() {
+    if (this.selectedIndex) {
+      this.currentIndex = this.selectedIndex;  
+    }
     this.loadTabs();
   }
 
@@ -131,7 +142,8 @@ export class Tabs {
     const rootClassNames = {
       root: true,
       primary: this.color === 'primary',
-      secondary: this.color === 'secondary'
+      secondary: this.color === 'secondary',
+      fullHeaderWidth: this.fullHeaderWidth
     };
 
     return(
@@ -148,6 +160,7 @@ export class Tabs {
                 {tabItem}
                 </div>
             ))}
+            <div class="filler"></div>
             </arv-flex>
         </div>
         <div class={{

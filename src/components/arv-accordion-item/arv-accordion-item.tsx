@@ -7,33 +7,40 @@ import { Component, Event, EventEmitter, Prop } from '@stencil/core';
 })
 export class AccordionItem {
 
+  @Prop() animated = true;  
+
   @Prop() active: boolean;
 
   @Prop() color = 'default';
 
+  @Prop() itemIndex: any;
+
   @Prop() itemTitle: string;  
 
-  @Event() itemClick: EventEmitter;  
+  @Event() itemClick: EventEmitter;
 
   render() {
     const rootClassNames = {
       root: true,
-      active: this.active
+      active: this.active,
+      animated: this.animated
     };
 
     const contentClassNames = {
-      content: true
+      content: true,
+      animated: this.animated
     };
 
     return (
         <div class={rootClassNames}>
             <div
-              onClick={e => this.itemClick.emit(e)} 
+              onClick={() => this.itemClick.emit(this.itemIndex)} 
               class="header"
             >
-                <div class="title">
-                  <arv-text strong>{this.itemTitle}</arv-text>
-                </div>
+                <arv-flex items="center">
+                  <arv-icon class="icon" size="medium" icon="arrow_drop_down"></arv-icon>
+                  <arv-text variant="caption">{this.itemTitle}</arv-text>
+                </arv-flex>
                 <div class="controls">
                   <slot name="controls"></slot>
                 </div>

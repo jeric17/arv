@@ -22,22 +22,29 @@
 
 .tabItem {
   cursor: pointer;
-  padding: 0.75em 1em;
+  padding: 0.75em 1.5em;
   text-align: center;
-  width: 100%;
+  width: auto;
+  transition: all 0.3s;
+  border-bottom-color: var(--tab-border, transparent);
+}
+.tabItem, .filler {
   border-bottom-style: solid;
   border-bottom-width: 2px;
-  border-bottom-color: var(--bottom-tab-color, transparent);
-  transition: all 0.3s;
 }
 
 .tabItem.active {
-  border-bottom-color: var(--default-color);
+  border-bottom-color: var(--active-tab-border, var(--default-color));
+  color: var(--active-tab-text, #333);
 }
 
 .tabHeader {
-  background-color: var(--default-background-color);
-  color: var(--default-font-color);
+  background-color: var(--tab-color, var(--default-background-color));
+  color: var(--tab-text, var(--default-text-color));
+}
+
+.tabItem:hover {
+  background-color: var(--tab-hover, #efefef);
 }
 
 .primary .tabHeader {
@@ -64,4 +71,18 @@
 
 .secondary .tabItem.active {
   border-bottom-color: var(--primary-color);
+}
+.fullHeaderWidth .tabItem {
+  width: 100%;
+}
+.filler {
+  width: 100%;
+  min-width: 0%;
+  background-color: var(--filler-bg, #fff);
+  min-height: var(--filler-height, 45px);
+  border-bottom-color: var(--filler-border, transparent);
+}
+
+.fullHeaderWidth .filler {
+  display: none;  
 }
