@@ -1,4 +1,4 @@
-import { Component, Listen, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Listen, Prop, State, Watch } from '@stencil/core';
 import { ImageItem } from './arv-carousel.model';
 
 @Component({

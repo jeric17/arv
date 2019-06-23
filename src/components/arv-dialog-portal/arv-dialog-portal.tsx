@@ -1,4 +1,4 @@
-import { Component, Element, Method, Prop, State } from '@stencil/core';
+import { Component, h, Element, Method, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-dialog-portal',
@@ -20,7 +20,7 @@ export class DialogPortal {
   @Prop() padded = true;
 
   @Method('removeDialog')
-  removeDialog() {
+  async removeDialog() {
     const target = this.el.shadowRoot.querySelector('.arv-dialog-portal');
 
     const dialogContent = target.querySelector('arv-dialog-content');

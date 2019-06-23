@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop, State } from '@stencil/core';
+import { Component, h, Element, Listen, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-menu',

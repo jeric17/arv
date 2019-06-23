@@ -133,7 +133,7 @@ arv-icon {
   border-style: solid;
   border-color: #efefef;
   border-radius: var(--radius);
-  min-height: 32px;
+  min-height: 31px;
 }
 .multipleValues:hover {
   border-color: var(--primary-color);
@@ -153,6 +153,7 @@ arv-icon {
 }
 .multipleValues.selectMode {
   border: none;
+  margin-top: 1px;
 }
 .top .listContent {
   transform-origin: bottom;

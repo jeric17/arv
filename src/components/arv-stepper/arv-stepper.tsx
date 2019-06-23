@@ -1,4 +1,4 @@
-import { Component, Prop, Watch, State } from '@stencil/core';
+import { Component, h, Prop, Watch, State } from '@stencil/core';
 import { StepItem } from './arv-stepper.model';
 
 @Component({

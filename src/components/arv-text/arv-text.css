@@ -4,6 +4,7 @@
   color: var(--dark-text-color, #000);
   transition: all 0.3s;
   font-weight: var(--font-weight, normal);
+  word-break: var(--word-break, initial);
 }
 .strike {
   opacity: 0.5;

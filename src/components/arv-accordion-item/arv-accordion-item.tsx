@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-accordion-item',
@@ -17,7 +17,7 @@ export class AccordionItem {
 
   @Prop() itemTitle: string;  
 
-  @Event() itemClick: EventEmitter;
+  @Event() arvClick: EventEmitter;
 
   render() {
     const rootClassNames = {
@@ -34,7 +34,7 @@ export class AccordionItem {
     return (
         <div class={rootClassNames}>
             <div
-              onClick={() => this.itemClick.emit(this.itemIndex)} 
+              onClick={() => this.arvClick.emit(this.itemIndex)} 
               class="header"
             >
                 <arv-flex items="center">

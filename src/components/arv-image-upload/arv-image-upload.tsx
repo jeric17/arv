@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-image-upload',
@@ -7,40 +7,40 @@ import { Component, Element, Event, EventEmitter, Prop } from '@stencil/core';
 })
 export class ImageUpload {
 
-  @Element() el: HTMLElement;  
+  @Element() el: HTMLElement;
 
   @Prop() disabled: boolean;
 
-  @Prop() hashKey: number;  
+  @Prop() hashKey: number;
 
   @Prop() size: string;
 
   @Prop() imgSrc: string;
 
-  @Prop() onUpload: (e: any) => void;
+  @Prop() uploadImage: (e: any) => void;
 
-  @Prop() onRemove: () => void;  
+  @Prop() removeImage: () => void;
 
-  @Event() upload: EventEmitter;
+  @Event() arvUploadImage: EventEmitter;
 
-  @Event() remove: EventEmitter;
+  @Event() arvRemoveImage: EventEmitter;
 
   change(evt) {
-    this.upload.emit({
+    this.arvUploadImage.emit({
       target: evt.target,
       files: evt.target.files
     });
-    if (this.onUpload) {
-      this.onUpload(evt.target);
+    if (this.uploadImage) {
+      this.uploadImage(evt.target);
     }
   }
 
   removeItem() {
     const input = this.el.shadowRoot.querySelector('input');
     input.value = null;
-    this.remove.emit();
-    if (this.onRemove) {
-      this.onRemove();
+    this.arvRemoveImage.emit();
+    if (this.removeImage) {
+      this.removeImage();
     }
   }
 
@@ -68,7 +68,7 @@ export class ImageUpload {
         return 'Change Image';
       }
       return 'Upload Image';
-    })();    
+    })();
 
     return (
       <div class={rootClassNames}>

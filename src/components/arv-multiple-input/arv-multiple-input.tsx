@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-multiple-input',
@@ -6,15 +6,15 @@ import { Component, Event, EventEmitter, Prop } from '@stencil/core';
   shadow: true
 })
 export class MultipleInput {
-  @Prop() onAdd: (e: any) => void;
+  @Prop() add: (e: any) => void;
 
-  @Prop() onInputChange: (e: any) => void;
+  @Prop() inputChange: (e: any) => void;
 
-  @Prop() onInputEnter: (e: any) => void;
+  @Prop() inputEnter: (e: any) => void;
 
-  @Prop() onRemove: (e: any) => void;
+  @Prop() removeValue: (e: any) => void;
 
-  @Prop() onUpdate: (e: any) => void;
+  @Prop() update: (e: any) => void;
 
   @Prop() disabled: boolean;
 
@@ -22,30 +22,30 @@ export class MultipleInput {
 
   @Prop() placeholder: string;
 
-  @Event() add: EventEmitter;
+  @Event() arvAdd: EventEmitter;
 
-  @Event() update: EventEmitter;  
+  @Event() arvUpdate: EventEmitter;  
 
-  @Event() inputChange: EventEmitter;
+  @Event() arvInputChange: EventEmitter;
 
-  @Event() inputEnter: EventEmitter;
+  @Event() arvInputEnter: EventEmitter;
 
-  @Event() remove: EventEmitter;
+  @Event() arvRemove: EventEmitter;
 
   triggerUpdate(data) {
-    if (this.onUpdate && typeof this.onUpdate === 'function') {
-      this.onUpdate(data);
+    if (this.update && typeof this.update === 'function') {
+      this.update(data);
     }
-    this.update.emit(data);
+    this.arvUpdate.emit(data);
   }
 
   change(index, event) {
     event.index = index;
-    if (this.onInputChange && typeof this.onInputChange === 'function') {
-      this.onInputChange(event);
+    if (this.inputChange && typeof this.inputChange === 'function') {
+      this.inputChange(event);
     }
 
-    this.inputChange.emit(event);
+    this.arvInputChange.emit(event);
 
     const values = [...this.values];
     values[index] = event.target.value;
@@ -55,28 +55,28 @@ export class MultipleInput {
 
   enter(index, event) {
     event.index = index;
-    if (this.onInputEnter && typeof this.onInputEnter === 'function') {
-      this.onInputEnter(event);
+    if (this.inputEnter && typeof this.inputEnter === 'function') {
+      this.inputEnter(event);
     }
 
-    this.inputEnter.emit(event);
+    this.arvInputEnter.emit(event);
   }
 
   addItem(event) {
-    if (this.onAdd && typeof this.onAdd === 'function') {
-      this.onAdd(event);
+    if (this.add && typeof this.add === 'function') {
+      this.add(event);
     }
 
-    this.add.emit(event);
+    this.arvAdd.emit(event);
 
     this.triggerUpdate(this.values.concat([event.target.value]));
   }
 
   removeItem(index) {
-    if (this.onRemove && typeof this.onRemove === 'function') {
-      this.onRemove(index);
-    }    
-    this.remove.emit(index);
+    if (this.removeValue && typeof this.removeValue === 'function') {
+      this.removeValue(index);
+    }
+    this.arvRemove.emit(index);
     const values = [...this.values];
     values.splice(index, 1);
     this.triggerUpdate(values);

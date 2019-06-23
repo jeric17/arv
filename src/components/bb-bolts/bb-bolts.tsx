@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State } from '@stencil/core';
+import { Component, h, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'bb-bolts',
@@ -47,7 +47,7 @@ export class Bolts {
       <arv-select
         label={name}
         value={value}
-        onSelectChange={e => {
+        selectChange={e => {
           if (!e) {
             return false;
           }
@@ -70,7 +70,7 @@ export class Bolts {
       <arv-select
         label={name}
         value={value}
-        onSelectChange={e => {
+        selectChange={e => {
           if (!e) {
             return false;
           }

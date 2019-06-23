@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, State } from '@stencil/core';
+import { Component, h, Element, Prop, Event, EventEmitter, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-draggable',
@@ -13,7 +13,7 @@ export class Draggable {
 
   @State() isTopOver: boolean;
 
-  @Prop() key: string;
+  @Prop() hashKey: string;
 
   @Prop() showIcon = true;
 
@@ -58,15 +58,15 @@ export class Draggable {
   @Event() itemDropTop: EventEmitter;
 
   applyEvent(evt: DragEvent, propName: string, eventName: string, options = {}) {
-    evt.dataTransfer.setData('text/plain', this.key);
+    evt.dataTransfer.setData('text/plain', this.hashKey);
 
     if (this[propName]) {
-      this[propName](evt, this.key, options);
+      this[propName](evt, this.hashKey, options);
     }
 
     const data = {
       dragEvent: evt,
-      key: this.key
+      key: this.hashKey
     };
 
     this[eventName].emit({

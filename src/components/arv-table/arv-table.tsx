@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop, Watch, State } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop, Watch, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-table',
@@ -53,7 +53,7 @@ export class Table {
 
   @Prop() tableProps = {};
 
-  @Prop() onSelect: (row: any) => void;
+  @Prop() select: (row: any) => void;
 
   @Event() rowClick: EventEmitter;
 
@@ -95,8 +95,8 @@ export class Table {
       evt,
       item
     });
-    if (this.onSelect) {
-      this.onSelect(item);
+    if (this.select) {
+      this.select(item);
     }
   }
 

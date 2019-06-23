@@ -1,4 +1,4 @@
-import { Component } from '@stencil/core';
+import { Component , h } from '@stencil/core';
 
 import { Button } from './button';
 import { Input } from './input';
@@ -34,6 +34,7 @@ import { Diff } from './diff';
 import { Draggable } from './draggable';
 // import { DraggableWrapper } from './draggable-wrapper';
 import { Tooltip } from './tooltip';
+import { InputWrapper } from './input-wrapper';
 
 @Component({
   tag: 'my-component',
@@ -63,6 +64,7 @@ export class MyComponent {
     {...Icon},
     {...ImageUpload},
     {...Input},
+    {...InputWrapper},
     {...Loader},
     {...Menu},
     {...Paginator},

@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Element, Listen, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-virtual-portal',
@@ -13,7 +13,7 @@ export class VirtualPortal {
 
   @Prop() content: any;
 
-  @Prop() onSelect: (evt: any) => void;
+  @Prop() select: (evt: any) => void;
 
   @Prop() parentEl: any;
 
@@ -29,7 +29,7 @@ export class VirtualPortal {
 
   @Listen('optionSelected')
   optionSelectedHandler(evt) {
-    this.onSelect(evt);
+    this.select(evt);
   }
 
   getStyle(h) {
@@ -100,7 +100,7 @@ export class VirtualPortal {
     return (
       <div class="container">
         <arv-backdrop
-          onBackdropClick={() => this.onSelect(null) }
+          onBackdropClick={() => this.select(null) }
           transparent></arv-backdrop>
         <arv-transition animation="scaleHeight">
           <div class="arv-virtual-portal">

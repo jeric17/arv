@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Method, Prop, State } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Listen, Method, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-input',
@@ -39,7 +39,7 @@ export class Input {
 
   @Prop() inputFocus: (e: any) => void;
 
-  @Prop() inputChange: (e: any) => void;
+  @Prop() inputChange: (e: any, error: any) => void;
 
   @Prop() inputEnter: (e: any) => void;
 
@@ -64,23 +64,26 @@ export class Input {
 
   @Prop() inputSize: number;
 
-  @Event() onInput: EventEmitter;
+  @Event() arvInput: EventEmitter;
 
-  @Event() onBlur: EventEmitter;
+  @Event() arvBlur: EventEmitter;
 
-  @Event() onFocus: EventEmitter;
+  @Event() arvFocus: EventEmitter;
 
-  @Event() onInputChange: EventEmitter;
+  @Event() arvInputChange: EventEmitter;
 
-  @Event() onInputEnter: EventEmitter;
+  @Event() arvInputEnter: EventEmitter;
 
   @Listen('focus')
   focusHandler() {
     this.inputElement.focus();
   }
 
-  @Listen('keydown.enter')
-  handleKeyEnter(e) {
+  @Listen('keydown')
+  handleKeyEnter(e: KeyboardEvent) {
+    if (e.keyCode !== 13) {
+      return false;
+    }
     const inputElement = (() => {
       if (!this.rows) {
         return this.el.shadowRoot.querySelector('input');
@@ -95,7 +98,7 @@ export class Input {
       });
     }
 
-    this.onInputEnter.emit({
+    this.arvInputEnter.emit({
       target: inputElement,
       event: e,
       value: inputElement.value,
@@ -105,9 +108,11 @@ export class Input {
     });
   }
 
-  @Method() 
-  arvFocus() {
-    this.el.shadowRoot.querySelector('input').focus();
+  @Method()
+  async elementFocus() {
+    if (this.inputElement) {
+      this.inputElement.focus();
+    }
   }
 
   componentDidLoad() {
@@ -131,18 +136,21 @@ export class Input {
       }
       return e.target.value;
     })();
+
     this.validate();
+
     if (this.inputChange) {
-      this.inputChange(e);
+      this.inputChange(e, this.error);
     }
 
-    this.onInputChange.emit({
+    this.arvInputChange.emit({
       target: e.target,
       event: e,
       value,
       name: e.target.name,
       type: this.type,
-      required: this.required
+      required: this.required,
+      error: this.error
     });
   }
 
@@ -152,7 +160,7 @@ export class Input {
     if (this.inputFocus) {
       this.inputFocus(e);
     }
-    this.onFocus.emit({
+    this.arvFocus.emit({
       target: e.target,
       event: e,
       value,
@@ -166,7 +174,7 @@ export class Input {
     if (this.inputBlur) {
       this.inputBlur(e);
     }
-    this.onBlur.emit({
+    this.arvBlur.emit({
       event: e,
       value,
       name: e.target.name,
@@ -185,7 +193,7 @@ export class Input {
       }
       return e.target.value;
     })();
-    this.onInput.emit({
+    this.arvInput.emit({
       target: e.target,
       event: e,
       value,

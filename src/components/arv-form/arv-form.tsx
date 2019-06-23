@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Listen, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-form',
@@ -15,7 +15,7 @@ export class Form {
   @Listen('onInputChange')
   onInputChangeHandler() {
     // TODO
-  }  
+  }
 
   @Listen('onInputEnter')
   onEnterHandler(ev) {

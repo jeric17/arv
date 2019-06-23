@@ -22,12 +22,17 @@
 
 .tabItem {
   cursor: pointer;
-  padding: 0.75em 1.5em;
+  padding-top: var(--tab-vertical-padding, 0.75em);
+  padding-bottom: var(--tab-vertical-padding, 0.75em);
+  padding-left: var(--tab-horizontal-padding, 1em);
+  padding-right: var(--tab-horizontal-padding, 1em);
   text-align: center;
   width: auto;
   transition: all 0.3s;
   border-bottom-color: var(--tab-border, transparent);
+  font-size: var(--tab-font-size, 1rem);
 }
+
 .tabItem, .filler {
   border-bottom-style: solid;
   border-bottom-width: 2px;

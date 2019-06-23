@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-select-option',
@@ -15,7 +15,7 @@ export class SelectOption {
 
   @Prop() parse: boolean;
 
-  @Prop() onSelect: (e: any) => void;
+  @Prop() select: (e: any) => void;
 
   @Prop() noStyle = false;
 
@@ -29,8 +29,8 @@ export class SelectOption {
       return this.value;
     })();
 
-    if (this.onSelect) {
-      this.onSelect(data);
+    if (this.select) {
+      this.select(data);
     }
 
     this.optionSelected.emit(data);

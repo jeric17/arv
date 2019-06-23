@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-list-item',
@@ -21,14 +21,14 @@ export class ListItem {
 
   @Prop() showDivider = true;
 
-  @Event() onItemClick: EventEmitter;
+  @Event() arvItemClick: EventEmitter;
 
   click(e) {
     if (this.itemClick) {
       this.itemClick(e, this.itemIndex)
     }
 
-    this.onItemClick.emit(e);
+    this.arvItemClick.emit(e);
   }
 
   render() {

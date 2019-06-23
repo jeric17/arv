@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-checkbox',
@@ -28,7 +28,7 @@ export class Checkbox {
 
   @Prop() onTick: (e: any) => void;
 
-  @Event() onInputChange: EventEmitter;
+  @Event() arvInputChange: EventEmitter;
 
   click(e) {
     if (this.onTick && typeof this.onTick === 'function') {
@@ -37,7 +37,7 @@ export class Checkbox {
         value: this.value
       });
     }
-    this.onInputChange.emit(e);
+    this.arvInputChange.emit(e);
   }
 
   render() {

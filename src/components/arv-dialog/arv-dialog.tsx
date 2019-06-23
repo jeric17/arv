@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Listen, Prop, State, Watch } from '@stencil/core';
 import { DialogActions } from './arv-dialog.model';
 @Component({
   tag: 'arv-dialog',
@@ -54,6 +54,8 @@ export class Dialog {
 
   @Prop() padded = true;
 
+  @Prop() titleIconUrl: string;
+
   @Watch('show')
   showChanged() {
     if (this.show) {
@@ -67,13 +69,13 @@ export class Dialog {
 
   @Prop() parent: HTMLElement;
 
-  @Event() onOk: EventEmitter;
+  @Event() arvOk: EventEmitter;
 
-  @Event() onClose: EventEmitter;
+  @Event() arvClose: EventEmitter;
 
   @Listen('cancel')
   handleCancel() {
-    this.onClose.emit();
+    this.arvClose.emit();
   }
 
   componentWillLoad() {
@@ -88,10 +90,10 @@ export class Dialog {
         this.handleClose();
       }
       if (!ok) {
-        this.onClose.emit(true);
+        this.arvClose.emit(true);
         return false;
       }
-      this.onOk.emit(true);
+      this.arvOk.emit(true);
     }, 300);
   }
 
@@ -100,7 +102,7 @@ export class Dialog {
   }
 
   private _removeBodyOverlay() {
-    document.body.style.overflow = 'auto';
+    document.body.style.removeProperty('overflow');
   }
 
   private _showContent() {
@@ -171,8 +173,12 @@ export class Dialog {
             {!this.hideTitle && (
               <arv-flex justify="between" items="center" padded>
                   <arv-flex items="center" justify={this.titleAlignment}>
-                    {this.dialogTitleIcon && [
+                    {(this.dialogTitleIcon && !this.titleIconUrl) && [
                       <arv-icon class="icon" withButtonIcon icon={this.dialogTitleIcon} />,
+                      <arv-divider layout="column" transparent></arv-divider>
+                    ]}
+                    {(!this.dialogTitleIcon && this.titleIconUrl) && [
+                      <img class="imgIcon" src={this.titleIconUrl} />,
                       <arv-divider layout="column" transparent></arv-divider>
                     ]}
                     {this.titleImageIcon && [

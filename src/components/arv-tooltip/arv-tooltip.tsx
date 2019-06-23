@@ -1,4 +1,4 @@
-import { Component, Prop } from '@stencil/core';
+import { Component, h, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-tooltip',
@@ -49,7 +49,7 @@ export class Tooltip {
     return (
       <div class={rootClass}>
         <div class={toolTipClass}>
-          <arv-text preWrap variant="caption2">{this.message}</arv-text>
+          <arv-text noWrap variant="caption2">{this.message}</arv-text>
         </div>
         <slot></slot>
       </div>    

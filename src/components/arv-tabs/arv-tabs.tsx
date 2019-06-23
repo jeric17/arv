@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State, Watch, Listen } from '@stencil/core';
+import { Component, h, Element, Prop, State, Watch, Listen } from '@stencil/core';
 
 @Component({
   tag: 'arv-tabs',
@@ -45,7 +45,7 @@ export class Tabs {
     this.loadTabs();
   }
 
-  @Listen('window:resize')
+  @Listen('resize', { target: 'window' })
   handleResize() {
     if (this.resizing) {
       return false;  

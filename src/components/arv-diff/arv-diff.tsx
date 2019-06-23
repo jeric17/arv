@@ -1,4 +1,4 @@
-import { Component, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Prop, State, Watch } from '@stencil/core';
 import * as jsdiff from 'diff';
 
 @Component({
@@ -13,6 +13,8 @@ export class Diff {
   @State() n = '';
 
   @State() currentMode: string;
+
+  @Prop() showControls = true;
 
   @Prop() oldVersion: any;
   @Watch('oldVersion')
@@ -57,7 +59,8 @@ export class Diff {
   }
 
   render() {
-    let diffData = jsdiff.diffLines(this.o, this.n);
+    let diffData = jsdiff.default.diffLines(this.o, this.n);
+
     if (this.currentMode === 'old') {
       diffData = diffData.filter(d => d.removed || (!d.removed && !d.added));
     }
@@ -67,29 +70,31 @@ export class Diff {
 
     return (
       <arv-flex layout="column" class="root">
-        <arv-flex items="center">
-          <arv-button
-            variant="raised"
-            color={this.currentMode === 'all' ? 'primary' : 'default'}
-            buttonClick={() => { this.currentMode = 'all' }}>
-            Merged
-          </arv-button>
-          <arv-divider layout="column" transparent></arv-divider>
-          <arv-button
-            variant="raised"
-            color={this.currentMode === 'new' ? 'primary' : 'default'}
-            buttonClick={() => { this.currentMode = 'new' }}>
-            New
-          </arv-button>
-          <arv-divider layout="column" transparent></arv-divider>
-          <arv-button
-            variant="raised"
-            color={this.currentMode === 'old' ? 'primary' : 'default'}
-            buttonClick={() => { this.currentMode = 'old' }}>
-            Old
-          </arv-button>
-          <arv-divider layout="column" transparent></arv-divider>
-        </arv-flex>
+        {this.showControls && (
+          <arv-flex items="center">
+            <arv-button
+              variant="raised"
+              color={this.currentMode === 'all' ? 'primary' : 'default'}
+              buttonClick={() => { this.currentMode = 'all' }}>
+              Merged
+            </arv-button>
+            <arv-divider layout="column" transparent></arv-divider>
+            <arv-button
+              variant="raised"
+              color={this.currentMode === 'new' ? 'primary' : 'default'}
+              buttonClick={() => { this.currentMode = 'new' }}>
+              New
+            </arv-button>
+            <arv-divider layout="column" transparent></arv-divider>
+            <arv-button
+              variant="raised"
+              color={this.currentMode === 'old' ? 'primary' : 'default'}
+              buttonClick={() => { this.currentMode = 'old' }}>
+              Old
+            </arv-button>
+            <arv-divider layout="column" transparent></arv-divider>
+          </arv-flex>  
+        )}
         <arv-divider transparent></arv-divider>
         <div class="contentWrapper">
           <Content
@@ -125,7 +130,7 @@ function Content({ diffData }) {
       <arv-flex class={itemClass} items="center">
         <arv-divider layout="column" transparent></arv-divider>
         <span class="line-symbol">{itemSymbol}</span>
-        <arv-text preWrap>{d.value}</arv-text>
+        <arv-text class="textWrapper" preWrap>{d.value}</arv-text>
       </arv-flex>
     );
   });

@@ -58,5 +58,5 @@ body {
   --card-media-height: 56%;
   --transition: all 0.3s ease-in-out;
   --icon-font-family: 'Material Icons';
-  --font-family: 'Source Sans Pro', sans-serif;
+  --font-family: 'Source Sans Pro', Arial, sans-serif;
 }

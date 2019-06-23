@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Element, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Element, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-snackbar',
@@ -56,24 +56,31 @@ export class Snackbar {
   }
 
   componentDidLoad() {
-
     this.init();
   }
 
   componentDidUnload() {
-    clearTimeout(this.timeout);
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   init() {
+    // console.log('arv snackbar init...', this.open, this.timeout);
     if (!this.open) {
+      if (this.timeout && !this.loading) {
+        clearTimeout(this.timeout);  
+      }
       return false;  
     }
 
     // this.elementStyles = this.getStyles(this.vertical, this.horizontal);
 
-    if (this.timing) {
-      this.timingClose();
-    }    
+    if (!this.loading && this.timing && this.timeout) {
+      // console.log('arv clear timeout');
+      clearTimeout(this.timeout);
+    }
+    this.timingClose();
   }
 
   getStyles(v, h) {
@@ -113,10 +120,11 @@ export class Snackbar {
 
   private timingClose() {
     if (this.loading || this.variant === 'loading') {
-      return false
+      return false;
     }
     this.loading = true;
-    this.timeout = setTimeout(() => {    
+
+    this.timeout = setTimeout(() => {
       this.animation = this.animationOut;
       setTimeout(() => {
         this.loading = false;

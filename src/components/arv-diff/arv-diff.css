@@ -46,3 +46,6 @@ arv-button {
 .contentWrapper {
   background-color: var(--diff-bg, #fff);
 }
+.textWrapper {
+  --word-break: break-all;
+}

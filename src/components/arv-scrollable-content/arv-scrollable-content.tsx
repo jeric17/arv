@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Method, Prop, Listen, Watch } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Method, Prop, Listen, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-scrollable-content',
@@ -37,12 +37,12 @@ export class ScrollableContent {
     this.el.scrollTop = 0;
   }
 
-  @Event() scrolledTop: EventEmitter;
+  @Event() arvScrolledTop: EventEmitter;
 
   @Listen('scroll')
   handleScroll() {
     if (this.el.scrollTop === 0) {
-      this.scrolledTop.emit();
+      this.arvScrolledTop.emit();
     }
     if (this.onScrollTop) {
       this.onScrollTop();

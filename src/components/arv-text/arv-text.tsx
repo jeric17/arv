@@ -1,4 +1,4 @@
-import { Component, Element, Prop, State } from '@stencil/core';
+import { Component, h, Element, Prop, State } from '@stencil/core';
 
 @Component({
   tag: 'arv-text',

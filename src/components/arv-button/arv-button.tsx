@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-button',
@@ -44,7 +44,7 @@ export class Button {
   /* oneOf: [dialogOk, dialogCancel] */
   @Prop() roleType: string;
 
-  @Event() onButtonClick: EventEmitter;
+  @Event() arvButtonClick: EventEmitter;
 
   hostData() {
     return {
@@ -58,7 +58,7 @@ export class Button {
     if (this.disabled || this.loading) {
       return false;
     }
-    this.onButtonClick.emit({
+    this.arvButtonClick.emit({
       event: e,
       type: this.type,
       roleType: this.roleType

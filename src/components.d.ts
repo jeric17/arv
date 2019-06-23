@@ -5,16 +5,15 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
 import {
   DialogActions,
 } from './components/arv-dialog/arv-dialog.model';
 
-
 export namespace Components {
-
+  interface ArvAccordion {
+    'onItemChange': (index: any) => void;
+  }
   interface ArvAccordionItem {
     'active': boolean;
     'animated': boolean;
@@ -22,33 +21,17 @@ export namespace Components {
     'itemIndex': any;
     'itemTitle': string;
   }
-  interface ArvAccordionItemAttributes extends StencilHTMLAttributes {
-    'active'?: boolean;
-    'animated'?: boolean;
-    'color'?: string;
-    'itemIndex'?: any;
-    'itemTitle'?: string;
-    'onItemClick'?: (event: CustomEvent) => void;
-  }
-
-  interface ArvAccordion {
-    'onItemChange': (index: any) => void;
-  }
-  interface ArvAccordionAttributes extends StencilHTMLAttributes {
-    'onItemChange'?: (index: any) => void;
-  }
-
   interface ArvAlertText {
     'color': string;
     'icon': string;
     'textAlign': string;
   }
-  interface ArvAlertTextAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'icon'?: string;
-    'textAlign'?: string;
+  interface ArvAvatar {
+    'alt': string;
+    'imgSrc': string;
+    'size': string;
+    'styles': any;
   }
-
   interface ArvAvatarGroup {
     'bordered': boolean;
     'imageItems': string | string[];
@@ -58,54 +41,17 @@ export namespace Components {
     'size': string;
     'styles': any;
   }
-  interface ArvAvatarGroupAttributes extends StencilHTMLAttributes {
-    'bordered'?: boolean;
-    'imageItems'?: string | string[];
-    'index'?: number;
-    'maxItems'?: any;
-    'onOnShowMore'?: (event: CustomEvent) => void;
-    'showMore'?: () => void;
-    'size'?: string;
-    'styles'?: any;
-  }
-
-  interface ArvAvatar {
-    'alt': string;
-    'imgSrc': string;
-    'size': string;
-    'styles': any;
-  }
-  interface ArvAvatarAttributes extends StencilHTMLAttributes {
-    'alt'?: string;
-    'imgSrc'?: string;
-    'size'?: string;
-    'styles'?: any;
-  }
-
   interface ArvBackdrop {
     'onBackdropClick': (event: Event) => void;
     'position': string;
     'transparent': boolean;
   }
-  interface ArvBackdropAttributes extends StencilHTMLAttributes {
-    'onBackdropClick'?: (event: Event) => void;
-    'position'?: string;
-    'transparent'?: boolean;
-  }
-
   interface ArvBadge {
     'badgeStyle': any;
     'color': string;
     'show': boolean;
     'size': string;
   }
-  interface ArvBadgeAttributes extends StencilHTMLAttributes {
-    'badgeStyle'?: any;
-    'color'?: string;
-    'show'?: boolean;
-    'size'?: string;
-  }
-
   interface ArvButton {
     'buttonClick': (e: MouseEvent) => void;
     'color': string;
@@ -124,26 +70,11 @@ export namespace Components {
     'type': string;
     'variant': string;
   }
-  interface ArvButtonAttributes extends StencilHTMLAttributes {
-    'buttonClick'?: (e: MouseEvent) => void;
-    'color'?: string;
-    'disabled'?: boolean;
-    'full'?: boolean;
-    'href'?: string;
-    'icon'?: string;
-    'layout'?: string;
-    'loading'?: boolean;
-    'onOnButtonClick'?: (event: CustomEvent) => void;
-    'padded'?: boolean;
-    'roleType'?: string;
-    'rounded'?: boolean;
-    'size'?: string;
-    'styles'?: any;
-    'textAlign'?: string;
-    'type'?: string;
-    'variant'?: string;
+  interface ArvCard {
+    'height': string;
+    'styles': any;
+    'width': string;
   }
-
   interface ArvCardHeader {
     'action': any;
     'avatarImage': string;
@@ -152,46 +83,15 @@ export namespace Components {
     'subHeader': string;
     'titleHeader': string;
   }
-  interface ArvCardHeaderAttributes extends StencilHTMLAttributes {
-    'action'?: any;
-    'avatarImage'?: string;
-    'color'?: string;
-    'styles'?: any;
-    'subHeader'?: string;
-    'titleHeader'?: string;
-  }
-
   interface ArvCardMedia {
     'imageSrc': string;
   }
-  interface ArvCardMediaAttributes extends StencilHTMLAttributes {
-    'imageSrc'?: string;
-  }
-
-  interface ArvCard {
-    'height': string;
-    'styles': any;
-    'width': string;
-  }
-  interface ArvCardAttributes extends StencilHTMLAttributes {
-    'height'?: string;
-    'styles'?: any;
-    'width'?: string;
-  }
-
   interface ArvCarousel {
     'externalUrl': string;
     'images': any;
     'loading': boolean;
     'target': string;
   }
-  interface ArvCarouselAttributes extends StencilHTMLAttributes {
-    'externalUrl'?: string;
-    'images'?: any;
-    'loading'?: boolean;
-    'target'?: string;
-  }
-
   interface ArvCheckbox {
     'color': string;
     'label': string;
@@ -204,36 +104,13 @@ export namespace Components {
     'textWidth': string;
     'value': boolean;
   }
-  interface ArvCheckboxAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'label'?: string;
-    'labelVariant'?: string;
-    'layout'?: string;
-    'mode'?: string;
-    'name'?: string;
-    'onOnInputChange'?: (event: CustomEvent) => void;
-    'onTick'?: (e: any) => void;
-    'styles'?: any;
-    'textWidth'?: string;
-    'value'?: boolean;
-  }
-
   interface ArvChips {
     'size': string;
     'target': string;
     'url': string;
     'variant': string;
   }
-  interface ArvChipsAttributes extends StencilHTMLAttributes {
-    'size'?: string;
-    'target'?: string;
-    'url'?: string;
-    'variant'?: string;
-  }
-
   interface ArvCode {}
-  interface ArvCodeAttributes extends StencilHTMLAttributes {}
-
   interface ArvContainer {
     'color': string;
     'containerClick': (e: MouseEvent) => void;
@@ -249,47 +126,6 @@ export namespace Components {
     'variant': string;
     'width': string;
   }
-  interface ArvContainerAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'containerClick'?: (e: MouseEvent) => void;
-    'full'?: boolean;
-    'height'?: string;
-    'hidden'?: boolean;
-    'margin'?: string;
-    'max1080'?: boolean;
-    'padding'?: string;
-    'position'?: string;
-    'scrollable'?: boolean;
-    'styles'?: any;
-    'variant'?: string;
-    'width'?: string;
-  }
-
-  interface ArvDialogContent {
-    'animation': string;
-    'full': boolean;
-    'padded': boolean;
-  }
-  interface ArvDialogContentAttributes extends StencilHTMLAttributes {
-    'animation'?: string;
-    'full'?: boolean;
-    'padded'?: boolean;
-  }
-
-  interface ArvDialogPortal {
-    'content': any;
-    'full': boolean;
-    'padded': boolean;
-    'removeDialog': () => void;
-    'scrollable': boolean;
-  }
-  interface ArvDialogPortalAttributes extends StencilHTMLAttributes {
-    'content'?: any;
-    'full'?: boolean;
-    'padded'?: boolean;
-    'scrollable'?: boolean;
-  }
-
   interface ArvDialog {
     'actions': DialogActions;
     'bgColor': string;
@@ -307,41 +143,27 @@ export namespace Components {
     'scrollable': boolean;
     'show': boolean;
     'titleAlignment': string;
+    'titleIconUrl': string;
     'titleImageIcon': string;
   }
-  interface ArvDialogAttributes extends StencilHTMLAttributes {
-    'actions'?: DialogActions;
-    'bgColor'?: string;
-    'dialogTitle'?: string;
-    'dialogTitleIcon'?: string;
-    'dialogTitleVariant'?: string;
-    'enableBackDropClose'?: boolean;
-    'full'?: boolean;
-    'handleClose'?: () => void;
-    'hideClose'?: boolean;
-    'hideTitle'?: boolean;
-    'iconColor'?: string;
-    'onOnClose'?: (event: CustomEvent) => void;
-    'onOnOk'?: (event: CustomEvent) => void;
-    'padded'?: boolean;
-    'parent'?: HTMLElement;
-    'scrollable'?: boolean;
-    'show'?: boolean;
-    'titleAlignment'?: string;
-    'titleImageIcon'?: string;
+  interface ArvDialogContent {
+    'animation': string;
+    'full': boolean;
+    'padded': boolean;
   }
-
+  interface ArvDialogPortal {
+    'content': any;
+    'full': boolean;
+    'padded': boolean;
+    'removeDialog': () => Promise<void>;
+    'scrollable': boolean;
+  }
   interface ArvDiff {
     'displayMode': string;
     'newVersion': any;
     'oldVersion': any;
+    'showControls': boolean;
   }
-  interface ArvDiffAttributes extends StencilHTMLAttributes {
-    'displayMode'?: string;
-    'newVersion'?: any;
-    'oldVersion'?: any;
-  }
-
   interface ArvDivider {
     'bordered': boolean;
     'height': string;
@@ -350,22 +172,6 @@ export namespace Components {
     'transparent': boolean;
     'width': string;
   }
-  interface ArvDividerAttributes extends StencilHTMLAttributes {
-    'bordered'?: boolean;
-    'height'?: string;
-    'layout'?: string;
-    'noMargin'?: boolean;
-    'transparent'?: boolean;
-    'width'?: string;
-  }
-
-  interface ArvDraggableWrapper {
-    'layout': string;
-  }
-  interface ArvDraggableWrapperAttributes extends StencilHTMLAttributes {
-    'layout'?: string;
-  }
-
   interface ArvDraggable {
     'color': string;
     'disabled': boolean;
@@ -375,51 +181,22 @@ export namespace Components {
     'end': (evt: DragEvent, key: string) => void;
     'enter': (evt: DragEvent, key: string) => void;
     'exit': (evt: DragEvent, key: string) => void;
-    'key': string;
+    'hashKey': string;
     'leave': (evt: DragEvent, key: string) => void;
     'over': (evt: DragEvent, key: string) => void;
     'showIcon': boolean;
     'start': (evt: DragEvent, key: string) => void;
   }
-  interface ArvDraggableAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'disabled'?: boolean;
-    'drag'?: (evt: DragEvent, key: string) => void;
-    'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
-    'dropTop'?: (evt: DragEvent, k1: string, k2: string) => void;
-    'end'?: (evt: DragEvent, key: string) => void;
-    'enter'?: (evt: DragEvent, key: string) => void;
-    'exit'?: (evt: DragEvent, key: string) => void;
-    'key'?: string;
-    'leave'?: (evt: DragEvent, key: string) => void;
-    'onItemDrag'?: (event: CustomEvent) => void;
-    'onItemDrop'?: (event: CustomEvent) => void;
-    'onItemDropTop'?: (event: CustomEvent) => void;
-    'onItemEnd'?: (event: CustomEvent) => void;
-    'onItemEnter'?: (event: CustomEvent) => void;
-    'onItemExit'?: (event: CustomEvent) => void;
-    'onItemLeave'?: (event: CustomEvent) => void;
-    'onItemOver'?: (event: CustomEvent) => void;
-    'onItemStart'?: (event: CustomEvent) => void;
-    'over'?: (evt: DragEvent, key: string) => void;
-    'showIcon'?: boolean;
-    'start'?: (evt: DragEvent, key: string) => void;
+  interface ArvDraggableWrapper {
+    'layout': string;
   }
-
   interface ArvEditor {
     'disabled': boolean;
     'disabledTools': string[];
     'getValue': () => Promise<string>;
     'handleImage': (editor: any) => void;
-    'setValue': (value: string) => void;
+    'setValue': (value: string) => Promise<void>;
   }
-  interface ArvEditorAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'disabledTools'?: string[];
-    'handleImage'?: (editor: any) => void;
-    'onEditorOnBlur'?: (event: CustomEvent) => void;
-  }
-
   interface ArvFlex {
     'bordered': boolean;
     'content': string;
@@ -434,54 +211,20 @@ export namespace Components {
     'self': string;
     'wrap': boolean;
   }
-  interface ArvFlexAttributes extends StencilHTMLAttributes {
-    'bordered'?: boolean;
-    'content'?: string;
-    'full'?: boolean;
-    'fullHeight'?: boolean;
-    'fullWidth'?: boolean;
-    'items'?: string;
-    'justify'?: string;
-    'layout'?: string;
-    'order'?: number;
-    'padded'?: boolean;
-    'self'?: string;
-    'wrap'?: boolean;
-  }
-
   interface ArvFluidContainer {
     'maxWidth': string;
     'minWidth': string;
   }
-  interface ArvFluidContainerAttributes extends StencilHTMLAttributes {
-    'maxWidth'?: string;
-    'minWidth'?: string;
-  }
-
-  interface ArvFormControl {}
-  interface ArvFormControlAttributes extends StencilHTMLAttributes {}
-
   interface ArvForm {
     'layout': string;
   }
-  interface ArvFormAttributes extends StencilHTMLAttributes {
-    'layout'?: string;
-    'onOnFormSubmit'?: (event: CustomEvent) => void;
-  }
-
+  interface ArvFormControl {}
   interface ArvHeader {
     'color': string;
     'padded': boolean;
     'position': string;
     'shadow': boolean;
   }
-  interface ArvHeaderAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'padded'?: boolean;
-    'position'?: string;
-    'shadow'?: boolean;
-  }
-
   interface ArvIcon {
     'color': string;
     'icon': string;
@@ -490,32 +233,14 @@ export namespace Components {
     'styles': any;
     'withButtonIcon': boolean;
   }
-  interface ArvIconAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'icon'?: string;
-    'noMargin'?: boolean;
-    'size'?: string;
-    'styles'?: any;
-    'withButtonIcon'?: boolean;
-  }
-
   interface ArvImageUpload {
     'disabled': boolean;
     'hashKey': number;
     'imgSrc': string;
-    'onRemove': () => void;
-    'onUpload': (e: any) => void;
+    'removeImage': () => void;
     'size': string;
+    'uploadImage': (e: any) => void;
   }
-  interface ArvImageUploadAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'hashKey'?: number;
-    'imgSrc'?: string;
-    'onRemove'?: (event: CustomEvent) => void;
-    'onUpload'?: (event: CustomEvent) => void;
-    'size'?: string;
-  }
-
   interface ArvInfo {
     'color': string;
     'icon': string;
@@ -524,19 +249,10 @@ export namespace Components {
     'infoTitle': string;
     'variant': string;
   }
-  interface ArvInfoAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'icon'?: string;
-    'imageSrc'?: string;
-    'infoDescription'?: string;
-    'infoTitle'?: string;
-    'variant'?: string;
-  }
-
   interface ArvInput {
-    'arvFocus': () => void;
     'autocomplete': string;
     'disabled': boolean;
+    'elementFocus': () => Promise<void>;
     'fileUpload': boolean;
     'full': boolean;
     'hasBorder': boolean;
@@ -545,12 +261,12 @@ export namespace Components {
     'icon': string;
     'input': (e: any) => void;
     'inputBlur': (e: any) => void;
-    'inputChange': (e: any) => void;
+    'inputChange': (e: any, error: any) => void;
     'inputEnter': (e: any) => void;
     'inputFocus': (e: any) => void;
-    'inputProps': any;
+    'inputProps': {};
     'inputSize': number;
-    'inputStyle': any;
+    'inputStyle': {};
     'label': string;
     'layout': string;
     'name': string;
@@ -561,48 +277,14 @@ export namespace Components {
     'type': string;
     'value': string;
   }
-  interface ArvInputAttributes extends StencilHTMLAttributes {
-    'autocomplete'?: string;
-    'disabled'?: boolean;
-    'fileUpload'?: boolean;
-    'full'?: boolean;
-    'hasBorder'?: boolean;
-    'hasError'?: boolean;
-    'hashKey'?: any;
-    'icon'?: string;
-    'input'?: (e: any) => void;
-    'inputBlur'?: (e: any) => void;
-    'inputChange'?: (e: any) => void;
-    'inputEnter'?: (e: any) => void;
-    'inputFocus'?: (e: any) => void;
-    'inputProps'?: any;
-    'inputSize'?: number;
-    'inputStyle'?: any;
-    'label'?: string;
-    'layout'?: string;
-    'name'?: string;
-    'onOnBlur'?: (event: CustomEvent) => void;
-    'onOnFocus'?: (event: CustomEvent) => void;
-    'onOnInput'?: (event: CustomEvent) => void;
-    'onOnInputChange'?: (event: CustomEvent) => void;
-    'onOnInputEnter'?: (event: CustomEvent) => void;
-    'placeholder'?: string;
-    'required'?: boolean;
-    'rows'?: number;
-    'size'?: string;
-    'type'?: string;
-    'value'?: string;
-  }
-
+  interface ArvInputWrapper {}
   interface ArvLink {
     'color': string;
     'styles': any;
   }
-  interface ArvLinkAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'styles'?: any;
+  interface ArvList {
+    'color': string;
   }
-
   interface ArvListItem {
     'buttonSize': string;
     'icon': string;
@@ -612,83 +294,33 @@ export namespace Components {
     'showIcon': boolean;
     'textAlign': string;
   }
-  interface ArvListItemAttributes extends StencilHTMLAttributes {
-    'buttonSize'?: string;
-    'icon'?: string;
-    'itemClick'?: (e: any, index: number) => void;
-    'itemIndex'?: number;
-    'onOnItemClick'?: (event: CustomEvent) => void;
-    'showDivider'?: boolean;
-    'showIcon'?: boolean;
-    'textAlign'?: string;
-  }
-
-  interface ArvList {
-    'color': string;
-  }
-  interface ArvListAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-  }
-
   interface ArvLoader {
     'color': string;
     'contained': boolean;
     'size': string;
   }
-  interface ArvLoaderAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'contained'?: boolean;
-    'size'?: string;
-  }
-
   interface ArvMenu {
     'disableBackdropClick': boolean;
     'xPosition': string;
     'yPosition': string;
   }
-  interface ArvMenuAttributes extends StencilHTMLAttributes {
-    'disableBackdropClick'?: boolean;
-    'xPosition'?: string;
-    'yPosition'?: string;
-  }
-
   interface ArvMultipleInput {
+    'add': (e: any) => void;
     'disabled': boolean;
-    'onAdd': (e: any) => void;
-    'onInputChange': (e: any) => void;
-    'onInputEnter': (e: any) => void;
-    'onRemove': (e: any) => void;
-    'onUpdate': (e: any) => void;
+    'inputChange': (e: any) => void;
+    'inputEnter': (e: any) => void;
     'placeholder': string;
+    'removeValue': (e: any) => void;
+    'update': (e: any) => void;
     'values': string[];
   }
-  interface ArvMultipleInputAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'onAdd'?: (event: CustomEvent) => void;
-    'onInputChange'?: (event: CustomEvent) => void;
-    'onInputEnter'?: (event: CustomEvent) => void;
-    'onRemove'?: (event: CustomEvent) => void;
-    'onUpdate'?: (event: CustomEvent) => void;
-    'placeholder'?: string;
-    'values'?: string[];
-  }
-
   interface ArvPaginator {
     'color': string;
     'currentPage': number;
     'itemsPerPage': number;
-    'onSelect': (index: number) => void;
+    'select': (index: number) => void;
     'totalItems': number;
   }
-  interface ArvPaginatorAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'currentPage'?: number;
-    'itemsPerPage'?: number;
-    'onChange'?: (event: CustomEvent) => void;
-    'onSelect'?: (index: number) => void;
-    'totalItems'?: number;
-  }
-
   interface ArvPaper {
     'box': boolean;
     'height': string;
@@ -698,16 +330,6 @@ export namespace Components {
     'weight': number;
     'width': string;
   }
-  interface ArvPaperAttributes extends StencilHTMLAttributes {
-    'box'?: boolean;
-    'height'?: string;
-    'noOverflow'?: boolean;
-    'padded'?: boolean;
-    'transparent'?: boolean;
-    'weight'?: number;
-    'width'?: string;
-  }
-
   interface ArvScrollableContent {
     'hashKey': string;
     'onScrollTop': () => void;
@@ -715,53 +337,16 @@ export namespace Components {
     'toBottom': () => Promise<boolean>;
     'toTop': () => Promise<void>;
   }
-  interface ArvScrollableContentAttributes extends StencilHTMLAttributes {
-    'hashKey'?: string;
-    'onScrollTop'?: () => void;
-    'onScrolledTop'?: (event: CustomEvent) => void;
-    'startAt'?: string;
-  }
-
-  interface ArvSectionTitle {
-    'textColor': string;
-    'textVariant': string;
-  }
-  interface ArvSectionTitleAttributes extends StencilHTMLAttributes {
-    'textColor'?: string;
-    'textVariant'?: string;
-  }
-
   interface ArvSection {
     'icon': string;
     'sectionTitle': string;
     'titleColor': string;
     'titleVariant': string;
   }
-  interface ArvSectionAttributes extends StencilHTMLAttributes {
-    'icon'?: string;
-    'sectionTitle'?: string;
-    'titleColor'?: string;
-    'titleVariant'?: string;
+  interface ArvSectionTitle {
+    'textColor': string;
+    'textVariant': string;
   }
-
-  interface ArvSelectOption {
-    'disabled': boolean;
-    'noStyle': boolean;
-    'onSelect': (e: any) => void;
-    'parse': boolean;
-    'selected': boolean;
-    'value': any;
-  }
-  interface ArvSelectOptionAttributes extends StencilHTMLAttributes {
-    'disabled'?: boolean;
-    'noStyle'?: boolean;
-    'onOptionSelected'?: (event: CustomEvent) => void;
-    'onSelect'?: (e: any) => void;
-    'parse'?: boolean;
-    'selected'?: boolean;
-    'value'?: any;
-  }
-
   interface ArvSelect {
     'dataSource': any;
     'disabled': boolean;
@@ -769,21 +354,21 @@ export namespace Components {
     'hideIcon': boolean;
     'icon': string;
     'inputChange': (e: any) => void;
-    'inputValueStyles': any;
+    'inputValueStyles': {};
     'label': string;
     'labelVariant': string;
     'layout': string;
     'listHeight': number;
     'loading': boolean;
     'multiple': boolean;
-    'onSelectChange': (item: any) => void;
     'optionValue': string;
     'placeholder': string;
     'position': string;
     'removeItem': (index: number) => void;
-    'selectStyles': any;
+    'selectChange': (item: any) => void;
+    'selectStyles': {};
     'textVariant': string;
-    'toBlur': () => void;
+    'toBlur': () => Promise<void>;
     'toggle': (show?: any) => Promise<void>;
     'value': any;
     /**
@@ -791,37 +376,14 @@ export namespace Components {
     */
     'variant': string;
   }
-  interface ArvSelectAttributes extends StencilHTMLAttributes {
-    'dataSource'?: any;
-    'disabled'?: boolean;
-    'full'?: boolean;
-    'hideIcon'?: boolean;
-    'icon'?: string;
-    'inputChange'?: (e: any) => void;
-    'inputValueStyles'?: any;
-    'label'?: string;
-    'labelVariant'?: string;
-    'layout'?: string;
-    'listHeight'?: number;
-    'loading'?: boolean;
-    'multiple'?: boolean;
-    'onOnInput'?: (event: CustomEvent) => void;
-    'onOnInputChange'?: (event: CustomEvent) => void;
-    'onOnRemoveItem'?: (event: CustomEvent) => void;
-    'onSelectChange'?: (event: CustomEvent) => void;
-    'optionValue'?: string;
-    'placeholder'?: string;
-    'position'?: string;
-    'removeItem'?: (index: number) => void;
-    'selectStyles'?: any;
-    'textVariant'?: string;
-    'value'?: any;
-    /**
-    * oneOf [select, input]
-    */
-    'variant'?: string;
+  interface ArvSelectOption {
+    'disabled': boolean;
+    'noStyle': boolean;
+    'parse': boolean;
+    'select': (e: any) => void;
+    'selected': boolean;
+    'value': any;
   }
-
   interface ArvSnackbar {
     'animationIn': string;
     'animationOut': string;
@@ -835,75 +397,30 @@ export namespace Components {
     'variant': string;
     'vertical': string;
   }
-  interface ArvSnackbarAttributes extends StencilHTMLAttributes {
-    'animationIn'?: string;
-    'animationOut'?: string;
-    'close'?: () => void;
-    'horizontal'?: string;
-    'icon'?: string;
-    'message'?: string;
-    'onHandleClose'?: (event: CustomEvent) => void;
-    'open'?: boolean;
-    'timing'?: number;
-    'top'?: number;
-    'variant'?: string;
-    'vertical'?: string;
-  }
-
   interface ArvStepper {
     'color': string;
     'steps': any;
   }
-  interface ArvStepperAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'steps'?: any;
-  }
-
   interface ArvSwitch {
     'color': string;
     'disabled': boolean;
     'value': boolean;
   }
-  interface ArvSwitchAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'disabled'?: boolean;
-    'value'?: boolean;
-  }
-
   interface ArvTable {
     'activeSort': string;
-    'controls': any;
+    'controls': any[];
     'isAscending': boolean;
     'multiSelectable': boolean;
-    'onSelect': (row: any) => void;
+    'select': (row: any) => void;
     'selectable': boolean;
     'sortable': boolean;
-    'styles': any;
+    'styles': { table: {}; tbody: {}; tr: {}; td: {}; thead: {}; th: {}; tfoot: {}; };
     'tableData': any;
     'tableHeaders': any;
-    'tableProps': any;
+    'tableProps': {};
     'tableTitle': string;
     'titleVariant': string;
   }
-  interface ArvTableAttributes extends StencilHTMLAttributes {
-    'activeSort'?: string;
-    'controls'?: any;
-    'isAscending'?: boolean;
-    'multiSelectable'?: boolean;
-    'onHeaderClick'?: (event: CustomEvent) => void;
-    'onRowClick'?: (event: CustomEvent) => void;
-    'onRowItemClick'?: (event: CustomEvent) => void;
-    'onSelect'?: (row: any) => void;
-    'selectable'?: boolean;
-    'sortable'?: boolean;
-    'styles'?: any;
-    'tableData'?: any;
-    'tableHeaders'?: any;
-    'tableProps'?: any;
-    'tableTitle'?: string;
-    'titleVariant'?: string;
-  }
-
   interface ArvTabs {
     'animated': boolean;
     'color': string;
@@ -914,17 +431,6 @@ export namespace Components {
     'tabChange': (index: number) => void;
     'tabs': any | string[];
   }
-  interface ArvTabsAttributes extends StencilHTMLAttributes {
-    'animated'?: boolean;
-    'color'?: string;
-    'fullHeaderWidth'?: boolean;
-    'isDefault'?: boolean;
-    'selectedIndex'?: number;
-    'selectedTab'?: string;
-    'tabChange'?: (index: number) => void;
-    'tabs'?: any | string[];
-  }
-
   interface ArvText {
     'color': string;
     'lineHeight': string;
@@ -940,22 +446,6 @@ export namespace Components {
     'variant': string;
     'weight': number;
   }
-  interface ArvTextAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'lineHeight'?: string;
-    'maxChars'?: number;
-    'noWrap'?: boolean;
-    'preWrap'?: boolean;
-    'strike'?: boolean;
-    'strong'?: boolean;
-    'textAlign'?: string;
-    'textDecoration'?: string;
-    'textOverflow'?: boolean;
-    'textShadow'?: boolean;
-    'variant'?: string;
-    'weight'?: number;
-  }
-
   interface ArvTooltip {
     'color': string;
     'fixed': boolean;
@@ -964,191 +454,39 @@ export namespace Components {
     'position': string;
     'show': boolean;
   }
-  interface ArvTooltipAttributes extends StencilHTMLAttributes {
-    'color'?: string;
-    'fixed'?: boolean;
-    'full'?: boolean;
-    'message'?: string;
-    'position'?: string;
-    'show'?: boolean;
-  }
-
   interface ArvTransition {
     'animation': string;
     'full': boolean;
     'transformOrigin': string;
   }
-  interface ArvTransitionAttributes extends StencilHTMLAttributes {
-    'animation'?: string;
-    'full'?: boolean;
-    'transformOrigin'?: string;
-  }
-
   interface ArvVirtualPortal {
     'content': any;
     'inputText': string;
-    'onSelect': (evt: any) => void;
     'parentEl': any;
+    'select': (evt: any) => void;
     'value': string;
     'variant': string;
   }
-  interface ArvVirtualPortalAttributes extends StencilHTMLAttributes {
-    'content'?: any;
-    'inputText'?: string;
-    'onSelect'?: (evt: any) => void;
-    'parentEl'?: any;
-    'value'?: string;
-    'variant'?: string;
-  }
-
   interface BbBolts {
     'items': any[];
   }
-  interface BbBoltsAttributes extends StencilHTMLAttributes {
-    'items'?: any[];
-  }
-
   interface MyComponent {}
-  interface MyComponentAttributes extends StencilHTMLAttributes {}
-
   interface MyThemeSection {}
-  interface MyThemeSectionAttributes extends StencilHTMLAttributes {}
 }
 
 declare global {
-  interface StencilElementInterfaces {
-    'ArvAccordionItem': Components.ArvAccordionItem;
-    'ArvAccordion': Components.ArvAccordion;
-    'ArvAlertText': Components.ArvAlertText;
-    'ArvAvatarGroup': Components.ArvAvatarGroup;
-    'ArvAvatar': Components.ArvAvatar;
-    'ArvBackdrop': Components.ArvBackdrop;
-    'ArvBadge': Components.ArvBadge;
-    'ArvButton': Components.ArvButton;
-    'ArvCardHeader': Components.ArvCardHeader;
-    'ArvCardMedia': Components.ArvCardMedia;
-    'ArvCard': Components.ArvCard;
-    'ArvCarousel': Components.ArvCarousel;
-    'ArvCheckbox': Components.ArvCheckbox;
-    'ArvChips': Components.ArvChips;
-    'ArvCode': Components.ArvCode;
-    'ArvContainer': Components.ArvContainer;
-    'ArvDialogContent': Components.ArvDialogContent;
-    'ArvDialogPortal': Components.ArvDialogPortal;
-    'ArvDialog': Components.ArvDialog;
-    'ArvDiff': Components.ArvDiff;
-    'ArvDivider': Components.ArvDivider;
-    'ArvDraggableWrapper': Components.ArvDraggableWrapper;
-    'ArvDraggable': Components.ArvDraggable;
-    'ArvEditor': Components.ArvEditor;
-    'ArvFlex': Components.ArvFlex;
-    'ArvFluidContainer': Components.ArvFluidContainer;
-    'ArvFormControl': Components.ArvFormControl;
-    'ArvForm': Components.ArvForm;
-    'ArvHeader': Components.ArvHeader;
-    'ArvIcon': Components.ArvIcon;
-    'ArvImageUpload': Components.ArvImageUpload;
-    'ArvInfo': Components.ArvInfo;
-    'ArvInput': Components.ArvInput;
-    'ArvLink': Components.ArvLink;
-    'ArvListItem': Components.ArvListItem;
-    'ArvList': Components.ArvList;
-    'ArvLoader': Components.ArvLoader;
-    'ArvMenu': Components.ArvMenu;
-    'ArvMultipleInput': Components.ArvMultipleInput;
-    'ArvPaginator': Components.ArvPaginator;
-    'ArvPaper': Components.ArvPaper;
-    'ArvScrollableContent': Components.ArvScrollableContent;
-    'ArvSectionTitle': Components.ArvSectionTitle;
-    'ArvSection': Components.ArvSection;
-    'ArvSelectOption': Components.ArvSelectOption;
-    'ArvSelect': Components.ArvSelect;
-    'ArvSnackbar': Components.ArvSnackbar;
-    'ArvStepper': Components.ArvStepper;
-    'ArvSwitch': Components.ArvSwitch;
-    'ArvTable': Components.ArvTable;
-    'ArvTabs': Components.ArvTabs;
-    'ArvText': Components.ArvText;
-    'ArvTooltip': Components.ArvTooltip;
-    'ArvTransition': Components.ArvTransition;
-    'ArvVirtualPortal': Components.ArvVirtualPortal;
-    'BbBolts': Components.BbBolts;
-    'MyComponent': Components.MyComponent;
-    'MyThemeSection': Components.MyThemeSection;
-  }
 
-  interface StencilIntrinsicElements {
-    'arv-accordion-item': Components.ArvAccordionItemAttributes;
-    'arv-accordion': Components.ArvAccordionAttributes;
-    'arv-alert-text': Components.ArvAlertTextAttributes;
-    'arv-avatar-group': Components.ArvAvatarGroupAttributes;
-    'arv-avatar': Components.ArvAvatarAttributes;
-    'arv-backdrop': Components.ArvBackdropAttributes;
-    'arv-badge': Components.ArvBadgeAttributes;
-    'arv-button': Components.ArvButtonAttributes;
-    'arv-card-header': Components.ArvCardHeaderAttributes;
-    'arv-card-media': Components.ArvCardMediaAttributes;
-    'arv-card': Components.ArvCardAttributes;
-    'arv-carousel': Components.ArvCarouselAttributes;
-    'arv-checkbox': Components.ArvCheckboxAttributes;
-    'arv-chips': Components.ArvChipsAttributes;
-    'arv-code': Components.ArvCodeAttributes;
-    'arv-container': Components.ArvContainerAttributes;
-    'arv-dialog-content': Components.ArvDialogContentAttributes;
-    'arv-dialog-portal': Components.ArvDialogPortalAttributes;
-    'arv-dialog': Components.ArvDialogAttributes;
-    'arv-diff': Components.ArvDiffAttributes;
-    'arv-divider': Components.ArvDividerAttributes;
-    'arv-draggable-wrapper': Components.ArvDraggableWrapperAttributes;
-    'arv-draggable': Components.ArvDraggableAttributes;
-    'arv-editor': Components.ArvEditorAttributes;
-    'arv-flex': Components.ArvFlexAttributes;
-    'arv-fluid-container': Components.ArvFluidContainerAttributes;
-    'arv-form-control': Components.ArvFormControlAttributes;
-    'arv-form': Components.ArvFormAttributes;
-    'arv-header': Components.ArvHeaderAttributes;
-    'arv-icon': Components.ArvIconAttributes;
-    'arv-image-upload': Components.ArvImageUploadAttributes;
-    'arv-info': Components.ArvInfoAttributes;
-    'arv-input': Components.ArvInputAttributes;
-    'arv-link': Components.ArvLinkAttributes;
-    'arv-list-item': Components.ArvListItemAttributes;
-    'arv-list': Components.ArvListAttributes;
-    'arv-loader': Components.ArvLoaderAttributes;
-    'arv-menu': Components.ArvMenuAttributes;
-    'arv-multiple-input': Components.ArvMultipleInputAttributes;
-    'arv-paginator': Components.ArvPaginatorAttributes;
-    'arv-paper': Components.ArvPaperAttributes;
-    'arv-scrollable-content': Components.ArvScrollableContentAttributes;
-    'arv-section-title': Components.ArvSectionTitleAttributes;
-    'arv-section': Components.ArvSectionAttributes;
-    'arv-select-option': Components.ArvSelectOptionAttributes;
-    'arv-select': Components.ArvSelectAttributes;
-    'arv-snackbar': Components.ArvSnackbarAttributes;
-    'arv-stepper': Components.ArvStepperAttributes;
-    'arv-switch': Components.ArvSwitchAttributes;
-    'arv-table': Components.ArvTableAttributes;
-    'arv-tabs': Components.ArvTabsAttributes;
-    'arv-text': Components.ArvTextAttributes;
-    'arv-tooltip': Components.ArvTooltipAttributes;
-    'arv-transition': Components.ArvTransitionAttributes;
-    'arv-virtual-portal': Components.ArvVirtualPortalAttributes;
-    'bb-bolts': Components.BbBoltsAttributes;
-    'my-component': Components.MyComponentAttributes;
-    'my-theme-section': Components.MyThemeSectionAttributes;
-  }
-
-
-  interface HTMLArvAccordionItemElement extends Components.ArvAccordionItem, HTMLStencilElement {}
-  var HTMLArvAccordionItemElement: {
-    prototype: HTMLArvAccordionItemElement;
-    new (): HTMLArvAccordionItemElement;
-  };
 
   interface HTMLArvAccordionElement extends Components.ArvAccordion, HTMLStencilElement {}
   var HTMLArvAccordionElement: {
     prototype: HTMLArvAccordionElement;
     new (): HTMLArvAccordionElement;
+  };
+
+  interface HTMLArvAccordionItemElement extends Components.ArvAccordionItem, HTMLStencilElement {}
+  var HTMLArvAccordionItemElement: {
+    prototype: HTMLArvAccordionItemElement;
+    new (): HTMLArvAccordionItemElement;
   };
 
   interface HTMLArvAlertTextElement extends Components.ArvAlertText, HTMLStencilElement {}
@@ -1157,16 +495,16 @@ declare global {
     new (): HTMLArvAlertTextElement;
   };
 
-  interface HTMLArvAvatarGroupElement extends Components.ArvAvatarGroup, HTMLStencilElement {}
-  var HTMLArvAvatarGroupElement: {
-    prototype: HTMLArvAvatarGroupElement;
-    new (): HTMLArvAvatarGroupElement;
-  };
-
   interface HTMLArvAvatarElement extends Components.ArvAvatar, HTMLStencilElement {}
   var HTMLArvAvatarElement: {
     prototype: HTMLArvAvatarElement;
     new (): HTMLArvAvatarElement;
+  };
+
+  interface HTMLArvAvatarGroupElement extends Components.ArvAvatarGroup, HTMLStencilElement {}
+  var HTMLArvAvatarGroupElement: {
+    prototype: HTMLArvAvatarGroupElement;
+    new (): HTMLArvAvatarGroupElement;
   };
 
   interface HTMLArvBackdropElement extends Components.ArvBackdrop, HTMLStencilElement {}
@@ -1187,6 +525,12 @@ declare global {
     new (): HTMLArvButtonElement;
   };
 
+  interface HTMLArvCardElement extends Components.ArvCard, HTMLStencilElement {}
+  var HTMLArvCardElement: {
+    prototype: HTMLArvCardElement;
+    new (): HTMLArvCardElement;
+  };
+
   interface HTMLArvCardHeaderElement extends Components.ArvCardHeader, HTMLStencilElement {}
   var HTMLArvCardHeaderElement: {
     prototype: HTMLArvCardHeaderElement;
@@ -1197,12 +541,6 @@ declare global {
   var HTMLArvCardMediaElement: {
     prototype: HTMLArvCardMediaElement;
     new (): HTMLArvCardMediaElement;
-  };
-
-  interface HTMLArvCardElement extends Components.ArvCard, HTMLStencilElement {}
-  var HTMLArvCardElement: {
-    prototype: HTMLArvCardElement;
-    new (): HTMLArvCardElement;
   };
 
   interface HTMLArvCarouselElement extends Components.ArvCarousel, HTMLStencilElement {}
@@ -1235,6 +573,12 @@ declare global {
     new (): HTMLArvContainerElement;
   };
 
+  interface HTMLArvDialogElement extends Components.ArvDialog, HTMLStencilElement {}
+  var HTMLArvDialogElement: {
+    prototype: HTMLArvDialogElement;
+    new (): HTMLArvDialogElement;
+  };
+
   interface HTMLArvDialogContentElement extends Components.ArvDialogContent, HTMLStencilElement {}
   var HTMLArvDialogContentElement: {
     prototype: HTMLArvDialogContentElement;
@@ -1245,12 +589,6 @@ declare global {
   var HTMLArvDialogPortalElement: {
     prototype: HTMLArvDialogPortalElement;
     new (): HTMLArvDialogPortalElement;
-  };
-
-  interface HTMLArvDialogElement extends Components.ArvDialog, HTMLStencilElement {}
-  var HTMLArvDialogElement: {
-    prototype: HTMLArvDialogElement;
-    new (): HTMLArvDialogElement;
   };
 
   interface HTMLArvDiffElement extends Components.ArvDiff, HTMLStencilElement {}
@@ -1265,16 +603,16 @@ declare global {
     new (): HTMLArvDividerElement;
   };
 
-  interface HTMLArvDraggableWrapperElement extends Components.ArvDraggableWrapper, HTMLStencilElement {}
-  var HTMLArvDraggableWrapperElement: {
-    prototype: HTMLArvDraggableWrapperElement;
-    new (): HTMLArvDraggableWrapperElement;
-  };
-
   interface HTMLArvDraggableElement extends Components.ArvDraggable, HTMLStencilElement {}
   var HTMLArvDraggableElement: {
     prototype: HTMLArvDraggableElement;
     new (): HTMLArvDraggableElement;
+  };
+
+  interface HTMLArvDraggableWrapperElement extends Components.ArvDraggableWrapper, HTMLStencilElement {}
+  var HTMLArvDraggableWrapperElement: {
+    prototype: HTMLArvDraggableWrapperElement;
+    new (): HTMLArvDraggableWrapperElement;
   };
 
   interface HTMLArvEditorElement extends Components.ArvEditor, HTMLStencilElement {}
@@ -1295,16 +633,16 @@ declare global {
     new (): HTMLArvFluidContainerElement;
   };
 
-  interface HTMLArvFormControlElement extends Components.ArvFormControl, HTMLStencilElement {}
-  var HTMLArvFormControlElement: {
-    prototype: HTMLArvFormControlElement;
-    new (): HTMLArvFormControlElement;
-  };
-
   interface HTMLArvFormElement extends Components.ArvForm, HTMLStencilElement {}
   var HTMLArvFormElement: {
     prototype: HTMLArvFormElement;
     new (): HTMLArvFormElement;
+  };
+
+  interface HTMLArvFormControlElement extends Components.ArvFormControl, HTMLStencilElement {}
+  var HTMLArvFormControlElement: {
+    prototype: HTMLArvFormControlElement;
+    new (): HTMLArvFormControlElement;
   };
 
   interface HTMLArvHeaderElement extends Components.ArvHeader, HTMLStencilElement {}
@@ -1337,22 +675,28 @@ declare global {
     new (): HTMLArvInputElement;
   };
 
+  interface HTMLArvInputWrapperElement extends Components.ArvInputWrapper, HTMLStencilElement {}
+  var HTMLArvInputWrapperElement: {
+    prototype: HTMLArvInputWrapperElement;
+    new (): HTMLArvInputWrapperElement;
+  };
+
   interface HTMLArvLinkElement extends Components.ArvLink, HTMLStencilElement {}
   var HTMLArvLinkElement: {
     prototype: HTMLArvLinkElement;
     new (): HTMLArvLinkElement;
   };
 
-  interface HTMLArvListItemElement extends Components.ArvListItem, HTMLStencilElement {}
-  var HTMLArvListItemElement: {
-    prototype: HTMLArvListItemElement;
-    new (): HTMLArvListItemElement;
-  };
-
   interface HTMLArvListElement extends Components.ArvList, HTMLStencilElement {}
   var HTMLArvListElement: {
     prototype: HTMLArvListElement;
     new (): HTMLArvListElement;
+  };
+
+  interface HTMLArvListItemElement extends Components.ArvListItem, HTMLStencilElement {}
+  var HTMLArvListItemElement: {
+    prototype: HTMLArvListItemElement;
+    new (): HTMLArvListItemElement;
   };
 
   interface HTMLArvLoaderElement extends Components.ArvLoader, HTMLStencilElement {}
@@ -1391,28 +735,28 @@ declare global {
     new (): HTMLArvScrollableContentElement;
   };
 
-  interface HTMLArvSectionTitleElement extends Components.ArvSectionTitle, HTMLStencilElement {}
-  var HTMLArvSectionTitleElement: {
-    prototype: HTMLArvSectionTitleElement;
-    new (): HTMLArvSectionTitleElement;
-  };
-
   interface HTMLArvSectionElement extends Components.ArvSection, HTMLStencilElement {}
   var HTMLArvSectionElement: {
     prototype: HTMLArvSectionElement;
     new (): HTMLArvSectionElement;
   };
 
-  interface HTMLArvSelectOptionElement extends Components.ArvSelectOption, HTMLStencilElement {}
-  var HTMLArvSelectOptionElement: {
-    prototype: HTMLArvSelectOptionElement;
-    new (): HTMLArvSelectOptionElement;
+  interface HTMLArvSectionTitleElement extends Components.ArvSectionTitle, HTMLStencilElement {}
+  var HTMLArvSectionTitleElement: {
+    prototype: HTMLArvSectionTitleElement;
+    new (): HTMLArvSectionTitleElement;
   };
 
   interface HTMLArvSelectElement extends Components.ArvSelect, HTMLStencilElement {}
   var HTMLArvSelectElement: {
     prototype: HTMLArvSelectElement;
     new (): HTMLArvSelectElement;
+  };
+
+  interface HTMLArvSelectOptionElement extends Components.ArvSelectOption, HTMLStencilElement {}
+  var HTMLArvSelectOptionElement: {
+    prototype: HTMLArvSelectOptionElement;
+    new (): HTMLArvSelectOptionElement;
   };
 
   interface HTMLArvSnackbarElement extends Components.ArvSnackbar, HTMLStencilElement {}
@@ -1486,115 +830,54 @@ declare global {
     prototype: HTMLMyThemeSectionElement;
     new (): HTMLMyThemeSectionElement;
   };
-
   interface HTMLElementTagNameMap {
-    'arv-accordion-item': HTMLArvAccordionItemElement
-    'arv-accordion': HTMLArvAccordionElement
-    'arv-alert-text': HTMLArvAlertTextElement
-    'arv-avatar-group': HTMLArvAvatarGroupElement
-    'arv-avatar': HTMLArvAvatarElement
-    'arv-backdrop': HTMLArvBackdropElement
-    'arv-badge': HTMLArvBadgeElement
-    'arv-button': HTMLArvButtonElement
-    'arv-card-header': HTMLArvCardHeaderElement
-    'arv-card-media': HTMLArvCardMediaElement
-    'arv-card': HTMLArvCardElement
-    'arv-carousel': HTMLArvCarouselElement
-    'arv-checkbox': HTMLArvCheckboxElement
-    'arv-chips': HTMLArvChipsElement
-    'arv-code': HTMLArvCodeElement
-    'arv-container': HTMLArvContainerElement
-    'arv-dialog-content': HTMLArvDialogContentElement
-    'arv-dialog-portal': HTMLArvDialogPortalElement
-    'arv-dialog': HTMLArvDialogElement
-    'arv-diff': HTMLArvDiffElement
-    'arv-divider': HTMLArvDividerElement
-    'arv-draggable-wrapper': HTMLArvDraggableWrapperElement
-    'arv-draggable': HTMLArvDraggableElement
-    'arv-editor': HTMLArvEditorElement
-    'arv-flex': HTMLArvFlexElement
-    'arv-fluid-container': HTMLArvFluidContainerElement
-    'arv-form-control': HTMLArvFormControlElement
-    'arv-form': HTMLArvFormElement
-    'arv-header': HTMLArvHeaderElement
-    'arv-icon': HTMLArvIconElement
-    'arv-image-upload': HTMLArvImageUploadElement
-    'arv-info': HTMLArvInfoElement
-    'arv-input': HTMLArvInputElement
-    'arv-link': HTMLArvLinkElement
-    'arv-list-item': HTMLArvListItemElement
-    'arv-list': HTMLArvListElement
-    'arv-loader': HTMLArvLoaderElement
-    'arv-menu': HTMLArvMenuElement
-    'arv-multiple-input': HTMLArvMultipleInputElement
-    'arv-paginator': HTMLArvPaginatorElement
-    'arv-paper': HTMLArvPaperElement
-    'arv-scrollable-content': HTMLArvScrollableContentElement
-    'arv-section-title': HTMLArvSectionTitleElement
-    'arv-section': HTMLArvSectionElement
-    'arv-select-option': HTMLArvSelectOptionElement
-    'arv-select': HTMLArvSelectElement
-    'arv-snackbar': HTMLArvSnackbarElement
-    'arv-stepper': HTMLArvStepperElement
-    'arv-switch': HTMLArvSwitchElement
-    'arv-table': HTMLArvTableElement
-    'arv-tabs': HTMLArvTabsElement
-    'arv-text': HTMLArvTextElement
-    'arv-tooltip': HTMLArvTooltipElement
-    'arv-transition': HTMLArvTransitionElement
-    'arv-virtual-portal': HTMLArvVirtualPortalElement
-    'bb-bolts': HTMLBbBoltsElement
-    'my-component': HTMLMyComponentElement
-    'my-theme-section': HTMLMyThemeSectionElement
-  }
-
-  interface ElementTagNameMap {
-    'arv-accordion-item': HTMLArvAccordionItemElement;
     'arv-accordion': HTMLArvAccordionElement;
+    'arv-accordion-item': HTMLArvAccordionItemElement;
     'arv-alert-text': HTMLArvAlertTextElement;
-    'arv-avatar-group': HTMLArvAvatarGroupElement;
     'arv-avatar': HTMLArvAvatarElement;
+    'arv-avatar-group': HTMLArvAvatarGroupElement;
     'arv-backdrop': HTMLArvBackdropElement;
     'arv-badge': HTMLArvBadgeElement;
     'arv-button': HTMLArvButtonElement;
+    'arv-card': HTMLArvCardElement;
     'arv-card-header': HTMLArvCardHeaderElement;
     'arv-card-media': HTMLArvCardMediaElement;
-    'arv-card': HTMLArvCardElement;
     'arv-carousel': HTMLArvCarouselElement;
     'arv-checkbox': HTMLArvCheckboxElement;
     'arv-chips': HTMLArvChipsElement;
     'arv-code': HTMLArvCodeElement;
     'arv-container': HTMLArvContainerElement;
+    'arv-dialog': HTMLArvDialogElement;
     'arv-dialog-content': HTMLArvDialogContentElement;
     'arv-dialog-portal': HTMLArvDialogPortalElement;
-    'arv-dialog': HTMLArvDialogElement;
     'arv-diff': HTMLArvDiffElement;
     'arv-divider': HTMLArvDividerElement;
-    'arv-draggable-wrapper': HTMLArvDraggableWrapperElement;
     'arv-draggable': HTMLArvDraggableElement;
+    'arv-draggable-wrapper': HTMLArvDraggableWrapperElement;
     'arv-editor': HTMLArvEditorElement;
     'arv-flex': HTMLArvFlexElement;
     'arv-fluid-container': HTMLArvFluidContainerElement;
-    'arv-form-control': HTMLArvFormControlElement;
     'arv-form': HTMLArvFormElement;
+    'arv-form-control': HTMLArvFormControlElement;
     'arv-header': HTMLArvHeaderElement;
     'arv-icon': HTMLArvIconElement;
     'arv-image-upload': HTMLArvImageUploadElement;
     'arv-info': HTMLArvInfoElement;
     'arv-input': HTMLArvInputElement;
+    'arv-input-wrapper': HTMLArvInputWrapperElement;
     'arv-link': HTMLArvLinkElement;
-    'arv-list-item': HTMLArvListItemElement;
     'arv-list': HTMLArvListElement;
+    'arv-list-item': HTMLArvListItemElement;
     'arv-loader': HTMLArvLoaderElement;
     'arv-menu': HTMLArvMenuElement;
     'arv-multiple-input': HTMLArvMultipleInputElement;
     'arv-paginator': HTMLArvPaginatorElement;
     'arv-paper': HTMLArvPaperElement;
     'arv-scrollable-content': HTMLArvScrollableContentElement;
-    'arv-section-title': HTMLArvSectionTitleElement;
     'arv-section': HTMLArvSectionElement;
-    'arv-select-option': HTMLArvSelectOptionElement;
+    'arv-section-title': HTMLArvSectionTitleElement;
     'arv-select': HTMLArvSelectElement;
+    'arv-select-option': HTMLArvSelectOptionElement;
     'arv-snackbar': HTMLArvSnackbarElement;
     'arv-stepper': HTMLArvStepperElement;
     'arv-switch': HTMLArvSwitchElement;
@@ -1608,14 +891,574 @@ declare global {
     'my-component': HTMLMyComponentElement;
     'my-theme-section': HTMLMyThemeSectionElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
+declare namespace LocalJSX {
+  interface ArvAccordion extends JSXBase.HTMLAttributes<HTMLArvAccordionElement> {
+    'onItemChange'?: (index: any) => void;
+  }
+  interface ArvAccordionItem extends JSXBase.HTMLAttributes<HTMLArvAccordionItemElement> {
+    'active'?: boolean;
+    'animated'?: boolean;
+    'color'?: string;
+    'itemIndex'?: any;
+    'itemTitle'?: string;
+    'onArvClick'?: (event: CustomEvent<any>) => void;
+  }
+  interface ArvAlertText extends JSXBase.HTMLAttributes<HTMLArvAlertTextElement> {
+    'color'?: string;
+    'icon'?: string;
+    'textAlign'?: string;
+  }
+  interface ArvAvatar extends JSXBase.HTMLAttributes<HTMLArvAvatarElement> {
+    'alt'?: string;
+    'imgSrc'?: string;
+    'size'?: string;
+    'styles'?: any;
+  }
+  interface ArvAvatarGroup extends JSXBase.HTMLAttributes<HTMLArvAvatarGroupElement> {
+    'bordered'?: boolean;
+    'imageItems'?: string | string[];
+    'index'?: number;
+    'maxItems'?: any;
+    'onOnShowMore'?: (event: CustomEvent<any>) => void;
+    'showMore'?: () => void;
+    'size'?: string;
+    'styles'?: any;
+  }
+  interface ArvBackdrop extends JSXBase.HTMLAttributes<HTMLArvBackdropElement> {
+    'onBackdropClick'?: (event: Event) => void;
+    'position'?: string;
+    'transparent'?: boolean;
+  }
+  interface ArvBadge extends JSXBase.HTMLAttributes<HTMLArvBadgeElement> {
+    'badgeStyle'?: any;
+    'color'?: string;
+    'show'?: boolean;
+    'size'?: string;
+  }
+  interface ArvButton extends JSXBase.HTMLAttributes<HTMLArvButtonElement> {
+    'buttonClick'?: (e: MouseEvent) => void;
+    'color'?: string;
+    'disabled'?: boolean;
+    'full'?: boolean;
+    'href'?: string;
+    'icon'?: string;
+    'layout'?: string;
+    'loading'?: boolean;
+    'onArvButtonClick'?: (event: CustomEvent<any>) => void;
+    'padded'?: boolean;
+    'roleType'?: string;
+    'rounded'?: boolean;
+    'size'?: string;
+    'styles'?: any;
+    'textAlign'?: string;
+    'type'?: string;
+    'variant'?: string;
+  }
+  interface ArvCard extends JSXBase.HTMLAttributes<HTMLArvCardElement> {
+    'height'?: string;
+    'styles'?: any;
+    'width'?: string;
+  }
+  interface ArvCardHeader extends JSXBase.HTMLAttributes<HTMLArvCardHeaderElement> {
+    'action'?: any;
+    'avatarImage'?: string;
+    'color'?: string;
+    'styles'?: any;
+    'subHeader'?: string;
+    'titleHeader'?: string;
+  }
+  interface ArvCardMedia extends JSXBase.HTMLAttributes<HTMLArvCardMediaElement> {
+    'imageSrc'?: string;
+  }
+  interface ArvCarousel extends JSXBase.HTMLAttributes<HTMLArvCarouselElement> {
+    'externalUrl'?: string;
+    'images'?: any;
+    'loading'?: boolean;
+    'target'?: string;
+  }
+  interface ArvCheckbox extends JSXBase.HTMLAttributes<HTMLArvCheckboxElement> {
+    'color'?: string;
+    'label'?: string;
+    'labelVariant'?: string;
+    'layout'?: string;
+    'mode'?: string;
+    'name'?: string;
+    'onArvInputChange'?: (event: CustomEvent<any>) => void;
+    'onTick'?: (e: any) => void;
+    'styles'?: any;
+    'textWidth'?: string;
+    'value'?: boolean;
+  }
+  interface ArvChips extends JSXBase.HTMLAttributes<HTMLArvChipsElement> {
+    'size'?: string;
+    'target'?: string;
+    'url'?: string;
+    'variant'?: string;
+  }
+  interface ArvCode extends JSXBase.HTMLAttributes<HTMLArvCodeElement> {}
+  interface ArvContainer extends JSXBase.HTMLAttributes<HTMLArvContainerElement> {
+    'color'?: string;
+    'containerClick'?: (e: MouseEvent) => void;
+    'full'?: boolean;
+    'height'?: string;
+    'hidden'?: boolean;
+    'margin'?: string;
+    'max1080'?: boolean;
+    'padding'?: string;
+    'position'?: string;
+    'scrollable'?: boolean;
+    'styles'?: any;
+    'variant'?: string;
+    'width'?: string;
+  }
+  interface ArvDialog extends JSXBase.HTMLAttributes<HTMLArvDialogElement> {
+    'actions'?: DialogActions;
+    'bgColor'?: string;
+    'dialogTitle'?: string;
+    'dialogTitleIcon'?: string;
+    'dialogTitleVariant'?: string;
+    'enableBackDropClose'?: boolean;
+    'full'?: boolean;
+    'handleClose'?: () => void;
+    'hideClose'?: boolean;
+    'hideTitle'?: boolean;
+    'iconColor'?: string;
+    'onArvClose'?: (event: CustomEvent<any>) => void;
+    'onArvOk'?: (event: CustomEvent<any>) => void;
+    'padded'?: boolean;
+    'parent'?: HTMLElement;
+    'scrollable'?: boolean;
+    'show'?: boolean;
+    'titleAlignment'?: string;
+    'titleIconUrl'?: string;
+    'titleImageIcon'?: string;
+  }
+  interface ArvDialogContent extends JSXBase.HTMLAttributes<HTMLArvDialogContentElement> {
+    'animation'?: string;
+    'full'?: boolean;
+    'padded'?: boolean;
+  }
+  interface ArvDialogPortal extends JSXBase.HTMLAttributes<HTMLArvDialogPortalElement> {
+    'content'?: any;
+    'full'?: boolean;
+    'padded'?: boolean;
+    'scrollable'?: boolean;
+  }
+  interface ArvDiff extends JSXBase.HTMLAttributes<HTMLArvDiffElement> {
+    'displayMode'?: string;
+    'newVersion'?: any;
+    'oldVersion'?: any;
+    'showControls'?: boolean;
+  }
+  interface ArvDivider extends JSXBase.HTMLAttributes<HTMLArvDividerElement> {
+    'bordered'?: boolean;
+    'height'?: string;
+    'layout'?: string;
+    'noMargin'?: boolean;
+    'transparent'?: boolean;
+    'width'?: string;
+  }
+  interface ArvDraggable extends JSXBase.HTMLAttributes<HTMLArvDraggableElement> {
+    'color'?: string;
+    'disabled'?: boolean;
+    'drag'?: (evt: DragEvent, key: string) => void;
+    'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'dropTop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'end'?: (evt: DragEvent, key: string) => void;
+    'enter'?: (evt: DragEvent, key: string) => void;
+    'exit'?: (evt: DragEvent, key: string) => void;
+    'hashKey'?: string;
+    'leave'?: (evt: DragEvent, key: string) => void;
+    'onItemDrag'?: (event: CustomEvent<any>) => void;
+    'onItemDrop'?: (event: CustomEvent<any>) => void;
+    'onItemDropTop'?: (event: CustomEvent<any>) => void;
+    'onItemEnd'?: (event: CustomEvent<any>) => void;
+    'onItemEnter'?: (event: CustomEvent<any>) => void;
+    'onItemExit'?: (event: CustomEvent<any>) => void;
+    'onItemLeave'?: (event: CustomEvent<any>) => void;
+    'onItemOver'?: (event: CustomEvent<any>) => void;
+    'onItemStart'?: (event: CustomEvent<any>) => void;
+    'over'?: (evt: DragEvent, key: string) => void;
+    'showIcon'?: boolean;
+    'start'?: (evt: DragEvent, key: string) => void;
+  }
+  interface ArvDraggableWrapper extends JSXBase.HTMLAttributes<HTMLArvDraggableWrapperElement> {
+    'layout'?: string;
+  }
+  interface ArvEditor extends JSXBase.HTMLAttributes<HTMLArvEditorElement> {
+    'disabled'?: boolean;
+    'disabledTools'?: string[];
+    'handleImage'?: (editor: any) => void;
+    'onEditorOnBlur'?: (event: CustomEvent<any>) => void;
+  }
+  interface ArvFlex extends JSXBase.HTMLAttributes<HTMLArvFlexElement> {
+    'bordered'?: boolean;
+    'content'?: string;
+    'full'?: boolean;
+    'fullHeight'?: boolean;
+    'fullWidth'?: boolean;
+    'items'?: string;
+    'justify'?: string;
+    'layout'?: string;
+    'order'?: number;
+    'padded'?: boolean;
+    'self'?: string;
+    'wrap'?: boolean;
+  }
+  interface ArvFluidContainer extends JSXBase.HTMLAttributes<HTMLArvFluidContainerElement> {
+    'maxWidth'?: string;
+    'minWidth'?: string;
+  }
+  interface ArvForm extends JSXBase.HTMLAttributes<HTMLArvFormElement> {
+    'layout'?: string;
+    'onOnFormSubmit'?: (event: CustomEvent<any>) => void;
+  }
+  interface ArvFormControl extends JSXBase.HTMLAttributes<HTMLArvFormControlElement> {}
+  interface ArvHeader extends JSXBase.HTMLAttributes<HTMLArvHeaderElement> {
+    'color'?: string;
+    'padded'?: boolean;
+    'position'?: string;
+    'shadow'?: boolean;
+  }
+  interface ArvIcon extends JSXBase.HTMLAttributes<HTMLArvIconElement> {
+    'color'?: string;
+    'icon'?: string;
+    'noMargin'?: boolean;
+    'size'?: string;
+    'styles'?: any;
+    'withButtonIcon'?: boolean;
+  }
+  interface ArvImageUpload extends JSXBase.HTMLAttributes<HTMLArvImageUploadElement> {
+    'disabled'?: boolean;
+    'hashKey'?: number;
+    'imgSrc'?: string;
+    'onArvRemoveImage'?: (event: CustomEvent<any>) => void;
+    'onArvUploadImage'?: (event: CustomEvent<any>) => void;
+    'removeImage'?: () => void;
+    'size'?: string;
+    'uploadImage'?: (e: any) => void;
+  }
+  interface ArvInfo extends JSXBase.HTMLAttributes<HTMLArvInfoElement> {
+    'color'?: string;
+    'icon'?: string;
+    'imageSrc'?: string;
+    'infoDescription'?: string;
+    'infoTitle'?: string;
+    'variant'?: string;
+  }
+  interface ArvInput extends JSXBase.HTMLAttributes<HTMLArvInputElement> {
+    'autocomplete'?: string;
+    'disabled'?: boolean;
+    'fileUpload'?: boolean;
+    'full'?: boolean;
+    'hasBorder'?: boolean;
+    'hasError'?: boolean;
+    'hashKey'?: any;
+    'icon'?: string;
+    'input'?: (e: any) => void;
+    'inputBlur'?: (e: any) => void;
+    'inputChange'?: (e: any, error: any) => void;
+    'inputEnter'?: (e: any) => void;
+    'inputFocus'?: (e: any) => void;
+    'inputProps'?: {};
+    'inputSize'?: number;
+    'inputStyle'?: {};
+    'label'?: string;
+    'layout'?: string;
+    'name'?: string;
+    'onArvBlur'?: (event: CustomEvent<any>) => void;
+    'onArvFocus'?: (event: CustomEvent<any>) => void;
+    'onArvInput'?: (event: CustomEvent<any>) => void;
+    'onArvInputChange'?: (event: CustomEvent<any>) => void;
+    'onArvInputEnter'?: (event: CustomEvent<any>) => void;
+    'placeholder'?: string;
+    'required'?: boolean;
+    'rows'?: number;
+    'size'?: string;
+    'type'?: string;
+    'value'?: string;
+  }
+  interface ArvInputWrapper extends JSXBase.HTMLAttributes<HTMLArvInputWrapperElement> {}
+  interface ArvLink extends JSXBase.HTMLAttributes<HTMLArvLinkElement> {
+    'color'?: string;
+    'styles'?: any;
+  }
+  interface ArvList extends JSXBase.HTMLAttributes<HTMLArvListElement> {
+    'color'?: string;
+  }
+  interface ArvListItem extends JSXBase.HTMLAttributes<HTMLArvListItemElement> {
+    'buttonSize'?: string;
+    'icon'?: string;
+    'itemClick'?: (e: any, index: number) => void;
+    'itemIndex'?: number;
+    'onArvItemClick'?: (event: CustomEvent<any>) => void;
+    'showDivider'?: boolean;
+    'showIcon'?: boolean;
+    'textAlign'?: string;
+  }
+  interface ArvLoader extends JSXBase.HTMLAttributes<HTMLArvLoaderElement> {
+    'color'?: string;
+    'contained'?: boolean;
+    'size'?: string;
+  }
+  interface ArvMenu extends JSXBase.HTMLAttributes<HTMLArvMenuElement> {
+    'disableBackdropClick'?: boolean;
+    'xPosition'?: string;
+    'yPosition'?: string;
+  }
+  interface ArvMultipleInput extends JSXBase.HTMLAttributes<HTMLArvMultipleInputElement> {
+    'add'?: (e: any) => void;
+    'disabled'?: boolean;
+    'inputChange'?: (e: any) => void;
+    'inputEnter'?: (e: any) => void;
+    'onArvAdd'?: (event: CustomEvent<any>) => void;
+    'onArvInputChange'?: (event: CustomEvent<any>) => void;
+    'onArvInputEnter'?: (event: CustomEvent<any>) => void;
+    'onArvRemove'?: (event: CustomEvent<any>) => void;
+    'onArvUpdate'?: (event: CustomEvent<any>) => void;
+    'placeholder'?: string;
+    'removeValue'?: (e: any) => void;
+    'update'?: (e: any) => void;
+    'values'?: string[];
+  }
+  interface ArvPaginator extends JSXBase.HTMLAttributes<HTMLArvPaginatorElement> {
+    'color'?: string;
+    'currentPage'?: number;
+    'itemsPerPage'?: number;
+    'onArvChange'?: (event: CustomEvent<any>) => void;
+    'select'?: (index: number) => void;
+    'totalItems'?: number;
+  }
+  interface ArvPaper extends JSXBase.HTMLAttributes<HTMLArvPaperElement> {
+    'box'?: boolean;
+    'height'?: string;
+    'noOverflow'?: boolean;
+    'padded'?: boolean;
+    'transparent'?: boolean;
+    'weight'?: number;
+    'width'?: string;
+  }
+  interface ArvScrollableContent extends JSXBase.HTMLAttributes<HTMLArvScrollableContentElement> {
+    'hashKey'?: string;
+    'onArvScrolledTop'?: (event: CustomEvent<any>) => void;
+    'onScrollTop'?: () => void;
+    'startAt'?: string;
+  }
+  interface ArvSection extends JSXBase.HTMLAttributes<HTMLArvSectionElement> {
+    'icon'?: string;
+    'sectionTitle'?: string;
+    'titleColor'?: string;
+    'titleVariant'?: string;
+  }
+  interface ArvSectionTitle extends JSXBase.HTMLAttributes<HTMLArvSectionTitleElement> {
+    'textColor'?: string;
+    'textVariant'?: string;
+  }
+  interface ArvSelect extends JSXBase.HTMLAttributes<HTMLArvSelectElement> {
+    'dataSource'?: any;
+    'disabled'?: boolean;
+    'full'?: boolean;
+    'hideIcon'?: boolean;
+    'icon'?: string;
+    'inputChange'?: (e: any) => void;
+    'inputValueStyles'?: {};
+    'label'?: string;
+    'labelVariant'?: string;
+    'layout'?: string;
+    'listHeight'?: number;
+    'loading'?: boolean;
+    'multiple'?: boolean;
+    'onArvInput'?: (event: CustomEvent<any>) => void;
+    'onArvInputChange'?: (event: CustomEvent<any>) => void;
+    'onArvRemoveItem'?: (event: CustomEvent<any>) => void;
+    'onArvSelectChange'?: (event: CustomEvent<any>) => void;
+    'optionValue'?: string;
+    'placeholder'?: string;
+    'position'?: string;
+    'removeItem'?: (index: number) => void;
+    'selectChange'?: (item: any) => void;
+    'selectStyles'?: {};
+    'textVariant'?: string;
+    'value'?: any;
+    /**
+    * oneOf [select, input]
+    */
+    'variant'?: string;
+  }
+  interface ArvSelectOption extends JSXBase.HTMLAttributes<HTMLArvSelectOptionElement> {
+    'disabled'?: boolean;
+    'noStyle'?: boolean;
+    'onOptionSelected'?: (event: CustomEvent<any>) => void;
+    'parse'?: boolean;
+    'select'?: (e: any) => void;
+    'selected'?: boolean;
+    'value'?: any;
+  }
+  interface ArvSnackbar extends JSXBase.HTMLAttributes<HTMLArvSnackbarElement> {
+    'animationIn'?: string;
+    'animationOut'?: string;
+    'close'?: () => void;
+    'horizontal'?: string;
+    'icon'?: string;
+    'message'?: string;
+    'onHandleClose'?: (event: CustomEvent<any>) => void;
+    'open'?: boolean;
+    'timing'?: number;
+    'top'?: number;
+    'variant'?: string;
+    'vertical'?: string;
+  }
+  interface ArvStepper extends JSXBase.HTMLAttributes<HTMLArvStepperElement> {
+    'color'?: string;
+    'steps'?: any;
+  }
+  interface ArvSwitch extends JSXBase.HTMLAttributes<HTMLArvSwitchElement> {
+    'color'?: string;
+    'disabled'?: boolean;
+    'value'?: boolean;
+  }
+  interface ArvTable extends JSXBase.HTMLAttributes<HTMLArvTableElement> {
+    'activeSort'?: string;
+    'controls'?: any[];
+    'isAscending'?: boolean;
+    'multiSelectable'?: boolean;
+    'onHeaderClick'?: (event: CustomEvent<any>) => void;
+    'onRowClick'?: (event: CustomEvent<any>) => void;
+    'onRowItemClick'?: (event: CustomEvent<any>) => void;
+    'select'?: (row: any) => void;
+    'selectable'?: boolean;
+    'sortable'?: boolean;
+    'styles'?: { table: {}; tbody: {}; tr: {}; td: {}; thead: {}; th: {}; tfoot: {}; };
+    'tableData'?: any;
+    'tableHeaders'?: any;
+    'tableProps'?: {};
+    'tableTitle'?: string;
+    'titleVariant'?: string;
+  }
+  interface ArvTabs extends JSXBase.HTMLAttributes<HTMLArvTabsElement> {
+    'animated'?: boolean;
+    'color'?: string;
+    'fullHeaderWidth'?: boolean;
+    'isDefault'?: boolean;
+    'selectedIndex'?: number;
+    'selectedTab'?: string;
+    'tabChange'?: (index: number) => void;
+    'tabs'?: any | string[];
+  }
+  interface ArvText extends JSXBase.HTMLAttributes<HTMLArvTextElement> {
+    'color'?: string;
+    'lineHeight'?: string;
+    'maxChars'?: number;
+    'noWrap'?: boolean;
+    'preWrap'?: boolean;
+    'strike'?: boolean;
+    'strong'?: boolean;
+    'textAlign'?: string;
+    'textDecoration'?: string;
+    'textOverflow'?: boolean;
+    'textShadow'?: boolean;
+    'variant'?: string;
+    'weight'?: number;
+  }
+  interface ArvTooltip extends JSXBase.HTMLAttributes<HTMLArvTooltipElement> {
+    'color'?: string;
+    'fixed'?: boolean;
+    'full'?: boolean;
+    'message'?: string;
+    'position'?: string;
+    'show'?: boolean;
+  }
+  interface ArvTransition extends JSXBase.HTMLAttributes<HTMLArvTransitionElement> {
+    'animation'?: string;
+    'full'?: boolean;
+    'transformOrigin'?: string;
+  }
+  interface ArvVirtualPortal extends JSXBase.HTMLAttributes<HTMLArvVirtualPortalElement> {
+    'content'?: any;
+    'inputText'?: string;
+    'parentEl'?: any;
+    'select'?: (evt: any) => void;
+    'value'?: string;
+    'variant'?: string;
+  }
+  interface BbBolts extends JSXBase.HTMLAttributes<HTMLBbBoltsElement> {
+    'items'?: any[];
+  }
+  interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {}
+  interface MyThemeSection extends JSXBase.HTMLAttributes<HTMLMyThemeSectionElement> {}
+
+  interface IntrinsicElements {
+    'arv-accordion': ArvAccordion;
+    'arv-accordion-item': ArvAccordionItem;
+    'arv-alert-text': ArvAlertText;
+    'arv-avatar': ArvAvatar;
+    'arv-avatar-group': ArvAvatarGroup;
+    'arv-backdrop': ArvBackdrop;
+    'arv-badge': ArvBadge;
+    'arv-button': ArvButton;
+    'arv-card': ArvCard;
+    'arv-card-header': ArvCardHeader;
+    'arv-card-media': ArvCardMedia;
+    'arv-carousel': ArvCarousel;
+    'arv-checkbox': ArvCheckbox;
+    'arv-chips': ArvChips;
+    'arv-code': ArvCode;
+    'arv-container': ArvContainer;
+    'arv-dialog': ArvDialog;
+    'arv-dialog-content': ArvDialogContent;
+    'arv-dialog-portal': ArvDialogPortal;
+    'arv-diff': ArvDiff;
+    'arv-divider': ArvDivider;
+    'arv-draggable': ArvDraggable;
+    'arv-draggable-wrapper': ArvDraggableWrapper;
+    'arv-editor': ArvEditor;
+    'arv-flex': ArvFlex;
+    'arv-fluid-container': ArvFluidContainer;
+    'arv-form': ArvForm;
+    'arv-form-control': ArvFormControl;
+    'arv-header': ArvHeader;
+    'arv-icon': ArvIcon;
+    'arv-image-upload': ArvImageUpload;
+    'arv-info': ArvInfo;
+    'arv-input': ArvInput;
+    'arv-input-wrapper': ArvInputWrapper;
+    'arv-link': ArvLink;
+    'arv-list': ArvList;
+    'arv-list-item': ArvListItem;
+    'arv-loader': ArvLoader;
+    'arv-menu': ArvMenu;
+    'arv-multiple-input': ArvMultipleInput;
+    'arv-paginator': ArvPaginator;
+    'arv-paper': ArvPaper;
+    'arv-scrollable-content': ArvScrollableContent;
+    'arv-section': ArvSection;
+    'arv-section-title': ArvSectionTitle;
+    'arv-select': ArvSelect;
+    'arv-select-option': ArvSelectOption;
+    'arv-snackbar': ArvSnackbar;
+    'arv-stepper': ArvStepper;
+    'arv-switch': ArvSwitch;
+    'arv-table': ArvTable;
+    'arv-tabs': ArvTabs;
+    'arv-text': ArvText;
+    'arv-tooltip': ArvTooltip;
+    'arv-transition': ArvTransition;
+    'arv-virtual-portal': ArvVirtualPortal;
+    'bb-bolts': BbBolts;
+    'my-component': MyComponent;
+    'my-theme-section': MyThemeSection;
+  }
+}
+
+export { LocalJSX as JSX };
+
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+

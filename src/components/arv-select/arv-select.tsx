@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, Listen, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Listen, Method, Prop, State, Watch } from '@stencil/core';
 
 @Component({
   tag: 'arv-select',
@@ -67,7 +67,7 @@ export class Select {
     }
   }
 
-  @Prop() onSelectChange: (item: any) => void;
+  @Prop() selectChange: (item: any) => void;
 
   /** oneOf [select, input] */
   @Prop() variant = 'select';
@@ -82,17 +82,21 @@ export class Select {
   }
 
   @Method()
-  toBlur() {
+  async toBlur() {
     this.listBlur();
   }
 
-  @Listen('onInputEnter')
-  onInputChangeHandler() {
+  @Listen('arvInputEnter')
+  onInputChangeHandler(evt) {
     if (!this.multiple) {
       this.show = false;
     }
 
-    this.selectChange.emit(this.inputValue);
+    this.arvSelectChange.emit(this.inputValue);
+
+    if (this.selectChange) {
+      this.selectChange(evt);
+    }
   }
 
   @Listen('optionSelected')
@@ -104,11 +108,11 @@ export class Select {
       // this.selectChange.emit(this.inputValue);
     }
 
-    if (this.onSelectChange) {
-      this.onSelectChange(evt);
+    if (this.selectChange) {
+      this.selectChange(evt);
     }
 
-    this.selectChange.emit(evt);
+    this.arvSelectChange.emit(evt);
     // console.log('option select', evt);
 
     if (!this.multiple || !evt) {
@@ -124,17 +128,17 @@ export class Select {
     if (this.variant === 'input') {
       /* console.log('input'); */
       const inputEl = this.el.shadowRoot.querySelector('arv-input');
-      inputEl.arvFocus();
+      inputEl.elementFocus();
     }
   }
 
-  @Event() onRemoveItem: EventEmitter;
+  @Event() arvRemoveItem: EventEmitter;
 
-  @Event() onInput: EventEmitter;
+  @Event() arvInput: EventEmitter;
 
-  @Event() onInputChange: EventEmitter;
+  @Event() arvInputChange: EventEmitter;
 
-  @Event() selectChange: EventEmitter;
+  @Event() arvSelectChange: EventEmitter;
 
   componentWillLoad() {
     if (this.variant === 'input' && !this.multiple) {
@@ -217,7 +221,7 @@ export class Select {
     if (this.removeItem) {
       this.removeItem(index);
     }
-    this.onRemoveItem.emit(index);
+    this.arvRemoveItem.emit(index);
   }
 
   animateHide() {
