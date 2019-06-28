@@ -4,11 +4,14 @@
   <!--  Meta  -->
   <meta charset="UTF-8" />
   <title>Arv - custom elements UI Library</title>
-  <script type="module">
-   import { defineCustomElements } from 'https://unpkg.com/arv@0.1.13/dist/loader/index.js';
-   defineCustomElements(window);
-  </script>
-  <link href="https://unpkg.com/arv/dist/arv.css" rel="stylesheet">
+  <!-- <script type="module">
+       import { defineCustomElements } from 'https://unpkg.com/arv@0.1.13/dist/loader/index.js';
+       defineCustomElements(window);
+       </script> -->
+
+  <script type="module" src="https://unpkg.com/arv@0.2.0/arv/dist/arv/arv.esm.js"></script>
+  <script nomodule="" src="https://unpkg.com/arv@0.2.0/arv/dist/arv/arv.js"></script>
+  <link href="https://unpkg.com/arv/dist/arv/arv.css" rel="stylesheet">
 </head>
 <body>
   <my-component></my-component>

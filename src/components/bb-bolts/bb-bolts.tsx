@@ -329,7 +329,7 @@ export class Bolts {
       <arv-container height="100vh" width="200px" color="dark" scrollable>
         <arv-flex layout="column">
           <arv-flex padded full={false}>
-            <arv-text color="light">arv@0.1.13</arv-text>
+            <arv-text color="light">arv@0.2.0</arv-text>
           </arv-flex>
 
           <arv-button

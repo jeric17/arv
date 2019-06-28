@@ -65,6 +65,15 @@ export class Select {
 
       this.fromSelect = false;
     }
+
+    if (this.multiple) {
+      setTimeout(() => {
+        const listWrapperEl: HTMLElement = this.el.shadowRoot.querySelector('.listWrapper');
+        const styles: any = this.getStyles();
+
+        listWrapperEl.style.top = styles.listWrapperStyles.top;
+      }, 100);
+    }
   }
 
   @Prop() selectChange: (item: any) => void;
@@ -86,6 +95,11 @@ export class Select {
     this.listBlur();
   }
 
+  @Method()
+  async clearInputValue() {
+    this.inputValue = null;
+  }
+
   @Listen('arvInputEnter')
   onInputChangeHandler(evt) {
     if (!this.multiple) {
@@ -101,7 +115,6 @@ export class Select {
 
   @Listen('optionSelected')
   optionSelectedHandler(evt) {
-    console.log('option select');
     this.currentSelected = true;
     if (this.variant === 'input' && !this.multiple) {
       this.fromSelect = true;
@@ -174,7 +187,7 @@ export class Select {
   getStyles = () => {
     const data = {
       rootStyles: {},
-      listWrapperStyles: {}  
+      listWrapperStyles: {}
     };
     const rootEl = this.el.shadowRoot.querySelector('.root');
 
