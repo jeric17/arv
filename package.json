@@ -19,6 +19,7 @@
     "@types/node": "^9.6.0",
     "diff": "^4.0.1",
     "g": "^2.0.1",
+    "tslint-ionic-rules": "^0.0.21",
     "yarn": "^1.16.0"
   },
   "devDependencies": {

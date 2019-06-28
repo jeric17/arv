@@ -1,0 +1,9 @@
+{
+  "extends": ["tslint-ionic-rules"],
+  "linterOptions": {
+    "exclude": [
+      "**/*.spec.ts",
+      "**/*.spec.tsx"
+    ]
+  }
+}

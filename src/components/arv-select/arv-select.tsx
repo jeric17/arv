@@ -148,7 +148,6 @@ export class Select {
 
   private _input(e) {
     // this.show = true;
-    console.log('E', e.target.value);
     this.inputValue = e.target.value;
     /* this.listBlur(); */
   }

@@ -124,6 +124,7 @@ function Content({ diffData }) {
         return '-';
       }
       return '_';
+  
     })();
 
     return (
