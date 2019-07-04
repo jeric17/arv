@@ -11,7 +11,6 @@ import {
 } from './components/arv-dialog/arv-dialog.model';
 
 export namespace Components {
-  interface AcdSelectTest {}
   interface ArvAccordion {
     'onItemChange': (index: any) => void;
   }
@@ -253,6 +252,7 @@ export namespace Components {
   interface ArvInput {
     'autocomplete': string;
     'disabled': boolean;
+    'elementBlur': () => Promise<void>;
     'elementFocus': () => Promise<void>;
     'fileUpload': boolean;
     'full': boolean;
@@ -369,8 +369,9 @@ export namespace Components {
     'removeItem': (index: number) => void;
     'selectChange': (item: any) => void;
     'selectStyles': {};
+    'staticValues': string[];
     'textVariant': string;
-    'toBlur': () => Promise<void>;
+    'toBlur': () => Promise<boolean>;
     'toggle': (show?: any) => Promise<void>;
     'value': any;
     /**
@@ -478,12 +479,6 @@ export namespace Components {
 
 declare global {
 
-
-  interface HTMLAcdSelectTestElement extends Components.AcdSelectTest, HTMLStencilElement {}
-  var HTMLAcdSelectTestElement: {
-    prototype: HTMLAcdSelectTestElement;
-    new (): HTMLAcdSelectTestElement;
-  };
 
   interface HTMLArvAccordionElement extends Components.ArvAccordion, HTMLStencilElement {}
   var HTMLArvAccordionElement: {
@@ -839,7 +834,6 @@ declare global {
     new (): HTMLMyThemeSectionElement;
   };
   interface HTMLElementTagNameMap {
-    'acd-select-test': HTMLAcdSelectTestElement;
     'arv-accordion': HTMLArvAccordionElement;
     'arv-accordion-item': HTMLArvAccordionItemElement;
     'arv-alert-text': HTMLArvAlertTextElement;
@@ -903,7 +897,6 @@ declare global {
 }
 
 declare namespace LocalJSX {
-  interface AcdSelectTest extends JSXBase.HTMLAttributes<HTMLAcdSelectTestElement> {}
   interface ArvAccordion extends JSXBase.HTMLAttributes<HTMLArvAccordionElement> {
     'onItemChange'?: (index: any) => void;
   }
@@ -1290,6 +1283,7 @@ declare namespace LocalJSX {
     'removeItem'?: (index: number) => void;
     'selectChange'?: (item: any) => void;
     'selectStyles'?: {};
+    'staticValues'?: string[];
     'textVariant'?: string;
     'value'?: any;
     /**
@@ -1400,7 +1394,6 @@ declare namespace LocalJSX {
   interface MyThemeSection extends JSXBase.HTMLAttributes<HTMLMyThemeSectionElement> {}
 
   interface IntrinsicElements {
-    'acd-select-test': AcdSelectTest;
     'arv-accordion': ArvAccordion;
     'arv-accordion-item': ArvAccordionItem;
     'arv-alert-text': ArvAlertText;

@@ -57,6 +57,8 @@ export class Select {
 
   @Prop() position = 'bottom';
 
+  @Prop() staticValues: string[];
+
   @Prop() value: any;
   @Watch('value')
   valueHandler() {
@@ -92,7 +94,13 @@ export class Select {
 
   @Method()
   async toBlur() {
-    this.listBlur();
+    this.show = false;
+    this.currentSelected = false;  
+    if (this.variant !== 'input') {
+      return false;  
+    }
+    const inputEl = this.el.shadowRoot.querySelector('arv-input');
+    inputEl.elementBlur();
   }
 
   @Method()
@@ -125,7 +133,7 @@ export class Select {
       this.selectChange(evt);
     }
 
-    this.arvSelectChange.emit(evt);
+    this.arvSelectChange.emit(evt.detail);
     // console.log('option select', evt);
 
     if (!this.multiple || !evt) {
@@ -138,11 +146,7 @@ export class Select {
     if (this.disabled) {
       return false;
     }
-    if (this.variant === 'input') {
-      /* console.log('input'); */
-      const inputEl = this.el.shadowRoot.querySelector('arv-input');
-      inputEl.elementFocus();
-    }
+    this.inputElementFocus();
   }
 
   @Event() arvRemoveItem: EventEmitter;
@@ -165,6 +169,14 @@ export class Select {
     /* this.listBlur(); */
   }
 
+  inputElementFocus() {
+    if (this.variant === 'input') {
+      /* console.log('input'); */
+      const inputEl = this.el.shadowRoot.querySelector('arv-input');
+      inputEl.elementFocus();
+    }  
+  }
+
   itemInputChange = e => {
     if (this.inputChange) {
       this.inputChange(e);
@@ -182,26 +194,6 @@ export class Select {
     this.willHide = false;
     this.show = true;
     this.select();
-  }
-
-  getStyles = () => {
-    const data = {
-      rootStyles: {},
-      listWrapperStyles: {}
-    };
-    const rootEl = this.el.shadowRoot.querySelector('.root');
-
-    if (!rootEl) {
-      return data;
-    }
-    const rootRect = rootEl.getBoundingClientRect();
-
-    if (this.position === 'top') {
-      data.listWrapperStyles = {
-        top: `-${rootRect.height}px`,
-      };
-    }
-    return data;
   }
 
   select() {
@@ -227,13 +219,23 @@ export class Select {
   }
 
   itemDelete(index, event) {
+    event.cancelBubble = true;  
     event.preventDefault();
-    event.cancelBubble = true;
     event.stopPropagation();
+
     if (this.removeItem) {
       this.removeItem(index);
     }
+
     this.arvRemoveItem.emit(index);
+    
+    if (this.show) {
+      this.currentSelected = true;
+      this.onValueClick();
+      setTimeout(() => {
+        this.inputElementFocus();
+      }, 150);
+    }
   }
 
   animateHide() {
@@ -241,25 +243,49 @@ export class Select {
   }
 
   listBlur = () => {
-    /* console.log('blur', this.multiple, this.currentSelected); */
-    /* this.animateHide(); */
-
-    setTimeout(() => {
-      if (this.multiple && this.currentSelected) {
+    console.log('list blur');
+    return new Promise(resolve => {
+      setTimeout(() => {
+        if (this.multiple && this.currentSelected) {
+          this.currentSelected = false;
+          resolve(this.select());
+          return false;
+        }
+        if (!this.multiple) {
+          this.show = false;
+          resolve(false);
+          return false;
+        }
+        if (this.currentSelected) {
+          this.currentSelected = false;
+          resolve(false);
+          return false;
+        }
         this.currentSelected = false;
-        return this.select();
-      }
-      if (!this.multiple) {
         this.show = false;
-        return false;
-      }
-      if (this.currentSelected) {
-        this.currentSelected = false;
-        return false;
-      }
-      this.currentSelected = false;
-      this.show = false;
-    }, 200);
+        resolve(false);
+      }, 200);  
+    });
+  }
+
+  getStyles = () => {
+    const data = {
+      rootStyles: {},
+      listWrapperStyles: {}
+    };
+    const rootEl = this.el.shadowRoot.querySelector('.root');
+
+    if (!rootEl) {
+      return data;
+    }
+    const rootRect = rootEl.getBoundingClientRect();
+
+    if (this.position === 'top') {
+      data.listWrapperStyles = {
+        top: `-${rootRect.height}px`,
+      };
+    }
+    return data;
   }
 
   render() {
@@ -287,11 +313,13 @@ export class Select {
           {this.value.map((d, i) => (
             <div class="value-item">
               <arv-text variant={this.textVariant}>{d}</arv-text>
-              <arv-icon
-                onClick={this.itemDelete.bind(this, i)}
-                icon="close"
-                size="small"
-                noMargin></arv-icon>
+              {!(Boolean(this.staticValues) && this.staticValues.includes(d)) && (
+                <arv-icon
+                  onClick={this.itemDelete.bind(this, i)}
+                  icon="close"
+                  size="small"
+                  noMargin></arv-icon>  
+              )}
             </div>
           ))}
           {children}
@@ -325,7 +353,7 @@ export class Select {
           disabled={this.disabled}
           inputBlur={this.listBlur}
           icon={this.icon}
-          placeholder={this.placeholder}
+          placeholder={!this.multiple ? this.placeholder : ''}
           class="input"
           inputFocus={() => { this.show = true; }}
           input={this._input.bind(this)}

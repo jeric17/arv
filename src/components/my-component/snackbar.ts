@@ -2,6 +2,19 @@ export const Snackbar = {
   name: 'Snackbar',
   element: 'arv-snackbar',
   slot: false,
+  propsDescription: [
+    {
+      name: 'close',
+      type: 'function',
+      description: 'Required either close property or handleClose event. This will trigger the close function. close functions should always set the open property to false'
+    }
+  ],
+  events: [
+    {
+      name: 'handleClose',
+      description: 'Required either close property or handleClose event. This will trigger the close function. close functions should always set the open property to false'
+    }
+  ],
   props: [
     {
       name: 'variant',

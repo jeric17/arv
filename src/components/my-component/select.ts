@@ -14,14 +14,14 @@ export const Select = {
     },
 
     {
-      name: 'onInput',
+      name: 'arvInput',
       type: 'function',
       description: 'Fires if the input from the select component emits an input event'
     }
   ],
   eventsData: [
     {
-      name: 'selectChange',
+      name: 'arvSelectChange',
       fn: (evt) => {
         if (evt.detail === null) {
           return false;
@@ -30,8 +30,8 @@ export const Select = {
       }
     },
     {
-      name: 'onRemoveItem',
-      fn: params => alert(params.detail)
+      name: 'arvRemoveItem',
+      fn: params => console.log(params.detail)
     }
   ],
   propsDescription: [
@@ -51,7 +51,7 @@ export const Select = {
       description: 'values can be "select" or "input". Input variant allows the user to input a character'
     },
     {
-      name: 'inputChange',
+      name: 'arvInputChange',
       type: 'function',
       description: 'Fires if the input from the select component emits a change event'
     }
@@ -60,12 +60,12 @@ export const Select = {
     {
       name: 'removeItem',
       type: 'function',
-      value: i => alert(i)
+      value: i => console.log(i)
     },
     {
       name: 'value',
       type: 'string',
-      value: 'ok'
+      value: 'Option 1'
     },
     {
       name: 'icon',
@@ -76,7 +76,7 @@ export const Select = {
       name: 'variant',
       type: 'oneOf',
       data: ['select', 'input'],
-      value: 'input'
+      value: 'select'
     },
     {
       name: 'loading',
@@ -86,13 +86,13 @@ export const Select = {
     {
       name: 'full',
       type: 'boolean',
-      value: 'false'
+      value: 'true'
     },
     {
       name: 'layout',
       type: 'oneOf',
       data: ['row', 'column'],
-      value: 'row'
+      value: 'column'
     },
     {
       name: 'label',

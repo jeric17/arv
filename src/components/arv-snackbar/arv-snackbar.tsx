@@ -10,6 +10,7 @@ export class Snackbar {
   loading: boolean;
   padding = 8;
   timeout = null;
+  timeout2 = null;
 
   @Element() el: HTMLElement;
 
@@ -25,7 +26,8 @@ export class Snackbar {
   
   @Watch('variant')
   handleVariant() {
-    this.init();
+    this.clear();
+    this.timingClose();
   }
 
   @Prop() horizontal = 'center';
@@ -61,24 +63,26 @@ export class Snackbar {
 
   componentDidUnload() {
     if (this.timeout) {
-      clearTimeout(this.timeout);
+      this.clear();
     }
   }
 
+  clear() {
+    clearTimeout(this.timeout);
+    clearTimeout(this.timeout2);
+    this.timeout = null;  
+  }
+
   init() {
-    // console.log('arv snackbar init...', this.open, this.timeout);
     if (!this.open) {
       if (this.timeout && !this.loading) {
-        clearTimeout(this.timeout);  
+        this.clear();
       }
       return false;  
     }
 
-    // this.elementStyles = this.getStyles(this.vertical, this.horizontal);
-
     if (!this.loading && this.timing && this.timeout) {
-      // console.log('arv clear timeout');
-      clearTimeout(this.timeout);
+      this.clear();
     }
     this.timingClose();
   }
@@ -118,15 +122,15 @@ export class Snackbar {
     return style;
   }
 
-  private timingClose() {
-    if (this.loading || this.variant === 'loading') {
+  timingClose() {
+    if (this.variant === 'loading') {
       return false;
     }
     this.loading = true;
 
     this.timeout = setTimeout(() => {
       this.animation = this.animationOut;
-      setTimeout(() => {
+      this.timeout2 = setTimeout(() => {
         this.loading = false;
         this.animation = this.animationIn;
         this.handleClose.emit();

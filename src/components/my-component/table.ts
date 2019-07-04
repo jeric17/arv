@@ -1,5 +1,5 @@
 const data = [
-  [1, 'John', ['Doe', 'Strange']],
+  [1, 'John', 'The quick brown,fox jumps over,the lazy dog,The quick brown,fox jumps over,the lazy dog, The quick brown,fox jumps over,the lazy dog'.split(',')],
   [2, 'Jane', 'Doe'],
 ];
 const headers = [

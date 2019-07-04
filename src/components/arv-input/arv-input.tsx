@@ -115,6 +115,13 @@ export class Input {
     }
   }
 
+  @Method()
+  async elementBlur() {
+    if (this.inputElement) {
+      this.inputElement.blur();
+    }
+  }  
+
   componentDidLoad() {
     const elem = (() => {
       if (!this.rows) {

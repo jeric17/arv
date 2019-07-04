@@ -8,7 +8,7 @@ export const Button = {
   ],
   events: [
     {
-      name: 'onButtonClick',
+      name: 'arvButtonClick',
       description: 'event fired when button is clicked'
     },
   ],

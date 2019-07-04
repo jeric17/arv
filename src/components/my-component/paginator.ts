@@ -4,7 +4,7 @@ export const Paginator = {
   slot: false,
   events: [
     {
-      name: 'change',
+      name: 'arvChange',
       description: 'triggers when user clicks the page item. will emit the page number'
     }
   ],

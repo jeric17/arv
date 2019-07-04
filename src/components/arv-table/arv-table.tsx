@@ -113,11 +113,15 @@ export class Table {
     }
 
     if (Array.isArray(value)) {
-      return value.map(d => (
-        <span class="rowItemArrayItem">
-          {d}
-        </span>
-      ));
+      return (
+        <arv-flex wrap>
+          {value.map(d => (
+            <span class="rowItemArrayItem">
+              {d}
+            </span>
+          ))}
+        </arv-flex>  
+      );
     }
 
     return value;

@@ -7,12 +7,12 @@ export const AlertText = {
       name: 'color',
       type: 'oneOf',
       data: ['default', 'primary', 'secondary', 'error', 'warning', 'success'],
-      value: 'primary',
+      value: 'warning',
     },
     {
       name: 'icon',
       type: 'string',
-      value: 'edit'
+      value: 'info'
     }
   ]
 };
