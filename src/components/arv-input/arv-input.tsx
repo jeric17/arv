@@ -7,6 +7,8 @@ import { Component, h, Element, Event, EventEmitter, Listen, Method, Prop, State
 })
 export class Input {
 
+  loading = true;  
+  debounceTimeOut = null;
   inputElement: any;
 
   @Element() el: HTMLElement;
@@ -14,64 +16,38 @@ export class Input {
   @State() error = false;
 
   @Prop() autocomplete = 'off';
-
-  @Prop() disabled = false;
-
+  @Prop() debounceTime = 0;
+  @Prop() disabled = false; 
   @Prop() fileUpload = false;
-
   @Prop() full: boolean;
-
   @Prop() hasError: boolean;
-
   @Prop() hashKey: any;
-
   @Prop() hasBorder = true;
-
   @Prop() icon: string;
-
   @Prop() inputProps = {};
-
   @Prop() input: (e: any) => void;
-
   @Prop() inputStyle = {};
-
   @Prop() inputBlur: (e: any) => void;
-
   @Prop() inputFocus: (e: any) => void;
-
   @Prop() inputChange: (e: any, error: any) => void;
-
   @Prop() inputEnter: (e: any) => void;
-
   @Prop() label: string;
 
   /* oneOf: [column, row] */
   @Prop() layout = 'column';
-
   @Prop() name: string;
-
   @Prop() placeholder: string;
-
   @Prop() required = false;
-
   @Prop() size = 'medium';
-
   @Prop() type = 'text';
-
   @Prop() value: string;
-
   @Prop() rows: number = 0;
-
   @Prop() inputSize: number;
 
   @Event() arvInput: EventEmitter;
-
   @Event() arvBlur: EventEmitter;
-
   @Event() arvFocus: EventEmitter;
-
   @Event() arvInputChange: EventEmitter;
-
   @Event() arvInputEnter: EventEmitter;
 
   @Listen('focus')
@@ -190,24 +166,38 @@ export class Input {
     });
   }
 
-  private _input(e) {
+  private _handleInputDebounce(event) {
+    clearTimeout(this.debounceTimeOut);
+    const { target } = event;
+    this.debounceTimeOut = setTimeout(() => {
+      this.loading = false;
+      return this._input(event, target);
+    }, this.debounceTime);
+  }
+
+  private _input(e, _target = null) {
+    if (this.debounceTime && this.loading) {
+      return this._handleInputDebounce(e);
+    }
     if (this.input) {
       this.input(e);
     }
+    const t = _target ? _target : e.target;
     const value = (() => {
       if (this.type === 'file') {
-        return e.target.files[0].name
+        return t.files[0].name
       }
-      return e.target.value;
+      return t.value;
     })();
     this.arvInput.emit({
-      target: e.target,
+      target: t,
       event: e,
       value,
-      name: e.target.name,
+      name: t.name,
       type: this.type,
       required: this.required
     });
+    this.loading = true;
   }
 
   hostData() {

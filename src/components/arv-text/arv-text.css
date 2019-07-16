@@ -101,3 +101,6 @@
 .textShadow {
   text-shadow: 1px 1px 1px rgba(3, 3, 3, 0.8);
 }
+.required {
+  color: var(--error-color);
+}

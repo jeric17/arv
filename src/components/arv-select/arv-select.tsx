@@ -12,51 +12,30 @@ export class Select {
   @Element() el: HTMLElement;
 
   @State() willHide = false;
-
   @State() inputValue = '';
-
   @State() virtualElement: any;
-
   @State() show: boolean;
 
   @Prop() textVariant = 'caption';
-
   @Prop() listHeight: number;
-
   @Prop() dataSource: any;
-
+  @Prop() debounceTime = 0;
   @Prop() disabled = false;
-
   @Prop() full: boolean;
-
   @Prop() icon: string;
-
   @Prop() inputChange: (e: any) => void;
-
   @Prop() label: string;
-
   @Prop() labelVariant: string;
-
   @Prop() layout = 'column';
-
   @Prop() placeholder: string;
-
   @Prop() optionValue: string;
-
   @Prop() loading: boolean;
-
   @Prop() removeItem: (index: number) => void;
-
   @Prop() multiple = false;
-
   @Prop() selectStyles = {};
-
   @Prop() inputValueStyles = {};
-
   @Prop() hideIcon = false;
-
   @Prop() position = 'bottom';
-
   @Prop() staticValues: string[];
 
   @Prop() value: any;
@@ -150,11 +129,8 @@ export class Select {
   }
 
   @Event() arvRemoveItem: EventEmitter;
-
   @Event() arvInput: EventEmitter;
-
   @Event() arvInputChange: EventEmitter;
-
   @Event() arvSelectChange: EventEmitter;
 
   componentWillLoad() {
@@ -219,7 +195,7 @@ export class Select {
   }
 
   itemDelete(index, event) {
-    event.cancelBubble = true;  
+    event.cancelBubble = true;
     event.preventDefault();
     event.stopPropagation();
 
@@ -228,7 +204,7 @@ export class Select {
     }
 
     this.arvRemoveItem.emit(index);
-    
+
     if (this.show) {
       this.currentSelected = true;
       this.onValueClick();
@@ -243,7 +219,6 @@ export class Select {
   }
 
   listBlur = () => {
-    console.log('list blur');
     return new Promise(resolve => {
       setTimeout(() => {
         if (this.multiple && this.currentSelected) {
@@ -359,6 +334,7 @@ export class Select {
           input={this._input.bind(this)}
           inputChange={this.itemInputChange.bind(this)}
           value={this.inputValue}
+          debounceTime={this.debounceTime}
           full
         />
       </arv-flex>

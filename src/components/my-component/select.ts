@@ -17,6 +17,11 @@ export const Select = {
       name: 'arvInput',
       type: 'function',
       description: 'Fires if the input from the select component emits an input event'
+    },
+    {
+      name: 'arvInputChange',
+      type: 'function',
+      description: 'Fires if the input from the select component emits a change event'
     }
   ],
   eventsData: [
@@ -49,11 +54,6 @@ export const Select = {
       name: 'variant',
       type: 'string',
       description: 'values can be "select" or "input". Input variant allows the user to input a character'
-    },
-    {
-      name: 'arvInputChange',
-      type: 'function',
-      description: 'Fires if the input from the select component emits a change event'
     }
   ],
   props: [

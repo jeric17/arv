@@ -15,9 +15,15 @@ export class AccordionItem {
 
   @Prop() itemIndex: any;
 
-  @Prop() itemTitle: string;  
+  @Prop() itemTitle: string;
 
-  @Event() arvClick: EventEmitter;
+  @Prop() toggleAccordion: (itemIndex: any) => void;
+
+  @Event({
+    eventName: 'arvToggleAccordion',
+    bubbles: true,
+    composed: true
+  }) arvToggleAccordion: EventEmitter;
 
   render() {
     const rootClassNames = {
@@ -34,7 +40,12 @@ export class AccordionItem {
     return (
         <div class={rootClassNames}>
             <div
-              onClick={() => this.arvClick.emit(this.itemIndex)} 
+              onClick={() => {
+                if (this.toggleAccordion) {
+                  this.toggleAccordion(this.itemIndex);
+                }
+                this.arvToggleAccordion.emit(this.itemIndex)
+              }} 
               class="header"
             >
                 <arv-flex items="center">

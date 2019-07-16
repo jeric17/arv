@@ -6,18 +6,22 @@ export const ImageUpload = {
   slot: false,
   propsDescription: [
     {
-      name: 'onRemove',
+      name: 'removeImage',
       type: 'function',
       description: 'Triggered if the remove button is clicked'
+    },
+    {
+      name: 'uploadImage',
+      description: 'Will open the file dialog to upload an image'
     },
   ],
   events: [
     {
-      name: 'upload',
+      name: 'arvUploadImage',
       description: 'Will open the file dialog to upload an image'
     },
     {
-      name: 'remove',
+      name: 'arvRemoveImage',
       description: 'Triggered if the remove button is clicked'
     }
   ],

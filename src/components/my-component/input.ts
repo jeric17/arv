@@ -2,25 +2,47 @@ export const Input = {
   name: 'Input',
   element: 'arv-input',
   slot: false,
-  events: [
+  propsDescription: [
     {
-      name: 'onInput',
+      name: 'input',
       description: 'Fires the input event'
     },
     {
-      name: 'onBlur',
+      name: 'inputBlur',
       description: 'Fires the blur event'
     },
     {
-      name: 'onFocus',
+      name: 'inputFocus',
       description: 'Fires the focus event'
     },
     {
-      name: 'onInputChange',
+      name: 'inputChange',
       description: 'Fires the change event'
     },
     {
-      name: 'onInputEnter',
+      name: 'inputEnter',
+      description: 'Fires on keydown enter'
+    },
+  ],
+  events: [
+    {
+      name: 'arvInput',
+      description: 'Fires the input event'
+    },
+    {
+      name: 'arvBlur',
+      description: 'Fires the blur event'
+    },
+    {
+      name: 'arvFocus',
+      description: 'Fires the focus event'
+    },
+    {
+      name: 'arvInputChange',
+      description: 'Fires the change event'
+    },
+    {
+      name: 'arvInputEnter',
       description: 'Fires on keydown enter'
     },
   ],

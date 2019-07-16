@@ -8,7 +8,7 @@ import { Component, h, Prop, Listen } from '@stencil/core';
 export class Accordion {
   @Prop() onItemChange: (index: any) => void;
 
-  @Listen('arvClick')
+  @Listen('arvToggleAccordion')
   itemClickHandler(event: CustomEvent) {
     if (this.onItemChange) {
       this.onItemChange(event.detail);
@@ -17,9 +17,9 @@ export class Accordion {
 
   render() {
     return (
-      <arv-flex layout="column">
-        <slot />
-      </arv-flex>
+      <div class="root">
+        <slot />  
+      </div>
     );
   }
 }

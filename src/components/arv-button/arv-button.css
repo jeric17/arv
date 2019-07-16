@@ -335,11 +335,13 @@
 .disabled.bordered.secondary,
 .disabled.bordered.light,
 .disabled.bordered.dark,
-.disabled.raised {
+.disabled.raisedIcon,
+.disabled.ghost,
+.disabled.fab {
   --dark-text-color: #8a8a8a;
   --default-icon-color: #8a8a8a;
 }
-
+.disabled.fab,
 .disabled.raised:hover {
   background-color: #efefef;
 }

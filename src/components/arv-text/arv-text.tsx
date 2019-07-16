@@ -11,6 +11,8 @@ export class Text {
 
   @State() show = true;
 
+  @Prop() isRequired: boolean;  
+
   @Prop() color: string;
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
@@ -109,6 +111,9 @@ export class Text {
         style={styles}
         class={rootClassNames}>
         <slot></slot>
+        {this.isRequired && (
+          <span class="required">*</span>  
+        )}
       </div>
     );
   }

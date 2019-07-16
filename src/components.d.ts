@@ -20,6 +20,7 @@ export namespace Components {
     'color': string;
     'itemIndex': any;
     'itemTitle': string;
+    'toggleAccordion': (itemIndex: any) => void;
   }
   interface ArvAlertText {
     'color': string;
@@ -251,6 +252,7 @@ export namespace Components {
   }
   interface ArvInput {
     'autocomplete': string;
+    'debounceTime': number;
     'disabled': boolean;
     'elementBlur': () => Promise<void>;
     'elementFocus': () => Promise<void>;
@@ -351,6 +353,7 @@ export namespace Components {
   interface ArvSelect {
     'clearInputValue': () => Promise<void>;
     'dataSource': any;
+    'debounceTime': number;
     'disabled': boolean;
     'full': boolean;
     'hideIcon': boolean;
@@ -436,6 +439,7 @@ export namespace Components {
   }
   interface ArvText {
     'color': string;
+    'isRequired': boolean;
     'lineHeight': string;
     'maxChars': number;
     'noWrap': boolean;
@@ -474,6 +478,7 @@ export namespace Components {
     'items': any[];
   }
   interface MyComponent {}
+  interface MyTestingComponent {}
   interface MyThemeSection {}
 }
 
@@ -828,6 +833,12 @@ declare global {
     new (): HTMLMyComponentElement;
   };
 
+  interface HTMLMyTestingComponentElement extends Components.MyTestingComponent, HTMLStencilElement {}
+  var HTMLMyTestingComponentElement: {
+    prototype: HTMLMyTestingComponentElement;
+    new (): HTMLMyTestingComponentElement;
+  };
+
   interface HTMLMyThemeSectionElement extends Components.MyThemeSection, HTMLStencilElement {}
   var HTMLMyThemeSectionElement: {
     prototype: HTMLMyThemeSectionElement;
@@ -892,6 +903,7 @@ declare global {
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;
+    'my-testing-component': HTMLMyTestingComponentElement;
     'my-theme-section': HTMLMyThemeSectionElement;
   }
 }
@@ -906,7 +918,8 @@ declare namespace LocalJSX {
     'color'?: string;
     'itemIndex'?: any;
     'itemTitle'?: string;
-    'onArvClick'?: (event: CustomEvent<any>) => void;
+    'onArvToggleAccordion'?: (event: CustomEvent<any>) => void;
+    'toggleAccordion'?: (itemIndex: any) => void;
   }
   interface ArvAlertText extends JSXBase.HTMLAttributes<HTMLArvAlertTextElement> {
     'color'?: string;
@@ -1153,6 +1166,7 @@ declare namespace LocalJSX {
   }
   interface ArvInput extends JSXBase.HTMLAttributes<HTMLArvInputElement> {
     'autocomplete'?: string;
+    'debounceTime'?: number;
     'disabled'?: boolean;
     'fileUpload'?: boolean;
     'full'?: boolean;
@@ -1261,6 +1275,7 @@ declare namespace LocalJSX {
   }
   interface ArvSelect extends JSXBase.HTMLAttributes<HTMLArvSelectElement> {
     'dataSource'?: any;
+    'debounceTime'?: number;
     'disabled'?: boolean;
     'full'?: boolean;
     'hideIcon'?: boolean;
@@ -1353,6 +1368,7 @@ declare namespace LocalJSX {
   }
   interface ArvText extends JSXBase.HTMLAttributes<HTMLArvTextElement> {
     'color'?: string;
+    'isRequired'?: boolean;
     'lineHeight'?: string;
     'maxChars'?: number;
     'noWrap'?: boolean;
@@ -1391,6 +1407,7 @@ declare namespace LocalJSX {
     'items'?: any[];
   }
   interface MyComponent extends JSXBase.HTMLAttributes<HTMLMyComponentElement> {}
+  interface MyTestingComponent extends JSXBase.HTMLAttributes<HTMLMyTestingComponentElement> {}
   interface MyThemeSection extends JSXBase.HTMLAttributes<HTMLMyThemeSectionElement> {}
 
   interface IntrinsicElements {
@@ -1452,6 +1469,7 @@ declare namespace LocalJSX {
     'arv-virtual-portal': ArvVirtualPortal;
     'bb-bolts': BbBolts;
     'my-component': MyComponent;
+    'my-testing-component': MyTestingComponent;
     'my-theme-section': MyThemeSection;
   }
 }

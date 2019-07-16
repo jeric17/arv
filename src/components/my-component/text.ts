@@ -102,5 +102,11 @@ export const Text = {
       type: 'boolean',
       value: 'false'
     },
+    {
+      name: 'isRequired',
+      displayName: 'is-required',
+      type: 'boolean',
+      value: 'false'
+    },
   ]
 };
