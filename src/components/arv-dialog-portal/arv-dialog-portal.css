@@ -1,27 +1,43 @@
 .arv-dialog-portal {
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    overflow-y: scroll;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 999;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow-y: scroll;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.arv-dialog-portal.full {
+  overflow: hidden;
 }
 
-.arv-dialog { 
-    z-index: 1;
+.arv-dialog {
+  z-index: 1;
 }
 
 .scrollable {
-    align-items: flex-start;
+  align-items: flex-start;
 }
 
 .scrollable .arv-dialog {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+
+.header.primary {
+  background-color: var(--primary-color);
+}
+.header {
+  flex: 1;
+  box-shadow: 1px 2px 3px rgba(3, 3, 3, 0.2);
+  max-height: 63px;
+}
+.contentWrapper {
+  flex: 1;
+  min-height: 0%;
 }

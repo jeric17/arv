@@ -6,7 +6,7 @@ const pattern1 = {
     }
   },
   AppContent: {
-    Label: 'Home',
+    Label: 'Original',
     NavBarColor: '#fff000',
     NavBarFontColor: '#fff000',
     Name: 'four'
@@ -21,11 +21,13 @@ const pattern2 = {
   App: {
     Theme: {
       NavBarFontColor: 3,
-      ActionButtonColor: 3
+      ActionButtonColor: 3,
+      TabColor: 4
     }
   },
+  added: true,
   AppContent: {
-    Name: 'four',
+    Name: 'New',
     NavBarColor: '#fff000',
     NavBarFontColor: '#fff000',
     Label: 'Home'

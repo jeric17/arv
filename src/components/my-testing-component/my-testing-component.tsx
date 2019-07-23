@@ -1,20 +1,49 @@
-import { Component, Listen, h} from '@stencil/core';
+import { Component, Element, State, h} from '@stencil/core';
 
 @Component({
-  tag: 'my-testing-component'  
+  tag: 'my-testing-component',
+  shadow: true
 })
 export class MyTestingComponent {
+  @Element() el: HTMLElement;
 
-  @Listen('arvInput')
-  handleInput(e) {
-    console.log(e);
+  @State() show = false;
+
+  toggle = () => {
+    this.show = !this.show;
   }
-  
+
   render() {
+    const headerAction = {
+      color: 'secondary',
+      text: 'Save',
+      variant: 'raised',
+      fn: t => {
+        t.onHandleClose();
+      }
+    };
     return (
-      <arv-input 
-        debounceTime={3000}
-      />
+      <div>
+        <arv-button
+          onClick={this.toggle}
+        >
+          Toggle
+        </arv-button>
+        <arv-dialog
+          dialogTitle="Hello World"
+          show={this.show}
+          handleClose={this.toggle}
+          headerColor="primary"
+          headerAction={headerAction}
+          full
+        >
+          <div>
+            <div>OK</div>
+            <arv-button
+            >Cancel</arv-button>
+          </div>
+        </arv-dialog>
+      </div>
     );
   }
 }

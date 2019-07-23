@@ -136,6 +136,8 @@ export namespace Components {
     'enableBackDropClose': boolean;
     'full': boolean;
     'handleClose': () => void;
+    'headerAction': any;
+    'headerColor': string;
     'hideClose': boolean;
     'hideTitle': boolean;
     'iconColor': string;
@@ -160,10 +162,13 @@ export namespace Components {
     'scrollable': boolean;
   }
   interface ArvDiff {
+    'controls': any[];
     'displayMode': string;
+    'mergeChange': (diffArray: any[], sb: string, done: boolean) => void;
     'newVersion': any;
     'oldVersion': any;
     'showControls': boolean;
+    'showLineControl': boolean;
   }
   interface ArvDivider {
     'bordered': boolean;
@@ -252,6 +257,7 @@ export namespace Components {
   }
   interface ArvInput {
     'autocomplete': string;
+    'clear': () => Promise<void>;
     'debounceTime': number;
     'disabled': boolean;
     'elementBlur': () => Promise<void>;
@@ -351,7 +357,7 @@ export namespace Components {
     'textVariant': string;
   }
   interface ArvSelect {
-    'clearInputValue': () => Promise<void>;
+    'clearInputValue': () => Promise<string>;
     'dataSource': any;
     'debounceTime': number;
     'disabled': boolean;
@@ -1038,6 +1044,8 @@ declare namespace LocalJSX {
     'enableBackDropClose'?: boolean;
     'full'?: boolean;
     'handleClose'?: () => void;
+    'headerAction'?: any;
+    'headerColor'?: string;
     'hideClose'?: boolean;
     'hideTitle'?: boolean;
     'iconColor'?: string;
@@ -1063,10 +1071,13 @@ declare namespace LocalJSX {
     'scrollable'?: boolean;
   }
   interface ArvDiff extends JSXBase.HTMLAttributes<HTMLArvDiffElement> {
+    'controls'?: any[];
     'displayMode'?: string;
+    'mergeChange'?: (diffArray: any[], sb: string, done: boolean) => void;
     'newVersion'?: any;
     'oldVersion'?: any;
     'showControls'?: boolean;
+    'showLineControl'?: boolean;
   }
   interface ArvDivider extends JSXBase.HTMLAttributes<HTMLArvDividerElement> {
     'bordered'?: boolean;

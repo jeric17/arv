@@ -96,8 +96,15 @@ export class Input {
     if (this.inputElement) {
       this.inputElement.blur();
     }
-  }  
+  }
 
+  @Method()
+  async clear() {
+    if (this.inputElement) {
+      this.inputElement.value = null;
+    }
+  }
+  
   componentDidLoad() {
     const elem = (() => {
       if (!this.rows) {

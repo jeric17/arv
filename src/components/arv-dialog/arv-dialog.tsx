@@ -14,7 +14,6 @@ export class Dialog {
   @Element() el: HTMLElement;
 
   @Prop() actions: DialogActions;
-
   @Watch('actions')
   handleActionsChange(newValue: DialogActions | string) {
     if (typeof newValue === 'string') {
@@ -23,39 +22,27 @@ export class Dialog {
       this.dialogActions = newValue;
     }
   }
-
-  @Prop() enableBackDropClose = false;
-
-  @Prop() titleAlignment = 'start';
-
-  @Prop() titleImageIcon: string;
-
-  @Prop() dialogTitleIcon: string;
-
-  @Prop() dialogTitle: string;
-
-  @Prop() full: boolean;
+  @Prop() headerAction: any;
 
   @Prop() bgColor = '#fff';
-
-  @Prop() iconColor = '#000';
-
-  @Prop() scrollable: boolean;
-
-  @Prop() show: boolean;
-
-  @Prop() handleClose: () => void;
-
-  @Prop() hideClose = false;
-
-  @Prop() hideTitle = false;
-
+  @Prop() dialogTitle: string;
+  @Prop() dialogTitleIcon: string;
   @Prop() dialogTitleVariant = 'heading3';
-
+  @Prop() enableBackDropClose = false;
+  @Prop() full: boolean;
+  @Prop() handleClose: () => void;
+  @Prop() headerColor = '#fff';
+  @Prop() hideClose = false;
+  @Prop() hideTitle = false;
+  @Prop() iconColor = '#000';
   @Prop() padded = true;
+  @Prop() parent: HTMLElement;
+  @Prop() scrollable: boolean;
+  @Prop() show: boolean;
+  @Prop() titleAlignment = 'start';
+  @Prop() titleImageIcon: string;
 
   @Prop() titleIconUrl: string;
-
   @Watch('show')
   showChanged() {
     if (this.show) {
@@ -67,11 +54,17 @@ export class Dialog {
     return this._hideContent();
   }
 
-  @Prop() parent: HTMLElement;
+  @Event({
+    eventName: 'arvOk',
+    composed: true,
+    bubbles: true
+  }) arvOk: EventEmitter;
 
-  @Event() arvOk: EventEmitter;
-
-  @Event() arvClose: EventEmitter;
+  @Event({
+    eventName: 'arvClose',
+    composed: true,
+    bubbles: true
+  }) arvClose: EventEmitter;
 
   @Listen('cancel')
   handleCancel() {
@@ -149,6 +142,21 @@ export class Dialog {
 
   render() {
     const slot = this.show ? <slot></slot> : null;
+    const contentClassNames = {
+      content: true,
+      'arv-dialog-content': true,
+      contentFull: this.full
+    };
+    const headerClassNames = {
+      header: true,
+      primary: this.headerColor === 'primary'
+    };
+    const fullStyles = {
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column'
+    };
+    const contentStyles = this.full ? fullStyles : {};;
 
     return (
       <arv-container
@@ -165,37 +173,60 @@ export class Dialog {
             '--default-icon-color': this.iconColor,
           }}
         >
-          <div class={{
-            content: true,
-            'arv-dialog-content': true,
-            contentFull: this.full
-          }}>
+          <div class={contentClassNames} style={contentStyles}>
             {!this.hideTitle && (
-              <arv-flex justify="between" items="center" padded>
-                  <arv-flex items="center" justify={this.titleAlignment}>
-                    {(this.dialogTitleIcon && !this.titleIconUrl) && [
+               <arv-flex
+                 class={headerClassNames}
+                 justify="between"
+                 items="center"
+                 padded
+                 >
+                 <arv-flex
+                   items="center"
+                   justify={this.titleAlignment}
+                 >
+                   {this.full && [
+                      <arv-button
+                        color={this.headerColor}
+                        variant="ghost-icon"
+                        icon="close"
+                        buttonClick={this.onHandleClose.bind(this, false)}></arv-button>,
+                      <arv-divider layout="column" transparent></arv-divider>
+                   ]}
+                   {(this.dialogTitleIcon && !this.titleIconUrl) && [
                       <arv-icon class="icon" withButtonIcon icon={this.dialogTitleIcon} />,
                       <arv-divider layout="column" transparent></arv-divider>
-                    ]}
-                    {(!this.dialogTitleIcon && this.titleIconUrl) && [
+                   ]}
+                   {(!this.dialogTitleIcon && this.titleIconUrl) && [
                       <img class="imgIcon" src={this.titleIconUrl} />,
                       <arv-divider layout="column" transparent></arv-divider>
-                    ]}
-                    {this.titleImageIcon && [
+                   ]}
+                   {this.titleImageIcon && [
                       <img class="imgIcon" src={this.titleImageIcon} />,
                       <arv-divider layout="column" transparent></arv-divider>
-                    ]}
-                    <arv-text variant={this.dialogTitleVariant}>{this.dialogTitle}</arv-text>
-                  </arv-flex>
-                  {!this.hideClose && (
+                   ]}
+                   <arv-text variant={this.dialogTitleVariant}>{this.dialogTitle}</arv-text>
+                 </arv-flex>
+                 {!this.hideClose && !this.full && (
                     <arv-button
                       variant="flat-icon"
                       icon="close"
-                      buttonClick={this.onHandleClose.bind(this, false)}></arv-button>  
-                  )}
-              </arv-flex>
+                      buttonClick={this.onHandleClose.bind(this, false)}></arv-button>
+                 )}
+                 {this.headerAction && (
+                   <arv-button
+                      variant={this.headerAction.variant}
+                      color={this.headerAction.color}
+                      onClick={() => {
+                        this.headerAction.fn(this);
+                      }}
+                      >
+                      {this.headerAction.text}
+                    </arv-button>
+                 )}
+               </arv-flex>
             )}
-            <arv-flex padded={this.padded}>
+            <arv-flex padded={this.padded} fullHeight={this.full} class="contentWrapper">
               {slot}
             </arv-flex>
             {this.dialogActions && [
@@ -207,7 +238,7 @@ export class Dialog {
                       color={this.dialogActions.cancel.color}
                       buttonClick={() => {
                         if (this.dialogActions.cancel.fn) {
-                          this.dialogActions.cancel.fn();
+                          this.dialogActions.cancel.fn(this);
                         }
                         this.onHandleClose(false);
                       }}>
@@ -221,8 +252,8 @@ export class Dialog {
                       color={this.dialogActions.ok.color || 'primary'}
                       buttonClick={() => {
                         if (this.dialogActions.ok.fn) {
-                          this.dialogActions.ok.fn();
-                        }  
+                          this.dialogActions.ok.fn(this);
+                        }
                         this.onHandleClose(true)
                       }}>
                       {this.dialogActions.ok.text || 'Ok'}

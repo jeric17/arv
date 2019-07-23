@@ -6,10 +6,9 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class DialogContent {
+
   @Prop() animation = 'slideInBottom';
-
   @Prop() full: boolean;
-
   @Prop() padded = true;
 
   render() {

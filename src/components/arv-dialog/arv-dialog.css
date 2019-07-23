@@ -3,8 +3,10 @@
   /* height: 100%; */
 }
 .contentFull {
-  /* height: 100vh; */
+  height: 100vh;
   width: 100vw;
+  display: flex;
+  flex-direction: column;
 }
 .icon {
   --default-icon-color: var(--default-icon-color, #000);
@@ -13,4 +15,7 @@
   display: block;
   width: 30px;
   height: auto;
+}
+.header.primary {
+  background-color: var(--primary-color);
 }

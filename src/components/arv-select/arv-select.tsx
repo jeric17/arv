@@ -84,7 +84,11 @@ export class Select {
 
   @Method()
   async clearInputValue() {
+    console.log(this.variant);
     this.inputValue = null;
+    const inputEl = this.el.shadowRoot.querySelector('arv-input');
+    inputEl.clear();
+    return this.variant;
   }
 
   @Listen('arvInputEnter')
@@ -353,7 +357,7 @@ export class Select {
             input={this._input.bind(this)}
             value={this.inputValue}
             hasBorder={false}
-            inputSize={this.inputValue.length + 2}
+            inputSize={(this.inputValue || '').length + 2}
           />
         )}/>
       </arv-flex>

@@ -9,38 +9,23 @@ export class Button {
 
   /* oneOf: [default, primary, secondary, inherit] */
   @Prop() color: string = 'default';
-
   @Prop() disabled: boolean = false;
-
   @Prop() full: boolean = false;
-
   @Prop() href: string;
-
   @Prop() icon: string;
-
   @Prop() buttonClick: (e: MouseEvent) => void;
-
   @Prop() layout: string;
-
   @Prop() loading: boolean;
-
   @Prop() padded = true;
-
   @Prop() rounded: boolean = true;
-
   /* oneOf: [small, medium, large] */
   @Prop() size: string = 'medium';
-
   @Prop() styles: any;
-
   /* oneOf: [start, center, end]*/
   @Prop() textAlign: string = 'center';
-
   @Prop() type: string;
-
   /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
-
   /* oneOf: [dialogOk, dialogCancel] */
   @Prop() roleType: string;
 

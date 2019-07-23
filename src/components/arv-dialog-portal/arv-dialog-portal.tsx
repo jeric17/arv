@@ -41,7 +41,8 @@ export class DialogPortal {
   render() {
     const classNames = {
       'arv-dialog-portal': true,
-      scrollable: this.scrollable
+      scrollable: this.scrollable,
+      full: this.full
     };
 
     return (
