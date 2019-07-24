@@ -44,7 +44,6 @@ import { InputWrapper } from './input-wrapper';
 export class MyComponent {
 
   items = [
-    {...Diff},
     {...AlertText},
     {...Avatar},
     {...AvatarGroup},

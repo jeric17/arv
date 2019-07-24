@@ -1,4 +1,4 @@
-import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, h, Element, Event, EventEmitter, Prop } from '@stencil/core';
 
 @Component({
   tag: 'arv-multiple-input',
@@ -6,6 +6,9 @@ import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
   shadow: true
 })
 export class MultipleInput {
+
+  @Element() el: HTMLElement;
+
   @Prop() add: (e: any) => void;
 
   @Prop() inputChange: (e: any) => void;
@@ -70,6 +73,9 @@ export class MultipleInput {
     this.arvAdd.emit(event);
 
     this.triggerUpdate(this.values.concat([event.target.value]));
+
+    const addInput: any = this.el.shadowRoot.querySelector('.addInput');
+    addInput.clear();
   }
 
   removeItem(index) {
@@ -104,6 +110,7 @@ export class MultipleInput {
         ))}
         <arv-form-control>
           <arv-input
+            class="addInput"
             placeholder={this.placeholder}
             disabled={this.disabled}
             inputChange={this.addItem.bind(this)}

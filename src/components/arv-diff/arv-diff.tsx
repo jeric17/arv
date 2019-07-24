@@ -18,6 +18,7 @@ export class Diff {
   @State() currentMode: string;
   currentJump = 0;
 
+  @Prop() autoScroll = false;
   @Prop() showControls = true;
   @Prop() showLineControl = true;
   // refresh jump diffOnly
@@ -49,6 +50,12 @@ export class Diff {
     this.currentMode = this.displayMode;
     this.load();
     this.setDiffData();
+  }
+
+  componentDidLoad() {
+    if (this.autoScroll) {
+      this.jump(true);
+    }
   }
 
   load() {
@@ -259,22 +266,24 @@ export class Diff {
                  onClick={() => this.jump(true)}
                ></arv-button>
              </arv-tooltip>
-             <arv-tooltip message="Undo">
-               <arv-button
-                 disabled={!hasUndo}
-                 icon="undo"
-                 variant="flat-icon"
-                 buttonClick={() => this.undo()}
-               ></arv-button>
-             </arv-tooltip>
-             <arv-tooltip message="Redo">
-               <arv-button
-                 disabled={!hasRedo}
-                 icon="redo"
-                 variant="flat-icon"
-                 buttonClick={() => this.redo()}
-               ></arv-button>
-             </arv-tooltip>
+             {this.showLineControl && [
+                <arv-tooltip message="Undo">
+                  <arv-button
+                    disabled={!hasUndo}
+                    icon="undo"
+                    variant="flat-icon"
+                    buttonClick={() => this.undo()}
+                  ></arv-button>
+                </arv-tooltip>,
+                <arv-tooltip message="Redo">
+                  <arv-button
+                    disabled={!hasRedo}
+                    icon="redo"
+                    variant="flat-icon"
+                    buttonClick={() => this.redo()}
+                  ></arv-button>
+                </arv-tooltip>
+             ]}
            </arv-flex>
         )}
         <div class="contentWrapper">

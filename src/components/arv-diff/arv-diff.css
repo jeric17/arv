@@ -48,6 +48,7 @@ arv-button {
   flex: 1;
 }
 .contentWrapper {
+  border-radius: var(--radius);
   background-color: var(--diff-bg, #fff);
   flex: 1;
   min-height: 0%;

@@ -162,6 +162,7 @@ export namespace Components {
     'scrollable': boolean;
   }
   interface ArvDiff {
+    'autoScroll': boolean;
     'controls': any[];
     'displayMode': string;
     'mergeChange': (diffArray: any[], sb: string, done: boolean) => void;
@@ -1071,6 +1072,7 @@ declare namespace LocalJSX {
     'scrollable'?: boolean;
   }
   interface ArvDiff extends JSXBase.HTMLAttributes<HTMLArvDiffElement> {
+    'autoScroll'?: boolean;
     'controls'?: any[];
     'displayMode'?: string;
     'mergeChange'?: (diffArray: any[], sb: string, done: boolean) => void;

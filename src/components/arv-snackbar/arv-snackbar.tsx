@@ -138,7 +138,7 @@ export class Snackbar {
           this.close();  
         }
       }, 250);
-    }, (this.timing * 1000) - 300);
+    }, (this.timing * 1000) - 280);
   }
 
   render() {

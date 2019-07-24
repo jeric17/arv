@@ -7,42 +7,20 @@ import { Component, Element, State, h} from '@stencil/core';
 export class MyTestingComponent {
   @Element() el: HTMLElement;
 
-  @State() show = false;
+  @State() values = [];
 
-  toggle = () => {
-    this.show = !this.show;
+  add = event => {
+    this.values = this.values.concat(event.target.value);
   }
 
   render() {
-    const headerAction = {
-      color: 'secondary',
-      text: 'Save',
-      variant: 'raised',
-      fn: t => {
-        t.onHandleClose();
-      }
-    };
+
     return (
       <div>
-        <arv-button
-          onClick={this.toggle}
-        >
-          Toggle
-        </arv-button>
-        <arv-dialog
-          dialogTitle="Hello World"
-          show={this.show}
-          handleClose={this.toggle}
-          headerColor="primary"
-          headerAction={headerAction}
-          full
-        >
-          <div>
-            <div>OK</div>
-            <arv-button
-            >Cancel</arv-button>
-          </div>
-        </arv-dialog>
+        <arv-multiple-input
+          values={this.values}
+          add={this.add}
+        ></arv-multiple-input>
       </div>
     );
   }
