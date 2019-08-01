@@ -84,7 +84,6 @@ export class Select {
 
   @Method()
   async clearInputValue() {
-    console.log(this.variant);
     this.inputValue = null;
     const inputEl = this.el.shadowRoot.querySelector('arv-input');
     inputEl.clear();

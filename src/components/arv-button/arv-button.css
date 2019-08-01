@@ -369,3 +369,19 @@
 .ghostIcon {
   background-color: transparent;
 }
+.input {
+  height: 0px;
+  width: 0px;
+  overflow: hidden;
+  max-width: 0px;
+  max-height: 0px;
+  border: none;
+  margin: 0;
+}
+.uploadWrapper {
+  box-sizing: border-box;
+}
+.uploadLabel {
+  box-sizing: border-box;
+  display: flex;
+}

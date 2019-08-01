@@ -62,6 +62,7 @@ export namespace Components {
     'icon': string;
     'layout': string;
     'loading': boolean;
+    'multipleFileUpload': boolean;
     'padded': boolean;
     'roleType': string;
     'rounded': boolean;
@@ -473,6 +474,12 @@ export namespace Components {
     'full': boolean;
     'transformOrigin': string;
   }
+  interface ArvUploader {
+    'hideUploadButton': boolean;
+    'placeholder': string;
+    'uploadText': string;
+    'uploadTextVariant': string;
+  }
   interface ArvVirtualPortal {
     'content': any;
     'inputText': string;
@@ -822,6 +829,12 @@ declare global {
     new (): HTMLArvTransitionElement;
   };
 
+  interface HTMLArvUploaderElement extends Components.ArvUploader, HTMLStencilElement {}
+  var HTMLArvUploaderElement: {
+    prototype: HTMLArvUploaderElement;
+    new (): HTMLArvUploaderElement;
+  };
+
   interface HTMLArvVirtualPortalElement extends Components.ArvVirtualPortal, HTMLStencilElement {}
   var HTMLArvVirtualPortalElement: {
     prototype: HTMLArvVirtualPortalElement;
@@ -907,6 +920,7 @@ declare global {
     'arv-text': HTMLArvTextElement;
     'arv-tooltip': HTMLArvTooltipElement;
     'arv-transition': HTMLArvTransitionElement;
+    'arv-uploader': HTMLArvUploaderElement;
     'arv-virtual-portal': HTMLArvVirtualPortalElement;
     'bb-bolts': HTMLBbBoltsElement;
     'my-component': HTMLMyComponentElement;
@@ -969,7 +983,9 @@ declare namespace LocalJSX {
     'icon'?: string;
     'layout'?: string;
     'loading'?: boolean;
+    'multipleFileUpload'?: boolean;
     'onArvButtonClick'?: (event: CustomEvent<any>) => void;
+    'onArvButtonFileUpload'?: (event: CustomEvent<any>) => void;
     'padded'?: boolean;
     'roleType'?: string;
     'rounded'?: boolean;
@@ -1408,6 +1424,13 @@ declare namespace LocalJSX {
     'full'?: boolean;
     'transformOrigin'?: string;
   }
+  interface ArvUploader extends JSXBase.HTMLAttributes<HTMLArvUploaderElement> {
+    'hideUploadButton'?: boolean;
+    'onArvFilesChange'?: (event: CustomEvent<FileList>) => void;
+    'placeholder'?: string;
+    'uploadText'?: string;
+    'uploadTextVariant'?: string;
+  }
   interface ArvVirtualPortal extends JSXBase.HTMLAttributes<HTMLArvVirtualPortalElement> {
     'content'?: any;
     'inputText'?: string;
@@ -1479,6 +1502,7 @@ declare namespace LocalJSX {
     'arv-text': ArvText;
     'arv-tooltip': ArvTooltip;
     'arv-transition': ArvTransition;
+    'arv-uploader': ArvUploader;
     'arv-virtual-portal': ArvVirtualPortal;
     'bb-bolts': BbBolts;
     'my-component': MyComponent;

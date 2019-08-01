@@ -20,6 +20,17 @@ export const Button = {
           value: 'default'
         },
         {
+          name: 'role-type',
+          type: 'oneOf',
+          data: ['default', 'fileUpload'],
+          value: 'default'
+        },
+        {
+          name: 'multiple-file-upload',
+          type: 'boolean',
+          value: 'false'
+        },
+        {
           name: 'disabled',
           type: 'boolean',
           value: 'false'

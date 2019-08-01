@@ -2,6 +2,7 @@ import { Component, Element, State, h} from '@stencil/core';
 
 @Component({
   tag: 'my-testing-component',
+  styleUrl: 'my-testing-component.css',
   shadow: true
 })
 export class MyTestingComponent {
@@ -9,18 +10,16 @@ export class MyTestingComponent {
 
   @State() values = [];
 
-  add = event => {
-    this.values = this.values.concat(event.target.value);
-  }
-
   render() {
 
     return (
       <div>
-        <arv-multiple-input
-          values={this.values}
-          add={this.add}
-        ></arv-multiple-input>
+        <arv-container
+          height="400px"
+          width="500px"
+        >
+          <arv-uploader></arv-uploader>
+        </arv-container>
       </div>
     );
   }

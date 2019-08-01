@@ -26,10 +26,12 @@ export class Button {
   @Prop() type: string;
   /* oneOf: [bordered, flat, raised, flat-icon, raised-icon] */
   @Prop() variant: string = 'flat';
-  /* oneOf: [dialogOk, dialogCancel] */
+  /* oneOf: [dialogOk, dialogCancel, fileUpload] */
   @Prop() roleType: string;
+  @Prop() multipleFileUpload: boolean;
 
   @Event() arvButtonClick: EventEmitter;
+  @Event() arvButtonFileUpload: EventEmitter;
 
   hostData() {
     return {
@@ -50,6 +52,10 @@ export class Button {
     });
 
     return this.buttonClick && this.buttonClick(e);
+  }
+
+  onFileChange = (event: any) => {
+    this.arvButtonFileUpload.emit(event.target.files);
   }
 
   render() {
@@ -90,7 +96,8 @@ export class Button {
         noMargin={rootClassNames.flatIcon || rootClassNames.raisedIcon || rootClassNames.fab}
         withButtonIcon={this.icon && !iconMode.includes(this.variant)}
         size={this.size}
-        icon={this.icon}>
+        icon={this.icon}
+      >
       </arv-icon>
     );
 
@@ -102,9 +109,9 @@ export class Button {
         {this.icon && <Icon />}
         {(this.variant !== 'fab') && (
            <div class="slot">
-             <arv-text>
-               <slot></slot>
-             </arv-text>
+              <arv-text>
+                <slot></slot>
+              </arv-text>
            </div>
         )}
       </arv-flex>
@@ -119,6 +126,24 @@ export class Button {
     const T = ({ p }) => {
       if (this.href) {
         return <a href={this.href} {...p}><C /></a>
+      }
+      if (this.roleType === 'fileUpload') {
+        return (
+          <div class="uploadWrapper">
+            <label class="uploadLabel">
+              <a {...p}>
+                <C />
+              </a>
+              <input
+                id="file"
+                type="file"
+                multiple={this.multipleFileUpload}
+                onChange={this.onFileChange}
+                class="input"
+              />
+            </label>
+          </div>
+        );
       }
       return (
         <button {...p}>
