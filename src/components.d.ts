@@ -182,14 +182,19 @@ export namespace Components {
   }
   interface ArvDraggable {
     'color': string;
+    'direction': 'vertical' | 'horizontal';
     'disabled': boolean;
     'drag': (evt: DragEvent, key: string) => void;
     'drop': (evt: DragEvent, k1: string, k2: string) => void;
+    'dropBottom': (evt: DragEvent, k1: string, k2: string) => void;
+    'dropLeft': (evt: DragEvent, k1: string, k2: string) => void;
+    'dropRight': (evt: DragEvent, k1: string, k2: string) => void;
     'dropTop': (evt: DragEvent, k1: string, k2: string) => void;
     'end': (evt: DragEvent, key: string) => void;
     'enter': (evt: DragEvent, key: string) => void;
     'exit': (evt: DragEvent, key: string) => void;
     'hashKey': string;
+    'isLast': boolean;
     'leave': (evt: DragEvent, key: string) => void;
     'over': (evt: DragEvent, key: string) => void;
     'showIcon': boolean;
@@ -1107,17 +1112,25 @@ declare namespace LocalJSX {
   }
   interface ArvDraggable extends JSXBase.HTMLAttributes<HTMLArvDraggableElement> {
     'color'?: string;
+    'direction'?: 'vertical' | 'horizontal';
     'disabled'?: boolean;
     'drag'?: (evt: DragEvent, key: string) => void;
     'drop'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'dropBottom'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'dropLeft'?: (evt: DragEvent, k1: string, k2: string) => void;
+    'dropRight'?: (evt: DragEvent, k1: string, k2: string) => void;
     'dropTop'?: (evt: DragEvent, k1: string, k2: string) => void;
     'end'?: (evt: DragEvent, key: string) => void;
     'enter'?: (evt: DragEvent, key: string) => void;
     'exit'?: (evt: DragEvent, key: string) => void;
     'hashKey'?: string;
+    'isLast'?: boolean;
     'leave'?: (evt: DragEvent, key: string) => void;
     'onItemDrag'?: (event: CustomEvent<any>) => void;
     'onItemDrop'?: (event: CustomEvent<any>) => void;
+    'onItemDropBottom'?: (event: CustomEvent<any>) => void;
+    'onItemDropLeft'?: (event: CustomEvent<any>) => void;
+    'onItemDropRight'?: (event: CustomEvent<any>) => void;
     'onItemDropTop'?: (event: CustomEvent<any>) => void;
     'onItemEnd'?: (event: CustomEvent<any>) => void;
     'onItemEnter'?: (event: CustomEvent<any>) => void;
