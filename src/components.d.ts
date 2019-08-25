@@ -346,6 +346,15 @@ export namespace Components {
     'weight': number;
     'width': string;
   }
+  interface ArvRadioButton {
+    'color': string;
+    'disabled': boolean;
+    'label': string;
+    'radioClick': any;
+    'size': 'normal' | 'large';
+    'textVariant': string;
+    'value': boolean;
+  }
   interface ArvScrollableContent {
     'hashKey': string;
     'onScrollTop': () => void;
@@ -364,6 +373,7 @@ export namespace Components {
     'textVariant': string;
   }
   interface ArvSelect {
+    'autoBlur': boolean;
     'clearInputValue': () => Promise<string>;
     'dataSource': any;
     'debounceTime': number;
@@ -387,7 +397,7 @@ export namespace Components {
     'selectStyles': {};
     'staticValues': string[];
     'textVariant': string;
-    'toBlur': () => Promise<boolean>;
+    'toBlur': () => Promise<void>;
     'toggle': (show?: any) => Promise<void>;
     'value': any;
     /**
@@ -756,6 +766,12 @@ declare global {
     new (): HTMLArvPaperElement;
   };
 
+  interface HTMLArvRadioButtonElement extends Components.ArvRadioButton, HTMLStencilElement {}
+  var HTMLArvRadioButtonElement: {
+    prototype: HTMLArvRadioButtonElement;
+    new (): HTMLArvRadioButtonElement;
+  };
+
   interface HTMLArvScrollableContentElement extends Components.ArvScrollableContent, HTMLStencilElement {}
   var HTMLArvScrollableContentElement: {
     prototype: HTMLArvScrollableContentElement;
@@ -912,6 +928,7 @@ declare global {
     'arv-multiple-input': HTMLArvMultipleInputElement;
     'arv-paginator': HTMLArvPaginatorElement;
     'arv-paper': HTMLArvPaperElement;
+    'arv-radio-button': HTMLArvRadioButtonElement;
     'arv-scrollable-content': HTMLArvScrollableContentElement;
     'arv-section': HTMLArvSectionElement;
     'arv-section-title': HTMLArvSectionTitleElement;
@@ -1299,6 +1316,16 @@ declare namespace LocalJSX {
     'weight'?: number;
     'width'?: string;
   }
+  interface ArvRadioButton extends JSXBase.HTMLAttributes<HTMLArvRadioButtonElement> {
+    'color'?: string;
+    'disabled'?: boolean;
+    'label'?: string;
+    'onArvRadioClick'?: (event: CustomEvent<any>) => void;
+    'radioClick'?: any;
+    'size'?: 'normal' | 'large';
+    'textVariant'?: string;
+    'value'?: boolean;
+  }
   interface ArvScrollableContent extends JSXBase.HTMLAttributes<HTMLArvScrollableContentElement> {
     'hashKey'?: string;
     'onArvScrolledTop'?: (event: CustomEvent<any>) => void;
@@ -1316,6 +1343,7 @@ declare namespace LocalJSX {
     'textVariant'?: string;
   }
   interface ArvSelect extends JSXBase.HTMLAttributes<HTMLArvSelectElement> {
+    'autoBlur'?: boolean;
     'dataSource'?: any;
     'debounceTime'?: number;
     'disabled'?: boolean;
@@ -1502,6 +1530,7 @@ declare namespace LocalJSX {
     'arv-multiple-input': ArvMultipleInput;
     'arv-paginator': ArvPaginator;
     'arv-paper': ArvPaper;
+    'arv-radio-button': ArvRadioButton;
     'arv-scrollable-content': ArvScrollableContent;
     'arv-section': ArvSection;
     'arv-section-title': ArvSectionTitle;

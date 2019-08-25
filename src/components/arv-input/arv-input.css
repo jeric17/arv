@@ -29,7 +29,10 @@
   border-color: var(--error-color);
 }
 
-input:hover {
+input:hover,
+input:focus,
+textarea:hover,
+textarea:focus {
   border-color: var(--primary-color, #009fe5);
 }
 

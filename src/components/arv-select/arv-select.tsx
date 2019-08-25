@@ -16,6 +16,7 @@ export class Select {
   @State() virtualElement: any;
   @State() show: boolean;
 
+  @Prop() autoBlur: boolean;
   @Prop() textVariant = 'caption';
   @Prop() listHeight: number;
   @Prop() dataSource: any;
@@ -73,13 +74,7 @@ export class Select {
 
   @Method()
   async toBlur() {
-    this.show = false;
-    this.currentSelected = false;  
-    if (this.variant !== 'input') {
-      return false;  
-    }
-    const inputEl = this.el.shadowRoot.querySelector('arv-input');
-    inputEl.elementBlur();
+    this.unselectElement();
   }
 
   @Method()
@@ -97,6 +92,10 @@ export class Select {
     }
 
     this.arvSelectChange.emit(this.inputValue);
+
+    if(this.autoBlur) {
+      this.unselectElement();
+    }
 
     if (this.selectChange) {
       this.selectChange(evt);
@@ -153,7 +152,7 @@ export class Select {
       /* console.log('input'); */
       const inputEl = this.el.shadowRoot.querySelector('arv-input');
       inputEl.elementFocus();
-    }  
+    }
   }
 
   itemInputChange = e => {
@@ -164,6 +163,16 @@ export class Select {
     // e.currentTarget.blur();
     // this.show = false;
     // this.currentSelected = false;
+  }
+
+  unselectElement() {
+    this.show = false;
+    this.currentSelected = false;
+    if (this.variant !== 'input') {
+      return false;
+    }
+    const inputEl = this.el.shadowRoot.querySelector('arv-input');
+    inputEl.elementBlur();
   }
 
   onValueClick() {
@@ -242,7 +251,7 @@ export class Select {
         this.currentSelected = false;
         this.show = false;
         resolve(false);
-      }, 200);  
+      }, 200);
     });
   }
 
@@ -296,7 +305,7 @@ export class Select {
                   onClick={this.itemDelete.bind(this, i)}
                   icon="close"
                   size="small"
-                  noMargin></arv-icon>  
+                  noMargin></arv-icon>
               )}
             </div>
           ))}
@@ -320,7 +329,7 @@ export class Select {
         </arv-flex>
         <arv-divider layout="column" transparent></arv-divider>
         {!this.hideIcon && (
-          <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>  
+          <arv-icon class="chevron" color="default" icon="keyboard_arrow_down"></arv-icon>
         )}
       </div>
     );

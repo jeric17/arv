@@ -1,4 +1,5 @@
-arv-input-wrapper input {
+arv-input-wrapper input,
+arv-input-wrapper textarea {
   font-family: var(--font-family);
   background-color: #fff;
   border-radius: var(--radius, 2px);
@@ -21,7 +22,10 @@ arv-input-wrapper input::placeholder {
   font-size: 0.8rem;
 }
 
-arv-input-wrapper input:hover {
+arv-input-wrapper input:hover,
+arv-input-wrapper input:focus,
+arv-input-wrapper textarea:hover,
+arv-input-wrapper textarea:focus {
   border-color: var(--primary-color);
 }
 

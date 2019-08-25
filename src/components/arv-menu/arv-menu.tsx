@@ -6,6 +6,7 @@ import { Component, h, Element, Listen, Prop, State } from '@stencil/core';
   shadow: true
 })
 export class Menu {
+  to: any;
 
   @Element() el: HTMLElement;
 
@@ -19,6 +20,7 @@ export class Menu {
 
   @Listen('mouseup')
   mouseUpHandler() {
+    clearTimeout(this.to);
     this.toggle();
   }
 
@@ -27,7 +29,7 @@ export class Menu {
     if (!this.disableBackdropClick) {
       this.hide = true;
     }
-    setTimeout(() => {
+    this.to = setTimeout(() => {
       if (this.disableBackdropClick) {
         return false;
       }
@@ -36,8 +38,13 @@ export class Menu {
     }, 250);
   }
 
-  toggle() {
-    this.show = !this.show;
+  toggle(show = false) {
+    if (show) {
+      this.show = true;
+      this.hide = false;
+    } else {
+      this.show = !this.show;
+    }
     if (this.show) {
       this.el.focus();
     } else {
@@ -68,7 +75,10 @@ export class Menu {
 
     return (
       <div class={rootClassNames}>
-        <div class="menu">
+        <div class="menu" onClick={evt => {
+          evt.preventDefault();
+          this.toggle(true);
+        }}>
           <slot name="menu" />
         </div>
         <ul class={menuListClassNames}>

@@ -9,7 +9,9 @@ export const config: Config = {
     },
     {
       type: 'www',
-      serviceWorker: null
+      serviceWorker: {
+        swSrc: 'src/sw.js'
+      }
     }
   ]
 };

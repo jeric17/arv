@@ -1,0 +1,83 @@
+.root {
+  cursor: pointer;
+}
+.disabled {
+  cursor: not-allowed;
+}
+.radio {
+  align-items: center;
+  border-color: var(--radio-border-color, #cdcdcd);
+  border-radius: 100%;
+  border-style: var(--radio-border-style, solid);
+  border-width: var(--radio-border-width, 2px);
+  box-sizing: border-box;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  margin-right: 10px;
+  min-height: 20px;
+  min-width: 20px;
+  padding: var(--radio-padding, 3px);
+  transition: all 0.3s;
+  width: 20px;
+}
+.radio.large {
+  height: 40px;
+  min-height: 40px;
+  min-width: 40px;
+  width: 40px;
+  border-width: var(--radio-border-width-large, 4px);
+  padding: var(--radio-padding-large, 6px);
+}
+.radio.active.primary {
+  border-color: var(--primary-color);
+}
+.radio.active.secondary {
+  border-color: var(--secondary-color);
+}
+.radio.active.error {
+  border-color: var(--error-color);
+}
+.radio.active.warning {
+  border-color: var(--warning-color);
+}
+.radio.active.success {
+  border-color: var(--success-color);
+}
+.radio.active.disabled {
+  border-color: #efefef;
+}
+
+.indicator {
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s;
+  transform: scale(0);
+}
+
+.active
+.indicator {
+  background-color: var(--radio-indicator-color, #efefef);
+  transform: scale(1);
+}
+.active.primary
+.indicator {
+  background-color: var(--primary-color);
+}
+.active.secondary
+.indicator {
+  background-color: var(--secondary-color);
+}
+.active.error
+.indicator {
+  background-color: var(--error-color);
+}
+.active.success
+.indicator {
+  background-color: var(--success-color);
+}
+.active.disabled
+.indicator {
+  background-color: #efefef;
+}

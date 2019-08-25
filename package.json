@@ -22,7 +22,8 @@
   "devDependencies": {
     "@stencil/core": "1.1.6",
     "@types/jest": "^23.3.9",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "workbox-build": "4.3.1"
   },
   "repository": {
     "type": "git",

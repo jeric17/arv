@@ -35,6 +35,7 @@ import { Draggable } from './draggable';
 // import { DraggableWrapper } from './draggable-wrapper';
 import { Tooltip } from './tooltip';
 import { InputWrapper } from './input-wrapper';
+import { Radio } from './radio';
 
 @Component({
   tag: 'my-component',
@@ -69,6 +70,7 @@ export class MyComponent {
     {...Menu},
     {...Paginator},
     {...Paper},
+    {...Radio},
     {...Section},
     {...Select},
     {...Snackbar},
