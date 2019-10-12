@@ -11,32 +11,20 @@ export class Text {
 
   @State() show = true;
 
-  @Prop() isRequired: boolean;  
-
+  @Prop() isRequired: boolean;
   @Prop() color: string;
   /* oneOf: [heading1, heading2, heading3, body1, body2, caption, subtle] */
   @Prop() variant: string = 'body1';
-
   @Prop() lineHeight: string;
-
   @Prop() maxChars: number;
-
   @Prop() weight: number;
-
   @Prop() strong: boolean;
-
   @Prop() noWrap: boolean;
-
   @Prop() preWrap: boolean;
-
   @Prop() strike: boolean;
-
   @Prop() textOverflow: boolean;
-
   @Prop() textAlign = 'left';
-
   @Prop() textShadow: boolean;
-
   @Prop() textDecoration: string;
 
   componentDidUpdate() {
@@ -112,7 +100,7 @@ export class Text {
         class={rootClassNames}>
         <slot></slot>
         {this.isRequired && (
-          <span class="required">*</span>  
+          <span class="required">*</span>
         )}
       </div>
     );

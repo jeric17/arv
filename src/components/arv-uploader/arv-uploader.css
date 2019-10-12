@@ -12,11 +12,11 @@
   outline-offset: var(--dragging-outline-offset, -10px);
   transition: all 0.3s;
   box-sizing: border-box;
+  position: relative;
 }
 
 .root {
   background-color: var(--uploader-bg, #fff);
-  outline-radius: var(--radius);
 }
 .input {
   height: 0px;
@@ -32,4 +32,15 @@
   outline-style: var(--dragging-outline-style, dashed);
   outline-width: var(--dragging-outline-width, 2px);
   outline-color: var(--dragging-outline-color, var(--primary-color));
+}
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.labelText {
+  display: block;
+  padding: 0.25em 1.75em;
+  background-color: var(--upload-button-bg, var(--primary-color));
+  border-radius: var(--radius);
 }

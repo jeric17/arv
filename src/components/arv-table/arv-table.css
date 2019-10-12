@@ -39,7 +39,7 @@
 }
 
 tr {
-  transition: background-color 0.3s;  
+  transition: background-color 0.3s;
 }
 
 tbody tr:hover {
@@ -47,7 +47,7 @@ tbody tr:hover {
 }
 
 tbody tr:hover .controls {
-  opacity: 1;  
+  opacity: 1;
 }
 
 .rowItemArrayItem {
@@ -61,5 +61,9 @@ tbody tr:hover .controls {
 }
 
 .controls {
-  opacity: 0;  
+  opacity: 0;
+}
+
+.trClickable {
+  cursor: pointer;
 }

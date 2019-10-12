@@ -99,6 +99,7 @@ export class Draggable {
   }
 
   onDrop = (evt: DragEvent) => {
+    console.log('draggable', evt);
     evt.preventDefault();
     const key = evt.dataTransfer.getData('Text');
 

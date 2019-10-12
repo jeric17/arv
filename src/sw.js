@@ -33,5 +33,54 @@ self.addEventListener('activate', e => {
     e.waitUntil(clients.claim());
 });
 
+// self.addEventListener('fetch', event => {
+//   (async () => {
+//     const db = await getDb();
+//     const dbObjName = 'user';
+//     const c = db.transaction(["user"]).objectStore('user').openCursor();
+//     const requestUrl = new URL(event.request.url);
+
+//     await new Promise(async resolve => {
+//       c.onsuccess = e => {
+//         const { target: { result: { value: { userData } } } } = e;
+//         const checkIfSf = isSf(requestUrl.href, userData.instanceUrl);
+//         const targetUrl = requestUrl.origin.match('localhost') ? '' : requestUrl.origin;
+
+//         if (requestUrl.href.match('/services/') || checkIfSf) {
+//           event.respondWith(function () {
+//             return fetch(requestUrl.pathname + requestUrl.search, {
+//               headers: {
+//                 'Target-URL': targetUrl || userData.instanceUrl,
+//                 'Authorization': `Bearer ${userData.accessToken}`
+//               }
+//             }).then(d => resolve(d));
+//           }());
+//         }
+//       };
+//     });
+//   })();
+// });
+
+// function getDb() {
+//   const req = indexedDB.open('studio');
+
+//   return new Promise((resolve, reject) => {
+//     let db;
+//     req.onsuccess = e => {
+//       resolve(e.target.result);
+//     };
+
+//     req.onerror = () => {
+//       reject('Db error');
+//     };
+//   });
+// }
+
+// function isSf(targetUrl, instanceUrl) {
+//   const needle = instanceUrl.replace('https://', '').split('.')[0];
+//   return targetUrl.match(needle);
+// }
+
+
 // the precache manifest will be injected here
 self.workbox.precaching.precacheAndRoute([]);

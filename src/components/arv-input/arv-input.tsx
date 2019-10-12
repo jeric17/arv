@@ -7,7 +7,7 @@ import { Component, h, Element, Event, EventEmitter, Listen, Method, Prop, State
 })
 export class Input {
 
-  loading = true;  
+  loading = true;
   debounceTimeOut = null;
   inputElement: any;
 
@@ -17,7 +17,7 @@ export class Input {
 
   @Prop() autocomplete = 'off';
   @Prop() debounceTime = 0;
-  @Prop() disabled = false; 
+  @Prop() disabled = false;
   @Prop() fileUpload = false;
   @Prop() full: boolean;
   @Prop() hasError: boolean;
@@ -32,6 +32,7 @@ export class Input {
   @Prop() inputChange: (e: any, error: any) => void;
   @Prop() inputEnter: (e: any) => void;
   @Prop() label: string;
+  @Prop() textVariant = 'caption';
 
   /* oneOf: [column, row] */
   @Prop() layout = 'column';
@@ -104,7 +105,7 @@ export class Input {
       this.inputElement.value = null;
     }
   }
-  
+
   componentDidLoad() {
     const elem = (() => {
       if (!this.rows) {
@@ -242,7 +243,9 @@ export class Input {
     const Label = () => (
       <label
         class={labelClass}>
-        {this.layout === 'column' && <arv-text variant="caption2">{this.label}</arv-text>}
+        {this.layout === 'column' && (
+          <arv-text variant={this.textVariant}>{this.label}</arv-text>
+        )}
         {this.layout === 'row' && this.label}
         {this.required && (
            <span class="required">*</span>
@@ -311,9 +314,9 @@ export class Input {
       <div class={rootClassNames}>
         <arv-flex layout={this.layout}>
           {this.label && !this.fileUpload && <Label />}
-          <arv-divider 
+          <arv-divider
             noMargin={layout === 'row' ? true : false}
-            layout={layout} 
+            layout={layout}
             transparent></arv-divider>
           <div class="inputWrapper">
             {this.icon && <arv-icon styles={iconStyles} icon={this.icon} noMargin></arv-icon>}

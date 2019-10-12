@@ -290,6 +290,7 @@ export namespace Components {
     'required': boolean;
     'rows': number;
     'size': string;
+    'textVariant': string;
     'type': string;
     'value': string;
   }
@@ -440,6 +441,7 @@ export namespace Components {
     'controls': any[];
     'isAscending': boolean;
     'multiSelectable': boolean;
+    'rowClickable': boolean;
     'select': (row: any) => void;
     'selectable': boolean;
     'sortable': boolean;
@@ -1253,6 +1255,7 @@ declare namespace LocalJSX {
     'required'?: boolean;
     'rows'?: number;
     'size'?: string;
+    'textVariant'?: string;
     'type'?: string;
     'value'?: string;
   }
@@ -1416,6 +1419,7 @@ declare namespace LocalJSX {
     'onHeaderClick'?: (event: CustomEvent<any>) => void;
     'onRowClick'?: (event: CustomEvent<any>) => void;
     'onRowItemClick'?: (event: CustomEvent<any>) => void;
+    'rowClickable'?: boolean;
     'select'?: (row: any) => void;
     'selectable'?: boolean;
     'sortable'?: boolean;

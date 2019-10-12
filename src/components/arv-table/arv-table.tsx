@@ -17,6 +17,8 @@ export class Table {
 
   @Prop() multiSelectable: boolean;
 
+  @Prop() rowClickable = false;
+
   @Prop() selectable: boolean;
 
   @Prop() sortable: boolean;
@@ -120,7 +122,7 @@ export class Table {
               {d}
             </span>
           ))}
-        </arv-flex>  
+        </arv-flex>
       );
     }
 
@@ -132,6 +134,11 @@ export class Table {
       root: true,
       sortable: this.sortable,
       ascending: this.isAscending
+    };
+
+    const trClass = {
+      tr: true,
+      trClickable: this.rowClickable
     };
 
     return (
@@ -173,7 +180,7 @@ export class Table {
                const [id, ...dataBody] = rowData;
                return (<tr
                          data-id={id}
-                         class="tr"
+                         class={trClass}
                          onClick={this.trItemClick.bind(this, rowData)}
                          style={this.styles.tr}>
                  {(this.selectable || this.multiSelectable) && (

@@ -39,6 +39,7 @@ export class Uploader {
   }
 
   onDrop = (e: DragEvent) => {
+    console.log('uploader', e);
     this.prevent(e);
     this.isDragging = false;
 
@@ -67,13 +68,8 @@ export class Uploader {
     }
 
     return (
-      <arv-flex
-        justify="center"
-        items="center"
-        fullHeight
-      >
-        <label class="label">
-          <arv-text variant={this.uploadTextVariant || 'heading4'}>
+      <label class="label">
+          <arv-text class="labelText" variant={this.uploadTextVariant || 'heading4'}>
             {this.uploadText || 'Upload'}
           </arv-text>
           <input
@@ -85,7 +81,6 @@ export class Uploader {
             multiple
           />
         </label>
-      </arv-flex>
     );
   }
 
@@ -107,8 +102,12 @@ export class Uploader {
         onDrop={this.onDrop}
 
       >
-        {this.uploadButton}
-        <slot></slot>
+        <arv-flex layout="column">
+          {this.uploadButton}
+          <div class="content-wrapper">
+            <slot></slot>
+          </div>
+        </arv-flex>
       </div>
     );
   }

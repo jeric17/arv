@@ -103,4 +103,5 @@
 }
 .required {
   color: var(--error-color);
+  margin-left: 8px;
 }

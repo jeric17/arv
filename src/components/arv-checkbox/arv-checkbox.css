@@ -35,9 +35,11 @@ arv-icon {
   opacity: 1;
 }
 .checked.primary {
+  --default-icon-color: var(--primary-text-color);
   background-color: var(--primary-color);
 }
 .checked.secondary {
+  --default-icon-color: var(--secondary-text-color);
   background-color: var(--secondary-color);
 }
 .checked.default {
