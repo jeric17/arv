@@ -2,160 +2,18 @@
   width: 100%;
 }
 
-.root:hover arv-icon {
-  transform: scale(0.9);
-  --default-text-color: var(--primary-dark-color);
-}
-.root {
-  position: relative;
-}
-.textValue {
-  margin: 6px 0;
-}
-.value {
-  align-items: center;
-  background-color: #FFF;
-  border-color: #efefef;
-  border-radius: var(--radius);
-  border-style: solid;
-  border-width: 1px;
-  box-sizing: border-box;
-  cursor: pointer;
-  display: flex;
-  font-size: 1rem;
-  line-height: 2rem;
-  padding: 0 0.5em 0 1em;
-  transition: var(--transition);
-  display: flex;
-  justify-content: space-between;
-  min-height: 30px;
-}
-
-.value:hover {
-  border-color: var(--primary-color);
-}
-
-.full,
-.inputWrapper {
-  width: 100%;
-}
-arv-icon {
-  transition: all 0.3s;
-}
-.show arv-icon.chevron {
-  transform: rotate(180deg);
-}
-.loader {
+.items {
   position: absolute;
-  left: 0;
-  top: 4px;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-}
-.value-item {
-  border-radius: var(--radius);
-  background-color: #f1f1f1;
-  margin: 4px;
-  box-sizing: border-box;
-  padding: 0 0 0 8px;
-  transition: background-color 0.3s;
-  display: flex;
-  align-items: center;
-}
-.value-item:hover {
-  /* background-color: var(--primary-light-color); */
-}
-.value-item arv-icon {
-  margin-left: 8px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  width: 19px;
-  justify-content: center;
-  transform: scale(1) !important;
-}
-.value-item arv-icon:hover {
-  --default-icon-color: var(--error-color);
-}
-
-.multipleValues {
-  background-color: #fff;
-}
-
-.inputMode.multipleValues {
-  border-radius: var(--radius);
-  box-sizing: border-box;
-  padding: 4px;
-  border-width: 1px;
-  border-style: solid;
-  border-color: #efefef;
-  transition: border-color 0.3s;
-}
-
-.inputMode.multipleValues:hover {
-  border-color: var(--primary-color);
-}
-.full .multipleValues {
-  width: 100%;
-}
-.listWrapper {
-  position: relative;
-  outline: 0;
   display: none;
 }
-.listContent {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 20;
+
+:host(.isOpen) .items {
+  display: flex;
+  flex-direction: column;
 }
-@keyframes will-hide {
-  from {
-    transform: scale(1, 1);
-  }
-  to {
-    transform: scale(1, 0);
-  }
-}
-.willHide {
-  transform-origin: top center;
-  animation: will-hide 0.3s forwards;
-}
-.listWrapper.show {
-  display: block;
-}
-.multipleValues {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #efefef;
+
+.select {
   border-radius: var(--radius);
-  min-height: 31px;
-}
-.multipleValues:hover {
-  border-color: var(--primary-color);
-}
-.select-list {
-  overflow-y: scroll;
-  max-height: 200px;
-  height: 100%;
-}
-.multipleValues.disabled,
-.value.disabled {
-  background-color: #efefef;
-  cursor: not-allowed;
-}
-.multipleValues.disabled arv-input {
-  display: none;
-}
-.multipleValues.selectMode {
-  border: none;
-  margin-top: 1px;
-}
-.top .listContent {
-  transform-origin: bottom;
-  transform: translateY(-100%);
+  border: 1px solid #efefef;
+  padding: 1em;
 }

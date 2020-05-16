@@ -13,7 +13,7 @@
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
   margin: 0 0.5em;
-  color: var(--default-icon-color);
+  color: var(--icon-color);
   transition: all 0.3s;
 }
 
@@ -23,48 +23,31 @@
 
 .small {
   font-size: 0.8rem;
-}
-.medium {
-  font-size: var(--icon-size, 1.2rem);
+  line-height: 0.8rem;
 }
 .large {
-  font-size: var(--icon-size, 2rem);
-}
-.xlarge {
-  font-size: var(--icon-size, 4rem);
-}
-.xxlarge {
-  font-size: 8rem;
-}
-
-.noMargin {
-  margin: 0;
-}
-
-.withButtonIcon {
-  margin: 0;
-}
-
-.defaultColor {
-  color: var(--default-text-color);
+  font-size: 2rem;
+  line-height: 2rem;
 }
 
 .primary {
   color: var(--primary-color);
 }
-
 .secondary {
   color: var(--secondary-color);
 }
-
 .warning {
   color: var(--warning-color);
 }
-
 .success {
   color: var(--success-color);
 }
-
-.error {
-  color: var(--error-color);
+.danger {
+  color: var(--danger-color);
+}
+.light {
+  color: var(--light-color);
+}
+.dark {
+  color: var(--dark-color);
 }

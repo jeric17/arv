@@ -1,4 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
+import { Color, Size } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-icon',
@@ -7,40 +9,43 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Icon {
 
-  @Prop() color: string;
+  /**
+   * Color variant to use.
+   */
+  @Prop() color: Color;
 
+  /**
+   * Size variant to use.
+   */
+  @Prop() size: Size;
+
+  /**
+   * Name of the icon to use
+   */
   @Prop() icon: string;
 
+  /**
+   * Css styles to extend the component's ui
+   */
+  @Prop() styles: { [key: string]: string };
+
+  /**
+   * Deprecated props.
+   */
+  @Prop() withButtonIcon: boolean;
   @Prop() noMargin: boolean;
 
-  /* oneOf: [small, medium, large] */
-  @Prop() size: string = 'medium';
-
-  @Prop() styles: any = {};
-
-  @Prop() withButtonIcon: boolean;
-
   render() {
-    const rootClassNames = {
+    const rootCls = {
       'material-icons': true,
-      icon: true,
-      small: this.size === 'small',
-      medium: this.size === 'medium',
-      large: this.size === 'large',
-      xlarge: this.size === 'xlarge',
-      xxlarge: this.size === 'xxlarge',
-      noMargin: this.noMargin,
-      withButtonIcon: this.withButtonIcon,
-      defaultColor: this.color === 'default',
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      warning: this.color === 'warning',
-      success: this.color === 'success',
-      error: this.color === 'error'
+      ...generateAttrValue(this.color),
+      ...generateAttrValue(this.size),
     };
 
     return (
-      <span style={this.styles} class={rootClassNames}>
+      <span
+        style={this.styles}
+        class={rootCls}>
         {this.icon}
       </span>
     );

@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-flex',
@@ -7,61 +7,48 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Flex {
 
-  /* oneOf: [start, end, center, stretch, around, between] */
-  @Prop() content: string = 'start';
+  @Prop() alignItems: 'flex-start' | 'flex-end' | 'center' | 'stretch';
 
-  /* oneOf: [start, end, center, stretch, baseline] */
-  @Prop() items: string = 'start';
+  @Prop() direction: 'row' | 'column' | 'row-reverse' | 'column-reverse';
 
-  /* oneOf: [center, start, end, around, between, evenly] */
-  @Prop() justify: string = 'start';
+  @Prop() flex: string;
 
-  /* oneOf: [row, row-reverse, column, column-reverse] */
-  @Prop() layout: string = 'row';
+  @Prop() justify: 'center' | 'space-between' | 'space-around' | 'space-evenly' | 'flex-start' | 'flex-end' | string;
 
-  @Prop() order: number = 0;
+  @Prop() styles: { [key: string]: string };
 
-  @Prop() padded: boolean;
+  @Prop() wrap: 'wrap' | 'no-wrap' | 'wrap-reverse';
 
-  @Prop() bordered: boolean;
+  @Prop() expanded: boolean;
 
-  /* oneOf: [start, end, center, stretch, baseline] */
-  @Prop() self: string = 'auto';
-
-  /* oneOf: [wrap, no-wrap, wrap-reverse] */
-  @Prop() wrap: boolean;
-
-  @Prop() full: boolean = true;
-
-  @Prop() fullHeight: boolean;
-
-  @Prop() fullWidth = true;
-
-  hostData() {
-    return {
-      class: {
-        'host-full-width': this.fullWidth,
-        'host-full-height': this.fullHeight,
-      },
-    };
-  }
+  /**
+   * Deprecated props.
+   */
+  @Prop() layout?: any;
+  @Prop() padded?: any;
+  @Prop() items?: any;
+  @Prop() full?: any;
+  @Prop() fullHeight?: any;
 
   render() {
-    const classNames = `arv-flex layout-${this.layout} justify-${this.justify} items-${this.items} content-${this.content} self-${this.self} ${!this.full ? 'auto' : ''} ${this.padded ? 'padded' : ''}  ${this.wrap ? 'wrap' : ''}`;
-    const rootClassNames = {
-      [classNames]: true,
-      bordered: this.bordered
+    const cls = {
+      expanded: this.expanded,
     };
     const styles = {
-      '--order': `${this.order}`
+      'flex-direction': this.direction,
+      'justify-content': this.justify,
+      'align-items': this.alignItems,
+      'flex-wrap': this.wrap,
+      'flex': this.flex,
+      ...this.styles,
     };
 
     return (
-      <div
-        style={styles}
-        class={rootClassNames}>
+      <Host
+        class={cls}
+        style={styles}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }
