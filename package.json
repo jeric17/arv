@@ -12,17 +12,20 @@
   "scripts": {
     "build": "stencil build",
     "start": "stencil build --dev --watch --serve",
-    "test": "jest",
-    "test.watch": "jest --watch"
+    "test": "stencil test --spec",
+    "test.watch": "stencil test --spec --watch",
+    "generate": "stencil generate"
   },
   "dependencies": {
     "diff": "^4.0.1",
     "tslint-ionic-rules": "^0.0.21"
   },
   "devDependencies": {
-    "@stencil/core": "^1.1.6",
+    "@stencil/core": "^1.13.0",
     "@types/jest": "^24.0.23",
-    "jest": "^23.6.0",
+    "jest": "26.0.1",
+    "jest-cli": "26.0.1",
+    "puppeteer": "^3.0.4",
     "workbox-build": "^4.3.1"
   },
   "repository": {
