@@ -1,4 +1,4 @@
-import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/core';
+import { Component, Element, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-avatar-group',
@@ -7,95 +7,42 @@ import { Component, h, Prop, Event, EventEmitter, State, Watch } from '@stencil/
 })
 export class AvatarGroup {
 
-  @State() imageItemsData: string[];
+  /**
+   * Reference to host element.
+   */
+  @Element() el: HTMLElement;
 
-  @Prop() index: number;
+  /**
+   * Maximun number of avatars to show.
+   */
+  @Prop() max?: number;
 
-  @Prop() showMore: () => void;
-
-  @Prop() maxItems: any = 0;
-
-  @Prop() imageItems: string | string[];
-
-  @Watch('imageItems')
-  handleImageItems() {
-    this.load();
-  }
-
-  @Prop() size = 'small';
-
-  @Prop() styles: any;
-
-  @Prop() bordered: boolean;
-
-  @Event() onShowMore: EventEmitter;
-
-  componentWillLoad() {
-    this.load();
-  }
-
-  load() {
-    if (!this.imageItems) {
-      this.imageItemsData = [];
-      return false;
-    }
-    if (typeof this.imageItems !== 'string') {
-      this.imageItemsData = this.imageItems;
-      return false;
-    }
-    try {
-      const imageItems = JSON.parse(this.imageItems);
-      this.imageItemsData = imageItems;
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  /**
+   * Emitted when .more is clicked.
+   */
+  @Event() arvMore: EventEmitter;
 
   render() {
-    const imageLength = this.imageItemsData.length;
-    const more = imageLength > Number(this.maxItems) ? (imageLength - this.maxItems) : 0;
-    const MoreBtn = () => (
-      <div
-        onClick={() => {
-          if (this.showMore) {
-            this.showMore()
-          }
-        }}
-        class={{
-          more: true,
-          small: this.size === 'small',
-        }}
-      >
-        <arv-text>+{more}</arv-text>
-      </div>
-    );
+    let extra = 0;
 
-    const imageItems = this.imageItemsData.slice(0, this.maxItems);
-
-    const styles: any = {};
-
-    if (this.bordered) {
-      styles.borderWidth = '2px';
-      styles.borderStyle = 'solid';
-      styles.borderColor = '#eee';
+    if (this.max &&
+      this.el.children.length > this.max) {
+      const items = Array.from(this.el.children).splice(this.max);
+      items.forEach((node: HTMLElement) => {
+        node.style.display = 'none !important';
+      });
+      extra = items.length;
     }
 
     return (
-      <arv-flex>
-        {imageItems.map((d, i) => {
-          if (i > 0) {
-            styles.marginLeft = '-10px';
-          }
-          return (
-            <arv-avatar
-              styles={Object.assign(styles, this.styles)}
-              imgSrc={d}
-              size={this.size}
-            ></arv-avatar>
-          );
-        })}
-        {Boolean(this.maxItems && more) && <MoreBtn />}
-      </arv-flex>
+      <Host>
+        <slot></slot>
+        {extra && (
+          <span
+            onClick={() => this.arvMore.emit()}
+            class="more">+{extra}</span>
+        )}
+      </Host>
     );
   }
 }

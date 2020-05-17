@@ -17,7 +17,7 @@ export class Badge {
   /**
    * Will hide the badge.
    */
-  @Prop() hidden?: boolean;
+  @Prop() invisible?: boolean;
 
   /**
    * Value of the badge to show.
@@ -33,7 +33,7 @@ export class Badge {
 
     const cls = {
       ...generateAttrValue(this.color),
-      'arv-hidden': this.hidden
+      'arv-invisible': this.invisible
     };
 
     return (

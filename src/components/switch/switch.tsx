@@ -1,4 +1,6 @@
 import { Component, h, Prop } from '@stencil/core';
+import { generateAttrValue } from '../../utils/helpers';
+import { Color } from '../../interface';
 
 @Component({
   tag: 'arv-switch',
@@ -6,23 +8,30 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class Switch {
-  @Prop() color = 'primary';
+
+  @Prop() color: Color = 'primary';
 
   @Prop() disabled: boolean;
 
-  @Prop() value: boolean;
+  @Prop({ mutable: true }) value: boolean;
+
+  click = () => {
+    this.value = !this.value;
+  }
 
   render() {
     const classNames = {
       root: true,
       active: this.value,
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
+      ...generateAttrValue(this.color),
       disabled: this.disabled
     };
 
     return (
-      <div class={classNames}>
+      <div
+        onClick={this.click}
+        class={classNames}
+      >
         <div class="bar"></div>
         <div class="circle"></div>
       </div>

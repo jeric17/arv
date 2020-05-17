@@ -20,7 +20,7 @@ it('sets color', async () => {
 
 it('hidden', async () => {
   const page = await specComponent(`
-    <arv-badge hidden></arv-badge>
+    <arv-badge invisible></arv-badge>
   `);
-  expect(page.root.classList.contains('arv-hidden')).toBeTruthy();
+  expect(page.root.classList.contains('arv-invisible')).toBeTruthy();
 });

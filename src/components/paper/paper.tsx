@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-paper',
@@ -7,43 +7,28 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Paper {
 
-  @Prop() height: string;
+  /**
+   * How much shadow to be applied.
+   */
+  @Prop() shadowLevel?: 0 | 1 | 2 = 1;
 
-  @Prop() padded: boolean;
-
-  @Prop() transparent: boolean;
-
-  @Prop() box: boolean;
-
-  @Prop() noOverflow: boolean;
-
-  @Prop() weight = 2;
-
-  @Prop() width: string;
+  /**
+   * Border only, no shadows.
+   */
+  @Prop() outlined?: boolean;
 
   render() {
-    const rootClassNames = {
-      root: true,
-      padded: this.padded,
-      transparent: this.transparent,
-      zero: this.weight === 0,
-      one: this.weight === 1,
-      two: this.weight === 2,
-      box: this.box,
-      noOverflow: this.noOverflow
-    };
-
-    const styles = {
-      height: this.height,
-      width: this.width
+    const cls = {
+      'shadow-0': this.shadowLevel === 0,
+      'shadow-1': this.shadowLevel === 1,
+      'shadow-2': this.shadowLevel === 2,
+      outlined: this.outlined,
     };
 
     return (
-      <div
-        style={styles}
-        class={rootClassNames}>
+      <Host class={cls}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

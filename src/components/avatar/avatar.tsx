@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-avatar',
@@ -7,40 +7,34 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Avatar {
 
+  /**
+   * Alt attr of the img element.
+   */
   @Prop() alt: string;
 
+  /**
+   * Image source of the img element
+   */
   @Prop() imgSrc: string;
 
-  /* oneOf: [small, medium, large] */
+  /**
+   * Size variant to set.
+   */
   @Prop() size: string = 'medium';
 
-  @Prop() styles: any;
-
   render() {
-    const rootClassNames = {
-      avatar: true,
+    const cls = {
       small: this.size === 'small',
       medium: this.size === 'medium',
       large: this.size === 'large',
-      xlarge: this.size === 'xlarge',
-      xxlarge: this.size === 'xxlarge'
-    };
-    const style = {};
-
-    if (this.imgSrc) {
-      style['background-image'] = `url(${this.imgSrc})`;
-    }
-
-    const styles = {
-      ...this.styles,
-      ...style,
     };
 
     return (
-      <div
-        style={styles}
-        class={rootClassNames}>
-      </div>
+      <Host class={cls}>
+        <img
+          src={this.imgSrc}
+          alt={this.alt} />
+      </Host>
     );
   }
 }

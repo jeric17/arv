@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, Host, h } from '@stencil/core';
 import { Color, FlexDirection } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
@@ -15,9 +15,24 @@ export class Checkbox {
   @Prop() color?: Color;
 
   /**
+   * Disables the input element.
+   */
+  @Prop() disabled?: boolean;
+
+  /**
+   * Checked flag for the input element.
+   */
+  @Prop({ mutable: true }) checked?: boolean;
+
+  /**
    * flex direction of the label and the input.
    */
   @Prop() flexDirection: FlexDirection;
+
+  /**
+   * Will show a indeterminate state.
+   */
+  @Prop({ mutable: true }) indeterminate?: boolean;
 
   /**
    * Label of the check box
@@ -27,13 +42,21 @@ export class Checkbox {
   /**
    * Input value of the checkbox
    */
-  @Prop() value: boolean;
+  @Prop() value?: string;
+
+  @Event() arvChange: EventEmitter<boolean>;
+
+  change = () => {
+    this.checked = !this.checked;
+    this.arvChange.emit(this.checked);
+  }
 
   render() {
     const hostCls = {};
     const inputCls = {
       checkbox: true,
       ...generateAttrValue(this.color),
+      indeterminate: this.indeterminate,
     };
     let hostStyles = {};
     if (this.flexDirection) {
@@ -49,9 +72,12 @@ export class Checkbox {
       >
         <label class="label">{this.label}</label>
         <input
+          onChange={this.change}
+          disabled={this.disabled}
           class={inputCls}
           type="checkbox"
-          checked={this.value} />
+          value={this.value}
+          checked={this.checked} />
       </Host>
     );
   }
