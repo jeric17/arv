@@ -1,4 +1,6 @@
-import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
+import { Color, FlexDirection } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-checkbox',
@@ -7,83 +9,50 @@ import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 })
 export class Checkbox {
 
-  @Prop() color = 'default';
+  /**
+   * Color variant to set.
+   */
+  @Prop() color?: Color;
 
+  /**
+   * flex direction of the label and the input.
+   */
+  @Prop() flexDirection: FlexDirection;
+
+  /**
+   * Label of the check box
+   */
   @Prop() label: string;
 
-  @Prop() labelVariant = 'caption';
-
-  @Prop() layout = 'row';
-
-  // checkbox, option
-  @Prop() mode = 'checkbox';
-
-  @Prop() name: string;
-
-  @Prop() styles: any;
-
-  @Prop() textWidth = 'auto';
-
-  @Prop() value = false;
-
-  @Prop() onTick: (e: any) => void;
-
-  @Event() arvInputChange: EventEmitter;
-
-  click(e) {
-    if (this.onTick && typeof this.onTick === 'function') {
-      this.onTick({
-        name: this.name,
-        value: this.value
-      });
-    }
-    this.arvInputChange.emit(e);
-  }
+  /**
+   * Input value of the checkbox
+   */
+  @Prop() value: boolean;
 
   render() {
-    const rootClassName = {
-      root: true,
-      row: this.layout === 'row',
-      column: this.layout === 'column'
-    }
-    const checkboxClassNames = {
+    const hostCls = {};
+    const inputCls = {
       checkbox: true,
-      checked: this.value === true,
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      'default': this.color === 'default',
-      option: this.mode === 'option'
+      ...generateAttrValue(this.color),
     };
-    const dividerLayout = this.layout === 'row' ? 'column' : 'row';
-    const layoutItems = this.layout === 'row' ? 'center' : 'start';
-
+    let hostStyles = {};
+    if (this.flexDirection) {
+      hostStyles = {
+        flexDirection: this.flexDirection,
+      };
+      hostCls[`flex-${this.flexDirection}`] = true;
+    }
     return (
-      <div
-        onClick={this.click.bind(this)}
-        class={rootClassName}
-        style={this.styles}>
-        <arv-flex
-          items={layoutItems}
-          layout={this.layout}
-          full>
-          <div class="checkboxWrapper">
-            <div class={checkboxClassNames}>
-              <arv-icon icon="check"></arv-icon>
-            </div>
-            <input
-              class="input"
-              type="checkbox"
-              checked={this.value} />
-          </div>
-          <arv-divider
-            layout={dividerLayout}
-            transparent>
-          </arv-divider>
-          <arv-container width={this.textWidth}>
-            {this.label && <arv-text variant={this.labelVariant}>{this.label}</arv-text>}
-          </arv-container>
-        </arv-flex>
-      </div>
+      <Host
+        class={hostCls}
+        style={hostStyles}
+      >
+        <label class="label">{this.label}</label>
+        <input
+          class={inputCls}
+          type="checkbox"
+          checked={this.value} />
+      </Host>
     );
   }
 }

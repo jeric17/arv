@@ -1,4 +1,4 @@
-import { Component, Host, Event, EventEmitter, h } from '@stencil/core';
+import { Component, Prop, Host, Event, EventEmitter, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-menu-item',
@@ -6,11 +6,20 @@ import { Component, Host, Event, EventEmitter, h } from '@stencil/core';
   shadow: true
 })
 export class MenuItem {
-  @Event() arvMenuSelect: EventEmitter;
+
+  /**
+   * Value to pass in the arvMenuSelect event.
+   */
+  @Prop() value: any;
+
+  /**
+   * Event emitted when clicked.
+   */
+  @Event() arvMenuSelect: EventEmitter<any>;
 
   render() {
     return (
-      <Host onClick={() => this.arvMenuSelect.emit()}>
+      <Host onClick={() => this.arvMenuSelect.emit(this.value)}>
         <slot></slot>
       </Host>
     );

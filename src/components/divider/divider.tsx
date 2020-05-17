@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-divider',
@@ -6,55 +6,14 @@ import { Component, h, Prop } from '@stencil/core';
   shadow: true
 })
 export class Divider {
-
-  @Prop() bordered: boolean = true;
-
-  @Prop() height: string = '8px';
-
-  @Prop() layout: string = 'row';
-
-  @Prop() width: string = '8px';
-
-  @Prop() transparent: boolean;
-
-  @Prop() noMargin: boolean;
-
-  hostData() {
-    return {
-      class: {
-        full: this.layout === 'row'
-      }
-    };
-  }
+  @Prop() isVertical?: boolean;
 
   render() {
-    const rootClassNames = {
-      divider: true,
-      bordered: this.bordered,
-      row: this.layout === 'row',
-      column: this.layout === 'column',
-      transparent: this.transparent,
-      noMargin: this.noMargin
-    };
-
-    const styles = (() => {
-      if (this.layout === 'row') {
-        return {
-          'margin-top': this.height,
-          'margin-bottom': this.height
-        };
-      }
-      return {
-        'margin-left': this.width,
-        'margin-right': this.width
-      };
-    })();
-
+    const cls = {
+      'arv-vertical': this.isVertical
+    }
     return (
-      <div
-        style={styles}
-        class={rootClassNames}>
-      </div>
+      <Host class={cls}></Host>
     );
   }
 }

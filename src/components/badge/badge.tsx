@@ -1,4 +1,6 @@
-import { Component, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-badge',
@@ -7,64 +9,40 @@ import { Component, h, Prop, State, Watch } from '@stencil/core';
 })
 export class Badge {
 
-  @State() badgeStylesObj = {};
+  /**
+   * Color variant to set.
+   */
+  @Prop() color?: Color;
 
-  @Prop() show = true;
+  /**
+   * Will hide the badge.
+   */
+  @Prop() hidden?: boolean;
 
-  @Prop() color: string;
+  /**
+   * Value of the badge to show.
+   */
+  @Prop() value?: number;
 
-  @Prop() size: string;
-
-  @Prop() badgeStyle: any;
-
-  @Watch('badgeStyle')
-  handleStyles(badgeStyle) {
-    this.load(badgeStyle);
-  }
-
-  componentWillLoad() {
-    this.load(this.badgeStyle);
-  }
-
-  load(badgeStyle) {
-    if (!badgeStyle) {
-      return false;
-    }
-    if (typeof badgeStyle !== 'string') {
-      this.badgeStylesObj = badgeStyle;
-      return false;
-    }
-    try {
-      const styles = JSON.parse(badgeStyle);
-      this.badgeStylesObj = styles;
-    } catch (e) {
-      console.error(e);
-    }
-  }
+  /**
+   * Css styles to extend the component's ui
+   */
+  @Prop() styles?: { [key: string]: string };
 
   render() {
 
-    const classNames = {
-      badge: true,
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      error: this.color === 'error',
-      warning: this.color === 'warning',
-      success: this.color === 'success',
-      small: this.size === 'small',
-      hidden: !this.show
+    const cls = {
+      ...generateAttrValue(this.color),
+      'arv-hidden': this.hidden
     };
 
     return (
-      <div class="root">
-        <div
-          style={this.badgeStylesObj}
-          class={classNames}
-        >
-          <slot name="badge"></slot>
-        </div>
+      <Host class={cls}>
+        <span
+          style={this.styles}
+          class="value">{this.value}</span>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

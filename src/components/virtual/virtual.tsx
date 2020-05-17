@@ -1,5 +1,10 @@
 import { Component, Event, EventEmitter, Host, h } from '@stencil/core';
 
+/**
+ * Dynamically added component to display on top
+ * of the page. e.g. Dialog, Alert.
+ * slot - content of the virtual component
+ */
 @Component({
   tag: 'arv-virtual',
   styleUrl: 'virtual.css',
