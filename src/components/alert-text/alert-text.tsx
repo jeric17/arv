@@ -1,4 +1,6 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-alert-text',
@@ -7,34 +9,19 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class AlertText {
 
-  @Prop() color = 'default';
-
-  @Prop() textAlign = 'start';
-
-  @Prop() icon: string;
+  /**
+   * Color variant to use.
+   */
+  @Prop() color: Color;
 
   render() {
-    const rootClassNames = {
-      root: true,
-      'default': this.color === 'default',
-      error: this.color === 'error',
-      success: this.color === 'success',
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      warning: this.color === 'warning'
+    const cls = {
+      ...generateAttrValue(this.color)
     };
-
     return (
-      <arv-flex
-        justify={this.textAlign}
-        class={rootClassNames}
-        padded
-      >
-        <arv-flex items="center" fullWidth={false}>
-          {Boolean(this.icon) && <arv-icon icon={this.icon} />}
-          <slot />
-        </arv-flex>
-      </arv-flex>
+      <Host class={cls}>
+        <slot></slot>
+      </Host>
     );
   }
 }

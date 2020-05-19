@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-tooltip',
@@ -7,52 +7,26 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Tooltip {
 
-  @Prop() color: string;
-
+  /**
+   * Tooltip message.
+   */
   @Prop() message: string;
 
-  @Prop() position = 'top';
-
-  @Prop() fixed = false;
-
-  @Prop() show = false;
-
-  @Prop() full = false;
-
-  hostData() {
-    return {
-      style: {
-        width: this.full ? '100%' : 'auto'
-      }
-    };
-  }
+  /**
+   * Tooltip position
+   */
+  @Prop() position: 'top' | 'bottom' | 'right' | 'left' = 'top';
 
   render() {
-    const rootClass = {
-      root: true,
-      fixed: this.fixed,
-      show: this.show
-    };
-
-    const toolTipClass = {
-      toolTip: true,
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      error: this.color === 'error',
-      success: this.color === 'success',
-      top: this.position === 'top',
-      bottom: this.position === 'bottom',
-      right: this.position === 'right',
-      left: this.position === 'left',
+    const cls = {
+      [this.position]: true
     };
 
     return (
-      <div class={rootClass}>
-        <div class={toolTipClass}>
-          <arv-text noWrap variant="caption2">{this.message}</arv-text>
-        </div>
+      <Host class={cls}>
+        <span class="tooltip-message">{this.message}</span>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

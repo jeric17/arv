@@ -1,4 +1,6 @@
-import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Event, EventEmitter, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-accordion-item',
@@ -7,61 +9,40 @@ import { Component, h, Event, EventEmitter, Prop } from '@stencil/core';
 })
 export class AccordionItem {
 
-  @Prop() animated = true;
+  @Prop({ mutable: true, reflect: true }) active = false;
 
-  @Prop() active: boolean;
+  @Prop() color: Color;
 
-  @Prop() color = 'default';
-
-  @Prop() itemIndex: any;
-
-  @Prop() itemTitle: string;
-
-  @Prop() toggleAccordion: (itemIndex: any) => void;
+  @Prop() itemIndex: number;
 
   @Event({
     eventName: 'arvToggleAccordion',
     bubbles: true,
     composed: true
-  }) arvToggleAccordion: EventEmitter;
+  }) arvToggleAccordion: EventEmitter<number>;
+
+  toggle = () => {
+    this.active = !this.active;
+    this.arvToggleAccordion.emit(this.itemIndex);
+  }
 
   render() {
-    const rootClassNames = {
-      root: true,
-      active: this.active,
-      animated: this.animated
-    };
-
-    const contentClassNames = {
-      content: true,
-      animated: this.animated
+    const cls = {
+      ...generateAttrValue(this.color),
     };
 
     return (
-      <div class={rootClassNames}>
-        <div
-          onClick={() => {
-            if (this.toggleAccordion) {
-              this.toggleAccordion(this.itemIndex);
-            }
-            this.arvToggleAccordion.emit(this.itemIndex)
-          }}
-          class="header"
-        >
-          <arv-flex items="center">
-            <arv-icon class="icon" size="medium" icon="arrow_drop_down"></arv-icon>
-            <arv-text variant="caption">{this.itemTitle}</arv-text>
-          </arv-flex>
-          <div class="controls">
-            <slot name="controls"></slot>
-          </div>
+      <Host
+        onClick={this.toggle}
+        class={cls}
+      >
+        <div class="title">
+          <slot name="title"></slot>
         </div>
-        <div class={contentClassNames}>
-          <arv-transition animation="fadeIn">
-            <slot name="content"></slot>
-          </arv-transition>
+        <div class="content">
+          <slot></slot>
         </div>
-      </div>
+      </Host>
     );
   }
 }

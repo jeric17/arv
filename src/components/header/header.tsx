@@ -1,4 +1,6 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-header',
@@ -7,34 +9,31 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class Header {
 
-  /* oneOf: [default, primary, secondary, inherit] */
-  @Prop() color: string = 'primary';
+  /**
+   * Set the Color variant.
+   */
+  @Prop() color: Color = 'primary';
 
-  @Prop() padded: boolean = false;
+  /**
+   * Position of the header
+   */
+  @Prop() position: 'static' | 'inherit' | 'absolute' | 'relative' | 'fixed' | 'sticky' = 'static';
 
-  /* oneOf: [static, inherit, absolute, relative, fixed] */
-  @Prop() position: string = 'static';
-
-  @Prop() shadow = true;
+  /**
+   * Will not show a dropshadow.
+   */
+  @Prop() noShadow?: boolean;
 
   render() {
-    const rootClassNames = {
-      header: true,
-      'default': this.color === 'default',
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      inherit: this.color === 'inherit',
-      'static': this.position === 'static',
-      absolute: this.position === 'absolute',
-      relative: this.position === 'relative',
-      fixed: this.position === 'fixed',
-      shadow: this.shadow,
-      padded: this.padded
+    const cls = {
+      ...generateAttrValue(this.color),
+      ...generateAttrValue(this.position),
+      'no-shadow': this.noShadow
     };
     return (
-      <div class={rootClassNames}>
+      <Host class={cls}>
         <slot></slot>
-      </div>
+      </Host>
     );
   }
 }

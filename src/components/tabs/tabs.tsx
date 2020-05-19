@@ -1,4 +1,6 @@
-import { Component, h, Element, Prop, State, Watch, Listen } from '@stencil/core';
+import { Component, Element, Event, State, EventEmitter, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-tabs',
@@ -6,171 +8,83 @@ import { Component, h, Element, Prop, State, Watch, Listen } from '@stencil/core
   shadow: true
 })
 export class Tabs {
-  counter = 0;
-  rootWidth: number;
-  tabChildren: any;
-  tabChildrenLength: number;
-  resizing = false;
 
+  /**
+   * Reference to host element.
+   */
   @Element() el: HTMLElement;
 
-  @State() tabsData: string[];
+  /**
+   * Current active tab index.
+   */
+  @State() activeIndex = 0;
 
-  @State() currentIndex = 0;
+  /**
+   * Color variant to set.
+   */
+  @Prop() color: Color;
 
-  @State() loaded: boolean;
+  /**
+   * Tab names to appear in the tab header.
+   */
+  @Prop() tabNames = '[]';
 
-  @Prop() color: string;
+  /**
+   * Header will be compressed, not occupying the whole tab width.
+   */
+  @Prop() compressedHeader?: boolean;
 
-  @Prop() selectedTab: string;
+  /**
+   * Emitted on tab header click.
+   */
+  @Event() arvTabClick: EventEmitter<number>;
 
-  @Prop() selectedIndex: number;
-  @Watch('selectedIndex')
-  handleSelectedTab(index) {
-    this.currentIndex = index;
-  }
-
-  @Prop() animated = true;
-
-  @Prop() tabChange: (index: number) => void;
-
-  @Prop() tabs: any | string[];
-
-  @Prop() isDefault = true;
-
-  @Prop() fullHeaderWidth = true;
-
-  @Watch('tabs')
-  handleTabs() {
-    this.loadTabs();
-  }
-
-  @Listen('resize', { target: 'window' })
-  handleResize() {
-    if (this.resizing) {
-      return false;
-    }
-    setTimeout(() => {
-      this.init();
-      this.resizing = false;
-    }, 100);
-  }
-
-  componentWillLoad() {
-    if (this.selectedIndex) {
-      this.currentIndex = this.selectedIndex;
-    }
-    this.loadTabs();
-  }
-
+  /**
+   * Adds item-index attribute to children.
+   */
   componentDidLoad() {
-    this.loaded = true;
-    this.tabChildren = this.el.children;
-    this.tabChildrenLength = this.tabChildren.length;
-
-    this.init();
-    this.showTab();
-  }
-
-  loadTabs() {
-    if (!this.tabs) {
-      this.tabsData = [];
-      return false;
-    }
-    if (typeof this.tabs !== 'string') {
-      this.tabsData = this.tabs;
-      return false;
-    }
-    const tabs = JSON.parse(this.tabs);
-    this.tabsData = tabs;
-  }
-
-  private init() {
-    const { width } = this.el.getBoundingClientRect();
-
-    if (!this.isDefault) {
-      return false;
-    }
-
-    if (!width && this.counter < 10) {
-      setTimeout(() => {
-        this.counter += 1;
-        this.init();
-      }, 100);
-      return false;
-    }
-    const tabBody: HTMLElement = this.el.shadowRoot.querySelector('.tabBody');
-
-    this.rootWidth = width;
-
-    tabBody.style.left = `${width * this.currentIndex * -1}px`
-    tabBody.style.width = `${width * this.tabChildrenLength}px`;
-
-    Array.from(this.el.children).forEach((element: HTMLElement) => {
-      element.style.width = `${width}px`;
+    Array.from(this.el.children).forEach((item, index) => {
+      item.setAttribute('item-index', String(index));
     });
   }
 
-  tabClick(index: number) {
-    if (index === this.currentIndex) {
-      return false
-    }
-    this.currentIndex = index;
-    this.showTab();
-    if (this.tabChange) {
-      this.tabChange(index);
-    }
-  }
-
-  showTab() {
-    if (!this.isDefault) {
-      return false;
-    }
-    Array.from(this.el.children).forEach((tabItem: HTMLElement, index: number) => {
-      if (index !== this.currentIndex) {
-        tabItem.style.visibility = 'hidden';
-        return false;
+  /**
+   * Set the active index and emit event on tab click. Also manage is-active
+   * attribute on children.
+   */
+  tabClick = (index: number) => {
+    this.activeIndex = index;
+    this.arvTabClick.emit(index);
+    Array.from(this.el.children).forEach((item, i) => {
+      if (i === index) {
+        item.setAttribute('is-active', 'true');
+      } else {
+        item.setAttribute('is-active', 'false');
       }
-      tabItem.style.visibility = 'visible';
     });
-    const tabBody: HTMLElement = this.el.shadowRoot.querySelector('.tabBody');
-
-    tabBody.style.left = `${(this.currentIndex * this.rootWidth) * -1}px`;
   }
 
   render() {
-    const rootClassNames = {
-      root: true,
-      primary: this.color === 'primary',
-      secondary: this.color === 'secondary',
-      fullHeaderWidth: this.fullHeaderWidth
+    const hostCls = {
+      ...generateAttrValue(this.color),
+      compressed: this.compressedHeader
     };
 
+    const tabNames = JSON.parse(this.tabNames);
+
     return (
-      <div class={rootClassNames}>
-        <div class="tabHeader">
-          <arv-flex>
-            {this.tabsData.map((tabItem, index) => (
-              <div
-                onClick={this.tabClick.bind(this, index)}
-                class={{
-                  tabItem: true,
-                  active: this.currentIndex === index
-                }}>
-                {tabItem}
-              </div>
-            ))}
-            <div class="filler"></div>
-          </arv-flex>
+      <Host class={hostCls}>
+        <div class="header">
+          {tabNames.map((tabName, index) => (
+            <span
+              onClick={() => this.tabClick(index)}
+              class="tab-name"
+            >{tabName}</span>
+          ))}
+          <span class="filler"></span>
         </div>
-        <div class={{
-          tabBody: true,
-          loaded: this.loaded,
-          animate: this.animated
-        }}>
-          <slot />
-        </div>
-      </div>
+        <slot></slot>
+      </Host>
     );
   }
 }

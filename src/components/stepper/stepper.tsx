@@ -1,5 +1,6 @@
-import { Component, h, Prop, Watch, State } from '@stencil/core';
-import { StepItem } from './stepper.model';
+import { Component, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-stepper',
@@ -8,64 +9,77 @@ import { StepItem } from './stepper.model';
 })
 export class Stepper {
 
-  @State() stepsData: StepItem[];
+  @Prop() activeIndex: number;
 
-  @Prop() steps: any;
+  /**
+   * Color variant to use.
+   */
+  @Prop() color: Color;
 
-  @Prop() color = 'primary';
+  /**
+   * Steps data
+   */
+  @Prop() steps: { done: boolean; title: string }[] = [];
 
-  @Watch('steps')
-  handleSteps() {
-    this.load();
-  }
+  @Event() arvItemClick: EventEmitter<number>;
 
-  componentWillLoad() {
-    this.load();
-  }
-
-  load() {
-    if (!this.steps) {
-      this.stepsData = [];
-      return false;
-    }
-    if (typeof this.steps !== 'string') {
-      this.stepsData = this.steps;
-      return false;
-    }
-    try {
-      const steps = JSON.parse(this.steps);
-      this.stepsData = steps;
-    } catch (e) {
-      console.error(e);
-    }
+  itemClick = (index: number) => {
+    this.arvItemClick.emit(index);
   }
 
   render() {
-    const stepsLength = this.stepsData.length - 1;
+    const hostCls = {
+      ...generateAttrValue(this.color)
+    };
+
+    const stepsLength = this.steps.length - 1;
+
     return (
-      <arv-flex>
-        {this.stepsData.map((step, index) => {
-          const stepperItemClassNames = {
-            stepperItem: true,
+      <Host class={hostCls}>
+
+        {this.steps.map((step, index) => {
+          const stepIndex = index + 1;
+
+          /**
+           * Line separator between steps.
+           */
+          const divider = <div class="divider"></div>;
+
+          /**
+           * Will be visible if the step item is tag done.
+           */
+          const checkItem = (
+            <div class="index">
+              <arv-icon icon="check"></arv-icon>
+            </div>
+          );
+
+          /**
+           * Step item classList.
+           */
+          const stepperCls = {
+            item: true,
             done: step.done,
-            'default': this.color === 'default',
-            primary: this.color === 'primary',
-            secondary: this.color === 'secondary'
+            active: this.activeIndex === index
           };
-          const divider = <div class="divider"></div>
-          const checkItem = <div class="stepperIndex"><arv-icon size="medium" icon="check"></arv-icon></div>;
-          const indexItem = <div class="stepperIndex">{index + 1}</div>;
-          return [
-            <div class={stepperItemClassNames}>
+
+          /**
+           * Step number ui.
+           */
+          const indexItem = <div class="index">{stepIndex}</div>;
+
+          return (
+            <div
+              class={stepperCls}
+              onClick={() => this.itemClick(index)}
+            >
               {step.done ? checkItem : indexItem}
-              <arv-text
-                variant="body1"
-                noWrap>{step.title}</arv-text>
+              <div class="title">{step.title}</div>
               {(index < stepsLength) && divider}
             </div>
-          ];
+          );
         })}
-      </arv-flex>
+      </Host>
     );
   }
 }

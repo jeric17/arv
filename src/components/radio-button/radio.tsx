@@ -3,11 +3,11 @@ import { Color, FlexDirection } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
-  tag: 'arv-checkbox',
-  styleUrl: 'checkbox.css',
+  tag: 'arv-radio',
+  styleUrl: 'radio.css',
   shadow: true
 })
-export class Checkbox {
+export class Radio {
 
   /**
    * Color variant to set.
@@ -35,12 +35,12 @@ export class Checkbox {
   @Prop({ mutable: true }) indeterminate?: boolean;
 
   /**
-   * Label of the check box
+   * Label of the radio input.
    */
   @Prop() label: string;
 
   /**
-   * Input value of the checkbox
+   * Input value of the radio input.
    */
   @Prop() value?: string;
 
@@ -57,7 +57,7 @@ export class Checkbox {
   render() {
     const hostCls = {};
     const inputCls = {
-      checkbox: true,
+      radio: true,
       ...generateAttrValue(this.color),
       indeterminate: this.indeterminate,
     };
@@ -80,7 +80,7 @@ export class Checkbox {
         <input
           disabled={this.disabled}
           class={inputCls}
-          type="checkbox"
+          type="radio"
           value={this.value}
           checked={this.checked} />
       </Host>
