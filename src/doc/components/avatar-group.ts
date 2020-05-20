@@ -1,43 +1,22 @@
-const image1 = 'https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg';
+const imageUrl = 'http://localhost:5000/bg-03.png';
+const imageUrl2 = 'http://localhost:5000/bg-02.jpg';
 
 export const AvatarGroup = {
-  name: 'Avatar Group',
   element: 'arv-avatar-group',
-  slot: false,
-  propsDescription: [
-    {
-      name: 'image-items',
-      type: 'string[]',
-      description: 'Array of image urls'
-    },
-    {
-      name: 'showMore',
-      type: 'function',
-      description: 'Fired if show more is clicked'
-    },
-  ],
+  slot: `
+    <arv-avatar img-src="${imageUrl}"></arv-avatar>
+    <arv-avatar img-src="${imageUrl2}"></arv-avatar>
+    <arv-avatar img-src="${imageUrl}"></arv-avatar>
+  `,
   props: [
     {
-      name: 'imageItems',
-      displayName: 'image-items',
+      name: 'max',
       type: 'string',
-      value: JSON.stringify([image1, image1]),
+      value: '2'
     },
     {
-      name: 'bordered',
-      type: 'boolean',
-      value: false
-    },
-    {
-      name: 'maxItems',
-      displayName: 'max-items',
-      type: 'string',
-      value: 1
-    },
-    {
-      name: 'showMore',
-      type: 'object2',
-      value: () => alert('show more clicked!')
+      name: 'size',
+      type: 'size'
     }
   ]
 };

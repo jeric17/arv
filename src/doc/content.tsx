@@ -65,6 +65,11 @@ export class DocContent {
     if (value.slot) {
       compEl.innerHTML = value.slot;
     }
+    value.props.forEach(d => {
+      if (d.value) {
+        compEl.setAttribute(d.name, d.value);
+      }
+    });
     wrapper.innerHTML = '';
     wrapper.appendChild(compEl);
     this.demoComponent = compEl;

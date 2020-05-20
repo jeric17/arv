@@ -6,13 +6,12 @@ export const Avatar = {
     {
       name: 'img-src',
       type: 'string',
-      value: 'https://images.pexels.com/photos/1169084/pexels-photo-1169084.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+      value: 'http://localhost:5000/bg-03.png',
     },
     {
       name: 'size',
-      type: 'oneOf',
-      data: ['small', 'medium', 'large'],
-      value: 'medium'
+      type: 'size',
+      value: 'normal'
     },
   ]
 };

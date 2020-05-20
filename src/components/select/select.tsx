@@ -46,7 +46,7 @@ export class Select {
   /**
    * Sets the min-width and width of the label.
    */
-  @Prop() labelWidth: string;
+  @Prop() labelWidth?: string;
 
   /**
    * Callback function triggered on menu select.

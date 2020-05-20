@@ -40,14 +40,29 @@ export class Input {
   @Prop() disabled?: boolean;
 
   /**
+   * Position of label and select component value.
+   */
+  @Prop() flexDirection: 'row' | 'column' | 'row-reverse' | 'column-reverse' | string;
+
+  /**
    * Material icon to use.
    */
   @Prop() icon?: string;
 
   /**
+   * Callback prop function triggered on value change.
+   */
+  @Prop() inputChange: (value: any) => void;
+
+  /**
    * Label of the input.
    */
   @Prop() label?: string;
+
+  /**
+    * Sets the min-width and width of the label.
+    */
+  @Prop() labelWidth?: string;
 
   /**
    * max value for a ranged type
@@ -97,6 +112,9 @@ export class Input {
   @Watch('value')
   valueChanged() {
     this.arvChange.emit(this.value);
+    if (this.inputChange) {
+      this.inputChange(this.value);
+    }
   }
 
   /**
@@ -155,10 +173,26 @@ export class Input {
       ...generateAttrValue(this.color),
       ...generateAttrValue(this.size),
       hasIcon: Boolean(this.icon),
+      row: this.flexDirection && this.flexDirection.indexOf('row') > -1,
     };
+    const labelStyle = {};
+    if (this.labelWidth) {
+      Object.assign(labelStyle, {
+        width: this.labelWidth,
+        minWidth: this.labelWidth
+      });
+    }
+    const rootStyles: any = {};
+    if (this.flexDirection) {
+      rootStyles.flexDirection = this.flexDirection;
+    }
     return (
-      <Host class={cls}>
-        <label htmlFor="input" class="label">{this.label}</label>
+      <Host style={rootStyles} class={cls}>
+        <label
+          style={labelStyle}
+          htmlFor="input"
+          class="label"
+        >{this.label}</label>
         {this.icon && (
           <arv-icon icon={this.icon}></arv-icon>
         )}

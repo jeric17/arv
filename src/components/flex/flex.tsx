@@ -7,7 +7,7 @@ import { Component, Prop, Host, h } from '@stencil/core';
 })
 export class Flex {
 
-  @Prop() alignItems: 'flex-start' | 'flex-end' | 'center' | 'stretch';
+  @Prop() alignItems: 'flex-start' | 'flex-end' | 'center' | 'stretch' | 'baseline';
 
   @Prop() direction: 'row' | 'column' | 'row-reverse' | 'column-reverse';
 

@@ -20,12 +20,12 @@ export class Avatar {
   /**
    * Size variant to set.
    */
-  @Prop() size: string = 'medium';
+  @Prop() size: string = 'normal';
 
   render() {
     const cls = {
       small: this.size === 'small',
-      medium: this.size === 'medium',
+      normal: this.size === 'normal',
       large: this.size === 'large',
     };
 

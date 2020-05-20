@@ -43,6 +43,10 @@ export namespace Components {
           * Maximun number of avatars to show.
          */
         "max"?: number;
+        /**
+          * Size variant to set.
+         */
+        "size": Size;
     }
     interface ArvBadge {
         /**
@@ -236,7 +240,7 @@ export namespace Components {
         "setValue": (value: string) => Promise<void>;
     }
     interface ArvFlex {
-        "alignItems": "flex-start" | "flex-end" | "center" | "stretch";
+        "alignItems": "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
         "direction": "row" | "column" | "row-reverse" | "column-reverse";
         "expanded": boolean;
         "flex": string;
@@ -325,6 +329,10 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
+          * Position of label and select component value.
+         */
+        "flexDirection": "row" | "column" | "row-reverse" | "column-reverse" | string;
+        /**
           * Public api that returns the input element.
          */
         "getInputElement": () => Promise<any>;
@@ -332,11 +340,19 @@ export namespace Components {
           * Material icon to use.
          */
         "icon"?: string;
+        /**
+          * Callback prop function triggered on value change.
+         */
+        "inputChange": (value: any) => void;
         "inputFocus": () => Promise<void>;
         /**
           * Label of the input.
          */
         "label"?: string;
+        /**
+          * Sets the min-width and width of the label.
+         */
+        "labelWidth"?: string;
         /**
           * max value for a ranged type
          */
@@ -473,7 +489,7 @@ export namespace Components {
         /**
           * Sets the min-width and width of the label.
          */
-        "labelWidth": string;
+        "labelWidth"?: string;
         /**
           * Callback function triggered on menu select.
          */
@@ -1057,6 +1073,10 @@ declare namespace LocalJSX {
           * Emitted when .more is clicked.
          */
         "onArvMore"?: (event: CustomEvent<any>) => void;
+        /**
+          * Size variant to set.
+         */
+        "size"?: Size;
     }
     interface ArvBadge {
         /**
@@ -1269,7 +1289,7 @@ declare namespace LocalJSX {
         "onEditorOnBlur"?: (event: CustomEvent<any>) => void;
     }
     interface ArvFlex {
-        "alignItems"?: "flex-start" | "flex-end" | "center" | "stretch";
+        "alignItems"?: "flex-start" | "flex-end" | "center" | "stretch" | "baseline";
         "direction"?: "row" | "column" | "row-reverse" | "column-reverse";
         "expanded"?: boolean;
         "flex"?: string;
@@ -1360,13 +1380,25 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Position of label and select component value.
+         */
+        "flexDirection"?: "row" | "column" | "row-reverse" | "column-reverse" | string;
+        /**
           * Material icon to use.
          */
         "icon"?: string;
         /**
+          * Callback prop function triggered on value change.
+         */
+        "inputChange"?: (value: any) => void;
+        /**
           * Label of the input.
          */
         "label"?: string;
+        /**
+          * Sets the min-width and width of the label.
+         */
+        "labelWidth"?: string;
         /**
           * max value for a ranged type
          */

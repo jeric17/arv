@@ -34,7 +34,7 @@ export class DocControl {
         );
       }
       if (item.type === 'boolean') {
-        const data = ['true', 'false'];
+        const dataArray = ['true', 'false'];
         return (
           <arv-select
             label={item.name}
@@ -45,14 +45,14 @@ export class DocControl {
               this.dataChange(data, index);
             }}
           >
-            {data.map((d: string) => (
+            {dataArray.map((d: string) => (
               <arv-menu-item value={d}>{d}</arv-menu-item>
             ))}
           </arv-select>
         );
       }
       if (item.type === 'size') {
-        const data = ['small', 'normal', 'large'];
+        const dataArray = ['small', 'normal', 'large'];
         return (
           <arv-select
             label={item.name}
@@ -63,7 +63,7 @@ export class DocControl {
               this.dataChange(data, index);
             }}
           >
-            {data.map((d: string) => (
+            {dataArray.map((d: string) => (
               <arv-menu-item value={d}>{d}</arv-menu-item>
             ))}
           </arv-select>
@@ -87,6 +87,18 @@ export class DocControl {
           </arv-select>
         );
       }
+      if (item.type === 'string') {
+        return (
+          <arv-input
+            flex-direction="row"
+            inputChange={data => {
+              this.dataChange(data, index);
+            }}
+            labelWidth={labelWidth}
+            label={item.name}
+            value={item.value}></arv-input>
+        );
+      }
     })();
 
     const description = (() => {
@@ -101,9 +113,16 @@ export class DocControl {
       }
     })();
 
+    const controlWidth = (() => {
+      if (item.type === 'string') {
+        return { width: '500px', minWidth: '500px' };
+      }
+      return { width: '260px', minWidth: '260px' };
+    })();
+
     return [
       <arv-flex align-items="center">
-        <div style={{ width: '260px' }}>
+        <div style={controlWidth}>
           {control}
         </div>
         <p class="control-description">{description}</p>

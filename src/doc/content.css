@@ -8,13 +8,14 @@
 }
 
 #sample {
-  background-color: var(--default-shade);
-  border-radius: var(--radius);
-  display: flex;
   align-items: center;
+  background-color: var(--darker);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  display: flex;
+  height: 100%;
   justify-content: center;
   min-height: 300px;
-  box-sizing: border-box;
   padding: 2em;
 }
 

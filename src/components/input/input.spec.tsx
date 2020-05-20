@@ -96,3 +96,34 @@ it('on focus', async () => {
   await inputEl.dispatchEvent(new Event('focus'));
   expect(spy).toHaveBeenCalled();
 });
+
+it('prop inputChange', async () => {
+  const page = await specComponent(`
+    <arv-input icon="clear"></arv-input>
+  `);
+  const spy = jest.fn();
+  page.rootInstance.inputChange = spy;
+  const inputEl: any = getShadowEl(page, 'input');
+  inputEl.value = 'foo';
+  await inputEl.dispatchEvent(new Event('input'))
+  expect(spy).toHaveBeenCalled();
+});
+
+it('label min-width', async () => {
+  const page = await specComponent(`
+    <arv-input label-width="300px">
+    </arv-input>
+  `);
+  const label: any = getShadowEl(page, 'label');
+  expect(label.style.minWidth).toBe('300px');
+  expect(label.style.width).toBe('300px');
+});
+
+it('flex style to use', async () => {
+  const page = await specComponent(`
+    <arv-input label="My Label" flex-direction="row-reverse"></arv-input>
+  `);
+  const s = page.root.style.flexDirection;
+  expect(s).toBe('row-reverse');
+  expect(clsContains(page, 'row')).toBeTruthy();
+});

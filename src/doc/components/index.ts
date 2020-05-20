@@ -1,5 +1,6 @@
 export { Accordion as Accordion } from './accordion';
 export { AlertText as AlertText } from './alert-text';
 export { Avatar as Avatar } from './avatar';
+export { AvatarGroup as AvatarGroup } from './avatar-group';
 export { Button as Button } from './button';
 export { Flex as Flex } from './flex';
