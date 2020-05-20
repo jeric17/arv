@@ -1,5 +1,5 @@
 import { Accordion } from './accordion';
-import { createSpec, getShadowEl } from '../../utils/testing/utils';
+import { createSpec } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Accordion);
 

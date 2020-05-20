@@ -1,4 +1,4 @@
-import { Component, h, Prop } from '@stencil/core';
+import { Component, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-list',
@@ -7,16 +7,9 @@ import { Component, h, Prop } from '@stencil/core';
 })
 export class List {
 
-  @Prop() color: string = 'default'
-
   render() {
     return (
-      <div class="root">
-        <arv-flex
-          layout="column">
-          <slot></slot>
-        </arv-flex>
-      </div>
+      <slot></slot>
     );
   }
 }

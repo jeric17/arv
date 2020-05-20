@@ -69,7 +69,7 @@ export class Uploader {
 
     return (
       <label class="label">
-        <arv-text class="labelText" variant={this.uploadTextVariant || 'heading4'}>
+        <arv-text class="labelText">
           {this.uploadText || 'Upload'}
         </arv-text>
         <input

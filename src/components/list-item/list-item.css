@@ -1,8 +1,14 @@
 :host {
+  align-items: center;
+  background-color: var(--default-bg);
+  box-sizing: border-box;
+  cursor: pointer;
+  display: flex;
+  min-height: 36px;
+  padding: 0 1em;
+  transition: background-color 0.3s;
   width: 100%;
 }
-.root {
-  cursor: pointer;
-  list-style: none;
-  width: 100%;
+:host(:hover) {
+  background-color: var(--default-highlight);
 }

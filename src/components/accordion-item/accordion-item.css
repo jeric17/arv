@@ -1,90 +1,31 @@
-@keyframes show {
-  from {
-    opacity: 0;
-    transform: scale(1, 0);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1, 1);
-  }
-}
-
-:host,
-.root,
-.title,
-.content {
-  width: 100%;
-}
-.root {
-  background-color: var(--accordion-bg, #fff);
-  box-sizing: border-box;
-  transition: all 0.3s;
-  border-bottom: 1px solid #efefef;
-  margin-top: 0px;
-  margin-bottom: 8px;
-  border-radius: var(--radius);
-  overflow: hidden;
-  transition: all 0.3s;
-}
-
-.root.active {
-  overflow: visible;
-}
-.root.active.animated {
-  margin-top: 15px;
-  margin-bottom: 21px;
-}
-
-.root:hover .controls {
-  display: block;
-}
-
 .content {
   display: none;
-  box-sizing: border-box;
-  height: 0px;
-  border: 1px solid #efefef;
-  transform-origin: top;
-  background-color: var(--accordion-item-content, #fff);
-  border-bottom-left-radius: var(--radius);
-  border-bottom-right-radius: var(--radius);
-}
-.content.animated {
-  animation: show 0.3s forwards;
 }
 
-.controls {
-  display: none;
-}
-
-.active,
-.active .controls,
-.active .content
-{
-  display: block;
-  height: auto;
-}
-
-.header {
-  border-top-left-radius: var(--radius);
-  border-top-right-radius: var(--radius);
-  display: flex;
-  justify-content: space-between;
+.title {
   align-items: center;
-  padding: .5em 1em;
-  background-color: var(--accordion-header-bg, #efefef);
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--default-highlight);
+  box-sizing: border-box;
   cursor: pointer;
-  transition: all 0.3s;
+  display: flex;
+  padding: 0 1em;
+  transition: background-color 0.3s;
+  background-color: var(--title-bg);
+  color: var(--title-color);
 }
-
-arv-icon {
-  transition: all 0.3s;
-  --icon-size: 1.5rem;
+.content {
+  box-sizing: border-box;
+  background-color: var(--default-shade);
+  padding: 1em;
 }
-.active arv-icon {
-  transform: rotate(180deg);
+.title:hover {
+  background-color: var(--title-bg-hover);
 }
-
-.active .header {
-  background-color: var(--accordion-header-bg, #eee);
+:host(.active) .title {
+  border-bottom: none;
+}
+:host(.active) .content {
+  display: block;
 }

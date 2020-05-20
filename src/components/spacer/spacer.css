@@ -1,0 +1,7 @@
+:host {
+  height: var(--spacer-height);
+}
+:host(.vertical) {
+  height: 0px;
+  width: var(--spacer-width);
+}

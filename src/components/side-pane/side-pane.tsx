@@ -1,15 +1,16 @@
 import { Component, Host, h } from '@stencil/core';
 
 @Component({
-  tag: 'arv-form-control',
-  styleUrl: 'form-control.css',
-  shadow: true
+  tag: 'arv-side-pane',
+  styleUrl: 'side-pane.css'
 })
-export class FormControl {
+export class SidePane {
   render() {
     return (
       <Host>
+        <slot name="header"></slot>
         <slot></slot>
+        <slot name="footer"></slot>
       </Host>
     );
   }

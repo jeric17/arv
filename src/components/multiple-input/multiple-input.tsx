@@ -95,12 +95,9 @@ export class MultipleInput {
           <arv-flex class="item">
             <arv-input
               disabled={this.disabled}
-              inputChange={this.change.bind(this, index)}
-              inputEnter={this.enter.bind(this, index)}
               value={value}
-              full
             />
-            <arv-divider layout="column" />
+            <arv-divider />
             <arv-button
               buttonClick={this.removeItem.bind(this, index)}
               variant="flat-icon"
@@ -113,8 +110,6 @@ export class MultipleInput {
             class="addInput"
             placeholder={this.placeholder}
             disabled={this.disabled}
-            inputChange={this.addItem.bind(this)}
-            full
           />
         </arv-form-control>
       </arv-flex>

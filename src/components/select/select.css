@@ -1,10 +1,26 @@
+:host {
+  display: flex;
+}
 :host(.full) {
   width: 100%;
+  display: flex;
+}
+:host(.row) {
+  align-items: center;
 }
 
 .items {
-  position: absolute;
+  border-radius: var(--radius);
+  box-shadow: 0px 2px 2px rgba(3, 3, 3, 0.2);
+  box-sizing: border-box;
   display: none;
+  margin-bottom: 2em;
+  max-height: 300px;
+  min-width: 100%;
+  outline: none;
+  overflow-y: scroll;
+  position: absolute;
+  z-index: 99;
 }
 
 :host(.isOpen) .items {
@@ -12,8 +28,24 @@
   flex-direction: column;
 }
 
+:host(.row) label {
+  margin: 0 1em;
+}
+
 .select {
+  border-color: var(--default-highlight);
   border-radius: var(--radius);
-  border: 1px solid #efefef;
-  padding: 1em;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  padding: 0 1.5em;
+}
+
+label,
+.value {
+  line-height: 2.5em;
+}
+
+.control {
+  position: relative;
 }

@@ -217,7 +217,7 @@ export class Editor {
       <div class={rootClassNames}>
         <arv-flex layout="column">
           {controlsWrapper}
-          <arv-divider transparent />
+          <arv-divider />
           <div class="editor"
             contenteditable
             onBlur={this.blur}></div>

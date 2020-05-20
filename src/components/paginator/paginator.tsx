@@ -165,8 +165,7 @@ export class Paginator {
                 buttonClick={this.onPrev.bind(this)}
                 styles={{ backgroundColor: 'transparent' }}
                 icon="chevron_left"
-                variant="flat-icon"
-                padded={false} />
+                variant="flat-icon" />
             </div>
           )}
           {result.map(d => {
@@ -203,7 +202,7 @@ export class Paginator {
             </div>
           )}
         </div>
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
         <arv-text>
           {currentPageOffset + 1} - {toOffset} of {this.totalItems}
         </arv-text>

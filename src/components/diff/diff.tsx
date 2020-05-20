@@ -336,7 +336,7 @@ function Content({ diffData, mergeCodes, showLineControl }) {
 
         {showControl && (
           <arv-flex class="lineControl">
-            <arv-divider layout="column" transparent></arv-divider>
+            <arv-divider is-vertical></arv-divider>
             <arv-text
               class="lineButton current"
               onClick={() => mergeCodes(arr, i, false)}
@@ -350,7 +350,7 @@ function Content({ diffData, mergeCodes, showLineControl }) {
             >
               Accept incoming
              </arv-text>
-            <arv-divider layout="column" transparent></arv-divider>
+            <arv-divider is-vertical></arv-divider>
           </arv-flex>
         )}
 
@@ -358,9 +358,9 @@ function Content({ diffData, mergeCodes, showLineControl }) {
           class={itemClass}
           items="center"
         >
-          <arv-divider layout="column" transparent></arv-divider>
+          <arv-divider is-vertical></arv-divider>
           <LineSymbol item={d} showLineControl={showLineControl} />
-          <arv-text class="textWrapper" preWrap>{d.value}</arv-text>
+          <arv-text class="textWrapper">{d.value}</arv-text>
         </arv-flex>
       </arv-flex>
     );

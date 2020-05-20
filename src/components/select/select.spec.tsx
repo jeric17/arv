@@ -29,7 +29,7 @@ it('menu item click will hide the content', async () => {
   selectEl.click();
   await page.waitForChanges();
   page.root.dispatchEvent(new CustomEvent('arvMenuSelect'));
-  await tick();
+  await tick(300);
   await page.waitForChanges();
   expect(page.root.classList.contains('isOpen')).toBeFalsy();
 });
@@ -81,6 +81,17 @@ it('dispatch arvSelectChange event', async () => {
   };
   const evt = new CustomEvent('arvMenuSelect', d);
   menuItem.dispatchEvent(evt);
-  await tick();
+  await tick(300);
   expect(selectSpy).toHaveBeenCalled();
+});
+
+it('label min-width', async () => {
+  const page = await specComponent(`
+    <arv-select label-width="300px">
+      <arv-menu-item></arv-menu-item>
+    </arv-select>
+  `);
+  const label: any = getShadowEl(page, 'label');
+  expect(label.style.minWidth).toBe('300px');
+  expect(label.style.width).toBe('300px');
 });

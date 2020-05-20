@@ -1,42 +1,33 @@
 :host {
+  background-color: var(--default-bg);
+  color: var(--font-color);
   width: 100%;
-}
-.root {
-  --dark-text-color: var(--default-text-color, #333);
-
   border-radius: var(--radius);
-  background-color: var(--light-color);
-  color: var(--default-text-color);
-  display: block;
-  margin: 8px 0;
+  box-sizing: border-box;
+  padding: 0 1em;
 }
 
-.error {
-  --dark-text-color: var(--error-text-color);
-  background-color: var(--error-color);
-  color: var(--error-text-color);
-}
-
-.warning {
-  --dark-text-color: var(--warning-text-color);
-  background-color: var(--warning-color);
-  color: var(--warning-text-color);
-}
-
-.secondary {
-  --dark-text-color: var(--secondary-text-color);
-  background-color: var(--secondary-color);
-  color: var(--secondary-text-color);
-}
-
-.primary {
-  --dark-text-color: var(--primary-text-color);
+:host(.primary) {
   background-color: var(--primary-color);
   color: var(--primary-text-color);
 }
 
-.success {
-  --dark-text-color: var(--success-text-color);
+:host(.secondary) {
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+}
+
+:host(.success) {
   background-color: var(--success-color);
   color: var(--success-text-color);
+}
+
+:host(.warning) {
+  background-color: var(--warning-color);
+  color: var(--warning-text-color);
+}
+
+:host(.danger) {
+  background-color: var(--danger-color);
+  color: var(--danger-text-color);
 }

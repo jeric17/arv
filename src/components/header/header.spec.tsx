@@ -1,4 +1,4 @@
-import { Header } from './Header';
+import { Header } from './header';
 import { createSpec, clsContains } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Header);

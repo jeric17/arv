@@ -116,7 +116,7 @@ export class Table {
 
     if (Array.isArray(value)) {
       return (
-        <arv-flex wrap>
+        <arv-flex wrap="wrap">
           {value.map(d => (
             <span class="rowItemArrayItem">
               {d}
@@ -144,8 +144,8 @@ export class Table {
     return (
       <div class={rootClassNames}>
         {Boolean(this.tableTitle) && (
-          <arv-flex padded>
-            <arv-text variant={this.titleVariant}>{this.tableTitle}</arv-text>
+          <arv-flex>
+            <arv-text>{this.tableTitle}</arv-text>
           </arv-flex>
         )}
         <table
@@ -197,7 +197,7 @@ export class Table {
                 ))}
                 {Boolean(this.controls.length) && (
                   <td class="td controls">
-                    <arv-flex justify="end">
+                    <arv-flex justify="flex-end">
                       {this.controls.map(ctrlItem => (
                         <arv-button
                           variant="ghost-icon"

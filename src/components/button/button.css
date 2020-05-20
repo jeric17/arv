@@ -2,17 +2,21 @@
   width: 100%;
 }
 button {
-  background-color: #efefef;
+  background-color: var(--default-bg);
   border-radius: var(--radius);
   border: none;
+  color: var(--font-color);
   cursor: pointer;
   display: block;
   font-size: 1em;
   font-family: inherit;
   outline: none;
-  padding: 0 1em;
+  padding: 0 1.25em;
   transition: background-color 0.3s;
   width: 100%;
+}
+button:hover {
+  background-color: var(--default-shade);
 }
 button:disabled {
   cursor: not-allowed;
@@ -31,23 +35,35 @@ button:disabled {
   color: var(--primary-text-color);
 }
 .primary:hover {
-  background-color: var(--primary-hover-color);
+  background-color: var(--primary-shade);
 }
 .secondary {
   background-color: var(--secondary-color);
   color: var(--secondary-text-color);
 }
+.secondary:hover {
+  background-color: var(--secondary-shade);
+}
 .success {
   background-color: var(--success-color);
   color: var(--success-text-color);
+}
+.success:hover {
+  background-color: var(--success-shade);
 }
 .warning {
   background-color: var(--warning-color);
   color: var(--warning-text-color);
 }
+.warning:hover {
+  background-color: var(--warning-shade);
+}
 .danger {
   background-color: var(--danger-color);
   color: var(--danger-text-color);
+}
+.danger:hover {
+  background-color: var(--danger-shade);
 }
 .light {
   background-color: var(--light-color);

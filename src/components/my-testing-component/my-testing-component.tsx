@@ -1,4 +1,4 @@
-import { Component, Element, State, h} from '@stencil/core';
+import { Component, Element, State, h } from '@stencil/core';
 
 @Component({
   tag: 'my-testing-component',
@@ -8,46 +8,21 @@ import { Component, Element, State, h} from '@stencil/core';
 export class MyTestingComponent {
   @Element() el: HTMLElement;
 
-  @State() values = [
-    'item1',
-    'item2',
-    'item3',
-    'item4',
-    'item5',
-  ];
+  @State() checked?: boolean;
 
   render() {
-    const vLength = this.values.length - 1;
 
     return (
       <div>
         <arv-container
-          height="auto"
+          height="100vh"
           width="500px"
         >
-          <arv-flex layout="row" wrap>
-            {this.values.map((d, i) => (
-              <arv-draggable
-                direction="horizontal"
-                showIcon={false}
-                isLast={i > 0 && i === vLength}
-                >
-                <arv-container
-                  color="secondary"
-                  width="100px"
-                  height="100px"
-                  margin="8px"
-                >
-                  <arv-flex
-                    items="center"
-                    justify="center"
-                    fullHeight>
-                    <arv-text>{d}</arv-text>
-                  </arv-flex>
-                </arv-container>
-              </arv-draggable>
-            ))}
-          </arv-flex>
+          <arv-text truncate>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab doloribus reiciendis non fugit esse sequi sint! Illum, corporis consequuntur aspernatur asperiores numquam quas quod libero, voluptatibus voluptate nesciunt dolorem sequi!
+            </p>
+          </arv-text>
         </arv-container>
       </div>
     );

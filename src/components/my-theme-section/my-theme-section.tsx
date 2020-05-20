@@ -61,7 +61,7 @@ export class MyThemeSection {
       return false;
     }
 
-    const { target: { value, name }} = event;
+    const { target: { value, name } } = event;
     const themeSettings = JSON.parse(JSON.stringify(this.themeSettings));
     themeSettings[name] = value;
     this.themeSettings = themeSettings;
@@ -71,7 +71,7 @@ export class MyThemeSection {
   };
 
   radiusChange = event => {
-    const { target: { value }} = event;
+    const { target: { value } } = event;
     this.radius = value;
 
     window['radius'] = this.radius;
@@ -83,27 +83,25 @@ export class MyThemeSection {
 
     return (
       <arv-flex fullHeight layout="column" padded>
-        <arv-text variant="heading1">Theming</arv-text>
+        <arv-text>Theming</arv-text>
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
         <arv-text>Arv ui library uses css variables to control the overall theme</arv-text>
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
         <arv-text>Current theme settings:</arv-text>
 
         {keys.map((item: string) => (
           <arv-flex items="end">
             <arv-input
-              inputChange={this.valueChange}
               name={item}
               label={item}
               value={this.themeSettings[item]}
             ></arv-input>
-            <arv-divider layout="column"></arv-divider>
+            <arv-divider is-vertical></arv-divider>
             <arv-input
-              inputChange={this.valueChange}
               type="color"
               name={item}
               value={this.themeSettings[item]}
@@ -112,12 +110,11 @@ export class MyThemeSection {
         ))}
 
         <arv-input
-          inputChange={this.radiusChange}
           label="--radius"
           value={this.radius}
         ></arv-input>
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
       </arv-flex>
     );

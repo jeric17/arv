@@ -1,50 +1,60 @@
 :host {
-  width: 100%;
-}
-.header {
   align-items: center;
-  border-bottom-left-radius: var(--header-bottom-left-radius, 0px);
-  border-bottom-right-radius: var(--header-bottom-right-radius, 0px);
-  border-top-left-radius: var(--header-top-left-radius, 0px);
-  border-top-right-radius: var(--header-top-left-radius, 0px);
+  box-shadow: 1px 2px 4px rgba(3, 3, 3, 0.2);
   box-sizing: border-box;
   display: flex;
   min-height: 64px;
+  padding: 0 1.5em;
   width: 100%;
-  z-index: 2;
-}
-.static {
-  position: static;
-}
-.relative {
-  position: relative;
-}
-.absolute {
-  left: 0;
-  position: absolute;
-  top: 0;
-}
-.fixed {
-  left: 0;
-  position: fixed;
-  top: 0;
-}
-.inherit {
-  position: inherit;
 }
 
-.default {
-  background-color: var(--default-color);
-}
-.primary {
+:host(.primary) {
   background-color: var(--primary-color);
+  color: var(--primary-text-color);
 }
-.secondary {
+
+:host(.secondary) {
   background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
 }
-.shadow {
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,.15);
+
+:host(.success) {
+  background-color: var(--success-color);
+  color: var(--success-text-color);
 }
-.padded {
-  padding: 0.5em 1em;
+
+:host(.warning) {
+  background-color: var(--warning-color);
+  color: var(--warning-text-color);
+}
+
+:host(.danger) {
+  background-color: var(--danger-color);
+  color: var(--danger-text-color);
+}
+
+:host(.dark) {
+  background-color: var(--dark-color);
+  color: var(--dark-text-color);
+}
+
+:host(.light) {
+  background-color: var(--light-color);
+  color: var(--light-text-color);
+}
+
+:host(.sticky) {
+  position: sticky;
+}
+
+:host(.fixed) {
+  position: fixed;
+}
+
+:host(.absolute) {
+  position: absolute;
+}
+
+:host(.relative) {
+  position: relative;
 }

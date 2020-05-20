@@ -35,7 +35,7 @@ export class Bolts {
 
     this.selectedItem = {
       ...this.selectedItem,
-      ...{props: newProps}
+      ...{ props: newProps }
     };
 
     this.generate();
@@ -55,7 +55,7 @@ export class Bolts {
         }}>
         {item.data.map(d => (
           <arv-select-option
-            selected={value === d }
+            selected={value === d}
             value={d}>
             {d}
           </arv-select-option>
@@ -95,9 +95,7 @@ export class Bolts {
     return (
       <arv-input
         label={name}
-        inputChange={e => this.onPropsChange(name, e.target['value'])}
         type="text"
-        full
         value={value}
       />
     );
@@ -179,7 +177,7 @@ export class Bolts {
       try {
         const obj = JSON.parse(d.value);
         componentElem[d.name] = obj;
-      } catch(e) {
+      } catch (e) {
         console.log(e.message);
       }
     });
@@ -207,9 +205,9 @@ export class Bolts {
       .split('\n');
 
     code[0] = `<span class="html-elem">${code[0]}`;
-    code[code.length - 1] = `<span class="html-elem">${code[code.length -1]}`;
+    code[code.length - 1] = `<span class="html-elem">${code[code.length - 1]}`;
     code[code.length - 1] = code[code.length - 1].replace('&gt&lt',
-    `&gt<span class="html-slot">\n  ${slotContent || ''}\n</span>&lt`
+      `&gt<span class="html-slot">\n  ${slotContent || ''}\n</span>&lt`
     );
     const codes = code.map((d, i) => {
 
@@ -260,12 +258,12 @@ export class Bolts {
   }
 
   slotChanged(slot: string) {
-    this.selectedItem = {...this.selectedItem, ...{ slot }};
+    this.selectedItem = { ...this.selectedItem, ...{ slot } };
     this.generate();
   }
 
   wrapperChanged(wrapper: string) {
-    this.selectedItem = {...this.selectedItem, ...{ wrapper }};
+    this.selectedItem = { ...this.selectedItem, ...{ wrapper } };
     this.generate();
   }
 
@@ -333,10 +331,8 @@ export class Bolts {
           </arv-flex>
 
           <arv-button
-            color={this.themeMode ? 'primary' : 'light' }
-            variant={this.themeMode ? 'raised' : 'ghost' }
-            textAlign="start"
-            rounded={false}
+            color={this.themeMode ? 'primary' : 'light'}
+            variant={this.themeMode ? 'raised' : 'ghost'}
             buttonClick={this.toggleTheme.bind(this)}
             full>Theming</arv-button>
 
@@ -344,39 +340,36 @@ export class Bolts {
             <arv-text color="primary">Components</arv-text>
           </arv-flex>
           {this.items.map((d, i) => {
-             return (
-               <arv-button
-                 textAlign="start"
-                 color={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light' }
-                 variant={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'ghost' }
-                 buttonClick={() => this.setItem(i) }
-                 rounded={false}
-                 full
-                 >
-                 {d.name}
-               </arv-button>
-             );
+            return (
+              <arv-button
+                color={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'primary' : 'light'}
+                variant={(!this.themeMode && this.selectedItem && (this.selectedItem.name === d.name)) ? 'raised' : 'ghost'}
+                onClick={() => this.setItem(i)}
+                boxed
+                full
+              >
+                {d.name}
+              </arv-button>
+            );
           })}
           <arv-flex padded full={false}>
             <arv-text color="primary">Installation</arv-text>
           </arv-flex>
           {
             [
-              {name: 'Angular', target: 'https://stenciljs.com/docs/angular'},
-              {name: 'React', target: 'https://stenciljs.com/docs/react'},
-              {name: 'Vue', target: 'https://stenciljs.com/docs/vue'},
+              { name: 'Angular', target: 'https://stenciljs.com/docs/angular' },
+              { name: 'React', target: 'https://stenciljs.com/docs/react' },
+              { name: 'Vue', target: 'https://stenciljs.com/docs/vue' },
             ].map(d => {
               return (
                 <arv-button
                   buttonClick={() => {
                     window.open(d.target);
                   }}
-                  textAlign="start"
                   color="light"
                   variant="ghost"
-                  rounded={false}
                   full
-                  >{d.name}</arv-button>
+                >{d.name}</arv-button>
               );
             })
           }
@@ -389,20 +382,14 @@ export class Bolts {
 
     const SlotControl = () => (
       <arv-input
-        full
-        rows={3}
         label="Slot"
-        value={slot}
-        inputChange={e => this.slotChanged(e.target['value']) } />
+        value={slot} />
     );
 
     const WrapperControl = () => (
       <arv-input
-        full
-        rows={3}
         label="wrapper"
-        value={wrapper}
-        inputChange={e => this.wrapperChanged(e.target['value']) } />
+        value={wrapper} />
     );
 
     const Controls = () => (
@@ -418,20 +405,20 @@ export class Bolts {
           <arv-text>Attributes</arv-text>
           <arv-divider></arv-divider>
           {this.selectedItem && this.selectedItem.wrapper && (
-             <WrapperControl />
+            <WrapperControl />
           )}
           {this.selectedItem && this.selectedItem.slot !== false && (
-             <SlotControl />
+            <SlotControl />
           )}
           {this.setControls()}
-          <arv-divider transparent></arv-divider>
+          <arv-divider></arv-divider>
         </arv-flex>
       </arv-container>
     );
 
     const Content = () => (
       <arv-flex
-        style={{backgroundColor: '#efefef', overflowY: 'scroll'}}
+        style={{ backgroundColor: '#efefef', overflowY: 'scroll' }}
         justify="start"
         items="start"
         layout="column"
@@ -443,19 +430,19 @@ export class Bolts {
           </a>
         </arv-flex>
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
         {this.selectedItem && (
-           <arv-flex layout="column">
-             {this.selectedItem.description && this.selectedItem.description.map(d => (
-               <arv-text>{d}</arv-text>
-             ))}
-           </arv-flex>
+          <arv-flex layout="column">
+            {this.selectedItem.description && this.selectedItem.description.map(d => (
+              <arv-text>{d}</arv-text>
+            ))}
+          </arv-flex>
         )}
-        <arv-divider transparent></arv-divider>
-        <arv-text variant="heading3">Demo</arv-text>
+        <arv-divider></arv-divider>
+        <arv-text>Demo</arv-text>
         <arv-flex
-          style={{'backgroundColor': '#fff', 'height': '300px'}}
+          style={{ 'backgroundColor': '#fff', 'height': '300px' }}
           items="center"
           justify="center"
           padded
@@ -468,15 +455,15 @@ export class Bolts {
 
         {this.propsDescription()}
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
         {this.eventDescription()}
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
 
         {this.cssVariablesDescription()}
 
-        <arv-divider transparent></arv-divider>
+        <arv-divider></arv-divider>
       </arv-flex>
     );
 

@@ -44,14 +44,24 @@ export class Select {
   @Prop() label?: string;
 
   /**
+   * Sets the min-width and width of the label.
+   */
+  @Prop() labelWidth: string;
+
+  /**
+   * Callback function triggered on menu select.
+   */
+  @Prop() selectChange: (data: any) => void;
+
+  /**
    * Value to display in the select component.
    */
   @Prop() value?: string;
 
   /**
-   * Deprecated props.
+   * The value on selectChange will also return the event object.
    */
-  @Prop() selectChange?: any;
+  @Prop() valueWithEvent?: boolean;
 
   /**
    * Event fired if the menu item is clicked.
@@ -68,8 +78,12 @@ export class Select {
    */
   @Listen('arvMenuSelect')
   async onMenuSelect(value: any) {
+    const data = this.valueWithEvent ? value : value.detail;
     await this.close();
-    this.arvSelectChange.emit(value);
+    this.arvSelectChange.emit(data);
+    if (this.selectChange) {
+      this.selectChange(data);
+    }
   }
 
   open() {
@@ -91,26 +105,43 @@ export class Select {
     const hostCls = {
       full: this.full,
       isOpen: this.isOpen,
-      ...generateAttrValue(this.color)
+      ...generateAttrValue(this.color),
+      row: false
     };
 
     const styles = {
       flexDirection: this.flexDirection
     };
 
+    const labelStyle = {};
+
+    if (this.labelWidth) {
+      Object.assign(labelStyle, {
+        width: this.labelWidth,
+        minWidth: this.labelWidth
+      });
+    }
+
+    if (this.flexDirection && this.flexDirection.indexOf('row') > -1) {
+      hostCls.row = true;
+    }
+
     return (
       <Host
         class={hostCls}
         style={styles}
       >
-        <label>{this.label}</label>
-        <div>
-          <span onClick={() => this.open()} class="select">
+        <label style={labelStyle}>{this.label}</label>
+        <div class="control">
+          <div
+            onClick={() => this.open()}
+            class="select"
+          >
             <span class="value">
               {this.value}
             </span>
             <slot name="value"></slot>
-          </span>
+          </div>
           <div
             onBlur={() => this.blur()}
             tabIndex={-1}
@@ -126,6 +157,6 @@ export class Select {
   private close() {
     return delay(() => {
       this.isOpen = false;
-    });
+    }, 300);
   }
 }

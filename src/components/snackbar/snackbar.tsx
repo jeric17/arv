@@ -176,11 +176,11 @@ export class Snackbar {
         <arv-flex items="center">
           {icon && [
             <arv-icon icon={icon} noMargin />,
-            <arv-divider layout="column" transparent />
+            <arv-divider />
           ]}
           {(this.variant === 'loading') && [
             <arv-loader size="xsmall" />,
-            <arv-divider layout="column" transparent />
+            <arv-divider />
           ]}
           <arv-text>
             {this.message}

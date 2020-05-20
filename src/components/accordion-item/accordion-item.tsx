@@ -15,11 +15,7 @@ export class AccordionItem {
 
   @Prop() itemIndex: number;
 
-  @Event({
-    eventName: 'arvToggleAccordion',
-    bubbles: true,
-    composed: true
-  }) arvToggleAccordion: EventEmitter<number>;
+  @Event() arvToggleAccordion: EventEmitter<number>;
 
   toggle = () => {
     this.active = !this.active;
@@ -29,18 +25,20 @@ export class AccordionItem {
   render() {
     const cls = {
       ...generateAttrValue(this.color),
+      active: this.active,
     };
 
     return (
-      <Host
-        onClick={this.toggle}
-        class={cls}
-      >
-        <div class="title">
+      <Host class={cls}>
+        <div
+          class="title"
+          onClick={this.toggle}
+        >
           <slot name="title"></slot>
         </div>
         <div class="content">
           <slot></slot>
+          <arv-divider></arv-divider>
         </div>
       </Host>
     );

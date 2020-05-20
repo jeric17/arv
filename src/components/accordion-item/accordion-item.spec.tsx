@@ -32,7 +32,7 @@ it('emit arvToggleAccordion', async () => {
 
   const spy = jest.fn();
   page.root.addEventListener('arvToggleAccordion', spy);
-  page.root.click();
+  (page.root.shadowRoot.querySelector('.title') as any).click();
   expect(spy).toHaveBeenCalled();
   const value = spy.mock.calls.pop()[0].detail;
   expect(value).toBe(3);
