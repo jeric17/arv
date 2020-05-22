@@ -1,0 +1,23 @@
+:host {
+  position: relative;
+}
+.value {
+  background-color: var(--badge-color);
+  color: var(--badge-text-color);
+  min-width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em;
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  padding: 0 4px;
+  box-sizing: border-box;
+}
+
+:host(.arv-invisible) .value {
+  display: none;
+}

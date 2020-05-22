@@ -141,6 +141,7 @@ export class Select {
               {this.value}
             </span>
             <slot name="value"></slot>
+            <arv-icon icon="keyboard_arrow_down"></arv-icon>
           </div>
           <div
             onBlur={() => this.blur()}

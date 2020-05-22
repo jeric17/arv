@@ -45,6 +45,11 @@ export class Input {
   @Prop() flexDirection: 'row' | 'column' | 'row-reverse' | 'column-reverse' | string;
 
   /**
+   * Sets a full width input
+   */
+  @Prop() full?: boolean;
+
+  /**
    * Material icon to use.
    */
   @Prop() icon?: string;
@@ -174,6 +179,8 @@ export class Input {
       ...generateAttrValue(this.size),
       hasIcon: Boolean(this.icon),
       row: this.flexDirection && this.flexDirection.indexOf('row') > -1,
+      flex: this.flexDirection === 'column-reverse',
+      full: this.full
     };
     const labelStyle = {};
     if (this.labelWidth) {
@@ -193,28 +200,30 @@ export class Input {
           htmlFor="input"
           class="label"
         >{this.label}</label>
-        {this.icon && (
-          <arv-icon icon={this.icon}></arv-icon>
-        )}
-        <input
-          ref={input => this.inputEl = input}
-          autoComplete={this.autocomplete}
-          autoCorrect={this.autocorrect}
-          autoFocus={this.autofocus}
-          disabled={this.disabled}
-          id="input"
-          min={this.min}
-          max={this.max}
-          minLength={this.minlength}
-          maxLength={this.maxlength}
-          name={this.name}
-          placeholder={this.placeholder}
-          type={this.type}
-          value={this.value}
-          onInput={this.input}
-          onBlur={this.blur}
-          onFocus={this.focus}
-          onKeyDown={this.keydown} />
+        <div class="control">
+          {this.icon && (
+            <arv-icon icon={this.icon}></arv-icon>
+          )}
+          <input
+            ref={input => this.inputEl = input}
+            autoComplete={this.autocomplete}
+            autoCorrect={this.autocorrect}
+            autoFocus={this.autofocus}
+            disabled={this.disabled}
+            id="input"
+            min={this.min}
+            max={this.max}
+            minLength={this.minlength}
+            maxLength={this.maxlength}
+            name={this.name}
+            placeholder={this.placeholder}
+            type={this.type}
+            value={this.value}
+            onInput={this.input}
+            onBlur={this.blur}
+            onFocus={this.focus}
+            onKeyDown={this.keydown} />
+        </div>
       </Host>
     );
   }

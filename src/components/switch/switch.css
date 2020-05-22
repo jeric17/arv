@@ -10,7 +10,7 @@
 }
 
 .bar {
-  background-color: var(--default-dark-color);
+  background-color: var(--default-shade);
   border-radius: 20px;
   width: 100%;
   height: 16px;
@@ -18,7 +18,7 @@
 
 .circle {
   transition: all 0.3s;
-  background-color: var(--default-light-color);
+  background-color: var(--default-highlight);
   border-radius: 12px;
   height: 24px;
   width: 24px;
@@ -26,8 +26,8 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  border-color: var(--default-light-color);
-  border-width: 2px;
+  border-color: var(--default-shade);
+  border-width: 1px;
   border-style: solid;
 }
 
@@ -39,26 +39,26 @@
 .active .circle {
   left: 14px;
   background-color: #fff;
-  border-color: var(--dark-color);
+  border-color: var(--default-highlight);
   border-width: 9px;
 }
 
 .active .bar {
-  background-color: var(--default-dark-color);
+  background-color: var(--default-shade);
 }
 
 .active.primary .circle {
   border-color: var(--primary-color);
 }
 .active.primary .bar {
-  background-color: var(--primary-dark-color);
+  background-color: var(--primary-shade);
 }
 
 .active.secondary .circle {
   border-color: var(--secondary-color);
 }
 .active.secondary .bar {
-  background-color: var(--secondary-dark-color);
+  background-color: var(--secondary-shade);
 }
 
 .disabled {

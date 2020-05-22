@@ -1,24 +1,22 @@
 export const Header = {
-  name: 'Header',
   element: 'arv-header',
-  slot: '<arv-flex padded>Hello World</arv-flex>',
+  slot: '<arv-flex>Hello World</arv-flex>',
   props: [
     {
       name: 'color',
-      type: 'oneOf',
-      data: ['default', 'primary', 'secondary', 'inherit'],
-      value: 'primary'
+      type: 'color'
     },
     {
       name: 'position',
       type: 'oneOf',
-      data: ['static', 'absolute', 'relative', 'fixed', 'inherit'],
-      value: 'static'
+      data: ['static', 'absolute', 'relative', 'fixed', 'sticky', 'inherit'],
+      value: 'static',
+      description: 'Position of the header'
     },
     {
-      name: 'shadow',
+      name: 'no-shadow',
       type: 'boolean',
-      value: 'false'
+      description: 'Will not add a drop shadow to the header'
     }
   ],
 };

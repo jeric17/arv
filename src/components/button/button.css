@@ -23,6 +23,9 @@ button:disabled {
   background-color: var(--disabled-color);
   color: var(--disabled-text-color);
 }
+.isIcon {
+  padding: 12px;
+}
 .content {
   display: flex;
   line-height: 3em;

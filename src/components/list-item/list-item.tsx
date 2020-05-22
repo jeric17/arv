@@ -1,4 +1,6 @@
-import { Component, h } from '@stencil/core';
+import { Component, Prop, Host, h } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-list-item',
@@ -7,9 +9,23 @@ import { Component, h } from '@stencil/core';
 })
 export class ListItem {
 
+  @Prop() activeColor: Color;
+
+  @Prop() color: Color;
+
+  @Prop() isActive?: boolean;
+
   render() {
+    const cls = {
+      ...generateAttrValue(this.color),
+      [`${this.activeColor}-active`]: Boolean(this.activeColor),
+      active: this.isActive
+    };
+
     return (
-      <slot></slot>
+      <Host class={cls}>
+        <slot></slot>
+      </Host>
     );
   }
 }

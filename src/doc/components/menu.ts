@@ -1,21 +1,28 @@
 export const Menu = {
-  name: 'Menu',
   element: 'arv-menu',
-  slot: '<arv-button icon="settings" variant="raised-icon" slot="menu"></arv-button><arv-flex slot="menu-list" layout="column"><arv-button variant="ghost" rounded="false" full="">Profile</arv-button><arv-button rounded="false" variant="ghost" full="">Account</arv-button></arv-flex>',
+  slot: `
+    <arv-button is-icon><arv-icon icon="account_box"></arv-icon></arv-button>
+    <div slot="content">
+      <h1>Hello</h1>
+    </div>
+    <div slot="menu-list">
+      <arv-menu-item>Menu Item 1</arv-menu-item>
+      <arv-menu-item>Menu Item 2</arv-menu-item>
+      <arv-menu-item>Menu Item 3</arv-menu-item>
+    </div>
+  `,
   props: [
     {
-      name: 'xPosition',
-      displayName: 'x-position',
+      name: 'x-position',
       type: 'oneOf',
       data: ['left', 'right'],
       value: 'left'
     },
     {
-      name: 'yPosition',
-      displayName: 'y-position',
+      name: 'y-position',
       type: 'oneOf',
       data: ['top', 'bottom'],
-      value: 'top'
+      value: 'bottom'
     },
   ]
 };

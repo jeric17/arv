@@ -1,4 +1,4 @@
-import { Component, Element, Prop, Event, EventEmitter, State, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Event, Watch, EventEmitter, State, Host, h } from '@stencil/core';
 import { generateAttrValue } from '../../utils/helpers';
 import { Size } from '../../interface';
 
@@ -20,14 +20,17 @@ export class AvatarGroup {
   @State() extra: number;
 
   /**
-   * Will be loaded after the componentDidLoad.
-   */
-  @State() loaded = false;
-
-  /**
    * Maximun number of avatars to show.
    */
   @Prop() max?: number;
+
+  /**
+   * Updates children styling once max value has changed.
+   */
+  @Watch('max')
+  maxHandler() {
+    this.init();
+  }
 
   /**
    * Size variant to set.
@@ -43,41 +46,45 @@ export class AvatarGroup {
    * Adds style attributes, dislay and margin-left, to avatar elements.
    */
   componentDidLoad() {
+    this.init();
+  }
+
+  private init() {
     const avatars = Array.from(this.el.children);
+    const max = this.max - 1;
 
-    if (this.max &&
-      this.el.children.length > this.max
-    ) {
-      const items = avatars.slice(this.max);
-      items.forEach((node: HTMLElement) => {
-        node.style.display = 'none';
-      });
-      this.extra = items.length;
-    }
-
-    avatars.slice(0, this.extra + 1).forEach((node: any, index: number) => {
-      if (index === 0) {
-        return false;
+    avatars.forEach((node: any, index: number) => {
+      if (index > 0) {
+        node.style.marginLeft = '-15%';
+      } else {
+        node.style.marginLeft = '';
       }
-      node.style.marginLeft = '-15%';
+      if (index > max) {
+        node.style.display = 'none';
+      } else {
+        node.style.display = '';
+      }
     });
-
-    this.loaded = true;
   }
 
   render() {
     const cls = {
-      ...generateAttrValue(this.size),
-      loaded: this.loaded
+      ...generateAttrValue(this.size)
     };
-
+    const childrenLength = this.el.children.length;
+    let extra = 0;
+    if (this.max &&
+      childrenLength > this.max
+    ) {
+      extra = childrenLength - this.max;
+    }
     return (
       <Host class={cls}>
         <slot></slot>
-        {Boolean(this.extra) && (
+        {Boolean(extra) && (
           <div
             onClick={() => this.arvMore.emit()}
-            class="more">+{this.extra}</div>
+            class="more">+{extra}</div>
         )}
       </Host>
     );

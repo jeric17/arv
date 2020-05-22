@@ -2,7 +2,7 @@
   font-family: var(--icon-font-family, 'Material Icons');
   font-weight: normal;
   font-style: normal;
-  font-size: 1rem;
+  font-size: var(--icon-size);
   line-height: 1rem;
   letter-spacing: normal;
   text-transform: none;
@@ -12,7 +12,6 @@
   direction: ltr;
   -webkit-font-feature-settings: 'liga';
   -webkit-font-smoothing: antialiased;
-  margin: 0 0.5em;
   color: var(--icon-color);
   transition: all 0.3s;
 }

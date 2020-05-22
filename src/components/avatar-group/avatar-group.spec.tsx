@@ -70,6 +70,5 @@ it('add margins to overlap avatars', async () => {
   const items = page.root.querySelectorAll('arv-avatar');
 
   expect(items[0].style.marginLeft).toBeFalsy();
-  expect(items[2].style.marginLeft).toBeFalsy();
   expect(items[1].style.marginLeft).toBe('-15%');
 });

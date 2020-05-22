@@ -1,4 +1,4 @@
-import { Component, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Prop, Host, h } from '@stencil/core';
 import { Color, Size } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
@@ -15,9 +15,29 @@ import { generateAttrValue } from '../../utils/helpers';
 export class Button {
 
   /**
+   * Reference to the host element.
+   */
+  @Element() el: HTMLElement;
+
+  /**
    * Color variant to use.
    */
   @Prop() color?: Color;
+
+  /**
+   * Flex direction layout of icon and button content.
+   */
+  @Prop() flexDirection?: 'row' | 'row-reverse' | 'column' | 'column-reverse';
+
+  /**
+   * Material icon to show inside the button.
+   */
+  @Prop() icon?: string;
+
+  /**
+   * Render as an icon button.
+  */
+  @Prop() isIcon?: boolean;
 
   /**
    * Size variant to use.
@@ -54,13 +74,12 @@ export class Button {
    */
   @Prop() textAlign?: any;
   @Prop() buttonClick?: any;
-  @Prop() icon?: any;
   @Prop() rounded?: any;
   @Prop() padded?: any;
 
   render() {
     const hostCls = {
-      full: this.full
+      full: this.full,
     };
 
     const rootCls = {
@@ -68,7 +87,12 @@ export class Button {
       ...generateAttrValue(this.size),
       ...generateAttrValue(this.variant),
       boxed: this.boxed,
+      isIcon: this.isIcon
     };
+
+    if (this.flexDirection) {
+      this.el.style.flexDirection = this.flexDirection;
+    }
 
     return (
       <Host class={hostCls}>
@@ -77,6 +101,9 @@ export class Button {
           class={rootCls}
           disabled={this.disabled}>
           <span class="content">
+            {this.icon && (
+              <arv-icon icon={this.icon}></arv-icon>
+            )}
             <slot name="start"></slot>
             <slot></slot>
             <slot name="end"></slot>

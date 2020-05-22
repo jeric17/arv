@@ -7,6 +7,7 @@ export const Avatar = {
       name: 'img-src',
       type: 'string',
       value: 'http://localhost:5000/bg-03.png',
+      description: 'Image url'
     },
     {
       name: 'size',

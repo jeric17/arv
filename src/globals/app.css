@@ -42,7 +42,7 @@ body {
 
   --default-bg: #fcfcfc;
   --default-highlight: #f3f3f3;
-  --default-shade: #ececec;
+  --default-shade: #eeeeee;
 
   --radius: 4px;
   --padding: 1em;
@@ -57,8 +57,11 @@ body {
   --avatar-normal: 80px;
   --avatar-small: 50px;
   --avatar-large: 120px;
-
+  --badge-color: rgb(224, 32, 32);
+  --badge-text-color: #f5f5f5;
+  --icon-size: 1rem;
   --darker: #cdcdcd;
+  --backdrop-color: rgba(3, 3, 3, 0.4);
 }
 
 html,
@@ -68,6 +71,8 @@ body {
   margin: 0px;
   background-color: var(--default-bg);
   color: var(--font-color);
+
+  transition: background-color 0.3s;
 }
 
 body.dark {

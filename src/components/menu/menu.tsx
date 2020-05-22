@@ -1,4 +1,4 @@
-import { Component, h, Element, Listen, Prop, State } from '@stencil/core';
+import { Component, h, Element, Listen, Prop, State, Host } from '@stencil/core';
 
 @Component({
   tag: 'arv-menu',
@@ -6,87 +6,95 @@ import { Component, h, Element, Listen, Prop, State } from '@stencil/core';
   shadow: true
 })
 export class Menu {
-  to: any;
 
+  /**
+   * timeout delay.
+   */
+  delay = 300;
+
+  /**
+   * Reference to host element.
+   */
   @Element() el: HTMLElement;
 
-  @State() hide: boolean;
-  @State() show: boolean;
+  /**
+   * Reference of menu list to show or hide.
+   */
+  @State() isOpen = false;
 
-  @Prop() yPosition = 'bottom';
-  @Prop() xPosition = 'right';
+  /**
+   * top and bottom position of content.
+   */
+  @Prop() yPosition: 'top' | 'bottom' = 'bottom';
 
-  @Prop() disableBackdropClick: boolean;
+  /**
+   * let and right position of content.
+   */
+  @Prop() xPosition: 'left' | 'right' = 'right';
 
-  @Listen('mouseup')
-  mouseUpHandler() {
-    clearTimeout(this.to);
-    this.toggle();
-  }
+  /**
+   * Click outside of the menu will not trigger close.
+   */
+  @Prop() disableBgclose?: boolean;
 
   @Listen('blur')
   blurHandler() {
-    if (!this.disableBackdropClick) {
-      this.hide = true;
-    }
-    this.to = setTimeout(() => {
-      if (this.disableBackdropClick) {
-        return false;
+    this.isOpen = false;
+  }
+
+  menuTriggerClick = () => {
+    this.toggle();
+  }
+
+  menuListClick = () => {
+    setTimeout(() => {
+      this.isOpen = false;
+    }, this.delay);
+  }
+
+  private toggle() {
+    this.isOpen = !this.isOpen;
+    if (this.isOpen) {
+      // dismiss jest error
+      try {
+        this.el.focus();
+      } catch (e) { }
+
+      const content: any = this.el.shadowRoot.querySelector('.content');
+      if (this.yPosition === 'top') {
+        const menutriggerEl = this.el.shadowRoot.querySelector('.menu-trigger');
+        content.style.marginBottom = `${menutriggerEl.clientHeight}px`;
+      } else {
+        content.style.marginBottom = '';
       }
-      this.hide = false;
-      this.show = false;
-    }, 250);
-  }
-
-  toggle(show = false) {
-    if (show) {
-      this.show = true;
-      this.hide = false;
-    } else {
-      this.show = !this.show;
     }
-    if (this.show) {
-      this.el.focus();
-    } else {
-      this.el.blur();
-    }
-  }
-
-  hostData() {
-    return {
-      tabindex: '-1'
-    };
   }
 
   render() {
-    const rootClassNames = {
-      root: true
-    };
-
-    const menuListClassNames = {
-      list: true,
-      show: this.show,
+    const contentCls = {
+      content: true,
       top: this.yPosition === 'top',
       bottom: this.yPosition === 'bottom',
       left: this.xPosition === 'left',
       right: this.xPosition === 'right',
-      listHide: this.hide
+      isOpen: this.isOpen
     };
 
     return (
-      <div class={rootClassNames}>
-        <div class="menu" onClick={evt => {
-          evt.preventDefault();
-          this.toggle(true);
-        }}>
-          <slot name="menu" />
+      <Host tabIndex={-1}>
+        <div
+          class="menu-trigger"
+          onClick={this.menuTriggerClick}
+        >
+          <slot></slot>
         </div>
-        <ul class={menuListClassNames}>
-          <arv-paper>
-            <slot name="menu-list" />
-          </arv-paper>
-        </ul>
-      </div>
+        <div class={contentCls}>
+          <slot name="content"></slot>
+          <div onClick={this.menuListClick} class="menu-list">
+            <slot name="menu-list"></slot>
+          </div>
+        </div>
+      </Host>
     );
   }
 }

@@ -1,5 +1,4 @@
 export const Icon = {
-  name: 'Icon',
   element: 'arv-icon',
   slot: false,
   description: [
@@ -9,13 +8,12 @@ export const Icon = {
     {
       name: 'icon',
       type: 'string',
-      value: 'event'
+      value: 'event',
+      description: 'material icon from https://material.io/tools/icons/?style=baseline'
     },
     {
       name: 'size',
-      type: 'oneOf',
-      data: ['small', 'medium', 'large', 'xlarge', 'xxlarge'],
-      value: 'large'
+      type: 'size'
     }
   ]
 };

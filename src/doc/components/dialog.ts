@@ -1,34 +1,47 @@
 export const Dialog = {
-  name: 'Dialog',
   element: 'arv-dialog',
-  slot: '<arv-container width="400px" height="200px"><arv-text>Hello World!</arv-text></arv-container>',
+  slot: `
+    <p slot="header">Header from slot</p>
+    <div style="width: 300px;">
+      <h1>Hello World!</h1>
+      <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, accusamus tempora inventore delectus impedit quisquam ratione? Ab architecto exercitationem deserunt reprehenderit eligendi, sunt nihil eos quo praesentium sed dolores laudantium?
+      </p>
+    </div>
+  `,
+  containerContent: `
+    <arv-button color="secondary" size="large">Open Dialog</arv-button>
+  `,
+  onLoad: (el: HTMLElement) => {
+    const button = el.querySelector('arv-button');
+    const dialog = el.querySelector('arv-dialog');
+    button.addEventListener('click', () => {
+      dialog.setAttribute('is-open', 'true');
+    });
+  },
   props: [
     {
-      name: 'show',
+      name: 'dialog-title',
+      type: 'string',
+      value: 'Title',
+      description: 'Title at the header of the dialog box.'
+    },
+    {
+      name: 'is-open',
       type: 'boolean',
-      value: 'true'
+      value: 'false',
+      disabled: true,
+      description: 'Opens the dialog box.'
+    },
+    {
+      name: 'disable-bg-close',
+      type: 'boolean',
+      description: 'Disables closing of dialog box on background(backdrop) click.'
     },
     {
       name: 'scrollable',
       type: 'boolean',
-      value: 'true'
-    },
-    {
-      name: 'dialog-title',
-      type: 'string',
-      value: 'Title'
-    },
-    {
-      name: 'dialogTitleIcon',
-      displayName: 'dialog-title-icon',
-      type: 'string',
-      value: 'add'
-    },
-    {
-       name: 'hideClose',
-       displayName: 'hide-close',
-       type: 'boolean',
-       value: false
+      description: 'Scrollable dialog box.'
     }
   ],
 };

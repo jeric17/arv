@@ -50,23 +50,17 @@ export namespace Components {
     }
     interface ArvBadge {
         /**
-          * Color variant to set.
+          * Value will not render commas.
          */
-        "color"?: Color;
+        "disableComma"?: boolean;
         /**
           * Will hide the badge.
          */
         "invisible"?: boolean;
         /**
-          * Css styles to extend the component's ui
-         */
-        "styles"?: {
-            [key: string]: string;
-        };
-        /**
           * Value of the badge to show.
          */
-        "value"?: number;
+        "value"?: number | string;
     }
     interface ArvButton {
         /**
@@ -83,10 +77,21 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
+          * Flex direction layout of icon and button content.
+         */
+        "flexDirection"?: "row" | "row-reverse" | "column" | "column-reverse";
+        /**
           * Fullwidth button.
          */
         "full"?: boolean;
-        "icon"?: any;
+        /**
+          * Material icon to show inside the button.
+         */
+        "icon"?: string;
+        /**
+          * Render as an icon button.
+         */
+        "isIcon"?: boolean;
         "padded"?: any;
         "rounded"?: any;
         /**
@@ -195,6 +200,10 @@ export namespace Components {
           * Will show the dialog.
          */
         "isOpen": boolean;
+        /**
+          * Scrollable dialog box. For dialog boxes that exceeds the screen.
+         */
+        "scrollable"?: boolean;
     }
     interface ArvDiff {
         "autoScroll": boolean;
@@ -333,6 +342,10 @@ export namespace Components {
          */
         "flexDirection": "row" | "column" | "row-reverse" | "column-reverse" | string;
         /**
+          * Sets a full width input
+         */
+        "full"?: boolean;
+        /**
           * Public api that returns the input element.
          */
         "getInputElement": () => Promise<any>;
@@ -395,6 +408,9 @@ export namespace Components {
     interface ArvList {
     }
     interface ArvListItem {
+        "activeColor": Color;
+        "color": Color;
+        "isActive"?: boolean;
     }
     interface ArvLoader {
         "color": string;
@@ -402,9 +418,18 @@ export namespace Components {
         "size": string;
     }
     interface ArvMenu {
-        "disableBackdropClick": boolean;
-        "xPosition": string;
-        "yPosition": string;
+        /**
+          * Click outside of the menu will not trigger close.
+         */
+        "disableBgclose"?: boolean;
+        /**
+          * let and right position of content.
+         */
+        "xPosition": "left" | "right";
+        /**
+          * top and bottom position of content.
+         */
+        "yPosition": "top" | "bottom";
     }
     interface ArvMenuItem {
         /**
@@ -612,11 +637,24 @@ export namespace Components {
         "uploadTextVariant": string;
     }
     interface ArvVirtual {
+        /**
+          * Dialog title shown at the header part.
+         */
+        "dialogTitle"?: string;
+        /**
+          * Disables background click to close.
+         */
+        "disableBgClose": boolean;
+        /**
+          * Scrollable dialog box. For dialog boxes that exceeds the screen.
+         */
+        "scrollable"?: boolean;
     }
     interface BbBolts {
         "items": any[];
     }
     interface DocContent {
+        "isDark"?: boolean;
         "selectedComponent": string;
     }
     interface DocControl {
@@ -626,6 +664,7 @@ export namespace Components {
     }
     interface DocHtml {
         "config": any;
+        "isDark"?: boolean;
         "settings": any[];
     }
     interface DocNav {
@@ -1080,23 +1119,17 @@ declare namespace LocalJSX {
     }
     interface ArvBadge {
         /**
-          * Color variant to set.
+          * Value will not render commas.
          */
-        "color"?: Color;
+        "disableComma"?: boolean;
         /**
           * Will hide the badge.
          */
         "invisible"?: boolean;
         /**
-          * Css styles to extend the component's ui
-         */
-        "styles"?: {
-            [key: string]: string;
-        };
-        /**
           * Value of the badge to show.
          */
-        "value"?: number;
+        "value"?: number | string;
     }
     interface ArvButton {
         /**
@@ -1113,10 +1146,21 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
+          * Flex direction layout of icon and button content.
+         */
+        "flexDirection"?: "row" | "row-reverse" | "column" | "column-reverse";
+        /**
           * Fullwidth button.
          */
         "full"?: boolean;
-        "icon"?: any;
+        /**
+          * Material icon to show inside the button.
+         */
+        "icon"?: string;
+        /**
+          * Render as an icon button.
+         */
+        "isIcon"?: boolean;
         "padded"?: any;
         "rounded"?: any;
         /**
@@ -1233,6 +1277,10 @@ declare namespace LocalJSX {
           * Listen to this event to handle close
          */
         "onArvDialogClose"?: (event: CustomEvent<any>) => void;
+        /**
+          * Scrollable dialog box. For dialog boxes that exceeds the screen.
+         */
+        "scrollable"?: boolean;
     }
     interface ArvDiff {
         "autoScroll"?: boolean;
@@ -1384,6 +1432,10 @@ declare namespace LocalJSX {
          */
         "flexDirection"?: "row" | "column" | "row-reverse" | "column-reverse" | string;
         /**
+          * Sets a full width input
+         */
+        "full"?: boolean;
+        /**
           * Material icon to use.
          */
         "icon"?: string;
@@ -1457,6 +1509,9 @@ declare namespace LocalJSX {
     interface ArvList {
     }
     interface ArvListItem {
+        "activeColor"?: Color;
+        "color"?: Color;
+        "isActive"?: boolean;
     }
     interface ArvLoader {
         "color"?: string;
@@ -1464,9 +1519,18 @@ declare namespace LocalJSX {
         "size"?: string;
     }
     interface ArvMenu {
-        "disableBackdropClick"?: boolean;
-        "xPosition"?: string;
-        "yPosition"?: string;
+        /**
+          * Click outside of the menu will not trigger close.
+         */
+        "disableBgclose"?: boolean;
+        /**
+          * let and right position of content.
+         */
+        "xPosition"?: "left" | "right";
+        /**
+          * top and bottom position of content.
+         */
+        "yPosition"?: "top" | "bottom";
     }
     interface ArvMenuItem {
         /**
@@ -1703,14 +1767,27 @@ declare namespace LocalJSX {
     }
     interface ArvVirtual {
         /**
+          * Dialog title shown at the header part.
+         */
+        "dialogTitle"?: string;
+        /**
+          * Disables background click to close.
+         */
+        "disableBgClose"?: boolean;
+        /**
           * Trigger close handler.
          */
         "onArvVirtualClose"?: (event: CustomEvent<any>) => void;
+        /**
+          * Scrollable dialog box. For dialog boxes that exceeds the screen.
+         */
+        "scrollable"?: boolean;
     }
     interface BbBolts {
         "items"?: any[];
     }
     interface DocContent {
+        "isDark"?: boolean;
         "selectedComponent"?: string;
     }
     interface DocControl {
@@ -1721,6 +1798,7 @@ declare namespace LocalJSX {
     }
     interface DocHtml {
         "config"?: any;
+        "isDark"?: boolean;
         "settings"?: any[];
     }
     interface DocNav {

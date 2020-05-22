@@ -11,12 +11,15 @@ export class DocContent {
 
   @Element() el: HTMLElement;
 
-  @State() settings = [];
+  @State() settings: any[];
+
+  @Prop() isDark?: boolean;
 
   @Prop() selectedComponent: string;
 
   @Watch('selectedComponent')
   applyHtmlSample(item) {
+    this.settings = comps[item].props;
     this.addComponent(item);
   }
 
@@ -35,43 +38,59 @@ export class DocContent {
     this.addComponent(this.selectedComponent);
   }
 
+  private addComponent(item: string) {
+    const {
+      slot,
+      props,
+      containerContent,
+      element,
+      onLoad } = comps[item];
+    const container = this.el.shadowRoot.getElementById('sample');
+    const compEl = document.createElement(element);
+    compEl.setAttribute('id', 'demoComponent');
+    if (slot) {
+      compEl.innerHTML = slot;
+    }
+    props.forEach(d => {
+      if (d.value) {
+        compEl.setAttribute(d.name, d.value);
+      }
+    });
+    if (containerContent) {
+      container.innerHTML = containerContent;
+    } else {
+      container.innerHTML = '';
+    }
+    container.appendChild(compEl);
+    this.demoComponent = compEl;
+    if (onLoad) {
+      onLoad(container);
+    }
+  }
+
   render() {
+    if (!this.selectedComponent) {
+      return null;
+    }
+
     const selectedComp = comps[this.selectedComponent];
-    const settings = selectedComp.props;
 
     return (
-      <arv-flex direction="column" expanded>
+      <arv-flex class="root" direction="column" expanded>
         <h1>{this.selectedComponent}</h1>
         <arv-divider></arv-divider>
         <p></p>
         <arv-paper shadow-level="0">
           <div id="sample"></div>
         </arv-paper>
-        <doc-control settings={settings}></doc-control>
+        <doc-control settings={selectedComp.props}></doc-control>
         <doc-html
+          isDark={this.isDark}
           config={selectedComp}
           settings={this.settings}
         ></doc-html>
         <footer></footer>
       </arv-flex>
     );
-  }
-
-  private addComponent(item: string) {
-    const value = comps[item];
-    const wrapper = this.el.shadowRoot.getElementById('sample');
-    const compEl = document.createElement(value.element);
-    compEl.setAttribute('id', 'demoComponent');
-    if (value.slot) {
-      compEl.innerHTML = value.slot;
-    }
-    value.props.forEach(d => {
-      if (d.value) {
-        compEl.setAttribute(d.name, d.value);
-      }
-    });
-    wrapper.innerHTML = '';
-    wrapper.appendChild(compEl);
-    this.demoComponent = compEl;
   }
 }

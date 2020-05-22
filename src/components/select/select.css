@@ -5,6 +5,9 @@
   width: 100%;
   display: flex;
 }
+:host(.full) .control {
+  width: 100%;
+}
 :host(.row) {
   align-items: center;
 }
@@ -33,12 +36,15 @@
 }
 
 .select {
+  align-items: center;
   border-color: var(--default-highlight);
   border-radius: var(--radius);
   border-style: solid;
   border-width: 1px;
   cursor: pointer;
-  padding: 0 1.5em;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0 0 1.5em;
 }
 
 label,
@@ -48,4 +54,8 @@ label,
 
 .control {
   position: relative;
+}
+
+arv-icon {
+  margin: 0 8px;
 }

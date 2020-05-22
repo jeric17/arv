@@ -12,7 +12,7 @@ export class Header {
   /**
    * Set the Color variant.
    */
-  @Prop() color: Color = 'primary';
+  @Prop() color: Color;
 
   /**
    * Position of the header

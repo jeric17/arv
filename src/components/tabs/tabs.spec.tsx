@@ -1,5 +1,5 @@
 import { Tabs } from './tabs';
-import { createSpec, clsContains, getShadowEl } from '../../utils/testing/utils';
+import { createSpec, clsContains } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Tabs);
 

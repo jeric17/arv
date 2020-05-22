@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "diff": "^4.0.1",
+    "prismjs": "^1.20.0",
     "tslint-ionic-rules": "^0.0.21"
   },
   "devDependencies": {

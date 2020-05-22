@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, h } from '@stencil/core';
+import { Component, State, Event, EventEmitter, h } from '@stencil/core';
 
 @Component({
   tag: 'doc-nav',
@@ -11,14 +11,24 @@ export class DocNav {
     'AlertText',
     'Avatar',
     'AvatarGroup',
+    'Badge',
     'Button',
-    'Flex'
+    'Chip',
+    'Dialog',
+    'Flex',
+    'Header',
+    'Icon',
+    'Input',
+    'Menu'
   ];
+
+  @State() selectedItem = 'Accordion';
 
   @Event() docSelectComponent: EventEmitter<string>;
 
   click = (itemName: string) => {
     this.docSelectComponent.emit(itemName);
+    this.selectedItem = itemName;
   }
 
   render() {
@@ -26,7 +36,10 @@ export class DocNav {
       <arv-side-pane>
         <arv-list>
           {this.items.map(item => (
-            <arv-list-item onClick={() => this.click(item)}>
+            <arv-list-item
+              active-color="light"
+              isActive={this.selectedItem === item}
+              onClick={() => this.click(item)}>
               {item}
             </arv-list-item>
           ))}

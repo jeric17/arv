@@ -5,17 +5,10 @@ const specComponent = createSpec(Badge);
 
 it('loads', async () => {
   const page = await specComponent(`
-    <arv-badge value="1"></arv-badge>
+    <arv-badge value="1000000"></arv-badge>
   `);
   const value = getShadowEl(page, '.value');
-  expect(value.textContent).toBe('1');
-});
-
-it('sets color', async () => {
-  const page = await specComponent(`
-    <arv-badge color="primary"></arv-badge>
-  `);
-  expect(page.root.classList.contains('primary')).toBeTruthy();
+  expect(value.textContent).toBe('1,000,000');
 });
 
 it('hidden', async () => {
@@ -23,4 +16,12 @@ it('hidden', async () => {
     <arv-badge invisible></arv-badge>
   `);
   expect(page.root.classList.contains('arv-invisible')).toBeTruthy();
+});
+
+it('disable comma', async () => {
+  const page = await specComponent(`
+    <arv-badge value="300000" disable-comma></arv-badge>
+  `);
+  const value = getShadowEl(page, '.value');
+  expect(value.textContent).toBe('300000');
 });

@@ -1,6 +1,4 @@
 import { Component, Prop, Host, h } from '@stencil/core';
-import { Color } from '../../interface';
-import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
   tag: 'arv-badge',
@@ -10,11 +8,6 @@ import { generateAttrValue } from '../../utils/helpers';
 export class Badge {
 
   /**
-   * Color variant to set.
-   */
-  @Prop() color?: Color;
-
-  /**
    * Will hide the badge.
    */
   @Prop() invisible?: boolean;
@@ -22,25 +15,26 @@ export class Badge {
   /**
    * Value of the badge to show.
    */
-  @Prop() value?: number;
+  @Prop() value?: number | string;
 
   /**
-   * Css styles to extend the component's ui
+   * Value will not render commas.
    */
-  @Prop() styles?: { [key: string]: string };
+  @Prop() disableComma?: boolean;
 
   render() {
 
     const cls = {
-      ...generateAttrValue(this.color),
       'arv-invisible': this.invisible
     };
 
+    const val = (!this.disableComma && this.value) ?
+      Number(this.value).toLocaleString() :
+      this.value;
+
     return (
       <Host class={cls}>
-        <span
-          style={this.styles}
-          class="value">{this.value}</span>
+        <div class="value">{val}</div>
         <slot></slot>
       </Host>
     );

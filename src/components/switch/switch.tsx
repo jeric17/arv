@@ -9,7 +9,7 @@ import { Color } from '../../interface';
 })
 export class Switch {
 
-  @Prop() color: Color = 'primary';
+  @Prop() color: Color;
 
   @Prop() disabled: boolean;
 

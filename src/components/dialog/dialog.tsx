@@ -1,4 +1,4 @@
-import { Component, Event, EventEmitter, Element, Prop, Watch, Host, h } from '@stencil/core';
+import { Component, Event, EventEmitter, Element, Prop, Watch, h } from '@stencil/core';
 
 @Component({
   tag: 'arv-dialog',
@@ -20,12 +20,18 @@ export class Dialog {
   /**
    * Disables background click to close.
    */
-  @Prop() disableBgClose: boolean;
+  @Prop() disableBgClose = false;
 
   /**
    * Will show the dialog.
    */
   @Prop() isOpen: boolean;
+
+  /**
+ * Scrollable dialog box. For dialog boxes that
+ * exceeds the screen.
+ */
+  @Prop() scrollable?: boolean;
 
   @Watch('isOpen')
   isOpenChanged(value: boolean) {
@@ -49,46 +55,54 @@ export class Dialog {
    * Handle close
    */
   close() {
+    this.isOpen = false;
     this.arvDialogClose.emit();
   }
 
   render() {
-    const dialogCls = {
-      dialog: true,
-    };
-
     return (
-      <Host>
-        <div class={dialogCls}>
-          {this.dialogTitle && (
-            <h1 class="title">{this.dialogTitle}</h1>
-          )}
-          <arv-button
-            class="close-btn"
-            onClick={() => this.close()}>
-            <arv-icon icon="clear"></arv-icon>
-          </arv-button>
-          <slot></slot>
-        </div>
-      </Host>
+      <slot></slot>
     );
   }
 
   /**
    * Will append the dialog content to document and
-   * add event listener to virtual component
+   * add event listener to virtual component.
    */
   private open() {
-    const dialogEl = this.el.shadowRoot.querySelector('.dialog');
+    const el = this.el;
     const arvVirtual = document.createElement('arv-virtual');
+    const elChildren = Array.from(this.el.children);
 
-    if (!this.disableBgClose) {
-      arvVirtual.addEventListener('arvVirtualClose', () => {
-        this.close();
-      });
-    }
+    /**
+     * Apply dialog attributes to arv-virtual component.
+     */
+    arvVirtual.setAttribute('dialog-title', this.dialogTitle || '');
+    arvVirtual.setAttribute('disable-bg-close', String(this.disableBgClose));
+    arvVirtual.setAttribute('scrollable', String(this.scrollable));
 
-    arvVirtual.appendChild(dialogEl);
+    /**
+     * Return the elements back to the arv-dialog element.
+     */
+    arvVirtual.addEventListener('arvVirtualClose', () => {
+      el.setAttribute('is-open', 'false');
+
+      elChildren.forEach(node => {
+        el.appendChild(node);
+      })
+      document.body.removeChild(arvVirtual);
+    });
+
+    /**
+     * Transfer children to arv-virtual component.
+     */
+    elChildren.forEach(node => {
+      arvVirtual.appendChild(node);
+    });
+
+    /**
+     * Add the arv-virtual component to document body.
+     */
     document.body.appendChild(arvVirtual);
   }
 }

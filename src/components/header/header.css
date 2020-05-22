@@ -8,6 +8,10 @@
   width: 100%;
 }
 
+:host(.no-shadow) {
+  box-shadow: 0 0 0 transparent;
+}
+
 :host(.primary) {
   background-color: var(--primary-color);
   color: var(--primary-text-color);

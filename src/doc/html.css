@@ -1,4 +1,10 @@
+code {
+  background-color: var(--darker);
+  white-space: pre-wrap !important;
+}
 pre {
-  white-space: pre-wrap;
-  font-size: 0.9em;
+  background-color: var(--darker);
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  padding: 1em;
 }

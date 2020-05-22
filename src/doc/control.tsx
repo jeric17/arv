@@ -8,12 +8,12 @@ import { Component, Prop, Event, EventEmitter, h } from '@stencil/core';
 export class DocControl {
   colors = ['primary', 'secondary', 'success', 'warning', 'danger', 'dark', 'light'];
 
-  @Prop({ mutable: true }) settings: any = [];
+  @Prop() settings: any = [];
 
   @Event() docSettingsChange: EventEmitter<any>;
 
   generateField = (item: any, index: number) => {
-    const labelWidth = '80px';
+    const labelWidth = '100px';
     const control = (() => {
       if (item.type === 'color') {
         return (
@@ -21,10 +21,11 @@ export class DocControl {
             label="color"
             labelWidth={labelWidth}
             flex-direction="row"
-            value={item.value || 'Select a color'}
+            value={item.value || 'Select'}
             selectChange={data => {
               this.dataChange(data, index);
             }}
+            full
           >
             <arv-menu-item value="">None</arv-menu-item>
             {this.colors.map((color: string) => (
@@ -44,6 +45,7 @@ export class DocControl {
             selectChange={data => {
               this.dataChange(data, index);
             }}
+            full
           >
             {dataArray.map((d: string) => (
               <arv-menu-item value={d}>{d}</arv-menu-item>
@@ -62,6 +64,7 @@ export class DocControl {
             selectChange={data => {
               this.dataChange(data, index);
             }}
+            full
           >
             {dataArray.map((d: string) => (
               <arv-menu-item value={d}>{d}</arv-menu-item>
@@ -79,6 +82,7 @@ export class DocControl {
             selectChange={data => {
               this.dataChange(data, index);
             }}
+            full
           >
             <arv-menu-item value="">None</arv-menu-item>
             {item.data.map((d: string) => (
@@ -90,7 +94,6 @@ export class DocControl {
       if (item.type === 'string') {
         return (
           <arv-input
-            flex-direction="row"
             inputChange={data => {
               this.dataChange(data, index);
             }}
@@ -106,19 +109,14 @@ export class DocControl {
         return item.description;
       }
       if (item.type === 'size') {
-        return 'Size vairant to set.';
+        return 'Size variant to set.';
       }
       if (item.type === 'color') {
         return 'Color variant to set.'
       }
     })();
 
-    const controlWidth = (() => {
-      if (item.type === 'string') {
-        return { width: '500px', minWidth: '500px' };
-      }
-      return { width: '260px', minWidth: '260px' };
-    })();
+    const controlWidth = { width: '300px', minWidth: '300px' };
 
     return [
       <arv-flex align-items="center">

@@ -12,3 +12,19 @@
 :host(:hover) {
   background-color: var(--default-highlight);
 }
+:host(.primary-active.active) {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+:host(.secondary-active.active) {
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+}
+:host(.dark-active.active) {
+  background-color: var(--dark-color);
+  color: var(--dark-text-color);
+}
+:host(.light-active.active) {
+  background-color: var(--light-color);
+  color: var(--light-text-color);
+}

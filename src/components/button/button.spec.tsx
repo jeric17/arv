@@ -52,3 +52,27 @@ it('set boxed', async () => {
 `);
   expect(getShadowEl(page, 'button').classList.contains('boxed')).toBeTruthy();
 });
+
+it('is icon button', async () => {
+  const page = await specComponent(`
+    <arv-button is-icon></arv-button>
+  `);
+  const btn = getShadowEl(page, 'button');
+  expect(btn.classList.contains('isIcon')).toBeTruthy();
+});
+
+it('render an icon', async () => {
+  const page = await specComponent(`
+    <arv-button icon="account_box"></arv-button>
+  `);
+  const icon = getShadowEl(page, 'arv-icon');
+  expect(icon).toBeTruthy();
+  expect(icon.getAttribute('icon')).toBe('account_box');
+});
+
+it('flex-direction layout', async () => {
+  const page = await specComponent(`
+    <arv-button flex-direction="row-reverse"></arv-button>
+  `);
+  expect(page.root.style.flexDirection).toBe('row-reverse');
+});
