@@ -432,6 +432,7 @@ export namespace Components {
         "yPosition": "top" | "bottom";
     }
     interface ArvMenuItem {
+        "hideValue"?: boolean;
         /**
           * Value to pass in the arvMenuSelect event.
          */
@@ -490,6 +491,10 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Size variant to use.
+         */
+        "size": Size;
+        /**
           * Input value of the radio input.
          */
         "value"?: string;
@@ -499,6 +504,10 @@ export namespace Components {
           * Color variant to use.
          */
         "color": Color;
+        /**
+          * Disables the element.
+         */
+        "disabled"?: boolean;
         /**
           * Position of label and select component value.
          */
@@ -515,6 +524,7 @@ export namespace Components {
           * Sets the min-width and width of the label.
          */
         "labelWidth"?: string;
+        "placeholder"?: string;
         /**
           * Callback function triggered on menu select.
          */
@@ -531,17 +541,30 @@ export namespace Components {
     interface ArvSidePane {
     }
     interface ArvSnackbar {
-        "animationIn": string;
-        "animationOut": string;
-        "close": () => void;
-        "horizontal": string;
-        "icon": string;
-        "message": string;
-        "open": boolean;
-        "timing": number;
-        "top": number;
-        "variant": string;
-        "vertical": string;
+        /**
+          * Color variant to use.
+         */
+        "color"?: Color;
+        /**
+          * How long will the snackbar show.
+         */
+        "duration": number;
+        /**
+          * Text content of the snackbar.
+         */
+        "message"?: string;
+        /**
+          * Opens up a snackbar.
+         */
+        "open": () => Promise<void>;
+        /**
+          * Position of the snack bar in horizontal axis.
+         */
+        "xPosition": "left" | "right" | "center";
+        /**
+          * Position of the snack bar in vertical axis.
+         */
+        "yPosition": "top" | "bottom" | "center";
     }
     interface ArvSpacer {
         /**
@@ -564,8 +587,22 @@ export namespace Components {
         }[];
     }
     interface ArvSwitch {
+        /**
+          * Color variant to set.
+         */
         "color": Color;
+        /**
+          * Disables the element.
+         */
         "disabled": boolean;
+        /**
+          * Layout direction of label and switch element.
+         */
+        "flexDirection"?: "row" | "column" | "column-reverse" | "row-reverse";
+        /**
+          * Label of the element.
+         */
+        "label"?: string;
         "value": boolean;
     }
     interface ArvTable {
@@ -619,6 +656,10 @@ export namespace Components {
           * Truncates the text with ellipsis.
          */
         "truncate"?: boolean;
+        /**
+          * Whitespace
+         */
+        "wrap"?: "break-spaces" | "pre" | "pre-wrap" | "normal" | "nowrap" | "wrap";
     }
     interface ArvTooltip {
         /**
@@ -649,6 +690,20 @@ export namespace Components {
           * Scrollable dialog box. For dialog boxes that exceeds the screen.
          */
         "scrollable"?: boolean;
+    }
+    interface ArvVirtualSnackbar {
+        "color"?: Color;
+        "counter": number;
+        "duration": number;
+        "message"?: string;
+        /**
+          * Position of the snack bar in horizontal axis.
+         */
+        "xPosition": "left" | "right" | "center";
+        /**
+          * Position of the snack bar in vertical axis.
+         */
+        "yPosition": "top" | "bottom" | "center";
     }
     interface BbBolts {
         "items": any[];
@@ -963,6 +1018,12 @@ declare global {
         prototype: HTMLArvVirtualElement;
         new (): HTMLArvVirtualElement;
     };
+    interface HTMLArvVirtualSnackbarElement extends Components.ArvVirtualSnackbar, HTMLStencilElement {
+    }
+    var HTMLArvVirtualSnackbarElement: {
+        prototype: HTMLArvVirtualSnackbarElement;
+        new (): HTMLArvVirtualSnackbarElement;
+    };
     interface HTMLBbBoltsElement extends Components.BbBolts, HTMLStencilElement {
     }
     var HTMLBbBoltsElement: {
@@ -1060,6 +1121,7 @@ declare global {
         "arv-tooltip": HTMLArvTooltipElement;
         "arv-uploader": HTMLArvUploaderElement;
         "arv-virtual": HTMLArvVirtualElement;
+        "arv-virtual-snackbar": HTMLArvVirtualSnackbarElement;
         "bb-bolts": HTMLBbBoltsElement;
         "doc-content": HTMLDocContentElement;
         "doc-control": HTMLDocControlElement;
@@ -1533,6 +1595,7 @@ declare namespace LocalJSX {
         "yPosition"?: "top" | "bottom";
     }
     interface ArvMenuItem {
+        "hideValue"?: boolean;
         /**
           * Event emitted when clicked.
          */
@@ -1605,6 +1668,10 @@ declare namespace LocalJSX {
          */
         "onArvChange"?: (event: CustomEvent<boolean>) => void;
         /**
+          * Size variant to use.
+         */
+        "size"?: Size;
+        /**
           * Input value of the radio input.
          */
         "value"?: string;
@@ -1614,6 +1681,10 @@ declare namespace LocalJSX {
           * Color variant to use.
          */
         "color"?: Color;
+        /**
+          * Disables the element.
+         */
+        "disabled"?: boolean;
         /**
           * Position of label and select component value.
          */
@@ -1634,6 +1705,7 @@ declare namespace LocalJSX {
           * Event fired if the menu item is clicked.
          */
         "onArvSelectChange"?: (event: CustomEvent<any>) => void;
+        "placeholder"?: string;
         /**
           * Callback function triggered on menu select.
          */
@@ -1650,18 +1722,26 @@ declare namespace LocalJSX {
     interface ArvSidePane {
     }
     interface ArvSnackbar {
-        "animationIn"?: string;
-        "animationOut"?: string;
-        "close"?: () => void;
-        "horizontal"?: string;
-        "icon"?: string;
+        /**
+          * Color variant to use.
+         */
+        "color"?: Color;
+        /**
+          * How long will the snackbar show.
+         */
+        "duration"?: number;
+        /**
+          * Text content of the snackbar.
+         */
         "message"?: string;
-        "onHandleClose"?: (event: CustomEvent<any>) => void;
-        "open"?: boolean;
-        "timing"?: number;
-        "top"?: number;
-        "variant"?: string;
-        "vertical"?: string;
+        /**
+          * Position of the snack bar in horizontal axis.
+         */
+        "xPosition"?: "left" | "right" | "center";
+        /**
+          * Position of the snack bar in vertical axis.
+         */
+        "yPosition"?: "top" | "bottom" | "center";
     }
     interface ArvSpacer {
         /**
@@ -1685,8 +1765,22 @@ declare namespace LocalJSX {
         }[];
     }
     interface ArvSwitch {
+        /**
+          * Color variant to set.
+         */
         "color"?: Color;
+        /**
+          * Disables the element.
+         */
         "disabled"?: boolean;
+        /**
+          * Layout direction of label and switch element.
+         */
+        "flexDirection"?: "row" | "column" | "column-reverse" | "row-reverse";
+        /**
+          * Label of the element.
+         */
+        "label"?: string;
         "value"?: boolean;
     }
     interface ArvTable {
@@ -1747,6 +1841,10 @@ declare namespace LocalJSX {
           * Truncates the text with ellipsis.
          */
         "truncate"?: boolean;
+        /**
+          * Whitespace
+         */
+        "wrap"?: "break-spaces" | "pre" | "pre-wrap" | "normal" | "nowrap" | "wrap";
     }
     interface ArvTooltip {
         /**
@@ -1782,6 +1880,21 @@ declare namespace LocalJSX {
           * Scrollable dialog box. For dialog boxes that exceeds the screen.
          */
         "scrollable"?: boolean;
+    }
+    interface ArvVirtualSnackbar {
+        "color"?: Color;
+        "counter"?: number;
+        "duration"?: number;
+        "message"?: string;
+        "onArvVirtualSnackbarClose"?: (event: CustomEvent<any>) => void;
+        /**
+          * Position of the snack bar in horizontal axis.
+         */
+        "xPosition"?: "left" | "right" | "center";
+        /**
+          * Position of the snack bar in vertical axis.
+         */
+        "yPosition"?: "top" | "bottom" | "center";
     }
     interface BbBolts {
         "items"?: any[];
@@ -1857,6 +1970,7 @@ declare namespace LocalJSX {
         "arv-tooltip": ArvTooltip;
         "arv-uploader": ArvUploader;
         "arv-virtual": ArvVirtual;
+        "arv-virtual-snackbar": ArvVirtualSnackbar;
         "bb-bolts": BbBolts;
         "doc-content": DocContent;
         "doc-control": DocControl;
@@ -1919,6 +2033,7 @@ declare module "@stencil/core" {
             "arv-tooltip": LocalJSX.ArvTooltip & JSXBase.HTMLAttributes<HTMLArvTooltipElement>;
             "arv-uploader": LocalJSX.ArvUploader & JSXBase.HTMLAttributes<HTMLArvUploaderElement>;
             "arv-virtual": LocalJSX.ArvVirtual & JSXBase.HTMLAttributes<HTMLArvVirtualElement>;
+            "arv-virtual-snackbar": LocalJSX.ArvVirtualSnackbar & JSXBase.HTMLAttributes<HTMLArvVirtualSnackbarElement>;
             "bb-bolts": LocalJSX.BbBolts & JSXBase.HTMLAttributes<HTMLBbBoltsElement>;
             "doc-content": LocalJSX.DocContent & JSXBase.HTMLAttributes<HTMLDocContentElement>;
             "doc-control": LocalJSX.DocControl & JSXBase.HTMLAttributes<HTMLDocControlElement>;

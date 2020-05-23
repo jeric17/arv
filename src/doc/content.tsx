@@ -44,8 +44,10 @@ export class DocContent {
       props,
       containerContent,
       element,
+      wrapper,
       onLoad } = comps[item];
     const container = this.el.shadowRoot.getElementById('sample');
+    const wrapperEl = document.createElement('div');
     const compEl = document.createElement(element);
     compEl.setAttribute('id', 'demoComponent');
     if (slot) {
@@ -61,7 +63,15 @@ export class DocContent {
     } else {
       container.innerHTML = '';
     }
-    container.appendChild(compEl);
+
+    if (!wrapper) {
+      container.appendChild(compEl);
+    } else {
+      wrapperEl.innerHTML = wrapper;
+      wrapperEl.children[0].appendChild(compEl);
+      container.appendChild(wrapperEl);
+    }
+
     this.demoComponent = compEl;
     if (onLoad) {
       onLoad(container);
@@ -80,7 +90,7 @@ export class DocContent {
         <h1>{this.selectedComponent}</h1>
         <arv-divider></arv-divider>
         <p></p>
-        <arv-paper shadow-level="0">
+        <arv-paper class="sample-wrapper" shadow-level="0">
           <div id="sample"></div>
         </arv-paper>
         <doc-control settings={selectedComp.props}></doc-control>

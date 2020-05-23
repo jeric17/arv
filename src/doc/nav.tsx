@@ -13,13 +13,20 @@ export class DocNav {
     'AvatarGroup',
     'Badge',
     'Button',
+    'Checkbox',
     'Chip',
     'Dialog',
     'Flex',
     'Header',
     'Icon',
     'Input',
-    'Menu'
+    'Menu',
+    'Paper',
+    'Radio',
+    'Select',
+    'Snackbar',
+    'Stepper',
+    'Switch'
   ];
 
   @State() selectedItem = 'Accordion';

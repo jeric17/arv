@@ -1,51 +1,43 @@
-.root {
+:host {
   cursor: pointer;
+  position: relative;
+  display: flex;
+  margin: 4px;
 }
-.disabled {
+label {
+  margin: 0 1em;
+}
+input {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+:host(.disabled) {
   cursor: not-allowed;
 }
-.radio {
+:host(.flex-column) label, :host(.flex-column-reverse) label {
+  margin: 1em 0;
+}
+.control {
   align-items: center;
-  border-color: var(--radio-border-color, #cdcdcd);
+  border-color: var(--default-highlight);
+  background-color: var(--default-bg);
   border-radius: 100%;
-  border-style: var(--radio-border-style, solid);
-  border-width: var(--radio-border-width, 2px);
+  border-style: solid;
+  border-width: var(--radio-border-width);
   box-sizing: border-box;
   display: flex;
   height: 20px;
   justify-content: center;
-  margin-right: 10px;
   min-height: 20px;
   min-width: 20px;
-  padding: var(--radio-padding, 3px);
+  padding: var(--radio-padding);
   transition: all 0.3s;
   width: 20px;
-}
-.radio.large {
-  height: 40px;
-  min-height: 40px;
-  min-width: 40px;
-  width: 40px;
-  border-width: var(--radio-border-width-large, 4px);
-  padding: var(--radio-padding-large, 6px);
-}
-.radio.active.primary {
-  border-color: var(--primary-color);
-}
-.radio.active.secondary {
-  border-color: var(--secondary-color);
-}
-.radio.active.error {
-  border-color: var(--error-color);
-}
-.radio.active.warning {
-  border-color: var(--warning-color);
-}
-.radio.active.success {
-  border-color: var(--success-color);
-}
-.radio.active.disabled {
-  border-color: #efefef;
 }
 
 .indicator {
@@ -54,30 +46,58 @@
   width: 100%;
   transition: all 0.3s;
   transform: scale(0);
+  background-color: var(--default-shade);
 }
 
-.active
-.indicator {
-  background-color: var(--radio-indicator-color, #efefef);
+:host(.checked) .indicator {
   transform: scale(1);
 }
-.active.primary
-.indicator {
-  background-color: var(--primary-color);
+
+:host(.primary.checked) .control {
+  border-color: var(--primary-color);
 }
-.active.secondary
-.indicator {
-  background-color: var(--secondary-color);
+:host(.primary) .indicator {
+  background-color: var(--primary-shade);
 }
-.active.error
-.indicator {
-  background-color: var(--error-color);
+
+:host(.secondary.checked) .control {
+  border-color: var(--secondary-color);
 }
-.active.success
-.indicator {
-  background-color: var(--success-color);
+:host(.secondary) .indicator {
+  background-color: var(--secondary-shade);
 }
-.active.disabled
-.indicator {
-  background-color: #efefef;
+
+:host(.success.checked) .control {
+  border-color: var(--success-color);
+}
+:host(.success) .indicator {
+  background-color: var(--success-shade);
+}
+
+:host(.warning.checked) .control {
+  border-color: var(--warning-color);
+}
+:host(.warning) .indicator {
+  background-color: var(--warning-shade);
+}
+
+:host(.danger.checked) .control {
+  border-color: var(--danger-color);
+}
+:host(.danger) .indicator {
+  background-color: var(--danger-shade);
+}
+
+:host(.dark.checked) .control {
+  border-color: var(--dark-color);
+}
+:host(.dark) .indicator {
+  background-color: var(--dark-shade);
+}
+
+:host(.light.checked) .control {
+  border-color: var(--light-color);
+}
+:host(.light) .indicator {
+  background-color: var(--light-shade);
 }

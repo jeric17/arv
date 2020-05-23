@@ -1,4 +1,5 @@
-import { Component, h, Event, EventEmitter, Element, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, State, Prop, Host, Method, h } from '@stencil/core';
+import { Color } from '../../interface';
 
 @Component({
   tag: 'arv-snackbar',
@@ -7,200 +8,109 @@ import { Component, h, Event, EventEmitter, Element, Prop, State, Watch } from '
 })
 export class Snackbar {
 
-  loading: boolean;
-  padding = 8;
-  timeout = null;
-  timeout2 = null;
+  /**
+   * Flag to let the virtual snackbar to update
+   * if it is already opened.
+   */
+  counter = 0;
 
+  /**
+   * Reference to the host element.
+   */
   @Element() el: HTMLElement;
 
-  @State() animation: string;
+  /**
+   * If the snackbar is open.
+   */
+  @State() isOPen = false;
 
-  @State() elementStyles = {};
+  /**
+   * Color variant to use.
+   */
+  @Prop() color?: Color;
 
-  @Prop() animationIn = 'slideInTop';
+  /**
+   * Text content of the snackbar.
+   */
+  @Prop() message?: string;
 
-  @Prop() animationOut = 'slideOutTop';
+  /**
+   * How long will the snackbar show.
+   */
+  @Prop() duration: number;
 
-  @Prop() variant: string;
+  /**
+   * Position of the snack bar in horizontal axis.
+   */
+  @Prop() xPosition: 'left' | 'right' | 'center' = 'center';
 
-  @Watch('variant')
-  handleVariant() {
-    this.clear();
-    this.timingClose();
+  /**
+   * Position of the snack bar in vertical axis.
+   */
+  @Prop() yPosition: 'top' | 'bottom' | 'center' = 'top';
+
+  /**
+   * Opens up a snackbar.
+   */
+  @Method()
+  async open() {
+    this.initOpen();
   }
 
-  @Prop() horizontal = 'center';
+  private initOpen() {
+    /**
+     * If the snackbar is arealy opened. Update the counter attribute
+     * to notify the virtual snackbar and let it handle
+     * updating the duration.
+     */
+    if (this.isOPen) {
+      const virtual = document.body.querySelector('arv-virtual-snackbar');
+      virtual.setAttribute('counter', String(this.counter));
 
-  @Prop() icon: string;
+      this.counter++;
 
-  @Prop() message: string;
-
-  @Prop() open = false;
-
-  @Watch('open')
-  handleOpen() {
-    this.init();
-  }
-
-  @Prop() timing = 3;
-
-  @Prop() top = 0;
-
-  @Prop() vertical = 'top';
-
-  @Prop() close: () => void;
-
-  @Event() handleClose: EventEmitter;
-
-  componentWillLoad() {
-    this.animation = this.animationIn;
-  }
-
-  componentDidLoad() {
-    this.init();
-  }
-
-  componentDidUnload() {
-    if (this.timeout) {
-      this.clear();
-    }
-  }
-
-  clear() {
-    clearTimeout(this.timeout);
-    clearTimeout(this.timeout2);
-    this.timeout = null;
-  }
-
-  init() {
-    if (!this.open) {
-      if (this.timeout && !this.loading) {
-        this.clear();
-      }
-      return false;
+      return this.el;
     }
 
-    if (!this.loading && this.timing && this.timeout) {
-      this.clear();
-    }
-    this.timingClose();
-  }
+    /**
+     * Create element.
+     */
+    const virtual = document.createElement('arv-virtual-snackbar');
 
-  getStyles(v, h) {
-    const style = {};
+    /**
+     * Apply prop attributes.
+     */
+    virtual.setAttribute('color', String(this.color));
+    virtual.setAttribute('duration', String(this.duration));
+    virtual.setAttribute('message', String(this.message));
+    virtual.setAttribute('counter', String(this.counter));
+    virtual.setAttribute('x-position', this.xPosition);
+    virtual.setAttribute('y-position', this.yPosition);
 
-    const height = window.innerHeight;
-    const width = window.innerWidth;
+    /**
+     * Listen to close event.
+     */
+    virtual.addEventListener('arvVirtualSnackbarClose', () => {
+      document.body.removeChild(virtual);
+      this.isOPen = false;
+    });
 
-    const elementHeight = 52;
+    document.body.appendChild(virtual);
 
-    if (!v || v === 'top') {
-      style['top'] = `${this.padding + this.top}px`;
-    }
+    this.counter++;
+    this.isOPen = true;
 
-    if (v === 'center') {
-      style['top'] = `${this.top + height / 2 - (elementHeight / 2)}px`;
-    }
-
-    if (v === 'bottom') {
-      style['bottom'] = `${this.padding}px`;
-    }
-
-    if (h === 'left') {
-      style['left'] = `${this.padding}px`;
-    }
-
-    if (h === 'center') {
-      style['left'] = `${width / 2}px`;
-    }
-
-    if (h === 'right') {
-      style['right'] = `${this.padding}px`;
-    }
-
-    return style;
-  }
-
-  timingClose() {
-    if (this.variant === 'loading') {
-      return false;
-    }
-    this.loading = true;
-
-    this.timeout = setTimeout(() => {
-      this.animation = this.animationOut;
-      this.timeout2 = setTimeout(() => {
-        this.loading = false;
-        this.animation = this.animationIn;
-        this.handleClose.emit();
-        if (this.close) {
-          this.close();
-        }
-      }, 250);
-    }, (this.timing * 1000) - 280);
+    /**
+     * Just return the host element.
+     */
+    return this.el;
   }
 
   render() {
-    if (!this.open) {
-      return false;
-    }
-    const rootClassNames = {
-      root: true,
-      error: this.variant === 'error',
-      warning: this.variant === 'warning',
-      success: this.variant === 'success'
-    };
-
-    const icon = (() => {
-      if (this.icon) {
-        return this.icon;
-      }
-      if (this.variant === 'error') {
-        return 'error';
-      }
-      if (this.variant === 'warning') {
-        return 'warning';
-      }
-      if (this.variant === 'success') {
-        return 'check_circle'
-      }
-      return null;
-    })();
-
-    const Content = () => (
-      <div class={{
-        content: true,
-        hCenter: this.horizontal === 'center'
-      }}>
-        <arv-flex items="center">
-          {icon && [
-            <arv-icon icon={icon} noMargin />,
-            <arv-divider />
-          ]}
-          {(this.variant === 'loading') && [
-            <arv-loader size="xsmall" />,
-            <arv-divider />
-          ]}
-          <arv-text>
-            {this.message}
-          </arv-text>
-          <slot />
-        </arv-flex>
-      </div>
-    );
-
-    const elementStyles = this.getStyles(this.vertical, this.horizontal);
-
     return (
-      <div
-        style={elementStyles}
-        class={rootClassNames}
-      >
-        <arv-transition animation={this.animation}>
-          <Content />
-        </arv-transition>
-      </div>
+      <Host>
+        <slot></slot>
+      </Host>
     );
   }
 }

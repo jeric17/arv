@@ -1,18 +1,30 @@
 export const Switch = {
-  name: 'Switch',
   element: 'arv-switch',
   slot: false,
   props: [
     {
-      name: 'color',
+      name: 'label',
+      type: 'string',
+      description: 'Label of the input radio element.',
+      value: 'Label'
+    }, {
+      name: 'flex-direction',
       type: 'oneOf',
-      data: ['default', 'primary', 'secondary'],
-      value: 'primary'
+      data: ['row', 'row-reverse', 'column', 'column-reverse'],
+      description: 'Layout direction of label and select element.'
     },
     {
-      name: 'value',
+      name: 'color',
+      type: 'color'
+    },
+    {
+      name: 'size',
+      type: 'size',
+    },
+    {
+      name: 'disabled',
       type: 'boolean',
-      value: 'true'
+      description: 'Disabled state'
     }
   ]
 };

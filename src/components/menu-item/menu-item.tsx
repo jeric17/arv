@@ -12,6 +12,8 @@ export class MenuItem {
    */
   @Prop() value: any;
 
+  @Prop() hideValue?: boolean;
+
   /**
    * Event emitted when clicked.
    */
@@ -20,6 +22,11 @@ export class MenuItem {
   render() {
     return (
       <Host onClick={() => this.arvMenuSelect.emit(this.value)}>
+        {!this.hideValue && (
+          <arv-text wrap="nowrap">
+            <slot name="value"></slot>
+          </arv-text>
+        )}
         <slot></slot>
       </Host>
     );

@@ -1,48 +1,36 @@
 export const Snackbar = {
-  name: 'Snackbar',
   element: 'arv-snackbar',
-  slot: false,
-  propsDescription: [
-    {
-      name: 'close',
-      type: 'function',
-      description: 'Required either close property or handleClose event. This will trigger the close function. close functions should always set the open property to false'
-    }
-  ],
-  events: [
-    {
-      name: 'handleClose',
-      description: 'Required either close property or handleClose event. This will trigger the close function. close functions should always set the open property to false'
-    }
-  ],
-  props: [
-    {
-      name: 'variant',
-      type: 'oneOf',
-      data: ['default', 'success', 'error', 'loading'],
-      value: 'default'
-    },
-    {
-      name: 'message',
-      type: 'string',
-      value: 'HelloWorld'
-    },
-    {
-      name: 'open',
-      type: 'boolean',
-      value: 'true'
-    },
-    {
-      name: 'vertical',
-      type: 'oneOf',
-      data: ['top', 'center', 'bottom'],
-      value: 'top'
-    },
-    {
-      name: 'horizontal',
-      type: 'oneOf',
-      data: ['left', 'center', 'right'],
-      value: 'center'
-    }
-  ]
+  containerContent: `
+    <arv-button color="warning">Open Snackbar</arv-button>
+  `,
+  onLoad: (el: HTMLElement) => {
+    const button = el.querySelector('arv-button');
+    const snackbar = el.querySelector('arv-snackbar');
+
+    button.addEventListener('click', () => {
+      snackbar.open();
+    });
+  },
+  props: [{
+    name: 'message',
+    type: 'string',
+    value: 'Hello World!',
+    description: 'Snackbar text content'
+  }, {
+    name: 'duration',
+    type: 'string',
+    value: 3000,
+    description: 'duration in millis to show the snackbar'
+  }, {
+    name: 'color',
+    type: 'color'
+  }, {
+    name: 'x-position',
+    type: 'oneOf',
+    data: ['left', 'right', 'center']
+  }, {
+    name: 'y-position',
+    type: 'oneOf',
+    data: ['top', 'bottom', 'center']
+  }]
 };

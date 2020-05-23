@@ -15,8 +15,7 @@ it('sets color', async () => {
   const page = await specComponent(`
     <arv-radio color="primary"></arv-radio>
   `);
-  const input = getShadowEl(page, 'input');
-  expect(input.classList.contains('primary')).toBeTruthy();
+  expect(clsContains(page, 'primary')).toBeTruthy();
 });
 
 it('renders label', async () => {
@@ -51,4 +50,11 @@ it('emit arvChange', async () => {
   page.root.addEventListener('arvChange', spy);
   page.root.click();
   expect(spy).toHaveBeenCalled();
+});
+
+it('set size', async () => {
+  const page = await specComponent(`
+    <arv-radio size="large"></arv-radio>
+  `);
+  expect(clsContains(page, 'large')).toBeTruthy();
 });

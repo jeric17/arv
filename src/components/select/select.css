@@ -1,5 +1,6 @@
 :host {
   display: flex;
+  flex-direction: column;
 }
 :host(.full) {
   width: 100%;
@@ -10,6 +11,16 @@
 }
 :host(.row) {
   align-items: center;
+}
+:host(.disabled) .select {
+  background-color: var(---disabled-color);
+  cursor: not-allowed;
+}
+:host(.disabled) .value {
+  color: var(--disabled-text-color);
+}
+:host(.disabled) arv-icon {
+  --icon-color: var(--disabled-text-color);
 }
 
 .items {
@@ -41,15 +52,19 @@
   border-radius: var(--radius);
   border-style: solid;
   border-width: 1px;
+  box-sizing: border-box;
   cursor: pointer;
+  background-color: var(--default-bg);
   display: flex;
   justify-content: space-between;
   padding: 0 0 0 1.5em;
+  transition: all 0.3s;
 }
 
 label,
 .value {
   line-height: 2.5em;
+  min-height: 2.5em;
 }
 
 .control {
@@ -58,4 +73,33 @@ label,
 
 arv-icon {
   margin: 0 8px;
+}
+
+:host(.primary.isOpen) .select,
+:host(.primary) .select:hover {
+  border-color: var(--primary-color);
+}
+:host(.secondary.isOpen) .select,
+:host(.secondary) .select:hover {
+  border-color: var(--secondary-color);
+}
+:host(.success.isOpen) .select,
+:host(.success) .select:hover {
+  border-color: var(--success-color);
+}
+:host(.warning.isOpen) .select,
+:host(.warning) .select:hover {
+  border-color: var(--warning-color);
+}
+:host(.danger.isOpen) .select,
+:host(.danger) .select:hover {
+  border-color: var(--danger-color);
+}
+:host(.dark.isOpen) .select,
+:host(.dark) .select:hover {
+  border-color: var(--dark-color);
+}
+:host(.light.isOpen) .select,
+:host(.light) .select:hover {
+  border-color: var(--light-color);
 }

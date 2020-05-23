@@ -1,39 +1,30 @@
 export const Radio = {
-  name: 'Radio',
-  element: 'arv-radio-button',
+  element: 'arv-radio',
   slot: false,
   props: [
     {
-      name: 'value',
-      type: 'boolean',
-      value: 'true',
+      name: 'label',
+      type: 'string',
+      description: 'Label of the input radio element.',
+      value: 'Label'
+    }, {
+      name: 'flex-direction',
+      type: 'oneOf',
+      data: ['row', 'row-reverse', 'column', 'column-reverse'],
+      description: 'Layout direction of label and select element.'
+    },
+    {
+      name: 'color',
+      type: 'color'
+    },
+    {
+      name: 'size',
+      type: 'size'
     },
     {
       name: 'disabled',
       type: 'boolean',
-      value: 'false',
-    },
-    {
-      name: 'label',
-      type: 'string',
-      value: '',
-    },
-    {
-      name: 'text-variant',
-      type: 'string',
-      value: '',
-    },
-    {
-      name: 'color',
-      type: 'oneOf',
-      data: ['primary', 'secondary', 'error', 'success'],
-      value: 'primary'
-    },
-    {
-      name: 'size',
-      type: 'oneOf',
-      data: ['normal', 'large'],
-      value: 'normal'
-    },
+      description: 'Disabled state of the element.'
+    }
   ]
 };

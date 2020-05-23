@@ -29,6 +29,11 @@ export class Select {
   @Prop() color: Color;
 
   /**
+   * Disables the element.
+   */
+  @Prop() disabled?: boolean;
+
+  /**
    * Position of label and select component value.
    */
   @Prop() flexDirection: 'row' | 'column' | 'row-reverse' | 'column-reverse' | string;
@@ -47,6 +52,11 @@ export class Select {
    * Sets the min-width and width of the label.
    */
   @Prop() labelWidth?: string;
+
+  /*
+   * Select palceholder.
+   */
+  @Prop() placeholder?: string;
 
   /**
    * Callback function triggered on menu select.
@@ -87,6 +97,9 @@ export class Select {
   }
 
   open() {
+    if (this.disabled) {
+      return false;
+    }
     this.isOpen = true;
     const el: HTMLElement = this.el.shadowRoot.querySelector('.items');
     setTimeout(() => {
@@ -106,7 +119,8 @@ export class Select {
       full: this.full,
       isOpen: this.isOpen,
       ...generateAttrValue(this.color),
-      row: false
+      row: false,
+      disabled: this.disabled
     };
 
     const styles = {
@@ -138,7 +152,7 @@ export class Select {
             class="select"
           >
             <span class="value">
-              {this.value}
+              {this.value || this.placeholder}
             </span>
             <slot name="value"></slot>
             <arv-icon icon="keyboard_arrow_down"></arv-icon>

@@ -26,19 +26,27 @@ export class Text {
    */
   @Prop() truncate?: boolean;
 
+  /**
+   * Whitespace
+   */
+  @Prop() wrap?: 'break-spaces' | 'pre' | 'pre-wrap' | 'normal' | 'nowrap' | 'wrap';
+
   render() {
     const cls = {
       ...generateAttrValue(this.color),
       truncate: this.truncate,
       shadow: this.shadow,
     };
-
-    if (cls.truncate && this.el.children.length) {
+    if (this.truncate && this.el.children.length) {
       const node: any = this.el.children[0];
-
       node.style.textOverflow = 'ellipsis';
       node.style.width = '100%';
       node.style.overflow = 'hidden';
+    }
+
+    if (this.wrap && this.el.children.length) {
+      const node: any = this.el.children[0];
+      node.style.whiteSpace = this.wrap;
     }
 
     return (

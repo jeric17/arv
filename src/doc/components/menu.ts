@@ -6,9 +6,15 @@ export const Menu = {
       <h1>Hello</h1>
     </div>
     <div slot="menu-list">
-      <arv-menu-item>Menu Item 1</arv-menu-item>
-      <arv-menu-item>Menu Item 2</arv-menu-item>
-      <arv-menu-item>Menu Item 3</arv-menu-item>
+      <arv-menu-item>
+        <span slot="value">Menu Item 1</span>
+      </arv-menu-item>
+      <arv-menu-item>
+        <span slot="value">Menu Item 2</span>
+      </arv-menu-item>
+      <arv-menu-item>
+        <span slot="value">Menu Item 3</span>
+      </arv-menu-item>
     </div>
   `,
   props: [

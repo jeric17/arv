@@ -1,33 +1,17 @@
 export const Paper = {
-  name: 'Paper',
   element: 'arv-paper',
-  slot: 'Hello World!',
+  slot: '<h1>Paper Content</h1>',
   props: [
     {
-      name: 'height',
-      type: 'string',
-      value: ''
-    },
-    {
-      name: 'width',
-      type: 'string',
-      value: ''
-    },
-    {
-      name: 'padded',
-      type: 'boolean',
-      value: 'true'
-    },
-    {
-      name: 'transparent',
-      type: 'boolean',
-      value: 'false'
-    },
-    {
-      name: 'weight',
+      name: 'shadow-level',
       type: 'oneOf',
       data: [0, 1, 2],
-      value: '1'
+      value: 1,
+      description: 'Thickness of the drop shadow from 0 to 2.'
+    }, {
+      name: 'outlined',
+      type: 'boolean',
+      description: 'Border only, will not add drop shadow.'
     }
   ]
 };

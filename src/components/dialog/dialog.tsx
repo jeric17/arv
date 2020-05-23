@@ -6,6 +6,7 @@ import { Component, Event, EventEmitter, Element, Prop, Watch, h } from '@stenci
   shadow: true
 })
 export class Dialog {
+  dialogId?: number;
 
   /**
    * Reference to component element.
@@ -45,6 +46,10 @@ export class Dialog {
    */
   @Event() arvDialogClose: EventEmitter;
 
+  componentWillLoad() {
+    this.dialogId = Math.ceil(Math.random() * 1000000000);
+  }
+
   componentDidLoad() {
     if (this.isOpen) {
       this.open();
@@ -80,6 +85,7 @@ export class Dialog {
     arvVirtual.setAttribute('dialog-title', this.dialogTitle || '');
     arvVirtual.setAttribute('disable-bg-close', String(this.disableBgClose));
     arvVirtual.setAttribute('scrollable', String(this.scrollable));
+    arvVirtual.setAttribute('dialog-id', String(this.dialogId));
 
     /**
      * Return the elements back to the arv-dialog element.

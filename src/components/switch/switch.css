@@ -10,7 +10,7 @@
 }
 
 .bar {
-  background-color: var(--default-shade);
+  background-color: var(--default-darker);
   border-radius: 20px;
   width: 100%;
   height: 16px;
@@ -48,19 +48,61 @@
 }
 
 .active.primary .circle {
-  border-color: var(--primary-color);
+  border-color: var(--primary-highlight);
 }
 .active.primary .bar {
   background-color: var(--primary-shade);
 }
 
 .active.secondary .circle {
-  border-color: var(--secondary-color);
+  border-color: var(--secondary-highlight);
 }
 .active.secondary .bar {
   background-color: var(--secondary-shade);
 }
 
+.active.success .circle {
+  border-color: var(--success-highlight);
+}
+.active.success .bar {
+  background-color: var(--success-shade);
+}
+
+.active.warning .circle {
+  border-color: var(--warning-highlight);
+}
+.active.warning .bar {
+  background-color: var(--warning-shade);
+}
+
+.active.danger .circle {
+  border-color: var(--danger-highlight);
+}
+.active.danger .bar {
+  background-color: var(--danger-shade);
+}
+
+.active.dark .circle {
+  border-color: var(--dark-highlight);
+}
+.active.dark .bar {
+  background-color: var(--dark-shade);
+}
+
+.active.light .circle {
+  border-color: var(--light-highlight);
+}
+.active.light .bar {
+  background-color: var(--light-shade);
+}
+
+.disabled .circle {
+  background-color: var(--disabled-color) !important;
+  border-color: var(--disabled-highlight) !important;
+}
+.disabled .bar {
+  background-color: var(--disabled-shade) !important;
+}
 .disabled {
   cursor: not-allowed;
 }
