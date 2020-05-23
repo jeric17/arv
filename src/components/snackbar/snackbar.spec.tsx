@@ -11,6 +11,7 @@ it('append snackbar', async () => {
       duration="5000"
       x-position="right"
       y-position="bottom"
+      icon="event"
     ></arv-snackbar>
   `);
   await page.root.open();
@@ -24,6 +25,7 @@ it('append snackbar', async () => {
   expect(virtualSnackbar.getAttribute('counter')).toBe('0');
   expect(virtualSnackbar.getAttribute('x-position')).toBe('right');
   expect(virtualSnackbar.getAttribute('y-position')).toBe('bottom');
+  expect(virtualSnackbar.getAttribute('icon')).toBe('event');
 
   await page.root.open();
   expect(virtualSnackbar.getAttribute('counter')).toBe('1');

@@ -37,7 +37,14 @@
   box-sizing: border-box;
   color: var(--font-color);
   margin: 1em;
-  padding: 1em 2em;
+  padding: 0.7em 0.25em 0.7em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+:host(.hideClose) .snackbar {
+  padding: 1em;
 }
 
 :host(.out) {
@@ -60,28 +67,43 @@
 :host(.primary) .snackbar {
   background-color: var(--primary-color);
   color: var(--primary-text-color);
+  --icon-color: var(--primary-text-color);
 }
 :host(.secondary) .snackbar {
   background-color: var(--secondary-color);
   color: var(--secondary-text-color);
+  --icon-color: var(--secondary-text-color);
 }
 :host(.success) .snackbar {
   background-color: var(--success-color);
   color: var(--success-text-color);
+  --icon-color: var(--success-text-color);
 }
 :host(.warning) .snackbar {
   background-color: var(--warning-color);
   color: var(--warning-text-color);
+  --icon-color: var(--warning-text-color);
 }
 :host(.danger) .snackbar {
   background-color: var(--danger-color);
   color: var(--danger-text-color);
+  --icon-color: var(--danger-text-color);
 }
 :host(.dark) .snackbar {
   background-color: var(--dark-color);
   color: var(--dark-text-color);
+  --icon-color: var(--dark-text-color);
 }
 :host(.light) .snackbar {
   background-color: var(--light-color);
   color: var(--light-text-color);
+  --icon-color: var(--light-text-color);
+}
+
+.sb-icon {
+  margin-right: 1em;
+}
+
+.sb-btn {
+  margin-left: 1em;
 }

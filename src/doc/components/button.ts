@@ -4,6 +4,16 @@ export const Button = {
   slot: 'Test Button',
   props: [
     {
+      name: 'icon',
+      type: 'string'
+    },
+    {
+      name: 'flex-direction',
+      type: 'oneOf',
+      data: ['row', 'row-reverse', 'column', 'column-reverse'],
+      description: 'Layout direction of label and select element.'
+    },
+    {
       name: 'color',
       type: 'color'
     },

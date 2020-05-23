@@ -19,7 +19,7 @@ export class Accordion {
   /**
    * Listens for the event when accordion item is clicked.
    *
-   * @param event.detail - index number of the accordion item.
+   * @param event.detail index number of the accordion item.
    */
   @Listen('arvToggleAccordion')
   arvToggleAccordionHandler(event: CustomEvent) {
@@ -35,7 +35,7 @@ export class Accordion {
 
   componentDidLoad() {
     /**
-     * Adds item-index27=2  attribute to
+     * Adds item-index  attribute to
      * each child element.
      */
     Array.from(this.el.children).forEach((item, index) => {

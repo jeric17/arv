@@ -80,6 +80,7 @@ export class Button {
   render() {
     const hostCls = {
       full: this.full,
+      hasIcon: Boolean(this.icon)
     };
 
     const rootCls = {
@@ -90,8 +91,10 @@ export class Button {
       isIcon: this.isIcon
     };
 
+    const buttonStyle: any = {};
+
     if (this.flexDirection) {
-      this.el.style.flexDirection = this.flexDirection;
+      buttonStyle.flexDirection = this.flexDirection;
     }
 
     return (
@@ -100,7 +103,7 @@ export class Button {
           style={this.styles}
           class={rootCls}
           disabled={this.disabled}>
-          <span class="content">
+          <span class="content" style={buttonStyle}>
             {this.icon && (
               <arv-icon icon={this.icon}></arv-icon>
             )}

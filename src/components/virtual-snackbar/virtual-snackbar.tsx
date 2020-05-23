@@ -19,6 +19,10 @@ export class VirtualSnackbar {
 
   @Prop() duration: number;
 
+  @Prop() hideClose?: boolean;
+
+  @Prop() icon?: string;
+
   /**
    * Position of the snack bar in horizontal axis.
    */
@@ -46,17 +50,25 @@ export class VirtualSnackbar {
   }
 
   init() {
+    if (!this.duration) {
+      return false;
+    }
     clearTimeout(this.durationTimeout);
     this.durationTimeout = setTimeout(() => {
       this.close();
     }, this.duration);
   }
 
-  close() {
+  close = () => {
     this.el.classList.add('out');
     setTimeout(() => {
       this.arvVirtualSnackbarClose.emit();
     }, 300);
+  }
+
+  closeBtnClick = () => {
+    clearTimeout(this.durationTimeout);
+    this.close();
   }
 
   render() {
@@ -67,14 +79,29 @@ export class VirtualSnackbar {
       right: this.xPosition === 'right',
       verticalCenter: this.yPosition === 'center',
       horizontalCenter: this.xPosition === 'center',
+      hideClose: this.hideClose,
       ...generateAttrValue(this.color)
     };
 
     return (
       <Host class={cls}>
         <div class="snackbar">
+          {this.icon && (
+            <arv-icon
+              class="sb-icon"
+              icon={this.icon}></arv-icon>
+          )}
           <arv-text wrap="nowrap">{this.message}</arv-text>
           <slot></slot>
+          {!this.hideClose && (
+            <arv-button
+              class="sb-btn"
+              onClick={this.closeBtnClick}
+              color={this.color}
+              icon="clear"
+              is-icon
+            ></arv-button>
+          )}
         </div>
       </Host>
     );

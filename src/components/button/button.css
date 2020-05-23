@@ -11,7 +11,7 @@ button {
   font-size: 1em;
   font-family: inherit;
   outline: none;
-  padding: 0 1.25em;
+  padding: 0 0.75em;
   transition: background-color 0.3s;
   width: 100%;
 }
@@ -27,6 +27,7 @@ button:disabled {
   padding: 12px;
 }
 .content {
+  align-items: center;
   display: flex;
   line-height: 3em;
 }

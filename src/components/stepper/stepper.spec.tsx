@@ -1,24 +1,13 @@
 import { Stepper } from './stepper';
-import { createSpec, clsContains } from '../../utils/testing/utils';
+import { createSpec, clsContains, getShadowEl } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Stepper);
 
-const steps = [{
-  done: true,
-  title: 'one'
-}, {
-  done: false,
-  title: 'two'
-}, {
-  done: false,
-  title: 'three'
-}];
-
 it('render the component', async () => {
   const page = await specComponent(`
-    <arv-stepper></arv-stepper>
+    <arv-stepper steps="[{}, {}, {}]"></arv-stepper>
   `);
-  page.rootInstance.steps = steps;
+
   await page.waitForChanges();
   const items = page.root.shadowRoot.querySelectorAll('.item');
   expect(page.root.shadowRoot).toBeTruthy();
@@ -27,16 +16,20 @@ it('render the component', async () => {
 
 it('set color', async () => {
   const page = await specComponent(`
-    <arv-stepper color="primary"></arv-stepper>
+    <arv-stepper color="primary" steps="[{}, {}, {}]"></arv-stepper>
   `);
   expect(clsContains(page, 'primary')).toBeTruthy();
 });
 
 it('active step', async () => {
   const page = await specComponent(`
-    <arv-stepper active-index="2" color="primary"></arv-stepper>
+    <arv-stepper
+      steps="[{}, {}, {}]"
+      active-index="2"
+      color="primary"
+    ></arv-stepper>
   `);
-  page.rootInstance.steps = steps;
+
   await page.waitForChanges();
   const items = page.root.shadowRoot.querySelectorAll('.item');
   const secondItem = items[1];
@@ -47,9 +40,12 @@ it('active step', async () => {
 
 it('emit arvItemClick', async () => {
   const page = await specComponent(`
-    <arv-stepper active-index="2" color="primary"></arv-stepper>
+    <arv-stepper
+      steps="[{}, {}, {}]"
+      active-index="2"
+      color="primary"></arv-stepper>
   `);
-  page.rootInstance.steps = steps;
+
   await page.waitForChanges();
   const spy = jest.fn();
   page.root.addEventListener('arvItemClick', spy);
@@ -57,4 +53,29 @@ it('emit arvItemClick', async () => {
   thirdItem.click();
   expect(spy).toHaveBeenCalled();
   expect(spy.mock.calls.pop()[0].detail).toBe(2);
+});
+
+it('next and back', async () => {
+  const page = await specComponent(`
+    <arv-stepper active-index="0" steps="[]"></arv-stepper>
+  `);
+  page.rootInstance.stepperSteps = [{
+    done: false,
+    title: 'one'
+  }, {
+    done: false,
+    title: 'two'
+  }, {
+    done: false,
+    title: 'three'
+  }];
+  await page.waitForChanges();
+  await page.root.next();
+
+  expect(page.rootInstance.activeIndex).toBe(1);
+  expect(page.rootInstance.stepperSteps[0].done).toBe(true);
+
+  await page.root.back();
+  expect(page.rootInstance.activeIndex).toBe(0);
+  expect(page.rootInstance.stepperSteps[0].done).toBe(false);
 });

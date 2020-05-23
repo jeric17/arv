@@ -46,9 +46,9 @@ body {
   --disabled-highlight: #efefef;
   --disabled-text-color: #aeaeae;
 
-  --default-bg: #fcfcfc;
-  --default-highlight: #f3f3f3;
-  --default-shade: #eeeeee;
+  --default-bg: #ffffff;
+  --default-highlight: #efefef;
+  --default-shade: #e0e0e0;
   --default-darker: #cdcdcd;
 
   --radius: 4px;

@@ -1,4 +1,4 @@
-import { Component, Prop, Event, EventEmitter, Host, h } from '@stencil/core';
+import { Component, Prop, Event, EventEmitter, Method, State, Watch, Host, h } from '@stencil/core';
 import { Color } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
@@ -9,7 +9,15 @@ import { generateAttrValue } from '../../utils/helpers';
 })
 export class Stepper {
 
-  @Prop() activeIndex: number;
+  /**
+   * Array of steps.
+   */
+  @State() stepperSteps: { done: boolean; title: string }[];
+
+  /**
+   * The current step.
+   */
+  @Prop({ mutable: true }) activeIndex: number;
 
   /**
    * Color variant to use.
@@ -19,12 +27,73 @@ export class Stepper {
   /**
    * Steps data
    */
-  @Prop() steps: { done: boolean; title: string }[] = [];
+  @Prop() steps: any;
 
+  /**
+   * Will parse again the steps attr on update.
+   */
+  @Watch('steps')
+  stepsChange() {
+    this.init();
+  }
+
+  /**
+   * Emitted when an step item is clicked.
+   */
   @Event() arvItemClick: EventEmitter<number>;
 
+  /**
+   * Public api to trigger next step.
+   */
+  @Method()
+  async next() {
+    if (this.activeIndex === this.stepperSteps.length) {
+      return false;
+    }
+    const stepsClone = this.cloneSteps();
+    stepsClone[this.activeIndex].done = true;
+    this.stepperSteps = stepsClone;
+    this.activeIndex++;
+  }
+
+  /**
+   * Public api to trigger back.
+   */
+  @Method()
+  async back() {
+    if (this.activeIndex === 0) {
+      return false;
+    }
+    const stepsClone = this.cloneSteps();
+    stepsClone[this.activeIndex - 1].done = false;
+    this.stepperSteps = stepsClone;
+    this.activeIndex--;
+  }
+
+  componentWillLoad() {
+    this.init();
+  }
+
+  /**
+   * Handles step item click.
+   */
   itemClick = (index: number) => {
     this.arvItemClick.emit(index);
+  }
+
+  private cloneSteps() {
+    return JSON.parse(JSON.stringify(this.stepperSteps));
+  }
+
+  /**
+   * Converts the steps string to array.
+   */
+  private init() {
+    try {
+      this.stepperSteps = JSON.parse(this.steps);
+    } catch (e) {
+      this.stepperSteps = this.steps;
+    }
   }
 
   render() {
@@ -32,12 +101,12 @@ export class Stepper {
       ...generateAttrValue(this.color)
     };
 
-    const stepsLength = this.steps.length - 1;
+    const stepsLength = this.stepperSteps.length - 1;
 
     return (
       <Host class={hostCls}>
 
-        {this.steps.map((step, index) => {
+        {this.stepperSteps.map((step, index) => {
           const stepIndex = index + 1;
 
           /**

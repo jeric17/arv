@@ -74,5 +74,6 @@ it('flex-direction layout', async () => {
   const page = await specComponent(`
     <arv-button flex-direction="row-reverse"></arv-button>
   `);
-  expect(page.root.style.flexDirection).toBe('row-reverse');
+  const content: any = getShadowEl(page, '.content');
+  expect(content.style.flexDirection).toBe('row-reverse');
 });

@@ -7,6 +7,17 @@ export const Dialog = {
       <p>
         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aut, accusamus tempora inventore delectus impedit quisquam ratione? Ab architecto exercitationem deserunt reprehenderit eligendi, sunt nihil eos quo praesentium sed dolores laudantium?
       </p>
+      <arv-select value="select">
+        <arv-menu-item>
+          <span slot="value">Menu 1</span>
+        </arv-menu-item>
+        <arv-menu-item>
+          <span slot="value">Menu 2</span>
+        </arv-menu-item>
+        <arv-menu-item>
+          <span slot="value">Menu 3</span>
+        </arv-menu-item>
+      </arv-select>
     </div>
   `,
   containerContent: `

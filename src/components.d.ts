@@ -550,6 +550,14 @@ export namespace Components {
          */
         "duration": number;
         /**
+          * Will not render the snackbar's close button.
+         */
+        "hideClose": boolean;
+        /**
+          * An icon on the left side of the snackbar.
+         */
+        "icon"?: string;
+        /**
           * Text content of the snackbar.
          */
         "message"?: string;
@@ -573,18 +581,26 @@ export namespace Components {
         "vertical"?: boolean;
     }
     interface ArvStepper {
+        /**
+          * The current step.
+         */
         "activeIndex": number;
+        /**
+          * Public api to trigger back.
+         */
+        "back": () => Promise<boolean>;
         /**
           * Color variant to use.
          */
         "color": Color;
         /**
+          * Public api to trigger next step.
+         */
+        "next": () => Promise<boolean>;
+        /**
           * Steps data
          */
-        "steps": {
-            done: boolean;
-            title: string;
-        }[];
+        "steps": any;
     }
     interface ArvSwitch {
         /**
@@ -695,6 +711,8 @@ export namespace Components {
         "color"?: Color;
         "counter": number;
         "duration": number;
+        "hideClose"?: boolean;
+        "icon"?: string;
         "message"?: string;
         /**
           * Position of the snack bar in horizontal axis.
@@ -1731,6 +1749,14 @@ declare namespace LocalJSX {
          */
         "duration"?: number;
         /**
+          * Will not render the snackbar's close button.
+         */
+        "hideClose"?: boolean;
+        /**
+          * An icon on the left side of the snackbar.
+         */
+        "icon"?: string;
+        /**
           * Text content of the snackbar.
          */
         "message"?: string;
@@ -1750,19 +1776,22 @@ declare namespace LocalJSX {
         "vertical"?: boolean;
     }
     interface ArvStepper {
+        /**
+          * The current step.
+         */
         "activeIndex"?: number;
         /**
           * Color variant to use.
          */
         "color"?: Color;
+        /**
+          * Emitted when an step item is clicked.
+         */
         "onArvItemClick"?: (event: CustomEvent<number>) => void;
         /**
           * Steps data
          */
-        "steps"?: {
-            done: boolean;
-            title: string;
-        }[];
+        "steps"?: any;
     }
     interface ArvSwitch {
         /**
@@ -1885,6 +1914,8 @@ declare namespace LocalJSX {
         "color"?: Color;
         "counter"?: number;
         "duration"?: number;
+        "hideClose"?: boolean;
+        "icon"?: string;
         "message"?: string;
         "onArvVirtualSnackbarClose"?: (event: CustomEvent<any>) => void;
         /**
