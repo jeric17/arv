@@ -15,8 +15,8 @@ it('sets color', async () => {
   const page = await specComponent(`
     <arv-checkbox color="primary"></arv-checkbox>
   `);
-  const input = getShadowEl(page, 'input');
-  expect(input.classList.contains('primary')).toBeTruthy();
+
+  expect(clsContains(page, 'primary')).toBeTruthy();
 });
 
 it('renders label', async () => {

@@ -1,5 +1,5 @@
 import { Component, Event, EventEmitter, Prop, Host, h } from '@stencil/core';
-import { Color, FlexDirection } from '../../interface';
+import { Color, Size, FlexDirection } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
 @Component({
@@ -40,6 +40,11 @@ export class Checkbox {
   @Prop() label: string;
 
   /**
+   * Size variant to use.
+   */
+  @Prop() size: Size;
+
+  /**
    * Input value of the checkbox
    */
   @Prop() value?: string;
@@ -50,16 +55,19 @@ export class Checkbox {
   @Event() arvChange: EventEmitter<boolean>;
 
   change = () => {
+    if (this.disabled) {
+      return false;
+    }
     this.checked = !this.checked;
     this.arvChange.emit(this.checked);
   }
 
   render() {
-    const hostCls = {};
-    const inputCls = {
-      checkbox: true,
+    const hostCls = {
+      ...generateAttrValue(this.size),
       ...generateAttrValue(this.color),
-      indeterminate: this.indeterminate,
+      disabled: this.disabled,
+      checked: this.checked
     };
 
     let hostStyles = {};
@@ -77,9 +85,13 @@ export class Checkbox {
         onClick={this.change}
       >
         <label class="label">{this.label}</label>
+        <div class="control">
+          <div class="value">
+            <arv-icon icon="check"></arv-icon>
+          </div>
+        </div>
         <input
           disabled={this.disabled}
-          class={inputCls}
           type="checkbox"
           value={this.value}
           checked={this.checked} />

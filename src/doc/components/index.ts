@@ -18,3 +18,6 @@ export { Select as Select } from './select';
 export { Snackbar as Snackbar } from './snackbar';
 export { Stepper as Stepper } from './stepper';
 export { Switch as Switch } from './switch';
+export { Tabs as Tabs } from './tabs';
+export { Table as Table } from './table';
+export { Tooltip as Tooltip } from './tooltip';

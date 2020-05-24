@@ -1,5 +1,5 @@
-const imageUrl = 'http://localhost:5000/bg-03.png';
-const imageUrl2 = 'http://localhost:5000/bg-02.jpg';
+const imageUrl = 'https://cdn.britannica.com/67/19367-050-885866B4/Valley-Taurus-Mountains-Turkey.jpg';
+const imageUrl2 = 'https://scitechdaily.com/images/Universe-Expansion.jpg';
 
 export const AvatarGroup = {
   element: 'arv-avatar-group',

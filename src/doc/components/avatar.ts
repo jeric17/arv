@@ -6,7 +6,7 @@ export const Avatar = {
     {
       name: 'img-src',
       type: 'string',
-      value: 'http://localhost:5000/bg-03.png',
+      value: 'https://scitechdaily.com/images/Universe-Expansion.jpg',
       description: 'Image url'
     },
     {

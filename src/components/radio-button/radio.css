@@ -3,18 +3,13 @@
   position: relative;
   display: flex;
   margin: 4px;
+  align-items: center;
 }
 label {
   margin: 0 1em;
 }
 input {
-  height: 100%;
-  left: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: -1;
+  display: none;
 }
 :host(.disabled) {
   cursor: not-allowed;
@@ -100,4 +95,19 @@ input {
 }
 :host(.light) .indicator {
   background-color: var(--light-shade);
+}
+
+:host(.large) .control {
+  min-height: 30px;
+  min-width: 30px;
+  height: 30px;
+  width: 30px;
+}
+
+:host(.small) .control {
+  min-height: 14px;
+  min-width: 14px;
+  height: 14px;
+  width: 14px;
+  border-width: 1px;
 }

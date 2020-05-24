@@ -26,7 +26,10 @@ export class DocNav {
     'Select',
     'Snackbar',
     'Stepper',
-    'Switch'
+    'Switch',
+    'Table',
+    'Tabs',
+    'Tooltip'
   ];
 
   @State() selectedItem = 'Accordion';

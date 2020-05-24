@@ -1,24 +1,31 @@
 export const Tabs = {
   name: 'Tabs',
   element: 'arv-tabs',
-  slot: '<arv-flex><span>ONE</span></arv-flex><arv-flex><span>TWO</span></arv-flex><arv-flex><span>THREE</span></arv-flex>',
+  slot: `
+    <arv-tab-panel>
+      <h2>Item 1</h2>
+    </arv-tab-panel>
+    <arv-tab-panel>
+      <h2>Item 2</h2>
+    </arv-tab-panel>
+    <arv-tab-panel>
+      <h2>Item 3</h2>
+    </arv-tab-panel>
+  `,
   props: [
     {
-      name: 'tabs',
+      name: 'tab-names',
       type: 'string',
-      value: JSON.stringify(['One', 'Two', 'Three'])
+      value: JSON.stringify([{ "icon": "favorite", "name": "One" }, { "icon": "explore", "name": "Two" }, { "icon": "stars", "name": "Three" }])
     },
     {
       name: 'color',
-      type: 'oneOf',
-      data: ['default', 'primary', 'secondary'],
-      value: 'default'
+      type: 'color'
     },
     {
-      name: 'fullHeaderWidth',
-      displayName: 'full-header-width',
-      type: 'boolean',
-      value: 'true'
+      name: 'tab-alignment',
+      type: 'oneOf',
+      data: ['right', 'center', 'left']
     }
   ]
 };

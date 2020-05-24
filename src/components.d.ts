@@ -158,6 +158,10 @@ export namespace Components {
          */
         "label": string;
         /**
+          * Size variant to use.
+         */
+        "size": Size;
+        /**
           * Input value of the checkbox
          */
         "value"?: string;
@@ -621,6 +625,9 @@ export namespace Components {
         "label"?: string;
         "value": boolean;
     }
+    interface ArvTabPanel {
+        "isActive": boolean;
+    }
     interface ArvTable {
         "activeSort": string;
         "controls": any[];
@@ -651,9 +658,9 @@ export namespace Components {
          */
         "color": Color;
         /**
-          * Header will be compressed, not occupying the whole tab width.
+          * Alignment of tab headers.
          */
-        "compressedHeader"?: boolean;
+        "tabAlignment": "right" | "center" | "left";
         /**
           * Tab names to appear in the tab header.
          */
@@ -1000,6 +1007,12 @@ declare global {
         prototype: HTMLArvSwitchElement;
         new (): HTMLArvSwitchElement;
     };
+    interface HTMLArvTabPanelElement extends Components.ArvTabPanel, HTMLStencilElement {
+    }
+    var HTMLArvTabPanelElement: {
+        prototype: HTMLArvTabPanelElement;
+        new (): HTMLArvTabPanelElement;
+    };
     interface HTMLArvTableElement extends Components.ArvTable, HTMLStencilElement {
     }
     var HTMLArvTableElement: {
@@ -1133,6 +1146,7 @@ declare global {
         "arv-spacer": HTMLArvSpacerElement;
         "arv-stepper": HTMLArvStepperElement;
         "arv-switch": HTMLArvSwitchElement;
+        "arv-tab-panel": HTMLArvTabPanelElement;
         "arv-table": HTMLArvTableElement;
         "arv-tabs": HTMLArvTabsElement;
         "arv-text": HTMLArvTextElement;
@@ -1310,6 +1324,10 @@ declare namespace LocalJSX {
           * Emitted if checked prop has changed.
          */
         "onArvChange"?: (event: CustomEvent<boolean>) => void;
+        /**
+          * Size variant to use.
+         */
+        "size"?: Size;
         /**
           * Input value of the checkbox
          */
@@ -1812,6 +1830,9 @@ declare namespace LocalJSX {
         "label"?: string;
         "value"?: boolean;
     }
+    interface ArvTabPanel {
+        "isActive"?: boolean;
+    }
     interface ArvTable {
         "activeSort"?: string;
         "controls"?: any[];
@@ -1845,13 +1866,13 @@ declare namespace LocalJSX {
          */
         "color"?: Color;
         /**
-          * Header will be compressed, not occupying the whole tab width.
-         */
-        "compressedHeader"?: boolean;
-        /**
           * Emitted on tab header click.
          */
         "onArvTabClick"?: (event: CustomEvent<number>) => void;
+        /**
+          * Alignment of tab headers.
+         */
+        "tabAlignment"?: "right" | "center" | "left";
         /**
           * Tab names to appear in the tab header.
          */
@@ -1995,6 +2016,7 @@ declare namespace LocalJSX {
         "arv-spacer": ArvSpacer;
         "arv-stepper": ArvStepper;
         "arv-switch": ArvSwitch;
+        "arv-tab-panel": ArvTabPanel;
         "arv-table": ArvTable;
         "arv-tabs": ArvTabs;
         "arv-text": ArvText;
@@ -2058,6 +2080,7 @@ declare module "@stencil/core" {
             "arv-spacer": LocalJSX.ArvSpacer & JSXBase.HTMLAttributes<HTMLArvSpacerElement>;
             "arv-stepper": LocalJSX.ArvStepper & JSXBase.HTMLAttributes<HTMLArvStepperElement>;
             "arv-switch": LocalJSX.ArvSwitch & JSXBase.HTMLAttributes<HTMLArvSwitchElement>;
+            "arv-tab-panel": LocalJSX.ArvTabPanel & JSXBase.HTMLAttributes<HTMLArvTabPanelElement>;
             "arv-table": LocalJSX.ArvTable & JSXBase.HTMLAttributes<HTMLArvTableElement>;
             "arv-tabs": LocalJSX.ArvTabs & JSXBase.HTMLAttributes<HTMLArvTabsElement>;
             "arv-text": LocalJSX.ArvText & JSXBase.HTMLAttributes<HTMLArvTextElement>;

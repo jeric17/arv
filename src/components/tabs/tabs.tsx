@@ -1,4 +1,4 @@
-import { Component, Element, Event, State, EventEmitter, Prop, Host, h } from '@stencil/core';
+import { Component, Element, Event, State, EventEmitter, Prop, Host, Watch, h } from '@stencil/core';
 import { Color } from '../../interface';
 import { generateAttrValue } from '../../utils/helpers';
 
@@ -9,10 +9,14 @@ import { generateAttrValue } from '../../utils/helpers';
 })
 export class Tabs {
 
+  activeHeader = null;
+
   /**
    * Reference to host element.
    */
   @Element() el: HTMLElement;
+
+  @State() counter = 0;
 
   /**
    * Current active tab index.
@@ -30,9 +34,16 @@ export class Tabs {
   @Prop() tabNames = '[]';
 
   /**
-   * Header will be compressed, not occupying the whole tab width.
+   * Alignment of tab headers.
    */
-  @Prop() compressedHeader?: boolean;
+  @Prop() tabAlignment: 'right' | 'center' | 'left';
+
+  @Watch('tabAlignment')
+  alignmentChanged() {
+    setTimeout(() => {
+      this.counter++;
+    }, 0);
+  }
 
   /**
    * Emitted on tab header click.
@@ -45,6 +56,11 @@ export class Tabs {
   componentDidLoad() {
     Array.from(this.el.children).forEach((item, index) => {
       item.setAttribute('item-index', String(index));
+      if (!index) {
+        item.setAttribute('is-active', 'true');
+      } else {
+        item.setAttribute('is-active', 'false');
+      }
     });
   }
 
@@ -53,6 +69,7 @@ export class Tabs {
    * attribute on children.
    */
   tabClick = (index: number) => {
+    this.setActiveHeader(index);
     this.activeIndex = index;
     this.arvTabClick.emit(index);
     Array.from(this.el.children).forEach((item, i) => {
@@ -64,10 +81,37 @@ export class Tabs {
     });
   }
 
+  borderCls(index: number) {
+    const tabNames = this.el.shadowRoot.querySelectorAll('.tabName');
+    const item = tabNames[index];
+    if (!item) {
+      return {};
+    }
+    const header = this.el.shadowRoot.querySelector('.header');
+    const { left: headerLeft } = header.getBoundingClientRect();
+    const {
+      left: itemLeft,
+      width: itemWidth
+    } = item.getBoundingClientRect();
+
+    const style = {
+      left: `${itemLeft - headerLeft}px`,
+      width: `${itemWidth}px`
+    };
+
+    return style;
+  }
+
+  private setActiveHeader(index: number = 0) {
+    const headers = this.el.shadowRoot.querySelectorAll('.tabName');
+    this.activeHeader = headers[index];
+  }
+
   render() {
     const hostCls = {
       ...generateAttrValue(this.color),
-      compressed: this.compressedHeader
+      ...generateAttrValue(this.tabAlignment),
+      noActiveHeader: !Boolean(this.activeHeader)
     };
 
     const tabNames = JSON.parse(this.tabNames);
@@ -75,13 +119,26 @@ export class Tabs {
     return (
       <Host class={hostCls}>
         <div class="header">
-          {tabNames.map((tabName, index) => (
-            <span
-              onClick={() => this.tabClick(index)}
-              class="tab-name"
-            >{tabName}</span>
-          ))}
+          {tabNames.map((item, index) => {
+            const tabCls = {
+              tabName: true,
+              active: index === this.activeIndex,
+            };
+            return (
+              <div
+                onClick={() => this.tabClick(index)}
+                class={tabCls}
+              >
+                {item.icon && (
+                  <arv-icon icon={item.icon}></arv-icon>
+                )}
+                <span>{item.name}</span>
+                <div class="tempBorder"></div>
+              </div>
+            );
+          })}
           <span class="filler"></span>
+          <div class="border" style={this.borderCls(this.activeIndex)}></div>
         </div>
         <slot></slot>
       </Host>

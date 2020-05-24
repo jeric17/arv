@@ -1,5 +1,5 @@
 import { Switch } from './switch';
-import { createSpec, getShadowEl, clsContains } from '../../utils/testing/utils';
+import { createSpec, getShadowEl } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Switch);
 
