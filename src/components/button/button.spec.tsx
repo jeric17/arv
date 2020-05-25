@@ -1,5 +1,5 @@
 import { Button } from './button';
-import { createSpec, getShadowEl } from '../../utils/testing/utils';
+import { createSpec, getShadowEl, clsContains } from '../../utils/testing/utils';
 
 const specComponent = createSpec(Button);
 
@@ -76,4 +76,19 @@ it('flex-direction layout', async () => {
   `);
   const content: any = getShadowEl(page, '.content');
   expect(content.style.flexDirection).toBe('row-reverse');
+});
+
+it('loading', async () => {
+  const page = await specComponent(`
+    <arv-button
+      loading
+      loading-text="Saving..."
+      loading-color="secondary"
+      color="primary"
+    >Save</arv-button>
+  `);
+  const progress = getShadowEl(page, 'arv-progress-circular');
+  expect(clsContains(page, 'isLoading')).toBeTruthy();
+  expect(progress.getAttribute('color')).toBe('secondary')
+  expect(page.root.shadowRoot.textContent).toBe('Saving...');
 });

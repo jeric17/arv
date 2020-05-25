@@ -92,6 +92,18 @@ export namespace Components {
           * Render as an icon button.
          */
         "isIcon"?: boolean;
+        /**
+          * Displays a circular progress.
+         */
+        "loading"?: boolean;
+        /**
+          * Circular progress color.
+         */
+        "loadingColor"?: Color;
+        /**
+          * On loading state will show this string instead.
+         */
+        "loadingText"?: string;
         "padded"?: any;
         "rounded"?: any;
         /**
@@ -395,6 +407,10 @@ export namespace Components {
          */
         "placeholder"?: string;
         /**
+          * Number of rows for the textarea. Will automatically render a textarea element.
+         */
+        "rows": number;
+        /**
           * Sets the size variant to use.
          */
         "size": Size;
@@ -468,6 +484,16 @@ export namespace Components {
           * How much shadow to be applied.
          */
         "shadowLevel"?: 0 | 1 | 2;
+    }
+    interface ArvProgressCircular {
+        /**
+          * Color variant to set.
+         */
+        "color": Color;
+        /**
+          * Size variant to set.
+         */
+        "size": Size;
     }
     interface ArvRadio {
         /**
@@ -629,28 +655,37 @@ export namespace Components {
         "isActive": boolean;
     }
     interface ArvTable {
-        "activeSort": string;
-        "controls": any[];
-        "isAscending": boolean;
-        "multiSelectable": boolean;
-        "rowClickable": boolean;
+        /**
+          * Color variant to set.
+         */
+        "color": Color;
+        /**
+          * This serves as the buttons on the right side of the row. It renders a button icon which calls the callback function that has the whole row as the argument.
+         */
+        "controls": {
+            icon: string;
+            fn: (data: any) => any;
+        }[];
+        /**
+          * Callback prop function will be triggered on row click.
+         */
         "select": (row: any) => void;
-        "selectable": boolean;
-        "sortable": boolean;
-        "styles": {
-            table: {};
-            tbody: {};
-            tr: {};
-            td: {};
-            thead: {};
-            th: {};
-            tfoot: {};
-        };
+        /**
+          * Table data to render.
+         */
         "tableData": any;
+        /**
+          * Table header to render.
+         */
         "tableHeaders": any;
+        /**
+          * Table element attributes to be added on the table element.
+         */
         "tableProps": {};
+        /**
+          * Title of the table.
+         */
         "tableTitle": string;
-        "titleVariant": string;
     }
     interface ArvTabs {
         /**
@@ -685,6 +720,10 @@ export namespace Components {
         "wrap"?: "break-spaces" | "pre" | "pre-wrap" | "normal" | "nowrap" | "wrap";
     }
     interface ArvTooltip {
+        /**
+          * Color variant to use.
+         */
+        "color": Color;
         /**
           * Tooltip message.
          */
@@ -965,6 +1004,12 @@ declare global {
         prototype: HTMLArvPaperElement;
         new (): HTMLArvPaperElement;
     };
+    interface HTMLArvProgressCircularElement extends Components.ArvProgressCircular, HTMLStencilElement {
+    }
+    var HTMLArvProgressCircularElement: {
+        prototype: HTMLArvProgressCircularElement;
+        new (): HTMLArvProgressCircularElement;
+    };
     interface HTMLArvRadioElement extends Components.ArvRadio, HTMLStencilElement {
     }
     var HTMLArvRadioElement: {
@@ -1139,6 +1184,7 @@ declare global {
         "arv-multiple-input": HTMLArvMultipleInputElement;
         "arv-paginator": HTMLArvPaginatorElement;
         "arv-paper": HTMLArvPaperElement;
+        "arv-progress-circular": HTMLArvProgressCircularElement;
         "arv-radio": HTMLArvRadioElement;
         "arv-select": HTMLArvSelectElement;
         "arv-side-pane": HTMLArvSidePaneElement;
@@ -1255,6 +1301,18 @@ declare namespace LocalJSX {
           * Render as an icon button.
          */
         "isIcon"?: boolean;
+        /**
+          * Displays a circular progress.
+         */
+        "loading"?: boolean;
+        /**
+          * Circular progress color.
+         */
+        "loadingColor"?: Color;
+        /**
+          * On loading state will show this string instead.
+         */
+        "loadingText"?: string;
         "padded"?: any;
         "rounded"?: any;
         /**
@@ -1590,6 +1648,10 @@ declare namespace LocalJSX {
          */
         "placeholder"?: string;
         /**
+          * Number of rows for the textarea. Will automatically render a textarea element.
+         */
+        "rows"?: number;
+        /**
           * Sets the size variant to use.
          */
         "size"?: Size;
@@ -1673,6 +1735,16 @@ declare namespace LocalJSX {
           * How much shadow to be applied.
          */
         "shadowLevel"?: 0 | 1 | 2;
+    }
+    interface ArvProgressCircular {
+        /**
+          * Color variant to set.
+         */
+        "color"?: Color;
+        /**
+          * Size variant to set.
+         */
+        "size"?: Size;
     }
     interface ArvRadio {
         /**
@@ -1834,31 +1906,49 @@ declare namespace LocalJSX {
         "isActive"?: boolean;
     }
     interface ArvTable {
-        "activeSort"?: string;
-        "controls"?: any[];
-        "isAscending"?: boolean;
-        "multiSelectable"?: boolean;
-        "onHeaderClick"?: (event: CustomEvent<any>) => void;
-        "onRowClick"?: (event: CustomEvent<any>) => void;
-        "onRowItemClick"?: (event: CustomEvent<any>) => void;
-        "rowClickable"?: boolean;
+        /**
+          * Color variant to set.
+         */
+        "color"?: Color;
+        /**
+          * This serves as the buttons on the right side of the row. It renders a button icon which calls the callback function that has the whole row as the argument.
+         */
+        "controls"?: {
+            icon: string;
+            fn: (data: any) => any;
+        }[];
+        /**
+          * Emitted on th click.
+         */
+        "onArvHeaderClick"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emitted on table row click.
+         */
+        "onArvRowClick"?: (event: CustomEvent<any>) => void;
+        /**
+          * Emitted on td click.
+         */
+        "onArvRowItemClick"?: (event: CustomEvent<any>) => void;
+        /**
+          * Callback prop function will be triggered on row click.
+         */
         "select"?: (row: any) => void;
-        "selectable"?: boolean;
-        "sortable"?: boolean;
-        "styles"?: {
-            table: {};
-            tbody: {};
-            tr: {};
-            td: {};
-            thead: {};
-            th: {};
-            tfoot: {};
-        };
+        /**
+          * Table data to render.
+         */
         "tableData"?: any;
+        /**
+          * Table header to render.
+         */
         "tableHeaders"?: any;
+        /**
+          * Table element attributes to be added on the table element.
+         */
         "tableProps"?: {};
+        /**
+          * Title of the table.
+         */
         "tableTitle"?: string;
-        "titleVariant"?: string;
     }
     interface ArvTabs {
         /**
@@ -1897,6 +1987,10 @@ declare namespace LocalJSX {
         "wrap"?: "break-spaces" | "pre" | "pre-wrap" | "normal" | "nowrap" | "wrap";
     }
     interface ArvTooltip {
+        /**
+          * Color variant to use.
+         */
+        "color"?: Color;
         /**
           * Tooltip message.
          */
@@ -2009,6 +2103,7 @@ declare namespace LocalJSX {
         "arv-multiple-input": ArvMultipleInput;
         "arv-paginator": ArvPaginator;
         "arv-paper": ArvPaper;
+        "arv-progress-circular": ArvProgressCircular;
         "arv-radio": ArvRadio;
         "arv-select": ArvSelect;
         "arv-side-pane": ArvSidePane;
@@ -2073,6 +2168,7 @@ declare module "@stencil/core" {
             "arv-multiple-input": LocalJSX.ArvMultipleInput & JSXBase.HTMLAttributes<HTMLArvMultipleInputElement>;
             "arv-paginator": LocalJSX.ArvPaginator & JSXBase.HTMLAttributes<HTMLArvPaginatorElement>;
             "arv-paper": LocalJSX.ArvPaper & JSXBase.HTMLAttributes<HTMLArvPaperElement>;
+            "arv-progress-circular": LocalJSX.ArvProgressCircular & JSXBase.HTMLAttributes<HTMLArvProgressCircularElement>;
             "arv-radio": LocalJSX.ArvRadio & JSXBase.HTMLAttributes<HTMLArvRadioElement>;
             "arv-select": LocalJSX.ArvSelect & JSXBase.HTMLAttributes<HTMLArvSelectElement>;
             "arv-side-pane": LocalJSX.ArvSidePane & JSXBase.HTMLAttributes<HTMLArvSidePaneElement>;

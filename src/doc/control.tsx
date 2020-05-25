@@ -18,7 +18,7 @@ export class DocControl {
       if (item.type === 'color') {
         return (
           <arv-select
-            label="color"
+            label={item.name || 'color'}
             labelWidth={labelWidth}
             flex-direction="row"
             value={item.value || 'Select'}
@@ -102,6 +102,16 @@ export class DocControl {
             value={item.value}></arv-input>
         );
       }
+      if (item.type === 'code') {
+        return [
+          <span>{item.name}</span>,
+          <pre>
+            <code>
+              {item.data}
+            </code>
+          </pre>
+        ];
+      }
     })();
 
     const description = (() => {
@@ -116,7 +126,12 @@ export class DocControl {
       }
     })();
 
-    const controlWidth = { width: '300px', minWidth: '300px' };
+    const controlWidth = (() => {
+      if (item.type === 'code') {
+        return { width: '500px', minWidth: '500px' };
+      }
+      return { width: '300px', minWidth: '300px' };
+    })();
 
     return [
       <arv-flex align-items="center">

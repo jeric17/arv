@@ -39,6 +39,21 @@ export const Button = {
       data: ['raised', 'ghost'],
       value: 'raised',
       description: 'Button ui variant.'
+    },
+    {
+      name: 'loading-color',
+      type: 'color',
+      description: 'color of the circular progress.'
+    },
+    {
+      name: 'loading',
+      type: 'boolean',
+      description: 'shows a circular progress.'
+    },
+    {
+      name: 'loading-text',
+      type: 'string',
+      description: 'shows a loading text'
     }
   ],
 };

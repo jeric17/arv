@@ -124,3 +124,12 @@ button:disabled {
 arv-icon {
   margin: 0 4px;
 }
+.loadingText {
+  display: none;
+}
+:host(.isLoading) .buttonText {
+  display: none;
+}
+:host(.isLoading) .loadingText {
+  display: block;
+}

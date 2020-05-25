@@ -31,3 +31,12 @@ it('position', async () => {
   `);
   expect(clsContains(page, 'bottom')).toBeTruthy();
 });
+
+it('color', async () => {
+  const page = await specComponent(`
+    <arv-tooltip color="primary" message="Save" position="bottom">
+      <arv-button>Register</arv-button>
+    </arv-tooltip>
+  `);
+  expect(clsContains(page, 'primary')).toBeTruthy();
+});

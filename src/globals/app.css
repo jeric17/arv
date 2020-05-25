@@ -72,6 +72,8 @@ body {
   --lighter: #fff;
   --radio-border-width: 3px;
   --radio-padding: 3px;
+  --tooltip-bg: rgba(3, 3, 3, 0.5);
+  --tooltip-text: #fff;
 }
 
 html,

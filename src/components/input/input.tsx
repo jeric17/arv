@@ -100,6 +100,12 @@ export class Input {
   @Prop() placeholder?: string;
 
   /**
+   * Number of rows for the textarea. Will automatically
+   * render a textarea element.
+   */
+  @Prop() rows: number;
+
+  /**
    * Sets the size variant to use.
    */
   @Prop() size: Size;
@@ -193,6 +199,24 @@ export class Input {
     if (this.flexDirection) {
       rootStyles.flexDirection = this.flexDirection;
     }
+    const props = {
+      id: 'input',
+      autoComplete: this.autocomplete,
+      autoCorrect: this.autocorrect,
+      autoFocus: this.autofocus,
+      disabled: this.disabled,
+      min: this.min,
+      max: this.max,
+      minLength: this.minlength,
+      maxLength: this.maxlength,
+      name: this.name,
+      placeholder: this.placeholder,
+      value: this.value,
+      onInput: this.input,
+      onBlur: this.blur,
+      onFocus: this.focus,
+      onKeyDown: this.keydown,
+    };
     return (
       <Host style={rootStyles} class={cls}>
         <label
@@ -204,25 +228,17 @@ export class Input {
           {this.icon && (
             <arv-icon icon={this.icon}></arv-icon>
           )}
-          <input
-            ref={input => this.inputEl = input}
-            autoComplete={this.autocomplete}
-            autoCorrect={this.autocorrect}
-            autoFocus={this.autofocus}
-            disabled={this.disabled}
-            id="input"
-            min={this.min}
-            max={this.max}
-            minLength={this.minlength}
-            maxLength={this.maxlength}
-            name={this.name}
-            placeholder={this.placeholder}
-            type={this.type}
-            value={this.value}
-            onInput={this.input}
-            onBlur={this.blur}
-            onFocus={this.focus}
-            onKeyDown={this.keydown} />
+          {!Boolean(this.rows) && (
+            <input
+              type={this.type}
+              ref={input => this.inputEl = input}
+              {...props} />
+          )}
+          {Boolean(this.rows) && (
+            <textarea
+              ref={input => this.inputEl = input}
+              {...props} />
+          )}
         </div>
       </Host>
     );

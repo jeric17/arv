@@ -127,3 +127,12 @@ it('flex style to use', async () => {
   expect(s).toBe('row-reverse');
   expect(clsContains(page, 'row')).toBeTruthy();
 });
+
+it('renders text area', async () => {
+  const page = await specComponent(`
+    <arv-input label="My Label" rows="3"></arv-input>
+  `);
+
+  const textarea = getShadowEl(page, 'textarea');
+  expect(textarea).toBeTruthy();
+});

@@ -40,6 +40,21 @@ export class Button {
   @Prop() isIcon?: boolean;
 
   /**
+   * Displays a circular progress.
+   */
+  @Prop() loading?: boolean;
+
+  /**
+   * Circular progress color.
+   */
+  @Prop() loadingColor?: Color;
+
+  /**
+   * On loading state will show this string instead.
+   */
+  @Prop() loadingText?: string;
+
+  /**
    * Size variant to use.
    */
   @Prop() size?: Size;
@@ -80,7 +95,8 @@ export class Button {
   render() {
     const hostCls = {
       full: this.full,
-      hasIcon: Boolean(this.icon)
+      hasIcon: Boolean(this.icon),
+      isLoading: this.loading,
     };
 
     const rootCls = {
@@ -104,11 +120,21 @@ export class Button {
           class={rootCls}
           disabled={this.disabled}>
           <span class="content" style={buttonStyle}>
+            {this.loading && (
+              <arv-progress-circular
+                color={this.loadingColor}
+                size="small"></arv-progress-circular>
+            )}
             {this.icon && (
               <arv-icon icon={this.icon}></arv-icon>
             )}
             <slot name="start"></slot>
-            <slot></slot>
+            <div class="buttonText">
+              <slot></slot>
+            </div>
+            <span class="loadingText">
+              {this.loadingText}
+            </span>
             <slot name="end"></slot>
           </span>
         </button>

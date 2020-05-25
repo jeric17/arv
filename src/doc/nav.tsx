@@ -22,6 +22,7 @@ export class DocNav {
     'Input',
     'Menu',
     'Paper',
+    'ProgressCircular',
     'Radio',
     'Select',
     'Snackbar',

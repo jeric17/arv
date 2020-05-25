@@ -1,5 +1,11 @@
-import { Component, h, Event, EventEmitter, Prop, Watch, State } from '@stencil/core';
+import { Component, Host, h, Event, EventEmitter, Prop, Watch, State } from '@stencil/core';
+import { Color } from '../../interface';
+import { generateAttrValue } from '../../utils/helpers';
 
+/**
+ * @slot header - Positioned between table title and table data.
+ * @slot footer - Positioned at the bottom after the table.
+ */
 @Component({
   tag: 'arv-table',
   styleUrl: 'table.css',
@@ -7,61 +13,84 @@ import { Component, h, Event, EventEmitter, Prop, Watch, State } from '@stencil/
 })
 export class Table {
 
+  /**
+   * Table data to display. The first element of the array will not
+   * be shown. It is used as a placeholder for the ID.
+   */
   @State() tableDataArray: any[];
 
+  /*
+   * Table header
+   */
   @State() tableHeadersData: string[];
 
-  @Prop() activeSort: string;
+  /**
+   * Color variant to set.
+   */
+  @Prop() color: Color;
 
-  @Prop() controls = [];
+  /**
+   * This serves as the buttons on the right side of the row. It renders a
+   * button icon which calls the callback function that has the whole
+   * row as the argument.
+   */
+  @Prop() controls: { icon: string, fn: (data: any) => any }[] = [];
 
-  @Prop() multiSelectable: boolean;
-
-  @Prop() rowClickable = false;
-
-  @Prop() selectable: boolean;
-
-  @Prop() sortable: boolean;
-
-  @Prop() isAscending: boolean;
-
-  @Prop() styles = {
-    table: {},
-    tbody: {},
-    tr: {},
-    td: {},
-    thead: {},
-    th: {},
-    tfoot: {},
-  };
-
-  @Prop() tableTitle: string;
-
-  @Prop() titleVariant = 'heading3';
-
+  /**
+   * Table data to render.
+   */
   @Prop() tableData: any = [];
 
+  /**
+   * Will parse tableData.
+   */
   @Watch('tableData')
   handleTableData() {
     this.load('tableData', 'tableDataArray');
   }
 
+  /**
+   * Table header to render.
+   */
   @Prop() tableHeaders: any;
 
+  /**
+   * Will parse tableHeader.
+   */
   @Watch('tableHeaders')
   handleTableHeaders() {
     this.load('tableHeaders', 'tableHeadersData');
   }
 
+  /**
+   * Table element attributes to be added on the table element.
+   */
   @Prop() tableProps = {};
 
+  /**
+   * Title of the table.
+   */
+  @Prop() tableTitle: string;
+
+  /**
+   * Callback prop function will be triggered on row click.
+   */
   @Prop() select: (row: any) => void;
 
-  @Event() rowClick: EventEmitter;
+  /**
+   * Emitted on table row click.
+   */
+  @Event() arvRowClick: EventEmitter;
 
-  @Event() rowItemClick: EventEmitter;
+  /**
+   * Emitted on th click.
+   */
+  @Event() arvHeaderClick: EventEmitter;
 
-  @Event() headerClick: EventEmitter;
+  /**
+   * Emitted on td click.
+   */
+  @Event() arvRowItemClick: EventEmitter;
 
   componentWillLoad() {
     this.load('tableHeaders', 'tableHeadersData');
@@ -85,28 +114,19 @@ export class Table {
     }
   }
 
-  thItemClick(item, evt) {
-    this.headerClick.emit({
-      evt,
-      item
-    });
+  thItemClick(item) {
+    this.arvHeaderClick.emit(item);
   }
 
-  trItemClick(item, evt) {
-    this.rowClick.emit({
-      evt,
-      item
-    });
+  trItemClick(item) {
+    this.arvRowClick.emit(item);
     if (this.select) {
       this.select(item);
     }
   }
 
-  tdItemClick(item, evt) {
-    this.rowItemClick.emit({
-      evt,
-      item
-    })
+  tdItemClick(item) {
+    this.arvRowItemClick.emit(item)
   }
 
   private generateRowItem(value) {
@@ -130,90 +150,81 @@ export class Table {
   }
 
   render() {
-    const rootClassNames = {
-      root: true,
-      sortable: this.sortable,
-      ascending: this.isAscending
+
+    const cls = {
+      ...generateAttrValue(this.color),
     };
 
     const trClass = {
-      tr: true,
-      trClickable: this.rowClickable
+      tr: true
     };
 
     return (
-      <div class={rootClassNames}>
-        {Boolean(this.tableTitle) && (
-          <arv-flex>
-            <arv-text>{this.tableTitle}</arv-text>
-          </arv-flex>
-        )}
+      <Host class={cls}>
+        <div class="heading">
+          {Boolean(this.tableTitle) && (
+            <h1 class="table-title">{this.tableTitle}</h1>
+          )}
+          <slot name="header"></slot>
+        </div>
         <table
-          style={this.styles.table}
           class="table"
           {...this.tableProps}>
 
-          <thead style={this.styles.thead}>
-            <tr
-              class="tr"
-              style={this.styles.tr}>
-              {this.multiSelectable && (
-                <th class="th thCheckbox" style={this.styles.th}><arv-checkbox /></th>
-              )}
+          <thead>
+            <tr class="tr">
               {this.tableHeadersData.map(headerItem => (
                 <th
                   onClick={this.thItemClick.bind(this, headerItem)}
-                  class={{
-                    th: true,
-                    thActive: this.sortable && (headerItem === this.activeSort)
-                  }}
-                  style={this.styles.th}>
+                  class="th"
+                >
                   {headerItem}
                 </th>
               ))}
-              {Boolean(this.controls.length) && (<th class="th" style={this.styles.th}></th>)}
+              {Boolean(this.controls.length) && (<th class="th"></th>)}
             </tr>
           </thead>
 
-          <tbody style={this.styles.tbody}>
+          <tbody>
             {this.tableDataArray.map(rowData => {
               const [id, ...dataBody] = rowData;
-              return (<tr
-                data-id={id}
-                class={trClass}
-                onClick={this.trItemClick.bind(this, rowData)}
-                style={this.styles.tr}>
-                {(this.selectable || this.multiSelectable) && (
-                  <td class="td tdCheckbox"><arv-checkbox /></td>
-                )}
-
-                {dataBody.map(rowItem => (
-                  <td
-                    class="td"
-                    onClick={this.tdItemClick.bind(this, rowItem)}
-                    style={this.styles.td}>
-                    {this.generateRowItem(rowItem)}
-                  </td>
-                ))}
-                {Boolean(this.controls.length) && (
-                  <td class="td controls">
-                    <arv-flex justify="flex-end">
-                      {this.controls.map(ctrlItem => (
-                        <arv-button
-                          variant="ghost-icon"
-                          icon={ctrlItem.icon}
-                          buttonClick={() => ctrlItem.fn(rowData)}></arv-button>
-                      ))}
-                    </arv-flex>
-                  </td>
-                )}
-              </tr>)
+              return (
+                <tr
+                  data-id={id}
+                  class={trClass}
+                  onClick={this.trItemClick.bind(this, rowData)}
+                >
+                  {dataBody.map(rowItem => (
+                    <td
+                      class="td"
+                      onClick={this.tdItemClick.bind(this, rowItem)}
+                    >
+                      {this.generateRowItem(rowItem)}
+                    </td>
+                  ))}
+                  {Boolean(this.controls.length) && (
+                    <td class="td controls">
+                      <arv-flex justify="flex-end">
+                        {this.controls.map(ctrlItem => (
+                          <arv-button
+                            color={this.color}
+                            variant="ghost"
+                            icon={ctrlItem.icon}
+                            onClick={() => ctrlItem.fn(rowData)}
+                            is-icon
+                          ></arv-button>
+                        ))}
+                      </arv-flex>
+                    </td>
+                  )}
+                </tr>)
             })}
-            <slot />
           </tbody>
-
         </table>
-      </div>
+        <div class="footer">
+          <slot name="footer"></slot>
+        </div>
+      </Host>
     );
   }
 }

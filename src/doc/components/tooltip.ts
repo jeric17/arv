@@ -1,34 +1,27 @@
 export const Tooltip = {
   name: 'Tooltip',
   element: 'arv-tooltip',
-  slot: '<arv-button variant="raised">Hello</arv-button>',
+  slot: `
+    <arv-button variant="raised">Hello</arv-button>
+    <arv-text slot="tooltip" wrap="nowrap">
+      <p>Custom content</p>
+    </arv-text>
+  `,
   props: [
-    {
-      name: 'color',
-      type: 'oneOf',
-      data: ['default', 'primary', 'secondary', 'error', 'success'],
-      value: 'primary',
-    },
     {
       name: 'message',
       type: 'string',
       value: 'hello'
     },
     {
+      name: 'color',
+      type: 'color'
+    },
+    {
       name: 'position',
       type: 'oneOf',
-      data: ['tp', 'bottom', 'right', 'left'],
+      data: ['top', 'bottom', 'right', 'left'],
       value: 'top',
-    },
-    {
-      name: 'fixed',
-      type: 'boolean',
-      value: 'false'
-    },
-    {
-      name: 'show',
-      type: 'boolean',
-      value: 'false'
-    },
+    }
   ]
 };

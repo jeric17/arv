@@ -13,6 +13,8 @@ export { Icon as Icon } from './icon';
 export { Input as Input } from './input';
 export { Menu as Menu } from './menu';
 export { Paper as Paper } from './paper';
+export { ProgressCircular as ProgressCircular } from './progress-circular';
+export { ProgressLinear as ProgressLinear } from './progress-linear';
 export { Radio as Radio } from './radio';
 export { Select as Select } from './select';
 export { Snackbar as Snackbar } from './snackbar';

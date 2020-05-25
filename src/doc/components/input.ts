@@ -20,6 +20,11 @@ export const Input = {
       value: 'Username',
       description: 'Input placeholder'
     }, {
+      name: 'rows',
+      type: 'string',
+      value: '',
+      description: 'Rows for the textarea. Automatically renders a textarea element.'
+    }, {
       name: 'flex-direction',
       type: 'oneOf',
       data: ['row', 'row-reverse', 'column', 'column-reverse'],
