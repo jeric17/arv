@@ -7,7 +7,8 @@ button {
   border: none;
   color: var(--font-color);
   cursor: pointer;
-  display: block;
+  display: flex;
+  justify-content: center;
   font-size: 1em;
   font-family: inherit;
   outline: none;
