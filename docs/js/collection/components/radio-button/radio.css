@@ -1,0 +1,113 @@
+:host {
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  margin: 4px;
+  align-items: center;
+}
+label {
+  margin: 0 1em;
+}
+input {
+  display: none;
+}
+:host(.disabled) {
+  cursor: not-allowed;
+}
+:host(.flex-column) label, :host(.flex-column-reverse) label {
+  margin: 1em 0;
+}
+.control {
+  align-items: center;
+  border-color: var(--default-highlight);
+  background-color: var(--default-bg);
+  border-radius: 100%;
+  border-style: solid;
+  border-width: var(--radio-border-width);
+  box-sizing: border-box;
+  display: flex;
+  height: 20px;
+  justify-content: center;
+  min-height: 20px;
+  min-width: 20px;
+  padding: var(--radio-padding);
+  transition: all 0.3s;
+  width: 20px;
+}
+
+.indicator {
+  border-radius: 100%;
+  height: 100%;
+  width: 100%;
+  transition: all 0.3s;
+  transform: scale(0);
+  background-color: var(--default-shade);
+}
+
+:host(.checked) .indicator {
+  transform: scale(1);
+}
+
+:host(.primary.checked) .control {
+  border-color: var(--primary-color);
+}
+:host(.primary) .indicator {
+  background-color: var(--primary-shade);
+}
+
+:host(.secondary.checked) .control {
+  border-color: var(--secondary-color);
+}
+:host(.secondary) .indicator {
+  background-color: var(--secondary-shade);
+}
+
+:host(.success.checked) .control {
+  border-color: var(--success-color);
+}
+:host(.success) .indicator {
+  background-color: var(--success-shade);
+}
+
+:host(.warning.checked) .control {
+  border-color: var(--warning-color);
+}
+:host(.warning) .indicator {
+  background-color: var(--warning-shade);
+}
+
+:host(.danger.checked) .control {
+  border-color: var(--danger-color);
+}
+:host(.danger) .indicator {
+  background-color: var(--danger-shade);
+}
+
+:host(.dark.checked) .control {
+  border-color: var(--dark-color);
+}
+:host(.dark) .indicator {
+  background-color: var(--dark-shade);
+}
+
+:host(.light.checked) .control {
+  border-color: var(--light-color);
+}
+:host(.light) .indicator {
+  background-color: var(--light-shade);
+}
+
+:host(.large) .control {
+  min-height: 30px;
+  min-width: 30px;
+  height: 30px;
+  width: 30px;
+}
+
+:host(.small) .control {
+  min-height: 14px;
+  min-width: 14px;
+  height: 14px;
+  width: 14px;
+  border-width: 1px;
+}

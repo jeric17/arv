@@ -1,0 +1,104 @@
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.root {
+  position: relative;
+  height: 120px;
+  width: 120px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 2px 2px rgba(3,3,3,0.3);
+  background-color: #dfdfdf;
+}
+
+.img {
+  background-size: cover;
+  background-position: center center;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.small {
+  height: 80px;    
+  width: 80px;
+}
+
+.xsmall {
+  height: 40px; 
+  width: 40px;
+}
+
+.large {
+  height: 150px;    
+  width: 150px;
+}
+
+.input {
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+}
+
+.remove-button {
+  --icon-color: #fff;
+  --default-light-color: rgba(3, 3, 3, 0.3);
+
+  display: none;  
+  position: absolute;
+  z-index: 9;
+  right: 0;
+  width: 33px;
+  justify-content: flex-end;
+}
+
+.hover {
+  animation: fadeIn 0.3s;
+  display: none;
+  background-color: rgba(3,3,3,0.5);
+  justify-content: center;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+
+.hoverText {
+  color: #fff;
+  text-shadow: 1px 1px 1px rgba(3,3,3,0.3);
+}
+
+.small .hoverText {
+  font-size: 0.8rem;
+}
+
+.xsmall .hoverText {
+  display: none;
+}
+
+.root:hover .hover {
+  display: flex;   
+}
+
+.root:hover .remove-button {
+  display: flex;
+}
+
+.disabled,
+.disabled .input {
+  cursor: not-allowed;
+}

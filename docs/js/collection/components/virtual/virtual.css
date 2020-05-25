@@ -1,0 +1,50 @@
+:host {
+  align-items: center;
+  display: block;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  z-index: 9999;
+}
+.backdrop {
+  background-color: var(--backdrop-color);
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.content {
+  background-color: var(--default-bg);
+  border-radius: var(--radius);
+  margin: 2em 0;
+  z-index: 9;
+}
+.inner {
+  box-sizing: border-box;
+  padding: 1em;
+}
+.header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1em;
+}
+.wrapper {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  pointer-events: painted;
+  width: 100%;
+  z-index: 9;
+}
+
+:host(.scrollable) .wrapper {
+  align-items: flex-start;
+  overflow-y: scroll;
+}

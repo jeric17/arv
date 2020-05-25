@@ -1,0 +1,30 @@
+:host {
+  color: var(--text-color);
+}
+:host(.primary) {
+  color: var(--primary-color);
+}
+:host(.secondary) {
+  color: var(--secondary-color);
+}
+:host(.light) {
+  color: var(--light-text-color);
+}
+:host(.dark) {
+  color: var(--dark-text-color);
+}
+:host(.warning) {
+  color: var(--warning-color);
+}
+:host(.danger) {
+  color: var(--danger-color);
+}
+:host(.success) {
+  color: var(--success-color);
+}
+:host(.textShadow) {
+  text-shadow: 1px 1px 1px rgba(3, 3, 3, 0.8);
+}
+:host(.truncate) {
+  white-space: nowrap;
+}

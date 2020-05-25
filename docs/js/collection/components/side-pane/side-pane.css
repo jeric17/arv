@@ -1,0 +1,8 @@
+:host {
+  border-right-color: var(--default-highlight);
+  border-right-width: 1px;
+  border-right-style: solid;
+  height: 100vh;
+  min-width: 240px;
+  overflow-y: scroll;
+}

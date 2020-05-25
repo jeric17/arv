@@ -1,0 +1,116 @@
+:host,
+.control,
+#input {
+  box-sizing: border-box;
+}
+:host(.row) {
+  align-items: center;
+  display: flex;
+}
+:host(.hasIcon) #input {
+  padding: 0 1.5em 0 2.5em;
+}
+:host(.row) label {
+  margin: 0 1em;
+}
+:host(.flex) {
+  display: flex;
+}
+#input {
+  background-color: var(--default-bg);
+  border-color: var(--default-highlight);
+  border-radius: var(--radius);
+  border-style: solid;
+  border-width: 2px;
+  color: var(--font-color);
+  font-size: 1rem;
+  line-height: 2.5em;
+  outline: none;
+  padding: 0 1.5em;
+  transition: all 0.3s;
+}
+#input:hover,
+#input:focus {
+  border-color: var(--default-shade);
+}
+#input:focus {
+  background-color: var(--default-shade);
+}
+:host(.primary) #input:hover,
+:host(.primary) #input:focus {
+  border-color: var(--primary-color);
+}
+
+:host(.secondary) #input:hover,
+:host(.secondary) #input:focus {
+  border-color: var(--secondary-color);
+}
+:host(.success) #input:hover,
+:host(.success) #input:focus {
+  border-color: var(--success-color);
+}
+:host(.warning) #input:hover,
+:host(.warning) #input:focus {
+  border-color: var(--warning-color);
+}
+:host(.danger) #input:hover,
+:host(.danger) #input:focus {
+  border-color: var(--danger-color);
+}
+:host(.light) #input:hover,
+:host(.light) #input:focus {
+  border-color: var(--light-color);
+}
+:host(.dark) #input:hover,
+:host(.dark) #input:focus {
+  border-color: var(--dark-color);
+}
+
+label {
+  display: block;
+  line-height: 2.5em;
+}
+
+.control {
+  position: relative;
+}
+
+arv-icon {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+}
+
+#input:disabled {
+  cursor: not-allowed;
+  background-color: var(--disabled-color) !important;
+  color: var(--disabled-text-color);
+  border-color: var(--disabled-color) !important;
+}
+
+:host(.small) #input {
+  font-size: 0.8rem;
+}
+:host(.small) arv-icon {
+  --icon-size: 0.8rem;
+  top: 10px;
+}
+:host(.small) label {
+  font-size: 0.8rem;
+}
+
+:host(.large) #input {
+  font-size: 1.2rem;
+}
+:host(.large) arv-icon {
+  --icon-size: 1.2rem;
+  top: 16px;
+}
+:host(.large) label {
+  font-size: 1.2rem;
+}
+:host(.full),
+:host(.full) .control,
+:host(.full) #input {
+  width: 100%;
+}

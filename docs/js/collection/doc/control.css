@@ -1,0 +1,9 @@
+.control-description {
+  margin-left: 2.5em;
+}
+pre {
+  background-color: var(--default-highlight);
+  border-radius: var(--radius);
+  overflow-x: scroll;
+  color: var(--font-color);
+}

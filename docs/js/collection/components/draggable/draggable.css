@@ -1,0 +1,53 @@
+.top, .bottom {
+  min-height: 2px;
+  height: 4px;
+}
+
+.topContent {
+  animation: show;
+}
+
+.isTopOver, .isBottomOver,
+.isTopOver.horizontalLine, .isBottomOver.horizontalLine{
+  background-color: var(--primary-color);
+}
+
+arv-icon {
+  --default-icon-color: #565656;
+  cursor: move;
+}
+
+.disabled arv-icon {
+  cursor: not-allowed;
+}
+
+.primary arv-icon {
+  --default-icon-color: var(--primary-color);
+}
+
+.secondary arv-icon {
+  --default-icon-color: var(--secondary-color);
+}
+
+.slotWrapper {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.horizontal {
+  display: flex;
+  position: relative;
+  padding: 0 2px;
+  box-sizing: border-box;
+}
+
+.horizontalLine {
+  width: 2px;
+  position: absolute;
+  height: 100%;
+}
+
+.isBottomOver.horizontalLine {
+  right: 0;
+}

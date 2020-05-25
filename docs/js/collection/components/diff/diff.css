@@ -1,0 +1,95 @@
+:host,
+.root {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.root {
+  --font-size: 0.8rem;
+}
+
+.none .line-symbol {
+  opacity: 0;
+}
+
+.item {
+  display: block;
+  padding: 0 4px 0 0;
+  box-sizing: border-box;
+}
+
+.item.minus {
+  background-color: #ffc8c8;
+}
+
+.item.plus {
+  background-color: #c8ffcc;
+}
+
+.line {
+  box-sizing: border-box;
+  padding: 0 8px;
+  background-color: #efefef;
+}
+
+.line-wrapper {
+  width: 80px;
+  background-color: #efefef;
+  --font-size: 0.7rem;
+}
+
+arv-button {
+  --font-family: var(--font-family);
+}
+.controlWrapper {
+  min-height: 33px;
+  max-height: 33px;
+  flex: 1;
+}
+.contentWrapper {
+  border-radius: var(--radius);
+  background-color: var(--diff-bg, #fff);
+  flex: 1;
+  min-height: 0%;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.textWrapper {
+  --font-family: Courier;
+  --word-break: break-all;
+}
+
+.lineControl {
+  background-color: var(--control-bg, #585858);
+}
+.lineButton {
+  --dark-text-color: #f5f5f5;;
+  --font-size: 0.7rem;
+  cursor: pointer;
+}
+.lineButton.current:hover {
+  --dark-text-color: var(--lc-item-minus, #c8fff5);
+}
+.lineButton.incoming:hover {
+  --dark-text-color: var(--lc-item-minus, #fcffc8);
+}
+.div {
+  --dark-text-color: #cdcdcd;
+  margin: 0 4px;
+}
+.showLineControl .item.minus {
+  background-color: var(--lc-item-minus, #c8fff5);
+}
+
+.showLineControl .item.plus {
+  background-color: var(--lc-item-plus, #fcffc8);
+}
+.space {
+  width: 4px;
+}
+.letter-mode {
+  cursor: auto;
+}

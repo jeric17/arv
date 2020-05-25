@@ -1,0 +1,89 @@
+:host {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.divider {
+  background-color: var(--default-shade);
+  height: 2px;
+  width: 100%;
+  margin: 0 8px;
+}
+
+.item {
+  align-items: center;
+  display: flex;
+  width: 100%;
+}
+
+.index {
+  align-items: center;
+  background-color: var(--default-bg);
+  border-radius: 100%;
+  color: var(--font-color);
+  display: flex;
+  height: 26px;
+  justify-content: center;
+  margin: 0 8px;
+  min-width: 26px;
+  width: 26px;
+}
+
+.item.active .title,
+.item.done .title {
+  font-weight: bold;
+}
+
+.item.active .index,
+.item.done .index {
+  background-color: var(--default-shade);
+}
+
+:host(.primary) .done .index,
+:host(.primary) .active .index {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+:host(.primary) .done .index,
+:host(.primary) .active .index {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+:host(.secondary) .done .index,
+:host(.secondary) .active .index {
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+}
+
+:host(.success) .done .index,
+:host(.success) .active .index {
+  background-color: var(--success-color);
+  color: var(--success-text-color);
+}
+
+:host(.warning) .done .index,
+:host(.warning) .active .index {
+  background-color: var(--warning-color);
+  color: var(--warning-text-color);
+}
+
+:host(.danger) .done .index,
+:host(.danger) .active .index {
+  background-color: var(--danger-color);
+  color: var(--danger-text-color);
+}
+
+:host(.dark) .done .index,
+:host(.dark) .active .index {
+  background-color: var(--dark-color);
+  color: var(--dark-text-color);
+}
+
+:host(.light) .done .index,
+:host(.light) .active .index {
+  background-color: var(--light-color);
+  color: var(--light-text-color);
+}

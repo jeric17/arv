@@ -1,0 +1,1 @@
+import{r,h as a,H as t}from"./p-3c1deafe.js";const s=class{constructor(a){r(this,a)}render(){return a(t,null,a("slot",null))}};s.style=".arv-card{height:var(--card-height, auto)}";export{s as arv_card}

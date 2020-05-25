@@ -1,0 +1,9 @@
+:host {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+:host(.expanded) {
+  height: 100%;
+  width: 100%;
+}

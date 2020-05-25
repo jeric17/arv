@@ -1,0 +1,11 @@
+:host {
+  background-color: var(--default-bg);
+  cursor: pointer;
+  display: block;
+  line-height: 2.5em;
+  padding: 0 1em;
+  transition: background-color 0.3s;
+}
+:host(:hover) {
+  background-color: var(--default-highlight);
+}

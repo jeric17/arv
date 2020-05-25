@@ -1,0 +1,33 @@
+:host {
+  background-color: var(--default-bg);
+  color: var(--font-color);
+  width: 100%;
+  border-radius: var(--radius);
+  box-sizing: border-box;
+  padding: 0 1em;
+}
+
+:host(.primary) {
+  background-color: var(--primary-color);
+  color: var(--primary-text-color);
+}
+
+:host(.secondary) {
+  background-color: var(--secondary-color);
+  color: var(--secondary-text-color);
+}
+
+:host(.success) {
+  background-color: var(--success-color);
+  color: var(--success-text-color);
+}
+
+:host(.warning) {
+  background-color: var(--warning-color);
+  color: var(--warning-text-color);
+}
+
+:host(.danger) {
+  background-color: var(--danger-color);
+  color: var(--danger-text-color);
+}
