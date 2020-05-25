@@ -1,1 +1,0 @@
-import{r,h as a}from"./p-3c1deafe.js";const e=class{constructor(a){r(this,a)}render(){return a("div",{class:"arv-card-media",style:{"background-image":`url(${this.imageSrc})`}})}};e.style=":host{width:100%}.arv-card-media{padding-top:var(--card-media-height);background-position:center;background-size:cover;background-color:#efefef}";export{e as arv_card_media}

@@ -1,1 +1,0 @@
-import{r as o,h as r,H as t}from"./p-3c1deafe.js";const s=class{constructor(r){o(this,r)}render(){return r(t,null,r("slot",null))}};s.style=":host{width:100%}.root{-webkit-box-sizing:border-box;box-sizing:border-box;margin:0.25em 0;padding:0.25em 0;width:100%}";export{s as arv_form_control}

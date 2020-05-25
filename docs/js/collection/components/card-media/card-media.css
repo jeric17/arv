@@ -1,9 +1,0 @@
-:host {
-  width: 100%;  
-}
-.arv-card-media {
-  padding-top: var(--card-media-height);
-  background-position: center;
-  background-size: cover;
-  background-color: #efefef;
-}

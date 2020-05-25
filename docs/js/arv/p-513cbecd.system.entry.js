@@ -1,1 +1,0 @@
-System.register(["./p-5d12baf9.system.js"],(function(t){"use strict";var r,e,n;return{setters:[function(t){r=t.r;e=t.h;n=t.H}],execute:function(){var u=".arv-card{height:var(--card-height, auto)}";var s=t("arv_card",function(){function t(t){r(this,t)}t.prototype.render=function(){return e(n,null,e("slot",null))};return t}());s.style=u}}}));

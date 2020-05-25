@@ -1,1 +1,0 @@
-import{r as s,h as i,H as o}from"./p-3c1deafe.js";const t=class{constructor(i){s(this,i)}render(){return i(o,{class:{isActive:this.isActive}},i("slot",null))}};t.style=":host{display:none;height:100%;width:100%;-webkit-box-sizing:border-box;box-sizing:border-box;padding:1em}:host(.isActive){display:block}";export{t as arv_tab_panel}

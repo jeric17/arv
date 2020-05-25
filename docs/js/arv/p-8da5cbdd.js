@@ -1,1 +1,0 @@
-const e=e=>e?{[e]:!0}:null,s=(e,s=100)=>new Promise(o=>{setTimeout(()=>{e(),o()},s)});export{s as d,e as g}
