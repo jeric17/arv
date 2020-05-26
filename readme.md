@@ -1,4 +1,7 @@
 ![](https://badgen.net/bundlephobia/min/arv) ![](https://badgen.net/npm/v/arv)
+
+<img src="https://jeric17.github.io/arv/arv-logo.svg" width=100px />
+
 # Arv - A custom-element(shadowdom) UI library
 
 ### Inspired by 💪 [Material-ui library](https://material-ui.com/)
