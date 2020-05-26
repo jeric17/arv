@@ -7,3 +7,9 @@ svg {
   cursor: pointer;
   fill: #fff;
 }
+
+.cls-1,.cls-2{fill:#3154ff;}.cls-1,.cls-3,.cls-4{stroke:#fff;}.cls-1,.cls-3{stroke-linecap:round;stroke-linejoin:round;}.cls-3,.cls-4{fill:none;stroke-width:8px;}.cls-4{stroke-miterlimit:10;}
+
+.logo {
+  width: 38px;
+}
